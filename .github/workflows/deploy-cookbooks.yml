@@ -1,0 +1,323 @@
+name: deploy-cookbooks
+
+on:
+  workflow_run:
+    workflows: ["test-cookbooks"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: deploy-cookbooks-main
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    outputs:
+      deployables: ${{ steps.deployables.outputs.deployables }}
+      has_deploys: ${{ steps.deployables.outputs.has_deploys }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 1
+
+      - id: current
+        run: |
+          set -euo pipefail
+          latest_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          if [ "${{ github.event.workflow_run.head_sha }}" = "$latest_main" ]; then
+            echo "is_current=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Skipping stale cookbook deploy for ${{ github.event.workflow_run.head_sha }}; latest main is $latest_main."
+            echo "is_current=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/download-artifact@v4
+        if: steps.current.outputs.is_current == 'true'
+        with:
+          name: changed-cookbooks
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+          path: .tmp/changed-cookbooks
+
+      - id: deployables
+        run: |
+          set -euo pipefail
+
+          if [ "${{ steps.current.outputs.is_current }}" != "true" ]; then
+            echo "deployables=[]" >> "$GITHUB_OUTPUT"
+            echo "has_deploys=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          config_file=".github/cookbook-clever-config.json"
+          if [ ! -f "$config_file" ]; then
+            echo "Missing $config_file." >&2
+            exit 1
+          fi
+          config="$(cat "$config_file")"
+          if ! jq -e 'type == "object"' <<< "$config" >/dev/null; then
+            echo "$config_file must be a JSON object mapping cookbook folder names to Clever config." >&2
+            exit 1
+          fi
+
+          changed_file=".tmp/changed-cookbooks/changed-cookbooks.json"
+          if [ ! -f "$changed_file" ]; then
+            echo "Missing changed cookbook artifact from test-cookbooks." >&2
+            exit 1
+          fi
+
+          deployables=$(jq -c --argjson config "$config" '
+            [
+              .[]
+              | select($config[.] != null)
+              | {
+                  cookbook: .,
+                  app_id_var: $config[.].app_id,
+                  values: ($config[.].values // {}),
+                  mapped_vars: ($config[.].mapped_vars // {}),
+                  addons: ($config[.].addons // []),
+                  vars: ($config[.].vars // []),
+                  secrets: ($config[.].secrets // []),
+                  unset: ($config[.].unset // [])
+                }
+              | select((.app_id_var | type) == "string" and .app_id_var != "")
+            ]
+          ' "$changed_file")
+          skipped=$(jq -r --argjson config "$config" '
+            [
+              .[]
+              | select(
+                  $config[.] == null
+                  or (($config[.].app_id | type) != "string")
+                )
+            ]
+            | join(", ")
+          ' "$changed_file")
+
+          if [ -n "$skipped" ]; then
+            echo "Changed cookbooks without Clever config mapping: $skipped"
+          fi
+
+          echo "deployables=$deployables" >> "$GITHUB_OUTPUT"
+          if [ "$deployables" = "[]" ]; then
+            echo "has_deploys=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_deploys=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  noop:
+    needs: discover
+    if: needs.discover.outputs.has_deploys == 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "No changed cookbook backends are mapped to Clever Cloud apps."
+
+  deploy:
+    needs: discover
+    if: needs.discover.outputs.has_deploys == 'true'
+    runs-on: ubuntu-latest
+    environment: production
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.discover.outputs.deployables) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+
+      - name: Install Clever Cloud CLI
+        run: npm install -g clever-tools
+
+      - name: Deploy cookbook backend to Clever Cloud
+        env:
+          CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+          CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+          CLEVER_APP_ID_VAR: ${{ matrix.app_id_var }}
+          COOKBOOK: ${{ matrix.cookbook }}
+          COOKBOOK_VALUE_MAP: ${{ toJson(matrix.values) }}
+          COOKBOOK_MAPPED_VAR_NAMES: ${{ toJson(matrix.mapped_vars) }}
+          COOKBOOK_ADDON_NAMES: ${{ toJson(matrix.addons) }}
+          COOKBOOK_VAR_NAMES: ${{ toJson(matrix.vars) }}
+          COOKBOOK_SECRET_NAMES: ${{ toJson(matrix.secrets) }}
+          COOKBOOK_UNSET_NAMES: ${{ toJson(matrix.unset) }}
+          CLEVER_APP_ID_COOKBOOK_01: ${{ secrets.CLEVER_APP_ID_COOKBOOK_01 }}
+          CLEVER_APP_ID_COOKBOOK_02: ${{ secrets.CLEVER_APP_ID_COOKBOOK_02 }}
+          CLEVER_APP_ID_COOKBOOK_03: ${{ secrets.CLEVER_APP_ID_COOKBOOK_03 }}
+          CLEVER_APP_ID_COOKBOOK_04: ${{ secrets.CLEVER_APP_ID_COOKBOOK_04 }}
+          CLEVER_APP_ID_COOKBOOK_05: ${{ secrets.CLEVER_APP_ID_COOKBOOK_05 }}
+          CLEVER_APP_ID_COOKBOOK_06: ${{ secrets.CLEVER_APP_ID_COOKBOOK_06 }}
+          CLEVER_APP_ID_COOKBOOK_07: ${{ secrets.CLEVER_APP_ID_COOKBOOK_07 }}
+          CLEVER_APP_ID_COOKBOOK_08: ${{ secrets.CLEVER_APP_ID_COOKBOOK_08 }}
+          CLEVER_APP_ID_COOKBOOK_09: ${{ secrets.CLEVER_APP_ID_COOKBOOK_09 }}
+          CLEVER_APP_ID_COOKBOOK_10: ${{ secrets.CLEVER_APP_ID_COOKBOOK_10 }}
+          CLEVER_PG_ADDON: ${{ secrets.CLEVER_PG_ADDON }}
+          ENV: ${{ vars.ENV }}
+          LOG_LEVEL: ${{ vars.LOG_LEVEL }}
+          CORS_ORIGINS: ${{ vars.CORS_ORIGINS }}
+          ALLOW_LOCALHOST_CORS: ${{ vars.ALLOW_LOCALHOST_CORS }}
+          NEBIUS_BASE_URL: ${{ vars.NEBIUS_BASE_URL }}
+          NEBIUS_MODEL: ${{ vars.NEBIUS_MODEL }}
+          NEBIUS_EMBEDDING_MODEL: ${{ vars.NEBIUS_EMBEDDING_MODEL }}
+          NEBIUS_ENABLE_PRICING_LOOKUP: ${{ vars.NEBIUS_ENABLE_PRICING_LOOKUP }}
+          NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS: ${{ vars.NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS }}
+          NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS: ${{ vars.NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS }}
+          NEBIUS_EMBEDDING_PRICE_PER_MILLION_TOKENS: ${{ vars.NEBIUS_EMBEDDING_PRICE_PER_MILLION_TOKENS }}
+          DIRECT_RESPONSE_MAX_TOKENS: ${{ vars.DIRECT_RESPONSE_MAX_TOKENS }}
+          DELIBERATE_RESPONSE_MAX_TOKENS: ${{ vars.DELIBERATE_RESPONSE_MAX_TOKENS }}
+          FIRST_TOKEN_TARGET_MS: ${{ vars.FIRST_TOKEN_TARGET_MS }}
+          PINECONE_INDEX_NAME: ${{ vars.PINECONE_INDEX_NAME }}
+          PINECONE_CLOUD: ${{ vars.PINECONE_CLOUD }}
+          PINECONE_REGION: ${{ vars.PINECONE_REGION }}
+          PINECONE_NAMESPACE: ${{ vars.PINECONE_NAMESPACE }}
+          TAVILY_SEARCH_DEPTH: ${{ vars.TAVILY_SEARCH_DEPTH }}
+          TAVILY_MAX_RESULTS: ${{ vars.TAVILY_MAX_RESULTS }}
+          LANGSMITH_TRACING: ${{ vars.LANGSMITH_TRACING }}
+          LANGSMITH_PROJECT: ${{ vars.LANGSMITH_PROJECT }}
+          LANGSMITH_PROJECT_COOKBOOK_09: ${{ vars.LANGSMITH_PROJECT_COOKBOOK_09 }}
+          LANGSMITH_ENDPOINT: ${{ vars.LANGSMITH_ENDPOINT }}
+          LANGCHAIN_TRACING_V2: ${{ vars.LANGCHAIN_TRACING_V2 }}
+          MEMORY_BACKEND: ${{ vars.MEMORY_BACKEND }}
+          LONG_TERM_MEMORY_LIMIT: ${{ vars.LONG_TERM_MEMORY_LIMIT }}
+          GUARDRAILS_ENABLED: ${{ vars.GUARDRAILS_ENABLED }}
+          GUARDRAILS_TOPIC: ${{ vars.GUARDRAILS_TOPIC }}
+          GUARDRAILS_MAX_OUTPUT_CHARS: ${{ vars.GUARDRAILS_MAX_OUTPUT_CHARS }}
+          STRIPE_MCP_BASE_URL: ${{ vars.STRIPE_MCP_BASE_URL }}
+          STRIPE_IMAGE_BASE_URL: ${{ vars.STRIPE_IMAGE_BASE_URL }}
+          STRIPE_CURRENCY: ${{ vars.STRIPE_CURRENCY }}
+          BOOK_CATALOG_PATH: ${{ vars.BOOK_CATALOG_PATH }}
+          APPROVAL_TTL_SECONDS: ${{ vars.APPROVAL_TTL_SECONDS }}
+          NEBIUS_API_KEY: ${{ secrets.NEBIUS_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
+          LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_MCP_API_KEY: ${{ secrets.STRIPE_MCP_API_KEY }}
+        run: |
+          set -euo pipefail
+
+          alias="cookbook-${COOKBOOK}"
+          if [ -z "${CLEVER_APP_ID_VAR:-}" ]; then
+            echo "Missing app_id entry for $COOKBOOK in .github/cookbook-clever-config.json." >&2
+            exit 1
+          fi
+          CLEVER_APP_ID="$(printenv "$CLEVER_APP_ID_VAR" || true)"
+          if [ -z "$CLEVER_APP_ID" ]; then
+            echo "Missing GitHub secret $CLEVER_APP_ID_VAR for $COOKBOOK." >&2
+            exit 1
+          fi
+          clever login --token "$CLEVER_TOKEN" --secret "$CLEVER_SECRET"
+          clever link "$CLEVER_APP_ID" --alias "$alias"
+          clever env set APP_FOLDER "cookbooks/$COOKBOOK" --alias "$alias"
+          clever env set CC_PYTHON_BACKEND uvicorn --alias "$alias"
+          clever env set CC_PYTHON_UV_RUN_COMMAND "uv run uvicorn app.main:app --host 0.0.0.0 --port 8080" --alias "$alias"
+          clever env set PORT 8080 --alias "$alias"
+
+          link_addons_json() {
+            local names_json="$1"
+            if [ -z "$names_json" ]; then
+              return
+            fi
+            if ! jq -e 'type == "array"' <<< "$names_json" >/dev/null; then
+              echo "addons entries must be a JSON array of GitHub secret names." >&2
+              exit 1
+            fi
+            jq -r '.[]' <<< "$names_json" | while IFS= read -r key; do
+              addon_id="$(printenv "$key" || true)"
+              if [ -z "$addon_id" ]; then
+                echo "Missing GitHub secret referenced by $COOKBOOK addon dependency: $key" >&2
+                exit 1
+              fi
+              if clever service --alias "$alias" --only-addons --format json \
+                | jq -e --arg addon "$addon_id" '.. | objects | select((.id? == $addon) or (.addonId? == $addon) or (.addon_id? == $addon))' >/dev/null; then
+                echo "Add-on $key is already linked to $COOKBOOK."
+              else
+                clever service link-addon "$addon_id" --alias "$alias"
+              fi
+            done
+          }
+
+          sync_names_json() {
+            local names_json="$1"
+            local source_name="$2"
+            if [ -z "$names_json" ]; then
+              return
+            fi
+            if ! jq -e 'type == "array"' <<< "$names_json" >/dev/null; then
+              echo "$source_name must be a JSON array of GitHub variable or secret names." >&2
+              exit 1
+            fi
+            jq -r '.[]' <<< "$names_json" | while IFS= read -r key; do
+              value="$(printenv "$key" || true)"
+              if [ -z "$value" ]; then
+                echo "Missing GitHub $source_name referenced by $COOKBOOK: $key" >&2
+                exit 1
+              fi
+              clever env set "$key" "$value" --alias "$alias"
+            done
+          }
+
+          sync_values_json() {
+            local values_json="$1"
+            if [ -z "$values_json" ]; then
+              return
+            fi
+            if ! jq -e 'type == "object"' <<< "$values_json" >/dev/null; then
+              echo "values entries must be a JSON object of Clever environment variables." >&2
+              exit 1
+            fi
+            jq -r 'to_entries[] | @tsv' <<< "$values_json" | while IFS=$'\t' read -r key value; do
+              clever env set "$key" "$value" --alias "$alias"
+            done
+          }
+
+          sync_mapped_names_json() {
+            local names_json="$1"
+            if [ -z "$names_json" ]; then
+              return
+            fi
+            if ! jq -e 'type == "object" and all(to_entries[]; (.key | type) == "string" and (.value | type) == "string")' <<< "$names_json" >/dev/null; then
+              echo "mapped_vars entries must be a JSON object mapping Clever env names to GitHub variable names." >&2
+              exit 1
+            fi
+            jq -r 'to_entries[] | @tsv' <<< "$names_json" | while IFS=$'\t' read -r target_key source_key; do
+              value="$(printenv "$source_key" || true)"
+              if [ -z "$value" ]; then
+                echo "Missing GitHub mapped variable referenced by $COOKBOOK: $source_key -> $target_key" >&2
+                exit 1
+              fi
+              clever env set "$target_key" "$value" --alias "$alias"
+            done
+          }
+
+          link_addons_json "${COOKBOOK_ADDON_NAMES:-[]}"
+          sync_values_json "${COOKBOOK_VALUE_MAP:-{}}"
+          sync_mapped_names_json "${COOKBOOK_MAPPED_VAR_NAMES:-{}}"
+          sync_names_json "${COOKBOOK_VAR_NAMES:-[]}" "variable"
+          sync_names_json "${COOKBOOK_SECRET_NAMES:-[]}" "secret"
+
+          unset_names_json() {
+            local names_json="$1"
+            if [ -z "$names_json" ]; then
+              return
+            fi
+            if ! jq -e 'type == "array"' <<< "$names_json" >/dev/null; then
+              echo "unset entries must be a JSON array of Clever environment variable names." >&2
+              exit 1
+            fi
+            jq -r '.[]' <<< "$names_json" | while IFS= read -r key; do
+              clever env rm "$key" --alias "$alias" || true
+            done
+          }
+
+          unset_names_json "${COOKBOOK_UNSET_NAMES:-[]}"
+
+          clever deploy --alias "$alias" --force --same-commit-policy rebuild

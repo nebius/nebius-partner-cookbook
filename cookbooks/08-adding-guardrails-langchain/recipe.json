@@ -1,0 +1,90 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "adding-guardrails-langchain",
+  "order": 8,
+  "eyebrow": "Guardrails",
+  "title": "Adding Guardrails with LangChain",
+  "upcoming": false,
+  "tagline": "Stop unsafe or malformed agent behavior with LangChain guardrail middleware.",
+  "difficulty": "advanced",
+  "estimatedReadingTime": "14 min",
+  "estimatedRunTime": "8 min",
+  "stack": {
+    "primary": ["nebius-agentkit", "langchain"],
+    "secondary": ["guardrails", "fastapi", "structlog", "prometheus", "docker"]
+  },
+  "tags": ["agent", "guardrails", "validation", "safety", "reliability", "pii"],
+  "story": {
+    "problem": "A capable, observable agent is still a liability if it accepts injected input, leaks PII, drifts off-topic, or emits unsafe output.",
+    "solution": "Use LangChain guardrail middleware for input checks, output validation, PII handling, and approval-sensitive operations with fail-closed behavior.",
+    "outcome": "An agent that rejects or repairs unsafe interactions before they reach users or downstream systems."
+  },
+  "prerequisites": [
+    "Python 3.12+",
+    "uv installed (https://docs.astral.sh/uv/)",
+    "A Nebius API key",
+    "Postgres 15+ running locally"
+  ],
+  "models": [
+    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" },
+    { "id": "Qwen/Qwen3-30B-A3B-Instruct", "role": "critic" }
+  ],
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/08-adding-guardrails-langchain",
+    "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY",
+    "run": "createdb nebius_cookbook && uv sync && make dev"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/agent/run",
+      "streaming": true,
+      "description": "Run the guarded agent with validated input and output."
+    },
+    {
+      "method": "POST",
+      "path": "/feedback",
+      "description": "Attach user feedback to a LangSmith run inherited from Cookbook #7."
+    },
+    {
+      "method": "GET",
+      "path": "/memory/{user_id}",
+      "description": "List the inherited long-term memories stored for a user."
+    },
+    {
+      "method": "GET",
+      "path": "/memory/{user_id}/summary",
+      "description": "Summarize what the agent knows about a user."
+    },
+    {
+      "method": "DELETE",
+      "path": "/memory/{user_id}",
+      "description": "Delete the inherited long-term memories stored for a user."
+    },
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "description": "Liveness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/readyz",
+      "description": "Readiness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/metrics",
+      "description": "Prometheus metrics scrape endpoint, including guardrail pass/fail counters."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "docs/deployment.md"
+  },
+  "nextRecipe": "actions-with-mcp-stripe",
+  "authors": [
+    { "name": "Clément Sauvage", "url": "https://clementsauvage.me" }
+  ],
+  "publishedAt": "2026-06-04",
+  "updatedAt": "2026-06-02"
+}

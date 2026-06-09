@@ -1,0 +1,92 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "long-term-memory-langchain-postgres",
+  "order": 6,
+  "eyebrow": "User Memory",
+  "title": "Long-Term Memory with LangChain and Postgres",
+  "upcoming": false,
+  "tagline": "Persist user preferences and facts across threads with LangChain stores backed by Postgres.",
+  "difficulty": "advanced",
+  "estimatedReadingTime": "13 min",
+  "estimatedRunTime": "8 min",
+  "stack": {
+    "primary": ["nebius-agentkit", "langchain", "postgres"],
+    "secondary": ["langgraph", "fastapi", "openai-sdk", "structlog", "prometheus", "docker"]
+  },
+  "tags": ["agent", "long-term-memory", "langchain", "postgres", "personalization", "privacy"],
+  "story": {
+    "problem": "Thread memory helps inside one conversation, but production agents also need durable user context that survives restarts and new sessions.",
+    "solution": "Use LangChain long-term memory with Postgres-backed LangGraph stores, namespaced by user_id and recalled with tight limits before generation.",
+    "outcome": "A stateful agent that can remember durable user preferences while exposing list and delete flows needed for privacy operations."
+  },
+  "prerequisites": [
+    "Python 3.12+",
+    "uv installed (https://docs.astral.sh/uv/)",
+    "A Nebius API key",
+    "Docker for local Postgres"
+  ],
+  "models": [
+    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" }
+  ],
+  "assets": {
+    "hero": "assets/hero.png"
+  },
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/06-long-term-memory-langchain-postgres",
+    "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY",
+    "run": "docker compose up -d postgres && uv sync && make dev"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/agent/run",
+      "streaming": true,
+      "description": "Run the agent with thread_id and user_id, then stream SSE events back."
+    },
+    {
+      "method": "GET",
+      "path": "/memory/{user_id}",
+      "description": "List the long-term memories stored for a user."
+    },
+    {
+      "method": "GET",
+      "path": "/memory/{user_id}/summary",
+      "description": "Summarize what the agent knows about a user."
+    },
+    {
+      "method": "DELETE",
+      "path": "/memory/{user_id}",
+      "description": "Delete the long-term memories stored for a user."
+    },
+    {
+      "method": "DELETE",
+      "path": "/threads/{thread_id}",
+      "description": "Delete short-term checkpoints for a conversation thread."
+    },
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "description": "Liveness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/readyz",
+      "description": "Readiness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/metrics",
+      "description": "Prometheus metrics scrape endpoint."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "docs/deployment.md"
+  },
+  "nextRecipe": "observability-langsmith",
+  "authors": [
+    { "name": "Clément Sauvage", "url": "https://clementsauvage.me" }
+  ],
+  "publishedAt": "2026-06-04",
+  "updatedAt": "2026-05-26"
+}

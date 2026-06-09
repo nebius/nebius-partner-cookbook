@@ -1,0 +1,15 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "sentinel_optimized": "./sentinel/graph/agent.py:agent_optimized",
+    "sentinel_naive": "./sentinel/graph/naive_agent.py:agent_naive",
+    "sentinel_prototype": "./sentinel/graph/agent.py:agent_prototype",
+    "sentinel_grounded": "./sentinel/graph/agent.py:agent_grounded",
+    "sentinel_nemotron": "./sentinel/graph/agent.py:agent_nemotron",
+    "sentinel_kimi": "./sentinel/graph/agent.py:agent_kimi",
+    "sentinel_glm": "./sentinel/graph/agent.py:agent_glm"
+  },
+  "env": "./.env",
+  "python_version": "3.12",
+  "image_distro": "wolfi"
+}

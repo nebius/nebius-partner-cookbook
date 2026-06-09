@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+<DIV5 N="820" TYPE="PART" VOLUME="8" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820&amp;quot;}">
+<HEAD>PART 820&#x2014;QUALITY SYSTEM REGULATION
+</HEAD>
+<XREF ID="20240202" REFID="24" AMDINSN="4">Link to an amendment published at 89 FR 7523, Feb. 2, 2024.</XREF>
+<XREF ID="20241015" REFID="9" AMDINSN="1">Link to an amendment published at 89 FR 82945, Oct. 15, 2024.</XREF>
+<AUTH>
+<HED>Authority:</HED><PSPACE>21 U.S.C. 351, 352, 360, 360c, 360d, 360e, 360h, 360i, 360j, 360l, 371, 374, 381, 383; 42 U.S.C. 216, 262, 263a, 264.
+</PSPACE></AUTH>
+<SOURCE>
+<HED>Source:</HED><PSPACE>61 FR 52654, Oct. 7, 1996, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV6 N="A" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-A&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart A&amp;quot;}">
+<HEAD>Subpart A&#x2014;General Provisions</HEAD>
+<DIV8 N="820.1" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.1&quot;,&quot;citation&quot;:&quot;21 CFR 820.1&quot;}">
+<HEAD>&#xA7; 820.1 Scope.</HEAD>
+<P>(a) <I>Applicability.</I> (1) Current good manufacturing practice (CGMP) requirements are set forth in this quality system regulation. The requirements in this part govern the methods used in, and the facilities and controls used for, the design, manufacture, packaging, labeling, storage, installation, and servicing of all finished devices intended for human use. The requirements in this part are intended to ensure that finished devices will be safe and effective and otherwise in compliance with the Federal Food, Drug, and Cosmetic Act (the act). This part establishes basic requirements applicable to manufacturers of finished medical devices. If a manufacturer engages in only some operations subject to the requirements in this part, and not in others, that manufacturer need only comply with those requirements applicable to the operations in which it is engaged. With respect to class I devices, design controls apply only to those devices listed in &#xA7; 820.30(a)(2). This regulation does not apply to manufacturers of components or parts of finished devices, but such manufacturers are encouraged to use appropriate provisions of this regulation as guidance. Manufacturers of blood and blood components used for transfusion or for further manufacturing are not subject to this part, but are subject to subchapter F of this chapter. Manufacturers of human cells, tissues, and cellular and tissue-based products (HCT/Ps), as defined in &#xA7; 1271.3(d) of this chapter, that are medical devices (subject to premarket review or notification, or exempt from notification, under an application submitted under the device provisions of the act or under a biological product license application under section 351 of the Public Health Service Act) are subject to this part and are also subject to the donor-eligibility procedures set forth in part 1271 subpart C of this chapter and applicable current good tissue practice procedures in part 1271 subpart D of this chapter. In the event of a conflict between applicable regulations in part 1271 and in other parts of this chapter, the regulation specifically applicable to the device in question shall supersede the more general.</P>
+<P>(2) The provisions of this part shall be applicable to any finished device as defined in this part, intended for human use, that is manufactured, imported, or offered for import in any State or Territory of the United States, the District of Columbia, or the Commonwealth of Puerto Rico.</P>
+<P>(3) In this regulation the term &#x201C;where appropriate&#x201D; is used several times. When a requirement is qualified by &#x201C;where appropriate,&#x201D; it is deemed to be &#x201C;appropriate&#x201D; unless the manufacturer can document justification otherwise. A requirement is &#x201C;appropriate&#x201D; if nonimplementation could reasonably be expected to result in the product not meeting its specified requirements or the manufacturer not being able to carry out any necessary corrective action.</P>
+<P>(b) The quality system regulation in this part supplements regulations in other parts of this chapter except where explicitly stated otherwise. In the event of a conflict between applicable regulations in this part and in other parts of this chapter, the regulations specifically applicable to the device in question shall supersede any other generally applicable requirements.</P>
+<P>(c) <I>Authority.</I> Part 820 is established and issued under authority of sections 501, 502, 510, 513, 514, 515, 518, 519, 520, 522, 701, 704, 801, 803 of the act (21 U.S.C. 351, 352, 360, 360c, 360d, 360e, 360h, 360i, 360j, 360l, 371, 374, 381, 383). The failure to comply with any applicable provision in this part renders a device adulterated under section 501(h) of the act. Such a device, as well as any person responsible for the failure to comply, is subject to regulatory action.</P>
+<P>(d) <I>Foreign manufacturers.</I> If a manufacturer who offers devices for import into the United States refuses to permit or allow the completion of a Food and Drug Administration (FDA) inspection of the foreign facility for the purpose of determining compliance with this part, it shall appear for purposes of section 801(a) of the act, that the methods used in, and the facilities and controls used for, the design, manufacture, packaging, labeling, storage, installation, or servicing of any devices produced at such facility that are offered for import into the United States do not conform to the requirements of section 520(f) of the act and this part and that the devices manufactured at that facility are adulterated under section 501(h) of the act.</P>
+<P>(e) <I>Exemptions or variances.</I> (1) Any person who wishes to petition for an exemption or variance from any device quality system requirement is subject to the requirements of section 520(f)(2) of the Federal Food, Drug, and Cosmetic Act. Petitions for an exemption or variance shall be submitted according to the procedures set forth in &#xA7; 10.30 of this chapter, the FDA's administrative procedures. For guidance on how to proceed for a request for a variance, contact Division of Regulatory Programs 2, Office of Regulatory Programs, Office of Product Evaluation and Quality, Center for Devices and Radiological Health, Food and Drug Administration, 10903 New Hampshire Ave., Bldg. 66, Rm. 1438, Silver Spring, MD 20993-0002.</P>
+<P>(2) FDA may initiate and grant a variance from any device quality system requirement when the agency determines that such variance is in the best interest of the public health. Such variance will remain in effect only so long as there remains a public health need for the device and the device would not likely be made sufficiently available without the variance.</P>
+<CITA TYPE="N">[61 FR 52654, Oct. 7, 1996, as amended at 65 FR 17136, Mar. 31, 2000; 65 FR 66636, Nov. 7, 2000; 69 FR 29829, May 25, 2005; 72 FR 17399, Apr. 9, 2007; 75 FR 20915, Apr. 22, 2010; 80 FR 29906, May 22, 2015; 85 FR 18442, Apr. 2, 2020]
+</CITA>
+</DIV8>
+
+<DIV8 N="820.3" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.3&quot;,&quot;citation&quot;:&quot;21 CFR 820.3&quot;}">
+<HEAD>&#xA7; 820.3 Definitions.</HEAD>
+<XREF ID="20241015" REFID="9" AMDINSN="1">Link to an amendment published at 89 FR 82945, Oct. 15, 2024.</XREF>
+<P>(a) <I>Act</I> means the Federal Food, Drug, and Cosmetic Act, as amended (secs. 201-903, 52 Stat. 1040 <I>et seq.,</I> as amended (21 U.S.C. 321-394)). All definitions in section 201 of the act shall apply to the regulations in this part.</P>
+<P>(b) <I>Complaint</I> means any written, electronic, or oral communication that alleges deficiencies related to the identity, quality, durability, reliability, safety, effectiveness, or performance of a device after it is released for distribution.</P>
+<P>(c) <I>Component</I> means any raw material, substance, piece, part, software, firmware, labeling, or assembly which is intended to be included as part of the finished, packaged, and labeled device.</P>
+<P>(d) <I>Control number</I> means any distinctive symbols, such as a distinctive combination of letters or numbers, or both, from which the history of the manufacturing, packaging, labeling, and distribution of a unit, lot, or batch of finished devices can be determined.</P>
+<P>(e) <I>Design history file</I> (<I>DHF</I>) means a compilation of records which describes the design history of a finished device.</P>
+<P>(f) <I>Design input</I> means the physical and performance requirements of a device that are used as a basis for device design.</P>
+<P>(g) <I>Design output</I> means the results of a design effort at each design phase and at the end of the total design effort. The finished design output is the basis for the device master record. The total finished design output consists of the device, its packaging and labeling, and the device master record.</P>
+<P>(h) <I>Design review</I> means a documented, comprehensive, systematic examination of a design to evaluate the adequacy of the design requirements, to evaluate the capability of the design to meet these requirements, and to identify problems.</P>
+<P>(i) <I>Device history record</I> (<I>DHR</I>) means a compilation of records containing the production history of a finished device.</P>
+<P>(j) <I>Device master record</I> (<I>DMR</I>) means a compilation of records containing the procedures and specifications for a finished device.</P>
+<P>(k) <I>Establish</I> means define, document (in writing or electronically), and implement.</P>
+<P>(l) <I>Finished device</I> means any device or accessory to any device that is suitable for use or capable of functioning, whether or not it is packaged, labeled, or sterilized.</P>
+<P>(m) <I>Lot or batch</I> means one or more components or finished devices that consist of a single type, model, class, size, composition, or software version that are manufactured under essentially the same conditions and that are intended to have uniform characteristics and quality within specified limits.</P>
+<P>(n) <I>Management with executive responsibility</I> means those senior employees of a manufacturer who have the authority to establish or make changes to the manufacturer's quality policy and quality system.</P>
+<P>(o) <I>Manufacturer</I> means any person who designs, manufactures, fabricates, assembles, or processes a finished device. Manufacturer includes but is not limited to those who perform the functions of contract sterilization, installation, relabeling, remanufacturing, repacking, or specification development, and initial distributors of foreign entities performing these functions.</P>
+<P>(p) <I>Manufacturing material</I> means any material or substance used in or used to facilitate the manufacturing process, a concomitant constituent, or a byproduct constituent produced during the manufacturing process, which is present in or on the finished device as a residue or impurity not by design or intent of the manufacturer.</P>
+<P>(q) <I>Nonconformity</I> means the nonfulfillment of a specified requirement.</P>
+<P>(r) <I>Product</I> means components, manufacturing materials, in- process devices, finished devices, and returned devices.</P>
+<P>(s) <I>Quality</I> means the totality of features and characteristics that bear on the ability of a device to satisfy fitness-for-use, including safety and performance.</P>
+<P>(t) <I>Quality audit</I> means a systematic, independent examination of a manufacturer's quality system that is performed at defined intervals and at sufficient frequency to determine whether both quality system activities and the results of such activities comply with quality system procedures, that these procedures are implemented effectively, and that these procedures are suitable to achieve quality system objectives.</P>
+<P>(u) <I>Quality policy</I> means the overall intentions and direction of an organization with respect to quality, as established by management with executive responsibility.</P>
+<P>(v) <I>Quality system</I> means the organizational structure, responsibilities, procedures, processes, and resources for implementing quality management.</P>
+<P>(w) <I>Remanufacturer</I> means any person who processes, conditions, renovates, repackages, restores, or does any other act to a finished device that significantly changes the finished device's performance or safety specifications, or intended use.</P>
+<P>(x) <I>Rework</I> means action taken on a nonconforming product so that it will fulfill the specified DMR requirements before it is released for distribution.</P>
+<P>(y) <I>Specification</I> means any requirement with which a product, process, service, or other activity must conform.</P>
+<P>(z) <I>Validation</I> means confirmation by examination and provision of objective evidence that the particular requirements for a specific intended use can be consistently fulfilled.</P>
+<P>(1) <I>Process validation</I> means establishing by objective evidence that a process consistently produces a result or product meeting its predetermined specifications.</P>
+<P>(2) <I>Design validation</I> means establishing by objective evidence that device specifications conform with user needs and intended use(s).</P>
+<P>(aa) <I>Verification</I> means confirmation by examination and provision of objective evidence that specified requirements have been fulfilled.</P>
+<P>(bb) <I>Human cell, tissue, or cellular or tissue-based product (HCT/P) regulated as a device</I> means an HCT/P as defined in &#xA7; 1271.3(d) of this chapter that does not meet the criteria in &#xA7; 1271.10(a) and that is also regulated as a device.</P>
+<P>(cc) <I>Unique device identifier (UDI)</I> means an identifier that adequately identifies a device through its distribution and use by meeting the requirements of &#xA7; 830.20 of this chapter. A unique device identifier is composed of:</P>
+<P>(1) A <I>device identifier</I>&#x2014;a mandatory, fixed portion of a UDI that identifies the specific version or model of a device and the labeler of that device; and</P>
+<P>(2) A <I>production identifier</I>&#x2014;a conditional, variable portion of a UDI that identifies one or more of the following when included on the label of the device:</P>
+<P>(i) The lot or batch within which a device was manufactured;</P>
+<P>(ii) The serial number of a specific device;</P>
+<P>(iii) The expiration date of a specific device;</P>
+<P>(iv) The date a specific device was manufactured.</P>
+<P>(v) For an HCT/P regulated as a device, the distinct identification code required by &#xA7; 1271.290(c) of this chapter.</P>
+<P>(dd) <I>Universal product code (UPC)</I> means the product identifier used to identify an item sold at retail in the United States.</P>
+<CITA TYPE="N">[61 FR 52654, Oct. 7, 1996, as amended at 78 FR 58822, Sept. 24, 2013]
+</CITA>
+</DIV8>
+
+<DIV8 N="820.5" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.5&quot;,&quot;citation&quot;:&quot;21 CFR 820.5&quot;}">
+<HEAD>&#xA7; 820.5 Quality system.</HEAD>
+<P>Each manufacturer shall establish and maintain a quality system that is appropriate for the specific medical device(s) designed or manufactured, and that meets the requirements of this part.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="B" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-B&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart B&amp;quot;}">
+<HEAD>Subpart B&#x2014;Quality System Requirements</HEAD>
+<DIV8 N="820.20" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.20&quot;,&quot;citation&quot;:&quot;21 CFR 820.20&quot;}">
+<HEAD>&#xA7; 820.20 Management responsibility.</HEAD>
+<P>(a) <I>Quality policy.</I> Management with executive responsibility shall establish its policy and objectives for, and commitment to, quality. Management with executive responsibility shall ensure that the quality policy is understood, implemented, and maintained at all levels of the organization.</P>
+<P>(b) <I>Organization.</I> Each manufacturer shall establish and maintain an adequate organizational structure to ensure that devices are designed and produced in accordance with the requirements of this part.</P>
+<P>(1) <I>Responsibility and authority.</I> Each manufacturer shall establish the appropriate responsibility, authority, and interrelation of all personnel who manage, perform, and assess work affecting quality, and provide the independence and authority necessary to perform these tasks.</P>
+<P>(2) <I>Resources.</I> Each manufacturer shall provide adequate resources, including the assignment of trained personnel, for management, performance of work, and assessment activities, including internal quality audits, to meet the requirements of this part.</P>
+<P>(3) <I>Management representative.</I> Management with executive responsibility shall appoint, and document such appointment of, a member of management who, irrespective of other responsibilities, shall have established authority over and responsibility for:</P>
+<P>(i) Ensuring that quality system requirements are effectively established and effectively maintained in accordance with this part; and</P>
+<P>(ii) Reporting on the performance of the quality system to management with executive responsibility for review.</P>
+<P>(c) <I>Management review.</I> Management with executive responsibility shall review the suitability and effectiveness of the quality system at defined intervals and with sufficient frequency according to established procedures to ensure that the quality system satisfies the requirements of this part and the manufacturer's established quality policy and objectives. The dates and results of quality system reviews shall be documented.</P>
+<P>(d) <I>Quality planning.</I> Each manufacturer shall establish a quality plan which defines the quality practices, resources, and activities relevant to devices that are designed and manufactured. The manufacturer shall establish how the requirements for quality will be met.</P>
+<P>(e) <I>Quality system procedures.</I> Each manufacturer shall establish quality system procedures and instructions. An outline of the structure of the documentation used in the quality system shall be established where appropriate.</P>
+</DIV8>
+
+<DIV8 N="820.22" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.22&quot;,&quot;citation&quot;:&quot;21 CFR 820.22&quot;}">
+<HEAD>&#xA7; 820.22 Quality audit.</HEAD>
+<P>Each manufacturer shall establish procedures for quality audits and conduct such audits to assure that the quality system is in compliance with the established quality system requirements and to determine the effectiveness of the quality system. Quality audits shall be conducted by individuals who do not have direct responsibility for the matters being audited. Corrective action(s), including a reaudit of deficient matters, shall be taken when necessary. A report of the results of each quality audit, and reaudit(s) where taken, shall be made and such reports shall be reviewed by management having responsibility for the matters audited. The dates and results of quality audits and reaudits shall be documented.</P>
+</DIV8>
+
+<DIV8 N="820.25" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.25&quot;,&quot;citation&quot;:&quot;21 CFR 820.25&quot;}">
+<HEAD>&#xA7; 820.25 Personnel.</HEAD>
+<P>(a) <I>General.</I> Each manufacturer shall have sufficient personnel with the necessary education, background, training, and experience to assure that all activities required by this part are correctly performed.</P>
+<P>(b) <I>Training.</I> Each manufacturer shall establish procedures for identifying training needs and ensure that all personnel are trained to adequately perform their assigned responsibilities. Training shall be documented.</P>
+<P>(1) As part of their training, personnel shall be made aware of device defects which may occur from the improper performance of their specific jobs.</P>
+<P>(2) Personnel who perform verification and validation activities shall be made aware of defects and errors that may be encountered as part of their job functions.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="C" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-C&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart C&amp;quot;}">
+<HEAD>Subpart C&#x2014;Design Controls</HEAD>
+<DIV8 N="820.30" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.30&quot;,&quot;citation&quot;:&quot;21 CFR 820.30&quot;}">
+<HEAD>&#xA7; 820.30 Design controls.</HEAD>
+<P>(a) <I>General.</I> (1) Each manufacturer of any class III or class II device, and the class I devices listed in paragraph (a)(2) of this section, shall establish and maintain procedures to control the design of the device in order to ensure that specified design requirements are met.</P>
+<P>(2) The following class I devices are subject to design controls:</P>
+<P>(i) Devices automated with computer software; and</P>
+<P>(ii) The devices listed in the following chart.</P>
+<DIV width="100%"><DIV class="gpotbl_div">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<THEAD>
+<TR>
+<TH class="center border-top-single border-bottom-single border-right-single">Section</TH>
+<TH class="center border-top-single border-bottom-single">Device</TH>
+</TR>
+</THEAD>
+<TBODY>
+<TR>
+<TD class="left border-right-single">868.6810</TD>
+<TD class="left">Catheter, Tracheobronchial Suction.</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">878.4460</TD>
+<TD class="left">Glove, Surgeon's.</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">880.6760</TD>
+<TD class="left">Restraint, Protective.</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">892.5650</TD>
+<TD class="left">System, Applicator, Radionuclide, Manual.</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single">892.5740</TD>
+<TD class="left border-bottom-single">Source, Radionuclide Teletherapy.</TD>
+</TR>
+</TBODY>
+</TABLE>
+</DIV></DIV>
+<P>(b) <I>Design and development planning.</I> Each manufacturer shall establish and maintain plans that describe or reference the design and development activities and define responsibility for implementation. The plans shall identify and describe the interfaces with different groups or activities that provide, or result in, input to the design and development process. The plans shall be reviewed, updated, and approved as design and development evolves.</P>
+<P>(c) <I>Design input.</I> Each manufacturer shall establish and maintain procedures to ensure that the design requirements relating to a device are appropriate and address the intended use of the device, including the needs of the user and patient. The procedures shall include a mechanism for addressing incomplete, ambiguous, or conflicting requirements. The design input requirements shall be documented and shall be reviewed and approved by a designated individual(s). The approval, including the date and signature of the individual(s) approving the requirements, shall be documented.</P>
+<P>(d) <I>Design output.</I> Each manufacturer shall establish and maintain procedures for defining and documenting design output in terms that allow an adequate evaluation of conformance to design input requirements. Design output procedures shall contain or make reference to acceptance criteria and shall ensure that those design outputs that are essential for the proper functioning of the device are identified. Design output shall be documented, reviewed, and approved before release. The approval, including the date and signature of the individual(s) approving the output, shall be documented.</P>
+<P>(e) <I>Design review.</I> Each manufacturer shall establish and maintain procedures to ensure that formal documented reviews of the design results are planned and conducted at appropriate stages of the device's design development. The procedures shall ensure that participants at each design review include representatives of all functions concerned with the design stage being reviewed and an individual(s) who does not have direct responsibility for the design stage being reviewed, as well as any specialists needed. The results of a design review, including identification of the design, the date, and the individual(s) performing the review, shall be documented in the design history file (the DHF).</P>
+<P>(f) <I>Design verification.</I> Each manufacturer shall establish and maintain procedures for verifying the device design. Design verification shall confirm that the design output meets the design input requirements. The results of the design verification, including identification of the design, method(s), the date, and the individual(s) performing the verification, shall be documented in the DHF.</P>
+<P>(g) <I>Design validation.</I> Each manufacturer shall establish and maintain procedures for validating the device design. Design validation shall be performed under defined operating conditions on initial production units, lots, or batches, or their equivalents. Design validation shall ensure that devices conform to defined user needs and intended uses and shall include testing of production units under actual or simulated use conditions. Design validation shall include software validation and risk analysis, where appropriate. The results of the design validation, including identification of the design, method(s), the date, and the individual(s) performing the validation, shall be documented in the DHF.</P>
+<P>(h) <I>Design transfer.</I> Each manufacturer shall establish and maintain procedures to ensure that the device design is correctly translated into production specifications.</P>
+<P>(i) <I>Design changes.</I> Each manufacturer shall establish and maintain procedures for the identification, documentation, validation or where appropriate verification, review, and approval of design changes before their implementation.</P>
+<P>(j) <I>Design history file.</I> Each manufacturer shall establish and maintain a DHF for each type of device. The DHF shall contain or reference the records necessary to demonstrate that the design was developed in accordance with the approved design plan and the requirements of this part.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="D" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-D&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart D&amp;quot;}">
+<HEAD>Subpart D&#x2014;Document Controls</HEAD>
+<DIV8 N="820.40" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.40&quot;,&quot;citation&quot;:&quot;21 CFR 820.40&quot;}">
+<HEAD>&#xA7; 820.40 Document controls.</HEAD>
+<P>Each manufacturer shall establish and maintain procedures to control all documents that are required by this part. The procedures shall provide for the following:</P>
+<P>(a) <I>Document approval and distribution.</I> Each manufacturer shall designate an individual(s) to review for adequacy and approve prior to issuance all documents established to meet the requirements of this part. The approval, including the date and signature of the individual(s) approving the document, shall be documented. Documents established to meet the requirements of this part shall be available at all locations for which they are designated, used, or otherwise necessary, and all obsolete documents shall be promptly removed from all points of use or otherwise prevented from unintended use.</P>
+<P>(b) <I>Document changes.</I> Changes to documents shall be reviewed and approved by an individual(s) in the same function or organization that performed the original review and approval, unless specifically designated otherwise. Approved changes shall be communicated to the appropriate personnel in a timely manner. Each manufacturer shall maintain records of changes to documents. Change records shall include a description of the change, identification of the affected documents, the signature of the approving individual(s), the approval date, and when the change becomes effective.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="E" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-E&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart E&amp;quot;}">
+<HEAD>Subpart E&#x2014;Purchasing Controls</HEAD>
+<DIV8 N="820.50" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.50&quot;,&quot;citation&quot;:&quot;21 CFR 820.50&quot;}">
+<HEAD>&#xA7; 820.50 Purchasing controls.</HEAD>
+<P>Each manufacturer shall establish and maintain procedures to ensure that all purchased or otherwise received product and services conform to specified requirements.</P>
+<P>(a) <I>Evaluation of suppliers, contractors, and consultants.</I> Each manufacturer shall establish and maintain the requirements, including quality requirements, that must be met by suppliers, contractors, and consultants. Each manufacturer shall:</P>
+<P>(1) Evaluate and select potential suppliers, contractors, and consultants on the basis of their ability to meet specified requirements, including quality requirements. The evaluation shall be documented.</P>
+<P>(2) Define the type and extent of control to be exercised over the product, services, suppliers, contractors, and consultants, based on the evaluation results.</P>
+<P>(3) Establish and maintain records of acceptable suppliers, contractors, and consultants.</P>
+<P>(b) <I>Purchasing data.</I> Each manufacturer shall establish and maintain data that clearly describe or reference the specified requirements, including quality requirements, for purchased or otherwise received product and services. Purchasing documents shall include, where possible, an agreement that the suppliers, contractors, and consultants agree to notify the manufacturer of changes in the product or service so that manufacturers may determine whether the changes may affect the quality of a finished device. Purchasing data shall be approved in accordance with &#xA7; 820.40.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="F" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-F&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart F&amp;quot;}">
+<HEAD>Subpart F&#x2014;Identification and Traceability</HEAD>
+<DIV8 N="820.60" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.60&quot;,&quot;citation&quot;:&quot;21 CFR 820.60&quot;}">
+<HEAD>&#xA7; 820.60 Identification.</HEAD>
+<P>Each manufacturer shall establish and maintain procedures for identifying product during all stages of receipt, production, distribution, and installation to prevent mixups.</P>
+</DIV8>
+
+<DIV8 N="820.65" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.65&quot;,&quot;citation&quot;:&quot;21 CFR 820.65&quot;}">
+<HEAD>&#xA7; 820.65 Traceability.</HEAD>
+<P>Each manufacturer of a device that is intended for surgical implant into the body or to support or sustain life and whose failure to perform when properly used in accordance with instructions for use provided in the labeling can be reasonably expected to result in a significant injury to the user shall establish and maintain procedures for identifying with a control number each unit, lot, or batch of finished devices and where appropriate components. The procedures shall facilitate corrective action. Such identification shall be documented in the DHR.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="G" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-G&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart G&amp;quot;}">
+<HEAD>Subpart G&#x2014;Production and Process Controls</HEAD>
+<DIV8 N="820.70" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.70&quot;,&quot;citation&quot;:&quot;21 CFR 820.70&quot;}">
+<HEAD>&#xA7; 820.70 Production and process controls.</HEAD>
+<P>(a) <I>General.</I> Each manufacturer shall develop, conduct, control, and monitor production processes to ensure that a device conforms to its specifications. Where deviations from device specifications could occur as a result of the manufacturing process, the manufacturer shall establish and maintain process control procedures that describe any process controls necessary to ensure conformance to specifications. Where process controls are needed they shall include:</P>
+<P>(1) Documented instructions, standard operating procedures (SOP's), and methods that define and control the manner of production;</P>
+<P>(2) Monitoring and control of process parameters and component and device characteristics during production;</P>
+<P>(3) Compliance with specified reference standards or codes;</P>
+<P>(4) The approval of processes and process equipment; and</P>
+<P>(5) Criteria for workmanship which shall be expressed in documented standards or by means of identified and approved representative samples.</P>
+<P>(b) <I>Production and process changes.</I> Each manufacturer shall establish and maintain procedures for changes to a specification, method, process, or procedure. Such changes shall be verified or where appropriate validated according to &#xA7; 820.75, before implementation and these activities shall be documented. Changes shall be approved in accordance with &#xA7; 820.40.</P>
+<P>(c) <I>Environmental control.</I> Where environmental conditions could reasonably be expected to have an adverse effect on product quality, the manufacturer shall establish and maintain procedures to adequately control these environmental conditions. Environmental control system(s) shall be periodically inspected to verify that the system, including necessary equipment, is adequate and functioning properly. These activities shall be documented and reviewed.</P>
+<P>(d) <I>Personnel.</I> Each manufacturer shall establish and maintain requirements for the health, cleanliness, personal practices, and clothing of personnel if contact between such personnel and product or environment could reasonably be expected to have an adverse effect on product quality. The manufacturer shall ensure that maintenance and other personnel who are required to work temporarily under special environmental conditions are appropriately trained or supervised by a trained individual.</P>
+<P>(e) <I>Contamination control.</I> Each manufacturer shall establish and maintain procedures to prevent contamination of equipment or product by substances that could reasonably be expected to have an adverse effect on product quality.</P>
+<P>(f) <I>Buildings.</I> Buildings shall be of suitable design and contain sufficient space to perform necessary operations, prevent mixups, and assure orderly handling.</P>
+<P>(g) <I>Equipment.</I> Each manufacturer shall ensure that all equipment used in the manufacturing process meets specified requirements and is appropriately designed, constructed, placed, and installed to facilitate maintenance, adjustment, cleaning, and use.</P>
+<P>(1) <I>Maintenance schedule.</I> Each manufacturer shall establish and maintain schedules for the adjustment, cleaning, and other maintenance of equipment to ensure that manufacturing specifications are met. Maintenance activities, including the date and individual(s) performing the maintenance activities, shall be documented.</P>
+<P>(2) <I>Inspection.</I> Each manufacturer shall conduct periodic inspections in accordance with established procedures to ensure adherence to applicable equipment maintenance schedules. The inspections, including the date and individual(s) conducting the inspections, shall be documented.</P>
+<P>(3) <I>Adjustment.</I> Each manufacturer shall ensure that any inherent limitations or allowable tolerances are visibly posted on or near equipment requiring periodic adjustments or are readily available to personnel performing these adjustments.</P>
+<P>(h) <I>Manufacturing material.</I> Where a manufacturing material could reasonably be expected to have an adverse effect on product quality, the manufacturer shall establish and maintain procedures for the use and removal of such manufacturing material to ensure that it is removed or limited to an amount that does not adversely affect the device's quality. The removal or reduction of such manufacturing material shall be documented.</P>
+<P>(i) <I>Automated processes.</I> When computers or automated data processing systems are used as part of production or the quality system, the manufacturer shall validate computer software for its intended use according to an established protocol. All software changes shall be validated before approval and issuance. These validation activities and results shall be documented.</P>
+</DIV8>
+
+<DIV8 N="820.72" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.72&quot;,&quot;citation&quot;:&quot;21 CFR 820.72&quot;}">
+<HEAD>&#xA7; 820.72 Inspection, measuring, and test equipment.</HEAD>
+<P>(a) <I>Control of inspection, measuring, and test equipment.</I> Each manufacturer shall ensure that all inspection, measuring, and test equipment, including mechanical, automated, or electronic inspection and test equipment, is suitable for its intended purposes and is capable of producing valid results. Each manufacturer shall establish and maintain procedures to ensure that equipment is routinely calibrated, inspected, checked, and maintained. The procedures shall include provisions for handling, preservation, and storage of equipment, so that its accuracy and fitness for use are maintained. These activities shall be documented.</P>
+<P>(b) <I>Calibration.</I> Calibration procedures shall include specific directions and limits for accuracy and precision. When accuracy and precision limits are not met, there shall be provisions for remedial action to reestablish the limits and to evaluate whether there was any adverse effect on the device's quality. These activities shall be documented.</P>
+<P>(1) <I>Calibration standards.</I> Calibration standards used for inspection, measuring, and test equipment shall be traceable to national or international standards. If national or international standards are not practical or available, the manufacturer shall use an independent reproducible standard. If no applicable standard exists, the manufacturer shall establish and maintain an in-house standard.</P>
+<P>(2) <I>Calibration records.</I> The equipment identification, calibration dates, the individual performing each calibration, and the next calibration date shall be documented. These records shall be displayed on or near each piece of equipment or shall be readily available to the personnel using such equipment and to the individuals responsible for calibrating the equipment.</P>
+</DIV8>
+
+<DIV8 N="820.75" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.75&quot;,&quot;citation&quot;:&quot;21 CFR 820.75&quot;}">
+<HEAD>&#xA7; 820.75 Process validation.</HEAD>
+<P>(a) Where the results of a process cannot be fully verified by subsequent inspection and test, the process shall be validated with a high degree of assurance and approved according to established procedures. The validation activities and results, including the date and signature of the individual(s) approving the validation and where appropriate the major equipment validated, shall be documented.</P>
+<P>(b) Each manufacturer shall establish and maintain procedures for monitoring and control of process parameters for validated processes to ensure that the specified requirements continue to be met.</P>
+<P>(1) Each manufacturer shall ensure that validated processes are performed by qualified individual(s).</P>
+<P>(2) For validated processes, the monitoring and control methods and data, the date performed, and, where appropriate, the individual(s) performing the process or the major equipment used shall be documented.</P>
+<P>(c) When changes or process deviations occur, the manufacturer shall review and evaluate the process and perform revalidation where appropriate. These activities shall be documented.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="H" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-H&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart H&amp;quot;}">
+<HEAD>Subpart H&#x2014;Acceptance Activities</HEAD>
+<DIV8 N="820.80" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.80&quot;,&quot;citation&quot;:&quot;21 CFR 820.80&quot;}">
+<HEAD>&#xA7; 820.80 Receiving, in-process, and finished device acceptance.</HEAD>
+<P>(a) <I>General.</I> Each manufacturer shall establish and maintain procedures for acceptance activities. Acceptance activities include inspections, tests, or other verification activities.</P>
+<P>(b) <I>Receiving acceptance activities.</I> Each manufacturer shall establish and maintain procedures for acceptance of incoming product. Incoming product shall be inspected, tested, or otherwise verified as conforming to specified requirements. Acceptance or rejection shall be documented.</P>
+<P>(c) <I>In-process acceptance activities.</I> Each manufacturer shall establish and maintain acceptance procedures, where appropriate, to ensure that specified requirements for in-process product are met. Such procedures shall ensure that in-process product is controlled until the required inspection and tests or other verification activities have been completed, or necessary approvals are received, and are documented.</P>
+<P>(d) <I>Final acceptance activities.</I> Each manufacturer shall establish and maintain procedures for finished device acceptance to ensure that each production run, lot, or batch of finished devices meets acceptance criteria. Finished devices shall be held in quarantine or otherwise adequately controlled until released. Finished devices shall not be released for distribution until:</P>
+<P>(1) The activities required in the DMR are completed;</P>
+<P>(2) the associated data and documentation is reviewed;</P>
+<P>(3) the release is authorized by the signature of a designated individual(s); and</P>
+<P>(4) the authorization is dated.</P>
+<P>(e) <I>Acceptance records.</I> Each manufacturer shall document acceptance activities required by this part. These records shall include:</P>
+<P>(1) The acceptance activities performed;</P>
+<P>(2) the dates acceptance activities are performed;</P>
+<P>(3) the results;</P>
+<P>(4) the signature of the individual(s) conducting the acceptance activities; and</P>
+<P>(5) where appropriate the equipment used. These records shall be part of the DHR.</P>
+</DIV8>
+
+<DIV8 N="820.86" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.86&quot;,&quot;citation&quot;:&quot;21 CFR 820.86&quot;}">
+<HEAD>&#xA7; 820.86 Acceptance status.</HEAD>
+<P>Each manufacturer shall identify by suitable means the acceptance status of product, to indicate the conformance or nonconformance of product with acceptance criteria. The identification of acceptance status shall be maintained throughout manufacturing, packaging, labeling, installation, and servicing of the product to ensure that only product which has passed the required acceptance activities is distributed, used, or installed.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="I" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-I&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart I&amp;quot;}">
+<HEAD>Subpart I&#x2014;Nonconforming Product</HEAD>
+<DIV8 N="820.90" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.90&quot;,&quot;citation&quot;:&quot;21 CFR 820.90&quot;}">
+<HEAD>&#xA7; 820.90 Nonconforming product.</HEAD>
+<P>(a) <I>Control of nonconforming product.</I> Each manufacturer shall establish and maintain procedures to control product that does not conform to specified requirements. The procedures shall address the identification, documentation, evaluation, segregation, and disposition of nonconforming product. The evaluation of nonconformance shall include a determination of the need for an investigation and notification of the persons or organizations responsible for the nonconformance. The evaluation and any investigation shall be documented.</P>
+<P>(b) <I>Nonconformity review and disposition.</I> (1) Each manufacturer shall establish and maintain procedures that define the responsibility for review and the authority for the disposition of nonconforming product. The procedures shall set forth the review and disposition process. Disposition of nonconforming product shall be documented. Documentation shall include the justification for use of nonconforming product and the signature of the individual(s) authorizing the use.</P>
+<P>(2) Each manufacturer shall establish and maintain procedures for rework, to include retesting and reevaluation of the nonconforming product after rework, to ensure that the product meets its current approved specifications. Rework and reevaluation activities, including a determination of any adverse effect from the rework upon the product, shall be documented in the DHR.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="J" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-J&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart J&amp;quot;}">
+<HEAD>Subpart J&#x2014;Corrective and Preventive Action</HEAD>
+<DIV8 N="820.100" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.100&quot;,&quot;citation&quot;:&quot;21 CFR 820.100&quot;}">
+<HEAD>&#xA7; 820.100 Corrective and preventive action.</HEAD>
+<P>(a) Each manufacturer shall establish and maintain procedures for implementing corrective and preventive action. The procedures shall include requirements for:</P>
+<P>(1) Analyzing processes, work operations, concessions, quality audit reports, quality records, service records, complaints, returned product, and other sources of quality data to identify existing and potential causes of nonconforming product, or other quality problems. Appropriate statistical methodology shall be employed where necessary to detect recurring quality problems;</P>
+<P>(2) Investigating the cause of nonconformities relating to product, processes, and the quality system;</P>
+<P>(3) Identifying the action(s) needed to correct and prevent recurrence of nonconforming product and other quality problems;</P>
+<P>(4) Verifying or validating the corrective and preventive action to ensure that such action is effective and does not adversely affect the finished device;</P>
+<P>(5) Implementing and recording changes in methods and procedures needed to correct and prevent identified quality problems;</P>
+<P>(6) Ensuring that information related to quality problems or nonconforming product is disseminated to those directly responsible for assuring the quality of such product or the prevention of such problems; and</P>
+<P>(7) Submitting relevant information on identified quality problems, as well as corrective and preventive actions, for management review.</P>
+<P>(b) All activities required under this section, and their results, shall be documented.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="K" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-K&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart K&amp;quot;}">
+<HEAD>Subpart K&#x2014;Labeling and Packaging Control</HEAD>
+<DIV8 N="820.120" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.120&quot;,&quot;citation&quot;:&quot;21 CFR 820.120&quot;}">
+<HEAD>&#xA7; 820.120 Device labeling.</HEAD>
+<P>Each manufacturer shall establish and maintain procedures to control labeling activities.</P>
+<P>(a) <I>Label integrity.</I> Labels shall be printed and applied so as to remain legible and affixed during the customary conditions of processing, storage, handling, distribution, and where appropriate use.</P>
+<P>(b) <I>Labeling inspection.</I> Labeling shall not be released for storage or use until a designated individual(s) has examined the labeling for accuracy including, where applicable, the correct unique device identifier (UDI) or universal product code (UPC), expiration date, control number, storage instructions, handling instructions, and any additional processing instructions. The release, including the date and signature of the individual(s) performing the examination, shall be documented in the DHR.</P>
+<P>(c) <I>Labeling storage.</I> Each manufacturer shall store labeling in a manner that provides proper identification and is designed to prevent mixups.</P>
+<P>(d) <I>Labeling operations.</I> Each manufacturer shall control labeling and packaging operations to prevent labeling mixups. The label and labeling used for each production unit, lot, or batch shall be documented in the DHR.</P>
+<P>(e) <I>Control number.</I> Where a control number is required by &#xA7; 820.65, that control number shall be on or shall accompany the device through distribution.</P>
+<CITA TYPE="N">[61 FR 52654, Oct. 7, 1996, as amended at 78 FR 58822, Sept. 24, 2013]
+</CITA>
+</DIV8>
+
+<DIV8 N="820.130" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.130&quot;,&quot;citation&quot;:&quot;21 CFR 820.130&quot;}">
+<HEAD>&#xA7; 820.130 Device packaging.</HEAD>
+<P>Each manufacturer shall ensure that device packaging and shipping containers are designed and constructed to protect the device from alteration or damage during the customary conditions of processing, storage, handling, and distribution.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="L" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-L&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart L&amp;quot;}">
+<HEAD>Subpart L&#x2014;Handling, Storage, Distribution, and Installation</HEAD>
+<DIV8 N="820.140" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.140&quot;,&quot;citation&quot;:&quot;21 CFR 820.140&quot;}">
+<HEAD>&#xA7; 820.140 Handling.</HEAD>
+<P>Each manufacturer shall establish and maintain procedures to ensure that mixups, damage, deterioration, contamination, or other adverse effects to product do not occur during handling.</P>
+</DIV8>
+
+<DIV8 N="820.150" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.150&quot;,&quot;citation&quot;:&quot;21 CFR 820.150&quot;}">
+<HEAD>&#xA7; 820.150 Storage.</HEAD>
+<P>(a) Each manufacturer shall establish and maintain procedures for the control of storage areas and stock rooms for product to prevent mixups, damage, deterioration, contamination, or other adverse effects pending use or distribution and to ensure that no obsolete, rejected, or deteriorated product is used or distributed. When the quality of product deteriorates over time, it shall be stored in a manner to facilitate proper stock rotation, and its condition shall be assessed as appropriate.</P>
+<P>(b) Each manufacturer shall establish and maintain procedures that describe the methods for authorizing receipt from and dispatch to storage areas and stock rooms.</P>
+</DIV8>
+
+<DIV8 N="820.160" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.160&quot;,&quot;citation&quot;:&quot;21 CFR 820.160&quot;}">
+<HEAD>&#xA7; 820.160 Distribution.</HEAD>
+<P>(a) Each manufacturer shall establish and maintain procedures for control and distribution of finished devices to ensure that only those devices approved for release are distributed and that purchase orders are reviewed to ensure that ambiguities and errors are resolved before devices are released for distribution. Where a device's fitness for use or quality deteriorates over time, the procedures shall ensure that expired devices or devices deteriorated beyond acceptable fitness for use are not distributed.</P>
+<P>(b) Each manufacturer shall maintain distribution records which include or refer to the location of:</P>
+<P>(1) The name and address of the initial consignee;</P>
+<P>(2) The identification and quantity of devices shipped;</P>
+<P>(3) The date shipped; and</P>
+<P>(4) Any control number(s) used.</P>
+</DIV8>
+
+<DIV8 N="820.170" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.170&quot;,&quot;citation&quot;:&quot;21 CFR 820.170&quot;}">
+<HEAD>&#xA7; 820.170 Installation.</HEAD>
+<P>(a) Each manufacturer of a device requiring installation shall establish and maintain adequate installation and inspection instructions, and where appropriate test procedures. Instructions and procedures shall include directions for ensuring proper installation so that the device will perform as intended after installation. The manufacturer shall distribute the instructions and procedures with the device or otherwise make them available to the person(s) installing the device.</P>
+<P>(b) The person installing the device shall ensure that the installation, inspection, and any required testing are performed in accordance with the manufacturer's instructions and procedures and shall document the inspection and any test results to demonstrate proper installation.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="M" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-M&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart M&amp;quot;}">
+<HEAD>Subpart M&#x2014;Records</HEAD>
+<DIV8 N="820.180" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.180&quot;,&quot;citation&quot;:&quot;21 CFR 820.180&quot;}">
+<HEAD>&#xA7; 820.180 General requirements.</HEAD>
+<P>All records required by this part shall be maintained at the manufacturing establishment or other location that is reasonably accessible to responsible officials of the manufacturer and to employees of FDA designated to perform inspections. Such records, including those not stored at the inspected establishment, shall be made readily available for review and copying by FDA employee(s). Such records shall be legible and shall be stored to minimize deterioration and to prevent loss. Those records stored in automated data processing systems shall be backed up.</P>
+<P>(a) <I>Confidentiality.</I> Records deemed confidential by the manufacturer may be marked to aid FDA in determining whether information may be disclosed under the public information regulation in part 20 of this chapter.</P>
+<P>(b) <I>Record retention period.</I> All records required by this part shall be retained for a period of time equivalent to the design and expected life of the device, but in no case less than 2 years from the date of release for commercial distribution by the manufacturer.</P>
+<P>(c) <I>Exceptions.</I> This section does not apply to the reports required by &#xA7; 820.20(c) Management review, &#xA7; 820.22 Quality audits, and supplier audit reports used to meet the requirements of &#xA7; 820.50(a) Evaluation of suppliers, contractors, and consultants, but does apply to procedures established under these provisions. Upon request of a designated employee of FDA, an employee in management with executive responsibility shall certify in writing that the management reviews and quality audits required under this part, and supplier audits where applicable, have been performed and documented, the dates on which they were performed, and that any required corrective action has been undertaken.</P>
+</DIV8>
+
+<DIV8 N="820.181" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.181&quot;,&quot;citation&quot;:&quot;21 CFR 820.181&quot;}">
+<HEAD>&#xA7; 820.181 Device master record.</HEAD>
+<P>Each manufacturer shall maintain device master records (DMR's). Each manufacturer shall ensure that each DMR is prepared and approved in accordance with &#xA7; 820.40. The DMR for each type of device shall include, or refer to the location of, the following information:</P>
+<P>(a) Device specifications including appropriate drawings, composition, formulation, component specifications, and software specifications;</P>
+<P>(b) Production process specifications including the appropriate equipment specifications, production methods, production procedures, and production environment specifications;</P>
+<P>(c) Quality assurance procedures and specifications including acceptance criteria and the quality assurance equipment to be used;</P>
+<P>(d) Packaging and labeling specifications, including methods and processes used; and</P>
+<P>(e) Installation, maintenance, and servicing procedures and methods.</P>
+</DIV8>
+
+<DIV8 N="820.184" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.184&quot;,&quot;citation&quot;:&quot;21 CFR 820.184&quot;}">
+<HEAD>&#xA7; 820.184 Device history record.</HEAD>
+<P>Each manufacturer shall maintain device history records (DHR's). Each manufacturer shall establish and maintain procedures to ensure that DHR's for each batch, lot, or unit are maintained to demonstrate that the device is manufactured in accordance with the DMR and the requirements of this part. The DHR shall include, or refer to the location of, the following information:</P>
+<P>(a) The dates of manufacture;</P>
+<P>(b) The quantity manufactured;</P>
+<P>(c) The quantity released for distribution;</P>
+<P>(d) The acceptance records which demonstrate the device is manufactured in accordance with the DMR;</P>
+<P>(e) The primary identification label and labeling used for each production unit; and</P>
+<P>(f) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s) and control number(s) used.</P>
+<CITA TYPE="N">[61 FR 52654, Oct. 7, 1996, as amended at 78 FR 58822, Sept. 24, 2013]
+</CITA>
+</DIV8>
+
+<DIV8 N="820.186" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.186&quot;,&quot;citation&quot;:&quot;21 CFR 820.186&quot;}">
+<HEAD>&#xA7; 820.186 Quality system record.</HEAD>
+<P>Each manufacturer shall maintain a quality system record (QSR). The QSR shall include, or refer to the location of, procedures and the documentation of activities required by this part that are not specific to a particular type of device(s), including, but not limited to, the records required by &#xA7; 820.20. Each manufacturer shall ensure that the QSR is prepared and approved in accordance with &#xA7; 820.40.</P>
+</DIV8>
+
+<DIV8 N="820.198" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.198&quot;,&quot;citation&quot;:&quot;21 CFR 820.198&quot;}">
+<HEAD>&#xA7; 820.198 Complaint files.</HEAD>
+<P>(a) Each manufacturer shall maintain complaint files. Each manufacturer shall establish and maintain procedures for receiving, reviewing, and evaluating complaints by a formally designated unit. Such procedures shall ensure that:</P>
+<P>(1) All complaints are processed in a uniform and timely manner;</P>
+<P>(2) Oral complaints are documented upon receipt; and</P>
+<P>(3) Complaints are evaluated to determine whether the complaint represents an event which is required to be reported to FDA under part 803 of this chapter, Medical Device Reporting.</P>
+<P>(b) Each manufacturer shall review and evaluate all complaints to determine whether an investigation is necessary. When no investigation is made, the manufacturer shall maintain a record that includes the reason no investigation was made and the name of the individual responsible for the decision not to investigate.</P>
+<P>(c) Any complaint involving the possible failure of a device, labeling, or packaging to meet any of its specifications shall be reviewed, evaluated, and investigated, unless such investigation has already been performed for a similar complaint and another investigation is not necessary.</P>
+<P>(d) Any complaint that represents an event which must be reported to FDA under part 803 of this chapter shall be promptly reviewed, evaluated, and investigated by a designated individual(s) and shall be maintained in a separate portion of the complaint files or otherwise clearly identified. In addition to the information required by &#xA7; 820.198(e), records of investigation under this paragraph shall include a determination of:</P>
+<P>(1) Whether the device failed to meet specifications;</P>
+<P>(2) Whether the device was being used for treatment or diagnosis; and</P>
+<P>(3) The relationship, if any, of the device to the reported incident or adverse event.</P>
+<P>(e) When an investigation is made under this section, a record of the investigation shall be maintained by the formally designated unit identified in paragraph (a) of this section. The record of investigation shall include:</P>
+<P>(1) The name of the device;</P>
+<P>(2) The date the complaint was received;</P>
+<P>(3) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s) and control number(s) used;</P>
+<P>(4) The name, address, and phone number of the complainant;</P>
+<P>(5) The nature and details of the complaint;</P>
+<P>(6) The dates and results of the investigation;</P>
+<P>(7) Any corrective action taken; and</P>
+<P>(8) Any reply to the complainant.</P>
+<P>(f) When the manufacturer's formally designated complaint unit is located at a site separate from the manufacturing establishment, the investigated complaint(s) and the record(s) of investigation shall be reasonably accessible to the manufacturing establishment.</P>
+<P>(g) If a manufacturer's formally designated complaint unit is located outside of the United States, records required by this section shall be reasonably accessible in the United States at either:</P>
+<P>(1) A location in the United States where the manufacturer's records are regularly kept; or</P>
+<P>(2) The location of the initial distributor.</P>
+<CITA TYPE="N">[61 FR 52654, Oct. 7, 1996, as amended at 69 FR 11313, Mar. 10, 2004; 71 FR 16228, Mar. 31, 2006; 78 FR 58822, Sept. 24, 2013]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="N" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-N&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart N&amp;quot;}">
+<HEAD>Subpart N&#x2014;Servicing</HEAD>
+<DIV8 N="820.200" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.200&quot;,&quot;citation&quot;:&quot;21 CFR 820.200&quot;}">
+<HEAD>&#xA7; 820.200 Servicing.</HEAD>
+<P>(a) Where servicing is a specified requirement, each manufacturer shall establish and maintain instructions and procedures for performing and verifying that the servicing meets the specified requirements.</P>
+<P>(b) Each manufacturer shall analyze service reports with appropriate statistical methodology in accordance with &#xA7; 820.100.</P>
+<P>(c) Each manufacturer who receives a service report that represents an event which must be reported to FDA under part 803 of this chapter shall automatically consider the report a complaint and shall process it in accordance with the requirements of &#xA7; 820.198.</P>
+<P>(d) Service reports shall be documented and shall include:</P>
+<P>(1) The name of the device serviced;</P>
+<P>(2) Any unique device identifier (UDI) or universal product code (UPC), and any other device identification(s) and control number(s) used;</P>
+<P>(3) The date of service;</P>
+<P>(4) The individual(s) servicing the device;</P>
+<P>(5) The service performed; and</P>
+<P>(6) The test and inspection data.</P>
+<CITA TYPE="N">[61 FR 52654, Oct. 7, 1996, as amended at 69 FR 11313, Mar. 10, 2004; 78 FR 58822, Sept. 24, 2013]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="O" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-820/subpart-O&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 820 Subpart O&amp;quot;}">
+<HEAD>Subpart O&#x2014;Statistical Techniques</HEAD>
+<DIV8 N="820.250" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-820.250&quot;,&quot;citation&quot;:&quot;21 CFR 820.250&quot;}">
+<HEAD>&#xA7; 820.250 Statistical techniques.</HEAD>
+<P>(a) Where appropriate, each manufacturer shall establish and maintain procedures for identifying valid statistical techniques required for establishing, controlling, and verifying the acceptability of process capability and product characteristics.</P>
+<P>(b) Sampling plans, when used, shall be written and based on a valid statistical rationale. Each manufacturer shall establish and maintain procedures to ensure that sampling methods are adequate for their intended use and to ensure that when changes occur the sampling plans are reviewed. These activities shall be documented.</P>
+</DIV8>
+
+</DIV6>
+</DIV5>

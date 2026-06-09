@@ -1,0 +1,1080 @@
+================================================================================
+PART 162 - ADMINISTRATIVE REQUIREMENTS
+================================================================================
+
+Authority: 42 U.S.C. 1320d - 1320d-9 and secs. 1104 and 10109 of Pub. L. 111-148, 124 Stat. 146-154 and 915-917.
+
+Source: 65 FR 50367, Aug. 17, 2000, unless otherwise noted.
+
+
+--------------------------------------------------------------------------------
+Subpart A - General Provisions
+--------------------------------------------------------------------------------
+
+
+  § 162.100 Applicability.
+  ------------------------
+
+    Covered entities (as defined in § 160.103 of this subchapter) must comply with the applicable requirements of this part.
+
+
+  § 162.103 Definitions.
+  ----------------------
+
+    For purposes of this part, the following definitions apply:
+
+    Code set means any set of codes used to encode data elements, such as tables of terms, medical concepts, medical diagnostic codes, or medical procedure codes. A code set includes the codes and the descriptors of the codes.
+
+    Code set maintaining organization means an organization that creates and maintains the code sets adopted by the Secretary for use in the transactions for which standards are adopted in this part.
+
+    Covered health care provider means a health care provider that meets the definition at paragraph (3) of the definition of “covered entity” at § 160.103.
+
+    Data condition means the rule that describes the circumstances under which a covered entity must use a particular data element or segment.
+
+    Data content means all the data elements and code sets inherent to a transaction, and not related to the format of the transaction. Data elements that are related to the format are not data content.
+
+    Data element means the smallest named unit of information in a transaction.
+
+    Data set means a semantically meaningful unit of information exchanged between two parties to a transaction.
+
+    Descriptor means the text defining a code.
+
+    Designated standard maintenance organization (DSMO) means an organization designated by the Secretary under § 162.910(a).
+
+    Direct data entry means the direct entry of data (for example, using dumb terminals or web browsers) that is immediately transmitted into a health plan's computer.
+
+    Format refers to those data elements that provide or control the enveloping or hierarchical structure, or assist in identifying data content of, a transaction.
+
+    HCPCS stands for the Health [Care Financing Administration] Common Procedure Coding System.
+
+    Maintain or maintenance refers to activities necessary to support the use of a standard adopted by the Secretary, including technical corrections to an implementation specification, and enhancements or expansion of a code set. This term excludes the activities related to the adoption of a new standard or implementation specification, or modification to an adopted standard or implementation specification.
+
+    Maximum defined data set means all of the required data elements for a particular standard based on a specific implementation specification.
+
+    Operating rules means the necessary business rules and guidelines for the electronic exchange of information that are not defined by a standard or its implementation specifications as adopted for purposes of this part.
+
+    Segment means a group of related data elements in a transaction.
+
+    Stage 1 payment initiation means a health plan's order, instruction or authorization to its financial institution to make a health care claims payment using an electronic funds transfer (EFT) through the ACH Network.
+
+    Standard transaction means a transaction that complies with an applicable standard and associated operating rules adopted under this part.
+
+    [[65 FR 50367, Aug. 17, 2000, as amended at 68 FR 8374, Feb. 20, 2003; 74 FR 3324, Jan. 16, 2009; 76 FR 40495, July 8, 2011; 77 FR 1589, Jan. 10, 2012; 77 FR 54719, Sept. 5, 2012; 84 FR 57629, Oct. 28, 2019]]
+
+
+--------------------------------------------------------------------------------
+Subparts B-C [Reserved]
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+Subpart D - Standard Unique Health Identifier for Health Care Providers
+--------------------------------------------------------------------------------
+
+  Source: 69 FR 3468, Jan. 23, 2004, unless otherwise noted.
+
+
+  § 162.402 [Reserved]
+  --------------------
+
+
+  § 162.404 Compliance dates of the implementation of the standard unique health identifier for health care providers.
+  --------------------------------------------------------------------------------------------------------------------
+
+    (a) Health care providers. A covered health care provider must comply with the implementation specifications in § 162.410 no later than May 23, 2007.
+
+    (b) Health plans. A health plan must comply with the implementation specifications in § 162.412 no later than one of the following dates:
+
+    (1) A health plan that is not a small health plan—May 23, 2007.
+
+    (2) A small health plan—May 23, 2008.
+
+    (c) Health care clearinghouses. A health care clearinghouse must comply with the implementation specifications in § 162.414 no later than May 23, 2007.
+
+    [[69 FR 3468, Jan. 23, 2004, as amended at 77 FR 54719, Sept. 5, 2012]]
+
+
+  § 162.406 Standard unique health identifier for health care providers.
+  ----------------------------------------------------------------------
+
+    (a) Standard. The standard unique health identifier for health care providers is the National Provider Identifier (NPI). The NPI is a 10-position numeric identifier, with a check digit in the 10th position, and no intelligence about the health care provider in the number.
+
+    (b) Required and permitted uses for the NPI. (1) The NPI must be used as stated in §§ 162.410, 162.412, and 162.414.
+
+    (2) The NPI may be used for any other lawful purpose.
+
+
+  § 162.408 National Provider System.
+  -----------------------------------
+
+    National Provider System. The National Provider System (NPS) shall do the following:
+
+    (a) Assign a single, unique NPI to a health care provider, provided that—
+
+    (1) The NPS may assign an NPI to a subpart of a health care provider in accordance with paragraph (g); and
+
+    (2) The Secretary has sufficient information to permit the assignment to be made.
+
+    (b) Collect and maintain information about each health care provider that has been assigned an NPI and perform tasks necessary to update that information.
+
+    (c) If appropriate, deactivate an NPI upon receipt of appropriate information concerning the dissolution of the health care provider that is an organization, the death of the health care provider who is an individual, or other circumstances justifying deactivation.
+
+    (d) If appropriate, reactivate a deactivated NPI upon receipt of appropriate information.
+
+    (e) Not assign a deactivated NPI to any other health care provider.
+
+    (f) Disseminate NPS information upon approved requests.
+
+    (g) Assign an NPI to a subpart of a health care provider on request if the identifying data for the subpart are unique.
+
+
+  § 162.410 Implementation specifications: Health care providers.
+  ---------------------------------------------------------------
+
+    (a) A covered entity that is a covered health care provider must:
+
+    (1) Obtain, by application if necessary, an NPI from the National Provider System (NPS) for itself or for any subpart of the covered entity that would be a covered health care provider if it were a separate legal entity. A covered entity may obtain an NPI for any other subpart that qualifies for the assignment of an NPI.
+
+    (2) Use the NPI it obtained from the NPS to identify itself on all standard transactions that it conducts where its health care provider identifier is required.
+
+    (3) Disclose its NPI, when requested, to any entity that needs the NPI to identify that covered health care provider in a standard transaction.
+
+    (4) Communicate to the NPS any changes in its required data elements in the NPS within 30 days of the change.
+
+    (5) If it uses one or more business associates to conduct standard transactions on its behalf, require its business associate(s) to use its NPI and other NPIs appropriately as required by the transactions that the business associate(s) conducts on its behalf.
+
+    (6) If it has been assigned NPIs for one or more subparts, comply with the requirements of paragraphs (a)(2) through (a)(5) of this section with respect to each of those NPIs.
+
+    (b) An organization covered health care provider that has as a member, employs, or contracts with, an individual health care provider who is not a covered entity and is a prescriber, must require such health care provider to—
+
+    (1) Obtain an NPI from the National Plan and Provider Enumeration System (NPPES); and
+
+    (2) To the extent the prescriber writes a prescription while acting within the scope of the prescriber's relationship with the organization, disclose the NPI upon request to any entity that needs it to identify the prescriber in a standard transaction.
+
+    (c) A health care provider that is not a covered entity may obtain, by application if necessary, an NPI from the NPS.
+
+    [[69 FR 3468, Jan. 23, 2004, as amended at 77 FR 54719, Sept. 5, 2012]]
+
+
+  § 162.412 Implementation specifications: Health plans.
+  ------------------------------------------------------
+
+    (a) A health plan must use the NPI of any health care provider (or subpart(s), if applicable) that has been assigned an NPI to identify that health care provider on all standard transactions where that health care provider's identifier is required.
+
+    (b) A health plan may not require a health care provider that has been assigned an NPI to obtain an additional NPI.
+
+
+  § 162.414 Implementation specifications: Health care clearinghouses.
+  --------------------------------------------------------------------
+
+    A health care clearinghouse must use the NPI of any health care provider (or subpart(s), if applicable) that has been assigned an NPI to identify that health care provider on all standard transactions where that health care provider's identifier is required.
+
+
+--------------------------------------------------------------------------------
+Subpart E [Reserved]
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+Subpart F - Standard Unique Employer Identifier
+--------------------------------------------------------------------------------
+
+  Source: 67 FR 38020, May 31, 2002, unless otherwise noted.
+
+
+  § 162.600 Compliance dates of the implementation of the standard unique employer identifier.
+  --------------------------------------------------------------------------------------------
+
+    (a) Health care providers. Health care providers must comply with the requirements of this subpart no later than July 30, 2004.
+
+    (b) Health plans. A health plan must comply with the requirements of this subpart no later than one of the following dates:
+
+    (1) Health plans other than small health plans—July 30, 2004.
+
+    (2) Small health plans—August 1, 2005.
+
+    (c) Health care clearinghouses. Health care clearinghouses must comply with the requirements of this subpart no later than July 30, 2004.
+
+
+  § 162.605 Standard unique employer identifier.
+  ----------------------------------------------
+
+    The Secretary adopts the EIN as the standard unique employer identifier provided for by 42 U.S.C. 1320d-2(b).
+
+
+  § 162.610 Implementation specifications for covered entities.
+  -------------------------------------------------------------
+
+    (a) The standard unique employer identifier of an employer of a particular employee is the EIN that appears on that employee's IRS Form W-2, Wage and Tax Statement, from the employer.
+
+    (b) A covered entity must use the standard unique employer identifier (EIN) of the appropriate employer in standard transactions that require an employer identifier to identify a person or entity as an employer, including where situationally required.
+
+    (c) Required and permitted uses for the Employer Identifier.
+
+    (1) The Employer Identifier must be used as stated in § 162.610(b).
+
+    (2) The Employer Identifier may be used for any other lawful purpose.
+
+    [[67 FR 38020, May 31, 2002, as amended at 69 FR 3469, Jan. 23, 2004]]
+
+
+--------------------------------------------------------------------------------
+Subparts G-H [Reserved]
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+Subpart I - General Provisions for Transactions
+--------------------------------------------------------------------------------
+
+
+  § 162.900 [Reserved]
+  --------------------
+
+
+  § 162.910 Maintenance of standards and adoption of modifications and new standards.
+  -----------------------------------------------------------------------------------
+
+    (a) Designation of DSMOs. (1) The Secretary may designate as a DSMO an organization that agrees to conduct, to the satisfaction of the Secretary, the following functions:
+
+    (i) Maintain standards adopted under this subchapter.
+
+    (ii) Receive and process requests for adopting a new standard or modifying an adopted standard.
+
+    (2) The Secretary designates a DSMO by notice in the Federal Register.
+
+    (b) Maintenance of standards. Maintenance of a standard by the appropriate DSMO constitutes maintenance of the standard for purposes of this part, if done in accordance with the processes the Secretary may require.
+
+    (c) Process for modification of existing standards and adoption of new standards. The Secretary considers a recommendation for a proposed modification to an existing standard, or a proposed new standard, only if the recommendation is developed through a process that provides for the following:
+
+    (1) Open public access.
+
+    (2) Coordination with other DSMOs.
+
+    (3) An appeals process for each of the following, if dissatisfied with the decision on the request:
+
+    (i) The requestor of the proposed modification.
+
+    (ii) A DSMO that participated in the review and analysis of the request for the proposed modification, or the proposed new standard.
+
+    (4) Expedited process to address content needs identified within the industry, if appropriate.
+
+    (5) Submission of the recommendation to the National Committee on Vital and Health Statistics (NCVHS).
+
+
+  § 162.915 Trading partner agreements.
+  -------------------------------------
+
+    A covered entity must not enter into a trading partner agreement that would do any of the following:
+
+    (a) Change the definition, data condition, or use of a data element or segment in a standard or operating rule, except where necessary to implement State or Federal law, or to protect against fraud and abuse.
+
+    (b) Add any data elements or segments to the maximum defined data set.
+
+    (c) Use any code or data elements that are either marked “not used” in the standard's implementation specification or are not in the standard's implementation specification(s).
+
+    (d) Change the meaning or intent of the standard's implementation specification(s).
+
+    [[65 FR 50367, Aug. 17, 2000, as amended at 76 FR 40495, July 8, 2011]]
+
+
+  § 162.920 Availability of implementation specifications and operating rules.
+  ----------------------------------------------------------------------------
+
+    Certain material is incorporated by reference into this subpart with the approval of the Director of the Federal Register under 5 U.S.C. 552(a) and 1 CFR part 51. To enforce any edition other than that specified in this section, the Department of Health and Human Services must publish notice of change in the Federal Register and the material must be available to the public. All approved material is available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call (202) 714-6030, or go to: http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html. The materials are also available for inspection by the public at the Centers for Medicare & Medicaid Services (CMS), 7500 Security Boulevard, Baltimore, Maryland 21244. For more information on the availability on the materials at CMS, call (410) 786-6597. The materials are also available from the sources listed below.
+
+    (a) ASC X12N specifications and the ASC X12 Standards for Electronic Data Interchange Technical Report Type 3. The implementation specifications for the ASC X12N and the ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 (and accompanying Errata or Type 1 Errata) may be obtained from the ASC X12, 7600 Leesburg Pike, Suite 430, Falls Church, VA 22043; Telephone (703) 970-4480; and FAX (703) 970-4488. They are also available through the internet at http://www.X12.org. A fee is charged for all implementation specifications, including Technical Reports Type 3. Charging for such publications is consistent with the policies of other publishers of standards. The transaction implementation specifications are as follows:
+
+    (1) The ASC X12N 837—Health Care Claim: Dental, Version 4010, May 2000, Washington Publishing Company, 004010X097 and Addenda to Health Care Claim: Dental, Version 4010, October 2002, Washington Publishing Company, 004010X097A1, as referenced in § 162.1102 and § 162.1802.
+
+    (2) The ASC X12N 837—Health Care Claim: Professional, Volumes 1 and 2, Version 4010, May 2000, Washington Publishing Company, 004010X098 and Addenda to Health Care Claim: Professional, Volumes 1 and 2, Version 4010, October 2002, Washington Publishing Company, 004010X098A1, as referenced in § 162.1102 and § 162.1802.
+
+    (3) The ASC X12N 837—Health Care Claim: Institutional, Volumes 1 and 2, Version 4010, May 2000, Washington Publishing Company, 004010X096 and Addenda to Health Care Claim: Institutional, Volumes 1 and 2, Version 4010, October 2002, Washington Publishing Company, 004010X096A1 as referenced in § 162.1102 and § 162.1802.
+
+    (4) The ASC X12N 835—Health Care Claim Payment/Advice, Version 4010, May 2000, Washington Publishing Company, 004010X091, and Addenda to Health Care Claim Payment/Advice, Version 4010, October 2002, Washington Publishing Company, 004010X091A1 as referenced in § 162.1602.
+
+    (5) ASC X12N 834—Benefit Enrollment and Maintenance, Version 4010, May 2000, Washington Publishing Company, 004010X095 and Addenda to Benefit Enrollment and Maintenance, Version 4010, October 2002, Washington Publishing Company, 004010X095A1, as referenced in § 162.1502.
+
+    (6) The ASC X12N 820—Payroll Deducted and Other Group Premium Payment for Insurance Products, Version 4010, May 2000, Washington Publishing Company, 004010X061, and Addenda to Payroll Deducted and Other Group Premium Payment for Insurance Products, Version 4010, October 2002, Washington Publishing Company, 004010X061A1, as referenced in § 162.1702.
+
+    (7) The ASC X12N 278—Health Care Services Review—Request for Review and Response, Version 4010, May 2000, Washington Publishing Company, 004010X094 and Addenda to Health Care Services Review—Request for Review and Response, Version 4010, October 2002, Washington Publishing Company, 004010X094A1, as referenced in § 162.1302.
+
+    (8) The ASC X12N-276/277 Health Care Claim Status Request and Response, Version 4010, May 2000, Washington Publishing Company, 004010X093 and Addenda to Health Care Claim Status Request and Response, Version 4010, October 2002, Washington Publishing Company, 004010X093A1, as referenced in § 162.1402.
+
+    (9) The ASC X12N 270/271—Health Care Eligibility Benefit Inquiry and Response, Version 4010, May 2000, Washington Publishing Company, 004010X092 and Addenda to Health Care Eligibility Benefit Inquiry and Response, Version 4010, October 2002, Washington Publishing Company, 004010X092A1, as referenced in § 162.1202.
+
+    (10) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Claim: Dental (837), May 2006, ASC X12N/005010X224, and Type 1 Errata to Health Care Claim Dental (837), ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, October 2007, ASC X12N/005010X224A1, as referenced in § 162.1102 and § 162.1802.
+
+    (11) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Claim: Professional (837), May 2006, ASC X12, 005010X222, as referenced in § 162.1102 and § 162.1802.
+
+    (12) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Claim: Institutional (837), May 2006, ASC X12/N005010X223, and Type 1 Errata to Health Care Claim: Institutional (837), ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, October 2007, ASC X12N/005010X223A1, as referenced in § 162.1102 and § 162.1802.
+
+    (13) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Claim Payment/Advice (835), April 2006, ASC X12N/005010X221, as referenced in § 162.1602.
+
+    (14) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Benefit Enrollment and Maintenance (834), August 2006, ASC X12N/005010X220, as referenced in § 162.1502.
+
+    (15) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Payroll Deducted and Other Group Premium Payment for Insurance Products (820), February 2007, ASC X12N/005010X218, as referenced in § 162.1702.
+
+    (16) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Services Review—Request for Review and Response (278), May 2006, ASC X12N/005010X217, and Errata to Health Care Services Review—Request for Review and Response (278), ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, April 2008, ASC X12N/005010X217E1, as referenced in § 162.1302.
+
+    (17) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Claim Status Request and Response (276/277), August 2006, ASC X12N/005010X212, and Errata to Health Care Claim Status Request and Response (276/277), ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, April 2008, ASC X12N/005010X212E1, as referenced in § 162.1402.
+
+    (18) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Eligibility Benefit Inquiry and Response (270/271), April 2008, ASC X12N/005010X279, as referenced in § 162.1202.
+
+    (b) Retail pharmacy specifications and Medicaid subrogation implementation guides. The implementation specifications for the retail pharmacy standards and the implementation specifications for the batch standard for the Medicaid pharmacy subrogation transaction may be obtained from the National Council for Prescription Drug Programs, 9240 East Raintree Drive, Scottsdale, AZ 85260. Telephone (480) 477-1000; FAX (480) 767-1042. They are also available through the Internet at http://www.ncpdp.org. A fee is charged for all NCPDP Implementation Guides. Charging for such publications is consistent with the policies of other publishers of standards. The transaction implementation specifications are as follows:
+
+    (1) The Telecommunication Standard Implementation Guide Version 5, Release 1 (Version 5.1), September 1999, National Council for Prescription Drug Programs, as referenced in §§ 162.1102, 162.1202, 162.1302, 162.1602, and 162.1802.
+
+    (2) The Batch Standard Batch Implementation Guide, Version 1, Release 1 (Version 1.1), January 2000, supporting Telecommunication Standard Implementation Guide, Version 5, Release 1 (Version 5.1) for the NCPDP Data Record in the Detail Data Record, National Council for Prescription Drug Programs, as referenced in §§ 162.1102, 162.1202, 162.1302, and 162.1802.
+
+    (3) The National Council for Prescription Drug Programs (NCPDP) equivalent NCPDP Batch Standard Batch Implementation Guide, Version 1, Release 0, February 1, 1996, as referenced in §§ 162.1102, 162.1202, 162.1602, and 162.1802.
+
+    (4) The Telecommunication Standard Implementation Guide, Version D, Release 0 (Version D.0), August 2007, National Council for Prescription Drug Programs, as referenced in §§ 162.1102, 162.1202, 162.1302, and 162.1802.
+
+    (5) The Batch Standard Implementation Guide, Version 1, Release 2 (Version 1.2), January 2006, National Council for Prescription Drug Programs, as referenced in §§ 162.1102, 162.1202, 162.1302, and 162.1802.
+
+    (6) The Batch Standard Medicaid Subrogation Implementation Guide, Version 3, Release 0 (Version 3.0), July 2007, National Council for Prescription Drug Programs, as referenced in § 162.1902.
+
+    (c) Council for Affordable Quality Healthcare's (CAQH) Committee on Operating Rules for Information Exchange (CORE), 601 Pennsylvania Avenue, NW. South Building, Suite 500 Washington, DC 20004; Telephone (202) 861-1492; Fax (202) 861- 1454; E-mail info@CAQH.org; and Internet at http://www.caqh.org/benefits.php.
+
+    (1) CAQH, Committee on Operating Rules for Information Exchange, CORE Phase I Policies and Operating Rules, Approved April 2006, v5010 Update March 2011.
+
+    (i) Phase I CORE 152: Eligibility and Benefit Real Time Companion Guide Rule, version 1.1.0, March 2011, as referenced in § 162.1203.
+
+    (ii) Phase I CORE 153: Eligibility and Benefits Connectivity Rule, version 1.1.0, March 2011, as referenced in § 162.1203.
+
+    (iii) Phase I CORE 154: Eligibility and Benefits 270/271 Data Content Rule, version 1.1.0, March 2011, as referenced in § 162.1203.
+
+    (iv) Phase I CORE 155: Eligibility and Benefits Batch Response Time Rule, version 1.1.0, March 2011, as referenced in § 162.1203.
+
+    (v) Phase I CORE 156: Eligibility and Benefits Real Time Response Time Rule, version 1.1.0, March 2011, as referenced in § 162.1203.
+
+    (vi) Phase I CORE 157: Eligibility and Benefits System Availability Rule, version 1.1.0, March 2011, as referenced in § 162.1203.
+
+    (2) ACME Health Plan, HIPAA Transaction Standard Companion Guide, Refers to the Implementation Guides Based on ASC X12 version 005010, CORE v5010 Master Companion Guide Template, 005010, 1.2, (CORE v 5010 Master Companion Guide Template, 005010, 1.2), March 2011, as referenced in §§ 162.1203, 162.1403, and 162.1603.
+
+    (3) CAQH, Committee on Operating Rules for Information Exchange, CORE Phase II Policies and Operating Rules, Approved July 2008, v5010 Update March 2011.
+
+    (i) Phase II CORE 250: Claim Status Rule, version 2.1.0, March 2011, as referenced in § 162.1403.
+
+    (ii) Phase II CORE 258: Eligibility and Benefits 270/271 Normalizing Patient Last Name Rule, version 2.1.0, March 2011, as referenced in § 162.1203.
+
+    (iii) Phase II CORE 259: Eligibility and Benefits 270/271 AAA Error Code Reporting Rule, version 2.1.0, March 2011, as referenced in § 162.1203.
+
+    (iv) Phase II CORE 260: Eligibility & Benefits Data Content (270/271) Rule, version 2.1.0, March 2011, as referenced in § 162.1203.
+
+    (v) Phase II CORE 270: Connectivity Rule, version 2.2.0, March 2011, as referenced in § 162.1203 and § 162.1403.
+
+    (4) Council for Affordable Quality Healthcare (CAQH) Phase III Committee on Operating Rules for Information Exchange (CORE) EFT & ERA Operating Rule Set, Approved June 2012, as specified in this paragraph and referenced in § 162.1603.
+
+    (i) Phase III CORE 380 EFT Enrollment Data Rule, version 3.0.0, June 2012.
+
+    (ii) Phase III CORE 382 ERA Enrollment Data Rule, version 3.0.0, June 2012.
+
+    (iii) Phase III 360 CORE Uniform Use of CARCs and RARCs (835) Rule, version 3.0.0, June 2012.
+
+    (iv) CORE-required Code Combinations for CORE-defined Business Scenarios for the Phase III CORE 360 Uniform Use of Claim Adjustment Reason Codes and Remittance Advice Remark Codes (835) Rule, version 3.0.0, June 2012.
+
+    (v) Phase III CORE 370 EFT & ERA Reassociation (CCD+/835) Rule, version 3.0.0, June 2012.
+
+    (vi) Phase III CORE 350 Health Care Claim Payment/Advice (835) Infrastructure Rule, version 3.0.0, June 2012, except Requirement 4.2 titled “Health Care Claim Payment/Advice Batch Acknowledgement Requirements”.
+
+    (d) The National Automated Clearing House Association (NACHA), The Electronic Payments Association, 1350 Sunrise Valle Drive, Suite 100, Herndon, Virginia 20171 (Phone) (703) 561-1100; (Fax) (703) 713-1641; Email: info@nacha.org; and Internet at http://www.nacha.org. The implementation specifications are as follows:
+
+    (1) 2011 NACHA Operating Rules & Guidelines, A Complete Guide to the Rules Governing the ACH Network, NACHA Operating Rules, Appendix One: ACH File Exchange Specifications (Operating Rule 59) as referenced in § 162.1602.
+
+    (2) 2011 NACHA Operating Rules & Guidelines, A Complete Guide to the Rules Governing the ACH Network, NACHA Operating Rules Appendix Three: ACH Record Format Specifications (Operating Rule 78), Part 3.1, Subpart 3.1.8 Sequence of Records for CCD Entries as referenced in § 162.1602.
+
+    [[68 FR 8396, Feb. 20, 2003, as amended at 69 FR 18803, Apr. 9, 2004; 74 FR 3324, Jan. 16, 2009; 76 FR 40495, July 8, 2011; 77 FR 1590, Jan. 10, 2012; 77 FR 48043, Aug. 10, 2012]]
+
+
+  § 162.923 Requirements for covered entities.
+  --------------------------------------------
+
+    (a) General rule. Except as otherwise provided in this part, if a covered entity conducts, with another covered entity that is required to comply with a transaction standard adopted under this part (or within the same covered entity), using electronic media, a transaction for which the Secretary has adopted a standard under this part, the covered entity must conduct the transaction as a standard transaction.
+
+    (b) Exception for direct data entry transactions. A health care provider electing to use direct data entry offered by a health plan to conduct a transaction for which a standard has been adopted under this part must use the applicable data content and data condition requirements of the standard when conducting the transaction. The health care provider is not required to use the format requirements of the standard.
+
+    (c) Use of a business associate. A covered entity may use a business associate, including a health care clearinghouse, to conduct a transaction covered by this part. If a covered entity chooses to use a business associate to conduct all or part of a transaction on behalf of the covered entity, the covered entity must require the business associate to do the following:
+
+    (1) Comply with all applicable requirements of this part.
+
+    (2) Require any agent or subcontractor to comply with all applicable requirements of this part.
+
+    [[65 FR 50367, Aug. 17, 2000, as amended at 74 FR 3325, Jan. 16, 2009]]
+
+
+  § 162.925 Additional requirements for health plans.
+  ---------------------------------------------------
+
+    (a) General rules. (1) If an entity requests a health plan to conduct a transaction as a standard transaction, the health plan must do so.
+
+    (2) A health plan may not delay or reject a transaction, or attempt to adversely affect the other entity or the transaction, because the transaction is a standard transaction.
+
+    (3) A health plan may not reject a standard transaction on the basis that it contains data elements not needed or used by the health plan (for example, coordination of benefits information).
+
+    (4) A health plan may not offer an incentive for a health care provider to conduct a transaction covered by this part as a transaction described under the exception provided for in § 162.923(b).
+
+    (5) A health plan that operates as a health care clearinghouse, or requires an entity to use a health care clearinghouse to receive, process, or transmit a standard transaction may not charge fees or costs in excess of the fees or costs for normal telecommunications that the entity incurs when it directly transmits, or receives, a standard transaction to, or from, a health plan.
+
+    (6) During the period from March 17, 2009 through December 31, 2011, a health plan may not delay or reject a standard transaction, or attempt to adversely affect the other entity or the transaction, on the basis that it does not comply with another adopted standard for the same period.
+
+    (b) Coordination of benefits. If a health plan receives a standard transaction and coordinates benefits with another health plan (or another payer), it must store the coordination of benefits data it needs to forward the standard transaction to the other health plan (or other payer).
+
+    (c) Code sets. A health plan must meet each of the following requirements:
+
+    (1) Accept and promptly process any standard transaction that contains codes that are valid, as provided in subpart J of this part.
+
+    (2) Keep code sets for the current billing period and appeals periods still open to processing under the terms of the health plan's coverage.
+
+    [[65 FR 50367, Aug. 17, 2000, as amended at 74 FR 3325, Jan. 16, 2009]]
+
+
+  § 162.930 Additional rules for health care clearinghouses.
+  ----------------------------------------------------------
+
+    When acting as a business associate for another covered entity, a health care clearinghouse may perform the following functions:
+
+    (a) Receive a standard transaction on behalf of the covered entity and translate it into a nonstandard transaction (for example, nonstandard format and/or nonstandard data content) for transmission to the covered entity.
+
+    (b) Receive a nonstandard transaction (for example, nonstandard format and/or nonstandard data content) from the covered entity and translate it into a standard transaction for transmission on behalf of the covered entity.
+
+
+  § 162.940 Exceptions from standards to permit testing of proposed modifications.
+  --------------------------------------------------------------------------------
+
+    (a) Requests for an exception. An organization may request an exception from the use of a standard from the Secretary to test a proposed modification to that standard. For each proposed modification, the organization must meet the following requirements:
+
+    (1) Comparison to a current standard. Provide a detailed explanation, no more than 10 pages in length, of how the proposed modification would be a significant improvement to the current standard in terms of the following principles:
+
+    (i) Improve the efficiency and effectiveness of the health care system by leading to cost reductions for, or improvements in benefits from, electronic health care transactions.
+
+    (ii) Meet the needs of the health data standards user community, particularly health care providers, health plans, and health care clearinghouses.
+
+    (iii) Be uniform and consistent with the other standards adopted under this part and, as appropriate, with other private and public sector health data standards.
+
+    (iv) Have low additional development and implementation costs relative to the benefits of using the standard.
+
+    (v) Be supported by an ANSI-accredited SSO or other private or public organization that would maintain the standard over time.
+
+    (vi) Have timely development, testing, implementation, and updating procedures to achieve administrative simplification benefits faster.
+
+    (vii) Be technologically independent of the computer platforms and transmission protocols used in electronic health transactions, unless they are explicitly part of the standard.
+
+    (viii) Be precise, unambiguous, and as simple as possible.
+
+    (ix) Result in minimum data collection and paperwork burdens on users.
+
+    (x) Incorporate flexibility to adapt more easily to changes in the health care infrastructure (such as new services, organizations, and provider types) and information technology.
+
+    (2) Specifications for the proposed modification. Provide specifications for the proposed modification, including any additional system requirements.
+
+    (3) Testing of the proposed modification. Provide an explanation, no more than 5 pages in length, of how the organization intends to test the standard, including the number and types of health plans and health care providers expected to be involved in the test, geographical areas, and beginning and ending dates of the test.
+
+    (4) Trading partner concurrences. Provide written concurrences from trading partners who would agree to participate in the test.
+
+    (b) Basis for granting an exception. The Secretary may grant an initial exception, for a period not to exceed 3 years, based on, but not limited to, the following criteria:
+
+    (1) An assessment of whether the proposed modification demonstrates a significant improvement to the current standard.
+
+    (2) The extent and length of time of the exception.
+
+    (3) Consultations with DSMOs.
+
+    (c) Secretary's decision on exception. The Secretary makes a decision and notifies the organization requesting the exception whether the request is granted or denied.
+
+    (1) Exception granted. If the Secretary grants an exception, the notification includes the following information:
+
+    (i) The length of time for which the exception applies.
+
+    (ii) The trading partners and geographical areas the Secretary approves for testing.
+
+    (iii) Any other conditions for approving the exception.
+
+    (2) Exception denied. If the Secretary does not grant an exception, the notification explains the reasons the Secretary considers the proposed modification would not be a significant improvement to the current standard and any other rationale for the denial.
+
+    (d) Organization's report on test results. Within 90 days after the test is completed, an organization that receives an exception must submit a report on the results of the test, including a cost-benefit analysis, to a location specified by the Secretary by notice in the Federal Register.
+
+    (e) Extension allowed. If the report submitted in accordance with paragraph (d) of this section recommends a modification to the standard, the Secretary, on request, may grant an extension to the period granted for the exception.
+
+
+--------------------------------------------------------------------------------
+Subpart J - Code Sets
+--------------------------------------------------------------------------------
+
+
+  § 162.1000 General requirements.
+  --------------------------------
+
+    When conducting a transaction covered by this part, a covered entity must meet the following requirements:
+
+    (a) Medical data code sets. Use the applicable medical data code sets described in § 162.1002 as specified in the implementation specification adopted under this part that are valid at the time the health care is furnished.
+
+    (b) Nonmedical data code sets. Use the nonmedical data code sets as described in the implementation specifications adopted under this part that are valid at the time the transaction is initiated.
+
+
+  § 162.1002 Medical data code sets.
+  ----------------------------------
+
+    The Secretary adopts the following maintaining organization's code sets as the standard medical data code sets:
+
+    (a) For the period from October 16, 2002 through October 15, 2003:
+
+    (1) International Classification of Diseases, 9th Edition, Clinical Modification, (ICD-9-CM), Volumes 1 and 2 (including The Official ICD-9-CM Guidelines for Coding and Reporting), as maintained and distributed by HHS, for the following conditions:
+
+    (i) Diseases.
+
+    (ii) Injuries.
+
+    (iii) Impairments.
+
+    (iv) Other health problems and their manifestations.
+
+    (v) Causes of injury, disease, impairment, or other health problems.
+
+    (2) International Classification of Diseases, 9th Edition, Clinical Modification, Volume 3 Procedures (including The Official ICD-9-CM Guidelines for Coding and Reporting), as maintained and distributed by HHS, for the following procedures or other actions taken for diseases, injuries, and impairments on hospital inpatients reported by hospitals:
+
+    (i) Prevention.
+
+    (ii) Diagnosis.
+
+    (iii) Treatment.
+
+    (iv) Management.
+
+    (3) National Drug Codes (NDC), as maintained and distributed by HHS, in collaboration with drug manufacturers, for the following:
+
+    (i) Drugs
+
+    (ii) Biologics.
+
+    (4) Code on Dental Procedures and Nomenclature, as maintained and distributed by the American Dental Association, for dental services.
+
+    (5) The combination of Health Care Financing Administration Common Procedure Coding System (HCPCS), as maintained and distributed by HHS, and Current Procedural Terminology, Fourth Edition (CPT-4), as maintained and distributed by the American Medical Association, for physician services and other health care services. These services include, but are not limited to, the following:
+
+    (i) Physician services.
+
+    (ii) Physical and occupational therapy services.
+
+    (iii) Radiologic procedures.
+
+    (iv) Clinical laboratory tests.
+
+    (v) Other medical diagnostic procedures.
+
+    (vi) Hearing and vision services.
+
+    (vii) Transportation services including ambulance.
+
+    (6) The Health Care Financing Administration Common Procedure Coding System (HCPCS), as maintained and distributed by HHS, for all other substances, equipment, supplies, or other items used in health care services. These items include, but are not limited to, the following:
+
+    (i) Medical supplies.
+
+    (ii) Orthotic and prosthetic devices.
+
+    (iii) Durable medical equipment.
+
+    (b) For the period on and after October 16, 2003 through September 30, 2015:
+
+    (1) The code sets specified in paragraphs (a)(1), (a)(2),(a)(4), and (a)(5) of this section.
+
+    (2) National Drug Codes (NDC), as maintained and distributed by HHS, for reporting the following by retail pharmacies:
+
+    (i) Drugs.
+
+    (ii) Biologics.
+
+    (3) The Healthcare Common Procedure Coding System (HCPCS), as maintained and distributed by HHS, for all other substances, equipment, supplies, or other items used in health care services, with the exception of drugs and biologics. These items include, but are not limited to, the following:
+
+    (i) Medical supplies.
+
+    (ii) Orthotic and prosthetic devices.
+
+    (iii) Durable medical equipment.
+
+    (c) For the period on and after October 1, 2015:
+
+    (1) The code sets specified in paragraphs (a)(4), (a)(5), (b)(2), and (b)(3) of this section.
+
+    (2) International Classification of Diseases, 10th Revision, Clinical Modification (ICD-10-CM) (including The Official ICD-10-CM Guidelines for Coding and Reporting), as maintained and distributed by HHS, for the following conditions:
+
+    (i) Diseases.
+
+    (ii) Injuries.
+
+    (iii) Impairments.
+
+    (iv) Other health problems and their manifestations.
+
+    (v) Causes of injury, disease, impairment, or other health problems.
+
+    (3) International Classification of Diseases, 10th Revision, Procedure Coding System (ICD-10-PCS) (including The Official ICD-10-PCS Guidelines for Coding and Reporting), as maintained and distributed by HHS, for the following procedures or other actions taken for diseases, injuries, and impairments on hospital inpatients reported by hospitals:
+
+    (i) Prevention.
+
+    (ii) Diagnosis.
+
+    (iii) Treatment.
+
+    (iv) Management.
+
+    [[65 FR 50367, Aug. 17, 2000, as amended at 68 FR 8397, Feb. 20, 2003; 74 FR 3362, Jan. 16, 2009; 77 FR 54720, Sept. 5, 2012; 79 FR 45134, Aug. 4, 2014]]
+
+
+  § 162.1011 Valid code sets.
+  ---------------------------
+
+    Each code set is valid within the dates specified by the organization responsible for maintaining that code set.
+
+
+--------------------------------------------------------------------------------
+Subpart K - Health Care Claims or Equivalent Encounter Information
+--------------------------------------------------------------------------------
+
+
+  § 162.1101 Health care claims or equivalent encounter information transaction.
+  ------------------------------------------------------------------------------
+
+    The health care claims or equivalent encounter information transaction is the transmission of either of the following:
+
+    (a) A request to obtain payment, and the necessary accompanying information from a health care provider to a health plan, for health care.
+
+    (b) If there is no direct claim, because the reimbursement contract is based on a mechanism other than charges or reimbursement rates for specific services, the transaction is the transmission of encounter information for the purpose of reporting health care.
+
+
+  § 162.1102 Standards for health care claims or equivalent encounter information transaction.
+  --------------------------------------------------------------------------------------------
+
+    The Secretary adopts the following standards for the health care claims or equivalent encounter information transaction:
+
+    (a) For the period from October 16, 2003 through March 16, 2009:
+
+    (1) Retail pharmacy drugs claims. The National Council for Prescription Drug Programs (NCPDP) Telecommunication Standards Implementation Guide, Version 5, Release 1, September 1999, and equivalent NCPDP Batch Standards Batch Implementation Guide, Version 1, Release 1, (Version 1.1), January 2000, supporting Telecomunication Version 5.1 for the NCPDP Data Record in the Detail Data Record. (Incorporated by reference in § 162.920).
+
+    (2) Dental, health care claims. The ASC X12N 837 - Health Care Claim: Dental, Version 4010, May 2000, Washington Publishing Company, 004010X097. and Addenda to Health Care Claim: Dental, Version 4010, October 2002, Washington Publishing Company, 004010X097A1. (Incorporated by reference in § 162.920).
+
+    (3) Professional health care claims. The ASC X12N 837 - Health Care Claims: Professional, Volumes 1 and 2, Version 4010, may 2000, Washington Publishing Company, 004010X098 and Addenda to Health Care Claims: Professional, Volumes 1 and 2, Version 4010, October 2002, Washington Publishing Company, 004010x098A1. (Incorporated by reference in § 162.920).
+
+    (4) Institutional health care claims. The ASC X12N 837 - Health Care Claim: Institutional, Volumes 1 and 2, Version 4010, May 2000, Washington Publishing Company, 004010X096 and Addenda to Health Care Claim: Institutional, Volumes 1 and 2, Version 4010, October 2002, Washington Publishing Company, 004010X096A1. (Incorporated by reference in § 162.920).
+
+    (b) For the period from March 17, 2009 through December 31, 2011, both:
+
+    (1)(i) The standards identified in paragraph (a) of this section; and
+
+    (ii) For retail pharmacy supplies and professional services claims, the following: The ASC X12N 837 - Health Care Claim: Professional, Volumes 1 and 2, Version 4010, May 2000, Washington Publishing Company, 004010X096, October 2002 (Incorporated by reference in § 162.920); and
+
+    (2)(i) Retail pharmacy drug claims. The Telecommunication Standard Implementation Guide, Version D, Release 0 (Version D.0), August 2007 and equivalent Batch Standard Implementation Guide, Version 1, Release 2 (Version 1.2), National Council for Prescription Drug Programs. (Incorporated by reference in § 162.920.)
+
+    (ii) Dental health care claims. The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 - Health Care Claim: Dental (837), May 2006, ASC X12N/005010X224, and Type 1 Errata to Health Care Claim: Dental (837) ASC X12 Standards for Electronic Date Interchange Technical Report Type 3, October 2007, ASC X12N/005010X224A1. (Incorporated by reference in § 162.920.)
+
+    (iii) Professional health care claims. The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 - Health Care Claim: Professional (837), May 2006, ASC X12N/005010X222. (Incorporated by reference in § 162.920.)
+
+    (iv) Institutional health care claims. The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 - Health Care Claim: Institutional (837), May 2006, ASC X12N/005010X223, and Type 1 Errata to Health Care Claim: Institutional (837) ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, October 2007, ASC X12N/005010X223A1. (Incorporated by reference in § 162.920.)
+
+    (v) Retail pharmacy supplies and professional services claims. (A) The Telecommunication Standard, Implementation Guide Version 5, Release 1, September 1999. (Incorporated by reference in § 162.920.)
+
+    (B) The Telecommunication Standard Implementation Guide, Version D, Release 0 (Version D.0), August 2007, and equivalent Batch Standard Implementation Guide, Version 1, Release 2 (Version 1.2), National Council for Prescription Drug Programs (Incorporated by reference in § 162.920); and
+
+    (C) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 - Health Care Claim: Professional (837), May 2006, ASC X12N/005010X222. (Incorporated by reference in § 162.920.)
+
+    (c) For the period on and after the January 1, 2012, the standards identified in paragraph (b)(2) of this section, except the standard identified in paragraph (b)(2)(v)(A) of this section.
+
+    [[68 FR 8397, Feb. 20, 2003; 68 FR 11445, Mar. 10, 2003, as amended at 74 FR 3325, Jan. 16, 2009]]
+
+
+--------------------------------------------------------------------------------
+Subpart L - Eligibility for a Health Plan
+--------------------------------------------------------------------------------
+
+
+  § 162.1201 Eligibility for a health plan transaction.
+  -----------------------------------------------------
+
+    The eligibility for a health plan transaction is the transmission of either of the following:
+
+    (a) An inquiry from a health care provider to a health plan, or from one health plan to another health plan, to obtain any of the following information about a benefit plan for an enrollee:
+
+    (1) Eligibility to receive health care under the health plan.
+
+    (2) Coverage of health care under the health plan.
+
+    (3) Benefits associated with the benefit plan.
+
+    (b) A response from a health plan to a health care provider's (or another health plan's) inquiry described in paragraph (a) of this section.
+
+
+  § 162.1202 Standards for eligibility for a health plan transaction.
+  -------------------------------------------------------------------
+
+    The Secretary adopts the following standards for the eligibility for a health plan transaction:
+
+    (a) For the period from October 16, 2003 through March 16, 2009:
+
+    (1) Retail pharmacy drugs. The National Council for Prescription Drug Programs Telecommunication Standard Implementation Guide, Version 5, Release 1 (Version 5.1), September 1999, and equivalent NCPDP Batch Standard Batch Implementation Guide, Version 1, Release 1 (Version 1.1), January 2000 supporting Telecommunications Standard Implementation Guide, Version 5, Release 1 (Version 5.1) for the NCPDP Data Record in the Detail Data Record. (Incorporated by reference in § 162.920).
+
+    (2) Dental, professional, and institutional health care eligibility benefit inquiry and response. The ASC X12N 270/271—Health Care Eligibility Benefit Inquiry and Response, Version 4010, May 2000, Washington Publishing Company, 004010X092 and Addenda to Health Care Eligibility Benefit Inquiry and Response, Version 4010, October 2002, Washington Publishing Company, 004010X092A1. (Incorporated by reference in § 162.920).
+
+    (b) For the period from March 17, 2009 through December 31, 2011 both:
+
+    (1) The standards identified in paragraph (a) of this section; and
+
+    (2)(i) Retail pharmacy drugs. The Telecommunication Standard Implementation Guide Version D, Release 0 (Version D.0), August 2007, and equivalent Batch Standard Implementation Guide, Version 1, Release 2 (Version 1.2), National Council for Prescription Drug Programs. (Incorporated by reference in § 162.920.)
+
+    (ii) Dental, professional, and institutional health care eligibility benefit inquiry and response. The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Eligibility Benefit Inquiry and Response (270/271), April 2008, ASC X12N/005010X279. (Incorporated by reference in § 162.920.)
+
+    (c) For the period on and after January 1, 2012, the standards identified in paragraph (b)(2) of this section.
+
+    [[68 FR 8398, Feb. 20, 2003; 68 FR 11445, Mar. 10, 2003, as amended at 74 FR 3326, Jan. 16, 2009]]
+
+
+  § 162.1203 Operating rules for eligibility for a health plan transaction.
+  -------------------------------------------------------------------------
+
+    On and after January 1, 2013, the Secretary adopts the following:
+
+    (a) Except as specified in paragraph (b) of this section, the following CAQH CORE Phase I and Phase II operating rules (updated for Version 5010) for the eligibility for a health plan transaction:
+
+    (1) Phase I CORE 152: Eligibility and Benefit Real Time Companion Guide Rule, version 1.1.0, March 2011, and CORE v5010 Master Companion Guide Template. (Incorporated by reference in § 162.920).
+
+    (2) Phase I CORE 153: Eligibility and Benefits Connectivity Rule, version 1.1.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (3) Phase I CORE 154: Eligibility and Benefits 270/271 Data Content Rule, version 1.1.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (4) Phase I CORE 155: Eligibility and Benefits Batch Response Time Rule, version 1.1.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (5) Phase I CORE 156: Eligibility and Benefits Real Time Response Rule, version 1.1.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (6) Phase I CORE 157: Eligibility and Benefits System Availability Rule, version 1.1.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (7) Phase II CORE 258: Eligibility and Benefits 270/271 Normalizing Patient Last Name Rule, version 2.1.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (8) Phase II CORE 259: Eligibility and Benefits 270/271 AAA Error Code Reporting Rule, version 2.1.0. (Incorporated by reference in § 162.920).
+
+    (9) Phase II CORE 260: Eligibility & Benefits Data Content (270/271) Rule, version 2.1.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (10) Phase II CORE 270: Connectivity Rule, version 2.2.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (b) Excluding where the CAQH CORE rules reference and pertain to acknowledgements and CORE certification.
+
+    [[76 FR 40496, July 8, 2011]]
+
+
+--------------------------------------------------------------------------------
+Subpart M - Referral Certification and Authorization
+--------------------------------------------------------------------------------
+
+
+  § 162.1301 Referral certification and authorization transaction.
+  ----------------------------------------------------------------
+
+    The referral certification and authorization transaction is any of the following transmissions:
+
+    (a) A request from a health care provider to a health plan for the review of health care to obtain an authorization for the health care.
+
+    (b) A request from a health care provider to a health plan to obtain authorization for referring an individual to another health care provider.
+
+    (c) A response from a health plan to a health care provider to a request described in paragraph (a) or paragraph (b) of this section.
+
+    [[74 FR 3326, Jan. 16, 2009]]
+
+
+  § 162.1302 Standards for referral certification and authorization transaction.
+  ------------------------------------------------------------------------------
+
+    The Secretary adopts the following standards for the referral certification and authorization transaction:
+
+    (a) For the period from October 16, 2003 through March 16, 2009:
+
+    (1) Retail pharmacy drug referral certification and authorization. The NCPDP Telecommunication Standard Implementation Guide, Version 5, Release 1 (Version 5.1), September 1999, and equivalent NCPDP Batch Standard Batch Implementation Guide, Version 1, Release 1 (Version 1.1), January 2000, supporting Telecommunications Standard Implementation Guide, Version 5, Release 1 (Version 5.1) for the NCPDP Data Record in the Detail Data Record. (Incorporated by reference in § 162.920).
+
+    (2) Dental, professional, and institutional referral certification and authorization. The ASC X12N 278 - Health Care Services Review - Request for Review and Response, Version 4010, May 2000, Washington Publishing Company, 004010X094 and Addenda to Health Care Services Review - Request for Review and Response, Version 4010, October 2002, Washington Publishing Company, 004010X094A1. (Incorporated by reference in § 162.920).
+
+    (b) For the period from March 17, 2009 through December 31, 2011 both -
+
+    (1) The standards identified in paragraph (a) of this section; and
+
+    (2)(i) Retail pharmacy drugs. The Telecommunication Standard Implementation Guide Version D, Release 0 (Version D.0), August 2007, and equivalent Batch Standard Implementation Guide, Version 1, Release 2 (Version 1.2), National Council for Prescription Drug Programs. (Incorporated by reference in § 162.920.)
+
+    (ii) Dental, professional, and institutional request for review and response. The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 - Health Care Services Review - Request for Review and Response (278), May 2006, ASC X12N/005010X217, and Errata to Health Care Services Review- - Request for Review and Response (278), ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, April 2008, ASC X12N/005010X217E1. (Incorporated by reference in § 162.920.)
+
+    (c) For the period on and after January 1, 2012, the standards identified in paragraph (b)(2) of this section.
+
+    [[68 FR 8398, Feb. 20, 2003, as amended at 74 FR 3326, Jan. 16, 2009]]
+
+
+--------------------------------------------------------------------------------
+Subpart N - Health Care Claim Status
+--------------------------------------------------------------------------------
+
+
+  § 162.1401 Health care claim status transaction.
+  ------------------------------------------------
+
+    The health care claim status transaction is the transmission of either of the following:
+
+    (a) An inquiry from a health care provider to a health plan to determine the status of a health care claim.
+
+    (b) A response from a health plan to a health care provider about the status of a health care claim.
+
+    [[74 FR 3326, Jan. 16, 2009]]
+
+
+  § 162.1402 Standards for health care claim status transaction.
+  --------------------------------------------------------------
+
+    The Secretary adopts the following standards for the health care claim status transaction:
+
+    (a) For the period from October 16, 2003 through March 16, 2009: The ASC X12N-276/277 Health Care Claim Status Request and Response, Version 4010, May 2000, Washington Publishing Company, 004010X093 and Addenda to Health Care Claim Status Request and Response, Version 4010, October 2002, Washington Publishing Company, 004010X093A1. (Incorporated by reference in § 162.920.)
+
+    (b) For the period from March 17, 2009 through December 31, 2011, both:
+
+    (1) The standard identified in paragraph (a) of this section; and
+
+    (2) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Claim Status Request and Response (276/277), August 2006, ASC X12N/005010X212, and Errata to Health Care Claim Status Request and Response (276/277), ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, April 2008, ASC X12N/005010X212E1. (Incorporated by reference in § 162.920.)
+
+    (c) For the period on and after January 1, 2012, the standard identified in paragraph (b)(2) of this section.
+
+    [[74 FR 3326, Jan. 16, 2009]]
+
+
+  § 162.1403 Operating rules for health care claim status transaction.
+  --------------------------------------------------------------------
+
+    On and after January 1, 2013, the Secretary adopts the following:
+
+    (a) Except as specified in paragraph (b) of this section, the following CAQH CORE Phase II operating rules (updated for Version 5010) for the health care claim status transaction:
+
+    (1) Phase II CORE 250: Claim Status Rule, version 2.1.0, March 2011, and CORE v5010 Master Companion Guide, 00510, 1.2, March 2011. (Incorporated by reference in § 162.920).
+
+    (2) Phase II CORE 270: Connectivity Rule, version 2.2.0, March 2011. (Incorporated by reference in § 162.920).
+
+    (b) Excluding where the CAQH CORE rules reference and pertain to acknowledgements and CORE certification.
+
+    [[76 FR 40496, July 8, 2011]]
+
+
+--------------------------------------------------------------------------------
+Subpart O - Enrollment and Disenrollment in a Health Plan
+--------------------------------------------------------------------------------
+
+
+  § 162.1501 Enrollment and disenrollment in a health plan transaction.
+  ---------------------------------------------------------------------
+
+    The enrollment and disenrollment in a health plan transaction is the transmission of subscriber enrollment information from the sponsor of the insurance coverage, benefits, or policy, to a health plan to establish or terminate insurance coverage.
+
+    [[74 FR 3327, Jan. 16, 2009]]
+
+
+  § 162.1502 Standards for enrollment and disenrollment in a health plan transaction.
+  -----------------------------------------------------------------------------------
+
+    The Secretary adopts the following standards for enrollment and disenrollment in a health plan transaction.
+
+    (a) For the period from October 16, 2003 through March 16, 2009: ASC X12N 834—Benefit Enrollment and Maintenance, Version 4010, May 2000, Washington Publishing Company, 004010X095 and Addenda to Benefit Enrollment and Maintenance, Version 4010, October 2002, Washington Publishing Company, 004010X095A1. (Incorporated by reference in § 162.920.)
+
+    (b) For the period from March 17, 2009 through December 31, 2011, both:
+
+    (1) The standard identified in paragraph (a) of this section; and
+
+    (2) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Benefit Enrollment and Maintenance (834), August 2006, ASC X12N/005010X220 (Incorporated by reference in § 162.920)
+
+    (c) For the period on and after January 1, 2012, the standard identified in paragraph (b)(2) of this section.
+
+    [[74 FR 3327, Jan. 16, 2009]]
+
+
+--------------------------------------------------------------------------------
+Subpart P - Health Care Electronic Funds Transfers (EFT) and Remittance Advice
+--------------------------------------------------------------------------------
+
+
+  § 162.1601 Health care electronic funds transfers (EFT) and remittance advice transaction.
+  ------------------------------------------------------------------------------------------
+
+    The health care electronic funds transfers (EFT) and remittance advice transaction is the transmission of either of the following for health care:
+
+    (a) The transmission of any of the following from a health plan to a health care provider:
+
+    (1) Payment.
+
+    (2) Information about the transfer of funds.
+
+    (3) Payment processing information.
+
+    (b) The transmission of either of the following from a health plan to a health care provider:
+
+    (1) Explanation of benefits.
+
+    (2) Remittance advice.
+
+    [[65 FR 50367, Aug. 17, 2000, as amended at 77 FR 1590, Jan. 10, 2012; 77 FR 48043, Aug. 10, 2012]]
+
+
+  § 162.1602 Standards for health care electronic funds transfers (EFT) and remittance advice transaction.
+  --------------------------------------------------------------------------------------------------------
+
+    The Secretary adopts the following standards:
+
+    (a) For the period from October 16, 2003 through March 16, 2009: Health care claims and remittance advice. The ASC X12N 835—Health Care Claim Payment/Advice, Version 4010, May 2000, Washington Publishing Company, 004010X091, and Addenda to Health Care Claim Payment/Advice, Version 4010, October 2002, Washington Publishing Company, 004010X091A1. (Incorporated by reference in § 162.920.)
+
+    (b) For the period from March 17, 2009 through December 31, 2011, both of the following standards:
+
+    (1) The standard identified in paragraph (a) of this section.
+
+    (2) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Health Care Claim Payment/Advice (835), April 2006, ASC X12N/005010X221. (Incorporated by reference in § 162.920.)
+
+    (c) For the period from January 1, 2012 through December 31, 2013, the standard identified in paragraph (b)(2) of this section.
+
+    (d) For the period on and after January 1, 2014, the following standards:
+
+    (1) Except when transmissions as described in § 162.1601(a) and (b) are contained within the same transmission, for Stage 1 Payment Initiation transmissions described in § 162.1601(a), all of the following standards:
+
+    (i) The National Automated Clearing House Association (NACHA) Corporate Credit or Deposit Entry with Addenda Record (CCD+) implementation specifications as contained in the 2011 NACHA Operating Rules & Guidelines, A Complete Guide to the Rules Governing the ACH Network as follows (incorporated by reference in § 162.920)—
+
+    (A) NACHA Operating Rules, Appendix One: ACH File Exchange Specifications; and
+
+    (B) NACHA Operating Rules, Appendix Three: ACH Record Format Specifications, Subpart 3.1.8 Sequence of Records for CCD Entries.
+
+    (ii) For the CCD Addenda Record (“7”), field 3, of the standard identified in 1602(d)(1)(i), the Accredited Standards Committee (ASC) X12 Standards for Electronic Data Interchange Technical Report Type 3, “Health Care Claim Payment/Advice (835), April 2006: Section 2.4: 835 Segment Detail: “TRN Reassociation Trace Number,” Washington Publishing Company, 005010X221 (Incorporated by reference in § 162.920).
+
+    (2) For transmissions described in § 162.1601(b), including when transmissions as described in § 162.1601(a) and (b) are contained within the same transmission, the ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, “Health Care Claim Payment/Advice (835), April 2006, ASC X12N/005010X221. (Incorporated by reference in § 162.920).
+
+    [[77 FR 1590, Jan. 10, 2012]]
+
+
+  § 162.1603 Operating rules for health care electronic funds transfers (EFT) and remittance advice transaction.
+  --------------------------------------------------------------------------------------------------------------
+
+    On and after January 1, 2014, the Secretary adopts the following for the health care electronic funds transfers (EFT) and remittance advice transaction:
+
+    (a) The Phase III CORE EFT & ERA Operating Rule Set, Approved June 2012 (Incorporated by reference in § 162.920) which includes the following rules:
+
+    (1) Phase III CORE 380 EFT Enrollment Data Rule, version 3.0.0, June 2012.
+
+    (2) Phase III CORE 382 ERA Enrollment Data Rule, version 3.0.0, June 2012.
+
+    (3) Phase III 360 CORE Uniform Use of CARCs and RARCs (835) Rule, version 3.0.0, June 2012.
+
+    (4) CORE-required Code Combinations for CORE-defined Business Scenarios for the Phase III CORE 360 Uniform Use of Claim Adjustment Reason Codes and Remittance Advice Remark Codes (835) Rule, version 3.0.0, June 2012.
+
+    (5) Phase III CORE 370 EFT & ERA Reassociation (CCD+/835) Rule, version 3.0.0, June 2012.
+
+    (6) Phase III CORE 350 Health Care Claim Payment/Advice (835) Infrastructure Rule, version 3.0.0, June 2012, except Requirement 4.2 titled “Health Care Claim Payment/Advice Batch Acknowledgement Requirements”.
+
+    (b) ACME Health Plan, CORE v5010 Master Companion Guide Template, 005010, 1.2, March 2011 (incorporated by reference in § 162.920), as required by the Phase III CORE 350 Health Care Claim Payment/Advice (835) Infrastructure Rule, version 3.0.0, June 2012.
+
+    [[77 FR 48043, Aug. 10, 2012]]
+
+
+--------------------------------------------------------------------------------
+Subpart Q - Health Plan Premium Payments
+--------------------------------------------------------------------------------
+
+
+  § 162.1701 Health plan premium payments transaction.
+  ----------------------------------------------------
+
+    The health plan premium payment transaction is the transmission of any of the following from the entity that is arranging for the provision of health care or is providing health care coverage payments for an individual to a health plan:
+
+    (a) Payment.
+
+    (b) Information about the transfer of funds.
+
+    (c) Detailed remittance information about individuals for whom premiums are being paid.
+
+    (d) Payment processing information to transmit health care premium payments including any of the following:
+
+    (1) Payroll deductions.
+
+    (2) Other group premium payments.
+
+    (3) Associated group premium payment information.
+
+
+  § 162.1702 Standards for health plan premium payments transaction.
+  ------------------------------------------------------------------
+
+    The Secretary adopts the following standards for the health plan premium payments transaction:
+
+    (a) For the period from October 16, 2003 through March 16, 2009: The ASC X12N 820—Payroll Deducted and Other Group Premium Payment for Insurance Products, Version 4010, May 2000, Washington Publishing Company, 004010X061, and Addenda to Payroll Deducted and Other Group Premium Payment for Insurance Products, Version 4010, October 2002, Washington Publishing Company, 004010X061A1. (Incorporated by reference in § 162.920.)
+
+    (b) For the period from March 17, 2009 through December 31, 2011, both:
+
+    (1) The standard identified in paragraph (a) of this section, and
+
+    (2) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3—Payroll Deducted and Other Group Premium Payment for Insurance Products (820), February 2007, ASC X12N/005010X218. (Incorporated by reference in § 162.920.)
+
+    (c) For the period on and after January 1, 2012, the standard identified in paragraph (b)(2) of this section.
+
+    [[74 FR 3327, Jan. 16, 2009]]
+
+
+--------------------------------------------------------------------------------
+Subpart R - Coordination of Benefits
+--------------------------------------------------------------------------------
+
+
+  § 162.1801 Coordination of benefits transaction.
+  ------------------------------------------------
+
+    The coordination of benefits transaction is the transmission from any entity to a health plan for the purpose of determining the relative payment responsibilities of the health plan, of either of the following for health care:
+
+    (a) Claims.
+
+    (b) Payment information.
+
+
+  § 162.1802 Standards for coordination of benefits information transaction.
+  --------------------------------------------------------------------------
+
+    The Secretary adopts the following standards for the coordination of benefits information transaction.
+
+    (a) For the period from October 16, 2003 through March 16, 2009:
+
+    (1) Retail pharmacy drug claims. The National Council for Prescription Drug Programs Telecommunication Standard Implementation Guide, Version 5, Release 1 (Version 5.1), September 1999, and equivalent NCPDP Batch Standard Batch Implementation Guide, Version 1, Release 1 (Version 1.1), January 2000, supporting Telecommunications Standard Implementation Guide, Version 5, Release 1 (Version 5.1) for the NCPDP Data Record in the Detail Data Record. (Incorporated by reference in § 162.920).
+
+    (2) Dental health care claims. The ASC X12N 837 - Health Care Claim: Dental, Version 4010, May 2000, Washington Publishing Company, 004010X097 and Addenda to Health Care Claim: Dental, Version 4010, October 2002, Washington Publishing Company, 004010X097A1. (Incorporated by reference in § 162.920).
+
+    (3) Professional health care claims. The ASC X12N 837 - Health Care Claim: Professional, Volumes 1 and 2, Version 4010, May 2000, Washington Publishing Company, 004010X098 and Addenda to Health Care Claim: Professional, Volumes 1 and 2, Version 4010, October 2002, Washington Publishing Company, 004010X098A1. (Incorporated by reference in § 162.920).
+
+    (4) Institutional health care claims. The ASC X12N 837 - Health Care Claim: Institutional, Volumes 1 and 2, Version 4010, May 2000, Washington Publishing Company, 004010X096 and Addenda to Health Care Claim: Institutional, Volumes 1 and 2, Version 4010, October 2002, Washington Publishing Company, 004010X096A1. (Incorporated by reference in § 162.920).
+
+    (b) For the period from March 17, 2009 through December 31, 2011, both:
+
+    (1) The standards identified in paragraph (a) of this section; and
+
+    (2)(i) Retail pharmacy drug claims. The Telecommunication Standard Implementation Guide, Version D, Release 0 (Version D.0), August 2007, and equivalent Batch Standard Implementation Guide, Version 1, Release 2 (Version 1.2), National Council for Prescription Drug Programs. (Incorporated by reference in § 162.920.)
+
+    (ii) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 - Health Care Claim: Dental (837), May 2006, ASC X12N/005010X224, and Type 1 Errata to Health Care Claim: Dental (837), ASC X12 Standards for Electronic Date Interchange Technical Report Type 3, October 2007, ASC X12N/005010X224A1. (Incorporated by reference in § 162.920.)
+
+    (iii) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 - Health Care Claim: Professional (837), May 2006, ASC X12N/005010X222. (Incorporated by reference in § 162.920.)
+
+    (iv) The ASC X12 Standards for Electronic Data Interchange Technical Report Type 3 - Health Care Claim: Institutional (837), May 2006, ASC X12N/005010X223, and Type 1 Errata to Health Care Claim: Institutional (837), ASC X12 Standards for Electronic Data Interchange Technical Report Type 3, October 2007, ASC X12N/005010X223A1. (Incorporated by reference in § 162.920.)
+
+    (c) For the period on and after January 1, 2012, the standards identified in paragraph (b)(2) of this section.
+
+    [[68 FR 8399, Feb. 20, 2003, as amended at 74 FR 3327, Jan. 16, 2009]]
+
+
+--------------------------------------------------------------------------------
+Subpart S - Medicaid Pharmacy Subrogation
+--------------------------------------------------------------------------------
+
+  Source: 74 FR 3328, Jan. 16, 2009, unless otherwise noted.
+
+
+  § 162.1901 Medicaid pharmacy subrogation transaction.
+  -----------------------------------------------------
+
+    The Medicaid pharmacy subrogation transaction is the transmission of a claim from a Medicaid agency to a payer for the purpose of seeking reimbursement from the responsible health plan for a pharmacy claim the State has paid on behalf of a Medicaid recipient.
+
+
+  § 162.1902 Standard for Medicaid pharmacy subrogation transaction.
+  ------------------------------------------------------------------
+
+    The Secretary adopts the Batch Standard Medicaid Subrogation Implementation Guide, Version 3, Release 0 (Version 3.0), July 2007, National Council for Prescription Drug Programs, as referenced in § 162.1902 (Incorporated by reference at § 162.920):
+
+    (a) For the period on and after January 1, 2012, for covered entities that are not small health plans;
+
+    (b) For the period on and after January 1, 2013 for small health plans.

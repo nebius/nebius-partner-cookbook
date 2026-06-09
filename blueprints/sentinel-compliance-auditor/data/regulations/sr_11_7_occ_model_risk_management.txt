@@ -1,0 +1,304 @@
+ 
+1  
+ 
+Board of Governors of the Federal Reserve System  
+Federal Deposit Insurance Corporation 
+Office of the Comptroller of the Currency 
+ 
+ 
+April 17, 2026  
+SUPERVISORY GUIDANCE ON  
+MODEL RISK MANAGEMENT 
+ 
+I. INTRODUCTION 
+Use of models within the banking and financial services industries continues to grow in 
+complexity and scope. Advances in technology along with increased competition have driven 
+banking organizations to leverage innovative approaches to improve efficiencies, better mitigate 
+risks, and help maximize profits. Continued use of models is essential to maintaining the 
+competitiveness of banking organizations in the financial system. 
+Use of models also can present substantial risk. Such risk, generally referred to as “model 
+risk” for purposes of this guidance, can lead to financial loss, errors in financial statements and 
+reporting, and flawed financial and risk management decisions, among other types of risk events. 
+Model risk can be mitigated through active and appropriate risk management, recognizing that 
+the relevance of model risk depends on the nature, scale, and use of the models in relation to the 
+associated business risks.  
+This guidance highlights sound principles for effective model risk management. As 
+reflected in this guidance, model risk management practices vary from banking organization to 
+banking organization. Each banking organization ultimately is responsible for adopting model 
+risk management practices that are appropriate and effective for managing the specific risks the 
+banking organization faces or is likely to face.  
+
+ 
+2  
+There are a variety of ways for a banking organization to structure model risk 
+management practices. Not all models present the same level of risk, and a similar model at two 
+different banking organizations may present different risks. As such, practices that are 
+appropriate and effective for one banking organization may be inappropriate and ineffective for a 
+banking organization with a different risk profile or that uses a model for a different purpose. 
+Although this guidance may be useful for any type of model, the general expectation is 
+that it will be most useful for models supporting a banking organization’s significant business 
+lines, operations, services, and functions. This guidance does not set forth enforceable standards 
+or prescriptive requirements; accordingly, non-compliance with this guidance will not result in 
+supervisory criticism against a banking organization.1  
+II. PURPOSE AND SCOPE 
+Based on supervisory experience and industry feedback, as well as technological 
+advancements in modeling over the past several years, the Office of the Comptroller of the 
+Currency, Board of Governors of the Federal Reserve System, and Federal Deposit Insurance 
+Corporation (the “agencies”) are issuing this revised model risk management guidance to clarify 
+model risk management principles, and to set forth a risk-based approach to model risk 
+management, tailored to a banking organization’s model risk profile and the size and complexity 
+of its operations. 
+This guidance is expected to be most relevant to banking organizations with over $30 
+billion in total assets.2 Models used by banking organizations with total assets of $30 billion or 
+ 
+1 See 12 CFR Part 4, Subpart F, Appendix A (OCC); 12 CFR Part 262, Appendix A (Board); 12 CFR Part 302, 
+Appendix A (FDIC). However, supervisory action may result for any violations of law or unsafe or unsound 
+practices stemming from insufficient management of model risk. 
+2 For a description of the banking organizations supervised by each agency, refer to the definition of “appropriate 
+Federal banking agency” in section 3(q) of the Federal Deposit Insurance Act (12 U.S.C. 1813(q)).  
+
+ 
+3  
+less typically are subject to internal risk management and governance practices appropriate for 
+the size and risk profile of these banking organizations, and generally excluding them from this 
+guidance is consistent with a tailored supervisory approach. However, in some situations, this 
+guidance also may be relevant to banking organizations with total assets of $30 billion or less 
+that have significant exposure to model risk because of the prevalence and complexity of their 
+models or because of activities outside the scope of traditional community banking.  
+For the purposes of this guidance, the term “model” refers to a complex quantitative 
+method, system, or approach that applies statistical, economic, or financial theories to process 
+input data into quantitative estimates. The term “model” in this guidance excludes simple 
+arithmetic calculations, such as those found within spreadsheets, as well as deterministic rule-
+based processes and software where there are no statistical, economic, or financial theories 
+underpinning their design or use.3  
+III. OVERVIEW OF MODEL RISK AND MODEL RISK MANAGEMENT 
+Models are simplified representations of real-world relationships among observed 
+characteristics, values, and events; they are based on assumptions that make them useful in 
+estimating values and predicting events, but which also can have limitations and create model 
+risk. The term “model risk” refers to the potential for adverse financial consequences associated 
+with models, which may result from decisions made based on model output. Model risk is 
+influenced by a model’s inherent risk, exposure, purpose, and use, each of which are discussed 
+below.  
+ 
+3 Generative AI and agentic AI models are novel and rapidly evolving. As such, they are not within the scope of this 
+guidance. Nonetheless, a banking organization’s risk management and governance practices should guide the 
+determination of appropriate governance and controls for any tools, processes, or systems not covered in this 
+document. However, the principles described in this guidance apply to traditional statistical and quantitative models 
+and non-generative, non-agentic AI models. 
+
+ 
+4  
+A model’s inherent risk reflects several fundamental factors, such as the assumptions 
+made in developing the model, the model’s complexity, the quality of inputs for the model, and 
+data constraints. Inherent risk increases with model complexity and the criticality or number of 
+assumptions necessary, among other factors. 
+Model exposure refers to the significance of the model output to a banking organization’s 
+business decisions, which tends to be greater for models affecting larger portfolios or having a 
+larger business impact. Model exposure can be quantitatively measured (e.g., by portfolio size).    
+Model purpose is a qualitative consideration that involves the nature and importance of 
+the models used by banking organizations. For example, models developed to help meet 
+regulatory requirements or manage a banking organization’s financial risk exposures are 
+generally considered to be of greater risk than models that are not used for such purposes.   
+Model purpose, together with model exposure, determines model materiality. Assessing 
+risk based on model materiality is an important consideration for sound model risk management. 
+Banking organizations may deem certain models immaterial based on model exposure and 
+purpose. In those cases, model risk management may consist of identifying those models and 
+monitoring model performance and conditions under which the use of those models may become 
+material to the banking organization in the future. In contrast, models deemed of higher 
+materiality by the banking organization—either through model exposure or purpose—warrant 
+more comprehensive and rigorous oversight. 
+  The overall magnitude of model risk reflects a model’s inherent risk in the context of 
+model materiality (i.e., model exposure and purpose). However, even a fundamentally sound 
+model producing accurate outputs consistent with the model’s design objective can exhibit high 
+model risk if it is misapplied or misused.  
+
+ 
+5  
+Sound practice involves assessing model risk both individually and in aggregate. 
+Aggregate risk reflects interactions and dependencies among models; reliance on common 
+assumptions, data, or methodologies; and any other factors that could adversely affect several 
+models and their outputs simultaneously.   
+Sound model risk management also involves “effective challenge,” which refers to the 
+critical analysis conducted by objective experts who evaluate model risk and effect appropriate 
+changes throughout the model lifecycle, from model development to ongoing monitoring. 
+Effective challenge is performed by individuals with the appropriate expertise to conduct a 
+critical and objective challenge, sufficient independence to maintain objectivity, as well as the 
+organizational standing and influence to effect any change. 
+The size and complexity of the banking organization’s operations also may influence the 
+range of model risk management. A banking organization with simple operations may not 
+conduct model risk management with the same rigor as an organization with relatively more 
+complex operations. Furthermore, a banking organization may tailor portions of its model risk 
+management practices that are relevant to the risks posed by a particular model and with a level 
+of rigor commensurate with that risk. Effective model risk management therefore warrants 
+consideration of model risk in the context of the broader business risks that models support or 
+influence. 
+IV. MODEL DEVELOPMENT AND MODEL USE 
+Model Development 
+Sound model development activities are aligned with model purpose, business use, and 
+banking organization policy. Model development is not purely a technical exercise. The 
+developer’s judgment influences the model’s conceptual design and soundness, inputs, 
+
+ 
+6  
+assumptions, and methodology, all of which affect a model’s inherent risk. Because model 
+development is often multidisciplinary, tailored to actual use, and involves significant 
+subjectivity throughout its lifecycle, sound development practices are important for effective 
+model risk management.  
+An effective development process generally begins with a clear statement of purpose to 
+maximize the likelihood that model development is aligned with the intended use. This 
+fundamental step supports decision-making throughout the development lifecycle, including the 
+selection of data, methodologies, and testing approaches. 
+Input from model users can enhance model development by providing business context 
+and practical insights. Business managers affected by model outcomes may raise questions about 
+the methods or assumptions, particularly when the outcomes are unexpected. Constructive 
+engagement around model design and assumptions strengthens both model understanding and 
+model quality. 
+Model testing is a core component of model development that evaluates whether a model 
+performs as intended. Testing may include a range of activities, from out-of-sample and out-of-
+time testing, to a comparison of alternative assumptions and methodologies, to a critical 
+assessment of data quality, relevance, and inputs. Testing may be performed by model 
+developers in collaboration with model users. The specific approach depends on the model’s 
+characteristics. The rigor of effective testing is commensurate with model complexity and 
+materiality. For models that have relatively less material impact or for banking organizations 
+with relatively less complex operations, model testing may be more limited in scope.  
+Model Use 
+Effective model use depends on a clear understanding of a model’s limitations. Model 
+
+ 
+7  
+use enables ongoing performance assessment as conditions evolve. User feedback provides 
+business insights that enhance future development. Constructive engagement, particularly around 
+model design, assumptions, and outcomes, strengthens both model understanding and model 
+quality. Using a model beyond its intended purpose introduces additional uncertainty and risk. 
+When extending a model’s use beyond its original application, sound practice involves 
+considering additional analysis of the new usage and its limitations, along with review of 
+existing controls to manage the resulting risk.  
+V. MODEL VALIDATION AND MONITORING 
+Model validation evaluates whether models perform as expected and includes an 
+assessment of a model’s reliability and its limitations. The nature and rigor of validation generally 
+align with the model’s approach, use, and materiality. Sound validation identifies model 
+limitations and errors and clarifies appropriate use and whether corrective actions may be 
+warranted.  
+Validation provides insight into the reliability of a given model, based on its underlying 
+assumptions, methods, data, and relevant theories, as appropriate. This understanding helps 
+characterize the source and extent of the model risk. Validation can reveal performance 
+deterioration over time and inform judgments about acceptable performance ranges. When 
+performance deviates meaningfully from expectations, banking organizations generally consider 
+whether model adjustments, recalibration, or redevelopment are warranted.  
+The timing, nature, and frequency of validation activities vary based on model purpose, 
+model methodology, frequency and scope of model changes, data limitations, and other practical 
+constraints. Sound practice recognizes that validation approaches may differ across models based 
+on their characteristics and use. Validation generally occurs prior to a model’s first use. 
+
+ 
+8  
+However, certain circumstances (e.g., an urgent business need) may necessitate using the model 
+before validation is completed. In those cases, sound practice involves greater attention to the 
+model’s limitations when considering the appropriateness of its use, informing relevant 
+stakeholders of those limitations, and determining appropriate controls (e.g., placing limits on 
+model use or more closely monitoring its performance).  
+The quality of validation process depends on the rigor and effectiveness of the review 
+rather than on organizational structure of the banking organization’s risk management function. 
+Technical knowledge and modeling expertise enable appropriate analysis, meaningful critique, 
+and sound judgment about model performance and risk.   
+Even with sound modeling practices and rigorous validation, material model risk can 
+remain. Users of model output benefit from understanding and communicating limitations, 
+monitoring performance, periodically reviewing relevance, and supplementing model output 
+with complementary analysis and information. 
+Components of Model Validation 
+Conceptual Soundness 
+Validating conceptual soundness involves assessing and documenting model design 
+(including key modeling choices, assumptions, qualitative judgments, and data selection), 
+construction, and developmental testing. While evaluating theoretical construction may be 
+important for some models, other assessments—such as interpretability measures or 
+benchmarking to other models—may be more practical for other models. Sound practice subjects 
+modeling aspects to critical analysis by evaluating both the quality and extent of developmental 
+evidence. 
+Outcomes Analysis 
+
+ 
+9  
+Outcomes analysis compares model outputs to corresponding real-world outcomes to 
+assess model performance relative to model objectives and business use. Outcomes analysis and 
+other elements of the validation process may identify material errors or persistent deviations 
+outside of the banking organization’s established performance thresholds. In such cases, model 
+adjustment, recalibration, or redevelopment may be warranted.  
+Outcomes analysis can take many forms, including testing conducted during model 
+development, reports or analysis performed as part of ongoing monitoring, or standalone 
+activities such as back-testing or outlier analysis. A banking organization’s approach depends on 
+the model’s objectives, methodology, and data availability. As part of model validation, sound 
+practice involves reviewing outcomes analysis to evaluate the reasonableness and 
+appropriateness of the results, with additional analysis and testing, if warranted. When a model’s 
+design relies substantially on expert judgment, quantitative outcomes analysis helps to evaluate 
+the quality of that judgment.  
+Ongoing Model Monitoring 
+Ongoing model monitoring involves an evaluation of the extent to which a model is 
+performing as expected given potential changes in products, exposures, activities, clients, data 
+relevance, or market conditions. A model that no longer performs as expected may warrant 
+overlays, adjustment, or redevelopment of the model depending on a banking organization’s 
+model risk management policy as it pertains to model deterioration.  
+An effective ongoing monitoring plan may also include regularly assessing any model 
+limitations at the development stage and over time, along with procedures for responding to any 
+issues that may occur, before and after a model is approved for use. The frequency and scope of 
+
+ 
+10  
+monitoring reports will depend on the nature of the model, the availability of new data or 
+modeling approaches, and model materiality. 
+VI. GOVERNANCE AND CONTROLS  
+All components of the model lifecycle benefit from model governance that is supported 
+by clear policies and effective controls. Effective policies define risk management expectations 
+and establish a framework for assessing the magnitude of model risk and for applying model risk 
+management practices commensurate with that risk. Procedures support policy implementation 
+by establishing a monitoring and control process and specifying the allocation of resources to 
+that process. The nature and sophistication of a banking organization’s model governance is 
+typically informed by the extent and sophistication of model usage as well as the size and 
+complexity of the organization.  
+Roles and Responsibilities 
+Model risk management benefits from clear roles and responsibilities with well-defined 
+accountability, including with respect to potential conflicts of interest (e.g., misalignment of 
+incentives between different reporting lines, such as model development and validation groups). 
+Sound governance practices delineate the individual(s) responsible for key activities throughout 
+the model lifecycle, from development through validation and ongoing monitoring. In cases 
+where internal audit is part of the banking organization’s model risk management practices, 
+internal audit would generally not duplicate model risk management activities such as model 
+development or validation. Instead, internal audit’s role is generally to evaluate whether the 
+model risk management practices are rigorous and effective and whether related policies are 
+implemented accordingly. For banking organizations that use external resources to help manage 
+model risk, sound practice involves maintaining proper oversight and integrating that work into 
+
+ 
+11  
+broader model risk management activities. Organizations benefit from clearly defining roles and 
+responsibilities when delegating these activities.  
+Model Inventory 
+It is common industry practice for banking organizations to maintain a comprehensive set 
+of information for models under development or in use to support effective model risk 
+management. While the inventory may contain varying levels of information to reflect different 
+levels of model complexity and a banking organization’s overall level of model usage, an 
+effective model inventory includes sufficient information to understand model risks, so as to 
+support effective model risk management at the individual and aggregate levels.  
+Documentation 
+Adequate documentation helps to support effective model risk management. For 
+example, documentation can help maximize the likelihood of continuity of operations, including 
+supporting the tracking of recommendations, responses, and exceptions; it can also be used to 
+more effectively help manage any model remediation efforts.   
+VII. VENDOR AND OTHER THIRD-PARTY PRODUCTS 
+The widespread use of customized vendor and other third-party products—including 
+data, parameter values, or complete models—can present unique challenges for validation and 
+other model risk management activities. Additionally, because certain components may be 
+proprietary, banking organizations may not receive from the vendor the underlying code, data, or 
+methodology that they would have if a model were developed internally. Nevertheless, the 
+principles of model risk management remain applicable. 
+An important element of model risk management is the validation of vendor products, 
+either by internal or outside parties. Sound practice includes developing an understanding of the 
+
+ 
+12  
+vendor model, including its conceptual soundness, design, development data, and performance. 
+Similarly, sound practice involves conducting ongoing monitoring and outcome analysis to 
+assess whether vendor models are accurate, remain fit for purpose, and continue to be reliable. 
+Such analysis can also be used to support any overlay or adjustment to model output. In cases 
+where vendor models are customized to fit a banking organization’s specific business needs, 
+sound practice also involves appropriately documenting, justifying, and evaluating adjustments 
+made to customize the model as part of model validation.  

@@ -1,0 +1,1424 @@
+================================================================================
+PART 160—GENERAL ADMINISTRATIVE REQUIREMENTS
+================================================================================
+
+Authority: 42 U.S.C. 1302(a); 42 U.S.C. 1320d-1320d-9; sec. 264, Pub. L. 104-191, 110 Stat. 2033-2034 (42 U.S.C. 1320d-2 (note)); 5 U.S.C. 552; secs. 13400-13424, Pub. L. 111-5, 123 Stat. 258-279; and sec. 1104 of Pub. L. 111-148, 124 Stat. 146-154.
+
+Source: 65 FR 82798, Dec. 28, 2000, unless otherwise noted.
+
+
+--------------------------------------------------------------------------------
+Subpart A—General Provisions
+--------------------------------------------------------------------------------
+
+
+  § 160.101 Statutory basis and purpose.
+  --------------------------------------
+
+    The requirements of this subchapter implement sections 1171-1180 of the Social Security Act (the Act), sections 262 and 264 of Public Law 104-191, section 105 of Public Law 110-233, sections 13400-13424 of Public Law 111-5, and section 1104 of Public Law 111-148.
+
+    [[78 FR 5687, Jan. 25, 2013]]
+
+
+  § 160.102 Applicability.
+  ------------------------
+
+    (a) Except as otherwise provided, the standards, requirements, and implementation specifications adopted under this subchapter apply to the following entities:
+
+    (1) A health plan.
+
+    (2) A health care clearinghouse.
+
+    (3) A health care provider who transmits any health information in electronic form in connection with a transaction covered by this subchapter.
+
+    (b) Where provided, the standards, requirements, and implementation specifications adopted under this subchapter apply to a business associate.
+
+    (c) To the extent required under the Social Security Act, 42 U.S.C. 1320a-7c(a)(5), nothing in this subchapter shall be construed to diminish the authority of any Inspector General, including such authority as provided in the Inspector General Act of 1978, as amended (5 U.S.C. App.).
+
+    [[65 FR 82798, Dec. 28, 2000, as amended at 67 FR 53266, Aug. 14, 2002; 78 FR 5687, Jan. 25, 2013]]
+
+
+  § 160.103 Definitions.
+  ----------------------
+
+    Except as otherwise provided, the following definitions apply to this subchapter:
+
+    Act means the Social Security Act.
+
+    Administrative simplification provision means any requirement or prohibition established by:
+
+    (1) 42 U.S.C. 1320d-1320d-4, 1320d-7, 1320d-8, and 1320d-9;
+
+    (2) Section 264 of Pub. L. 104-191;
+
+    (3) Sections 13400-13424 of Public Law 111-5; or
+
+    (4) This subchapter.
+
+    ALJ means Administrative Law Judge.
+
+    ANSI stands for the American National Standards Institute.
+
+    Business associate: (1) Except as provided in paragraph (4) of this definition, business associate means, with respect to a covered entity, a person who:
+
+    (i) On behalf of such covered entity or of an organized health care arrangement (as defined in this section) in which the covered entity participates, but other than in the capacity of a member of the workforce of such covered entity or arrangement, creates, receives, maintains, or transmits protected health information for a function or activity regulated by this subchapter, including claims processing or administration, data analysis, processing or administration, utilization review, quality assurance, patient safety activities listed at 42 CFR 3.20, billing, benefit management, practice management, and repricing; or
+
+    (ii) Provides, other than in the capacity of a member of the workforce of such covered entity, legal, actuarial, accounting, consulting, data aggregation (as defined in § 164.501 of this subchapter), management, administrative, accreditation, or financial services to or for such covered entity, or to or for an organized health care arrangement in which the covered entity participates, where the provision of the service involves the disclosure of protected health information from such covered entity or arrangement, or from another business associate of such covered entity or arrangement, to the person.
+
+    (2) A covered entity may be a business associate of another covered entity.
+
+    (3) Business associate includes:
+
+    (i) A Health Information Organization, E-prescribing Gateway, or other person that provides data transmission services with respect to protected health information to a covered entity and that requires access on a routine basis to such protected health information.
+
+    (ii) A person that offers a personal health record to one or more individuals on behalf of a covered entity.
+
+    (iii) A subcontractor that creates, receives, maintains, or transmits protected health information on behalf of the business associate.
+
+    (4) Business associate does not include:
+
+    (i) A health care provider, with respect to disclosures by a covered entity to the health care provider concerning the treatment of the individual.
+
+    (ii) A plan sponsor, with respect to disclosures by a group health plan (or by a health insurance issuer or HMO with respect to a group health plan) to the plan sponsor, to the extent that the requirements of § 164.504(f) of this subchapter apply and are met.
+
+    (iii) A government agency, with respect to determining eligibility for, or enrollment in, a government health plan that provides public benefits and is administered by another government agency, or collecting protected health information for such purposes, to the extent such activities are authorized by law.
+
+    (iv) A covered entity participating in an organized health care arrangement that performs a function or activity as described by paragraph (1)(i) of this definition for or on behalf of such organized health care arrangement, or that provides a service as described in paragraph (1)(ii) of this definition to or for such organized health care arrangement by virtue of such activities or services.
+
+    Civil money penalty or penalty means the amount determined under § 160.404 of this part and includes the plural of these terms.
+
+    CMS stands for Centers for Medicare & Medicaid Services within the Department of Health and Human Services.
+
+    Compliance date means the date by which a covered entity or business associate must comply with a standard, implementation specification, requirement, or modification adopted under this subchapter.
+
+    Covered entity means:
+
+    (1) A health plan.
+
+    (2) A health care clearinghouse.
+
+    (3) A health care provider who transmits any health information in electronic form in connection with a transaction covered by this subchapter.
+
+    Disclosure means the release, transfer, provision of access to, or divulging in any manner of information outside the entity holding the information.
+
+    EIN stands for the employer identification number assigned by the Internal Revenue Service, U.S. Department of the Treasury. The EIN is the taxpayer identifying number of an individual or other entity (whether or not an employer) assigned under one of the following:
+
+    (1) 26 U.S.C. 6011(b), which is the portion of the Internal Revenue Code dealing with identifying the taxpayer in tax returns and statements, or corresponding provisions of prior law.
+
+    (2) 26 U.S.C. 6109, which is the portion of the Internal Revenue Code dealing with identifying numbers in tax returns, statements, and other required documents.
+
+    Electronic media means:
+
+    (1) Electronic storage material on which data is or may be recorded electronically, including, for example, devices in computers (hard drives) and any removable/transportable digital memory medium, such as magnetic tape or disk, optical disk, or digital memory card;
+
+    (2) Transmission media used to exchange information already in electronic storage media. Transmission media include, for example, the Internet, extranet or intranet, leased lines, dial-up lines, private networks, and the physical movement of removable/transportable electronic storage media. Certain transmissions, including of paper, via facsimile, and of voice, via telephone, are not considered to be transmissions via electronic media if the information being exchanged did not exist in electronic form immediately before the transmission.
+
+    Electronic protected health information means information that comes within paragraphs (1)(i) or (1)(ii) of the definition of protected health information as specified in this section.
+
+    Employer is defined as it is in 26 U.S.C. 3401(d).
+
+    Family member means, with respect to an individual:
+
+    (1) A dependent (as such term is defined in 45 CFR 144.103), of the individual; or
+
+    (2) Any other person who is a first-degree, second-degree, third-degree, or fourth-degree relative of the individual or of a dependent of the individual. Relatives by affinity (such as by marriage or adoption) are treated the same as relatives by consanguinity (that is, relatives who share a common biological ancestor). In determining the degree of the relationship, relatives by less than full consanguinity (such as half-siblings, who share only one parent) are treated the same as relatives by full consanguinity (such as siblings who share both parents).
+
+    (i) First-degree relatives include parents, spouses, siblings, and children.
+
+    (ii) Second-degree relatives include grandparents, grandchildren, aunts, uncles, nephews, and nieces.
+
+    (iii) Third-degree relatives include great-grandparents, great-grandchildren, great aunts, great uncles, and first cousins.
+
+    (iv) Fourth-degree relatives include great-great grandparents, great-great grandchildren, and children of first cousins.
+
+    Genetic information means:
+
+    (1) Subject to paragraphs (2) and (3) of this definition, with respect to an individual, information about:
+
+    (i) The individual's genetic tests;
+
+    (ii) The genetic tests of family members of the individual;
+
+    (iii) The manifestation of a disease or disorder in family members of such individual; or
+
+    (iv) Any request for, or receipt of, genetic services, or participation in clinical research which includes genetic services, by the individual or any family member of the individual.
+
+    (2) Any reference in this subchapter to genetic information concerning an individual or family member of an individual shall include the genetic information of:
+
+    (i) A fetus carried by the individual or family member who is a pregnant woman; and
+
+    (ii) Any embryo legally held by an individual or family member utilizing an assisted reproductive technology.
+
+    (3) Genetic information excludes information about the sex or age of any individual.
+
+    Genetic services means:
+
+    (1) A genetic test;
+
+    (2) Genetic counseling (including obtaining, interpreting, or assessing genetic information); or
+
+    (3) Genetic education.
+
+    Genetic test means an analysis of human DNA, RNA, chromosomes, proteins, or metabolites, if the analysis detects genotypes, mutations, or chromosomal changes. Genetic test does not include an analysis of proteins or metabolites that is directly related to a manifested disease, disorder, or pathological condition.
+
+    Group health plan (also see definition of health plan in this section) means an employee welfare benefit plan (as defined in section 3(1) of the Employee Retirement Income and Security Act of 1974 (ERISA), 29 U.S.C. 1002(1)), including insured and self-insured plans, to the extent that the plan provides medical care (as defined in section 2791(a)(2) of the Public Health Service Act (PHS Act), 42 U.S.C. 300gg-91(a)(2)), including items and services paid for as medical care, to employees or their dependents directly or through insurance, reimbursement, or otherwise, that:
+
+    (1) Has 50 or more participants (as defined in section 3(7) of ERISA, 29 U.S.C. 1002(7)); or
+
+    (2) Is administered by an entity other than the employer that established and maintains the plan.
+
+    HHS stands for the Department of Health and Human Services.
+
+    Health care means care, services, or supplies related to the health of an individual. Health care includes, but is not limited to, the following:
+
+    (1) Preventive, diagnostic, therapeutic, rehabilitative, maintenance, or palliative care, and counseling, service, assessment, or procedure with respect to the physical or mental condition, or functional status, of an individual or that affects the structure or function of the body; and
+
+    (2) Sale or dispensing of a drug, device, equipment, or other item in accordance with a prescription.
+
+    Health care clearinghouse means a public or private entity, including a billing service, repricing company, community health management information system or community health information system, and “value-added” networks and switches, that does either of the following functions:
+
+    (1) Processes or facilitates the processing of health information received from another entity in a nonstandard format or containing nonstandard data content into standard data elements or a standard transaction.
+
+    (2) Receives a standard transaction from another entity and processes or facilitates the processing of health information into nonstandard format or nonstandard data content for the receiving entity.
+
+    Health care provider means a provider of services (as defined in section 1861(u) of the Act, 42 U.S.C. 1395x(u)), a provider of medical or health services (as defined in section 1861(s) of the Act, 42 U.S.C. 1395x(s)), and any other person or organization who furnishes, bills, or is paid for health care in the normal course of business.
+
+    Health information means any information, including genetic information, whether oral or recorded in any form or medium, that:
+
+    (1) Is created or received by a health care provider, health plan, public health authority, employer, life insurer, school or university, or health care clearinghouse; and
+
+    (2) Relates to the past, present, or future physical or mental health or condition of an individual; the provision of health care to an individual; or the past, present, or future payment for the provision of health care to an individual.
+
+    Health insurance issuer (as defined in section 2791(b)(2) of the PHS Act, 42 U.S.C. 300gg-91(b)(2) and used in the definition of health plan in this section) means an insurance company, insurance service, or insurance organization (including an HMO) that is licensed to engage in the business of insurance in a State and is subject to State law that regulates insurance. Such term does not include a group health plan.
+
+    Health maintenance organization (HMO) (as defined in section 2791(b)(3) of the PHS Act, 42 U.S.C. 300gg-91(b)(3) and used in the definition of health plan in this section) means a federally qualified HMO, an organization recognized as an HMO under State law, or a similar organization regulated for solvency under State law in the same manner and to the same extent as such an HMO.
+
+    Health plan means an individual or group plan that provides, or pays the cost of, medical care (as defined in section 2791(a)(2) of the PHS Act, 42 U.S.C. 300gg-91(a)(2)).
+
+    (1) Health plan includes the following, singly or in combination:
+
+    (i) A group health plan, as defined in this section.
+
+    (ii) A health insurance issuer, as defined in this section.
+
+    (iii) An HMO, as defined in this section.
+
+    (iv) Part A or Part B of the Medicare program under title XVIII of the Act.
+
+    (v) The Medicaid program under title XIX of the Act, 42 U.S.C. 1396, et seq.
+
+    (vi) The Voluntary Prescription Drug Benefit Program under Part D of title XVIII of the Act, 42 U.S.C. 1395w-101 through 1395w-152.
+
+    (vii) An issuer of a Medicare supplemental policy (as defined in section 1882(g)(1) of the Act, 42 U.S.C. 1395ss(g)(1)).
+
+    (viii) An issuer of a long-term care policy, excluding a nursing home fixed indemnity policy.
+
+    (ix) An employee welfare benefit plan or any other arrangement that is established or maintained for the purpose of offering or providing health benefits to the employees of two or more employers.
+
+    (x) The health care program for uniformed services under title 10 of the United States Code.
+
+    (xi) The veterans health care program under 38 U.S.C. chapter 17.
+
+    (xii) The Indian Health Service program under the Indian Health Care Improvement Act, 25 U.S.C. 1601, et seq.
+
+    (xiii) The Federal Employees Health Benefits Program under 5 U.S.C. 8902, et seq.
+
+    (xiv) An approved State child health plan under title XXI of the Act, providing benefits for child health assistance that meet the requirements of section 2103 of the Act, 42 U.S.C. 1397, et seq.
+
+    (xv) The Medicare Advantage program under Part C of title XVIII of the Act, 42 U.S.C. 1395w-21 through 1395w-28.
+
+    (xvi) A high risk pool that is a mechanism established under State law to provide health insurance coverage or comparable coverage to eligible individuals.
+
+    (xvii) Any other individual or group plan, or combination of individual or group plans, that provides or pays for the cost of medical care (as defined in section 2791(a)(2) of the PHS Act, 42 U.S.C. 300gg-91(a)(2)).
+
+    (2) Health plan excludes:
+
+    (i) Any policy, plan, or program to the extent that it provides, or pays for the cost of, excepted benefits that are listed in section 2791(c)(1) of the PHS Act, 42 U.S.C. 300gg-91(c)(1); and
+
+    (ii) A government-funded program (other than one listed in paragraph (1)(i)-(xvi) of this definition):
+
+    (A) Whose principal purpose is other than providing, or paying the cost of, health care; or
+
+    (B) Whose principal activity is:
+
+    (1) The direct provision of health care to persons; or
+
+    (2) The making of grants to fund the direct provision of health care to persons.
+
+    Implementation specification means specific requirements or instructions for implementing a standard.
+
+    Individual means the person who is the subject of protected health information.
+
+    Individually identifiable health information is information that is a subset of health information, including demographic information collected from an individual, and:
+
+    (1) Is created or received by a health care provider, health plan, employer, or health care clearinghouse; and
+
+    (2) Relates to the past, present, or future physical or mental health or condition of an individual; the provision of health care to an individual; or the past, present, or future payment for the provision of health care to an individual; and
+
+    (i) That identifies the individual; or
+
+    (ii) With respect to which there is a reasonable basis to believe the information can be used to identify the individual.
+
+    Manifestation or manifested means, with respect to a disease, disorder, or pathological condition, that an individual has been or could reasonably be diagnosed with the disease, disorder, or pathological condition by a health care professional with appropriate training and expertise in the field of medicine involved. For purposes of this subchapter, a disease, disorder, or pathological condition is not manifested if the diagnosis is based principally on genetic information.
+
+    Modify or modification refers to a change adopted by the Secretary, through regulation, to a standard or an implementation specification.
+
+    Organized health care arrangement means:
+
+    (1) A clinically integrated care setting in which individuals typically receive health care from more than one health care provider;
+
+    (2) An organized system of health care in which more than one covered entity participates and in which the participating covered entities:
+
+    (i) Hold themselves out to the public as participating in a joint arrangement; and
+
+    (ii) Participate in joint activities that include at least one of the following:
+
+    (A) Utilization review, in which health care decisions by participating covered entities are reviewed by other participating covered entities or by a third party on their behalf;
+
+    (B) Quality assessment and improvement activities, in which treatment provided by participating covered entities is assessed by other participating covered entities or by a third party on their behalf; or
+
+    (C) Payment activities, if the financial risk for delivering health care is shared, in part or in whole, by participating covered entities through the joint arrangement and if protected health information created or received by a covered entity is reviewed by other participating covered entities or by a third party on their behalf for the purpose of administering the sharing of financial risk.
+
+    (3) A group health plan and a health insurance issuer or HMO with respect to such group health plan, but only with respect to protected health information created or received by such health insurance issuer or HMO that relates to individuals who are or who have been participants or beneficiaries in such group health plan;
+
+    (4) A group health plan and one or more other group health plans each of which are maintained by the same plan sponsor; or
+
+    (5) The group health plans described in paragraph (4) of this definition and health insurance issuers or HMOs with respect to such group health plans, but only with respect to protected health information created or received by such health insurance issuers or HMOs that relates to individuals who are or have been participants or beneficiaries in any of such group health plans.
+
+    Person means a natural person (meaning a human being who is born alive), trust or estate, partnership, corporation, professional association or corporation, or other entity, public or private.
+
+    Protected health information means individually identifiable health information:
+
+    (1) Except as provided in paragraph (2) of this definition, that is:
+
+    (i) Transmitted by electronic media;
+
+    (ii) Maintained in electronic media; or
+
+    (iii) Transmitted or maintained in any other form or medium.
+
+    (2) Protected health information excludes individually identifiable health information:
+
+    (i) In education records covered by the Family Educational Rights and Privacy Act, as amended, 20 U.S.C. 1232g;
+
+    (ii) In records described at 20 U.S.C. 1232g(a)(4)(B)(iv);
+
+    (iii) In employment records held by a covered entity in its role as employer; and
+
+    (iv) Regarding a person who has been deceased for more than 50 years.
+
+    Public health, as used in the terms “public health surveillance,” “public health investigation,” and “public health intervention,” means population-level activities to prevent disease in and promote the health of populations. Such activities include identifying, monitoring, preventing, or mitigating ongoing or prospective threats to the health or safety of a population, which may involve the collection of protected health information. But such activities do not include those with any of the following purposes:
+
+    (1) To conduct a criminal, civil, or administrative investigation into any person for the mere act of seeking, obtaining, providing, or facilitating health care.
+
+    (2) To impose criminal, civil, or administrative liability on any person for the mere act of seeking, obtaining, providing, or facilitating health care.
+
+    (3) To identify any person for any of the activities described at paragraphs (1) or (2) of this definition.
+
+    Reproductive health care means health care, as defined in this section, that affects the health of an individual in all matters relating to the reproductive system and to its functions and processes. This definition shall not be construed to set forth a standard of care for or regulate what constitutes clinically appropriate reproductive health care.
+
+    Respondent means a covered entity or business associate upon which the Secretary has imposed, or proposes to impose, a civil money penalty.
+
+    Small health plan means a health plan with annual receipts of $5 million or less.
+
+    Standard means a rule, condition, or requirement:
+
+    (1) Describing the following information for products, systems, services, or practices:
+
+    (i) Classification of components;
+
+    (ii) Specification of materials, performance, or operations; or
+
+    (iii) Delineation of procedures; or
+
+    (2) With respect to the privacy of protected health information.
+
+    Standard setting organization (SSO) means an organization accredited by the American National Standards Institute that develops and maintains standards for information transactions or data elements, or any other standard that is necessary for, or will facilitate the implementation of, this part.
+
+    State refers to one of the following:
+
+    (1) For a health plan established or regulated by Federal law, State has the meaning set forth in the applicable section of the United States Code for such health plan.
+
+    (2) For all other purposes, State means any of the several States, the District of Columbia, the Commonwealth of Puerto Rico, the Virgin Islands, Guam, American Samoa, and the Commonwealth of the Northern Mariana Islands.
+
+    Subcontractor means a person to whom a business associate delegates a function, activity, or service, other than in the capacity of a member of the workforce of such business associate.
+
+    Trading partner agreement means an agreement related to the exchange of information in electronic transactions, whether the agreement is distinct or part of a larger agreement, between each party to the agreement. (For example, a trading partner agreement may specify, among other things, the duties and responsibilities of each party to the agreement in conducting a standard transaction.)
+
+    Transaction means the transmission of information between two parties to carry out financial or administrative activities related to health care. It includes the following types of information transmissions:
+
+    (1) Health care claims or equivalent encounter information.
+
+    (2) Health care payment and remittance advice.
+
+    (3) Coordination of benefits.
+
+    (4) Health care claim status.
+
+    (5) Enrollment and disenrollment in a health plan.
+
+    (6) Eligibility for a health plan.
+
+    (7) Health plan premium payments.
+
+    (8) Referral certification and authorization.
+
+    (9) First report of injury.
+
+    (10) Health claims attachments.
+
+    (11) Health care electronic funds transfers (EFT) and remittance advice.
+
+    (12) Other transactions that the Secretary may prescribe by regulation.
+
+    Use means, with respect to individually identifiable health information, the sharing, employment, application, utilization, examination, or analysis of such information within an entity that maintains such information.
+
+    Violation or violate means, as the context may require, failure to comply with an administrative simplification provision.
+
+    Workforce means employees, volunteers, trainees, and other persons whose conduct, in the performance of work for a covered entity or business associate, is under the direct control of such covered entity or business associate, whether or not they are paid by the covered entity or business associate.
+
+    [[65 FR 82798, Dec. 28, 2000, as amended at 67 FR 38019, May 31, 2002; 67 FR 53266, Aug. 14, 2002; 68 FR 8374, Feb. 20, 2003; 71 FR 8424, Feb. 16, 2006; 76 FR 40495, July 8, 2011; 77 FR 1589, Jan. 10, 2012; 78 FR 5687, Jan. 25, 2013; 89 FR 33062, Apr. 26, 2024]]
+
+
+  § 160.104 Modifications.
+  ------------------------
+
+    (a) Except as provided in paragraph (b) of this section, the Secretary may adopt a modification to a standard or implementation specification adopted under this subchapter no more frequently than once every 12 months.
+
+    (b) The Secretary may adopt a modification at any time during the first year after the standard or implementation specification is initially adopted, if the Secretary determines that the modification is necessary to permit compliance with the standard or implementation specification.
+
+    (c) The Secretary will establish the compliance date for any standard or implementation specification modified under this section.
+
+    (1) The compliance date for a modification is no earlier than 180 days after the effective date of the final rule in which the Secretary adopts the modification.
+
+    (2) The Secretary may consider the extent of the modification and the time needed to comply with the modification in determining the compliance date for the modification.
+
+    (3) The Secretary may extend the compliance date for small health plans, as the Secretary determines is appropriate.
+
+    [[65 FR 82798, Dec. 28, 2000, as amended at 67 FR 38019, May 31, 2002]]
+
+
+  § 160.105 Compliance dates for implementation of new or modified standards and implementation specifications.
+  -------------------------------------------------------------------------------------------------------------
+
+    Except as otherwise provided, with respect to rules that adopt new standards and implementation specifications or modifications to standards and implementation specifications in this subchapter in accordance with § 160.104 that become effective after January 25, 2013, covered entities and business associates must comply with the applicable new standards and implementation specifications, or modifications to standards and implementation specifications, no later than 180 days from the effective date of any such standards or implementation specifications.
+
+    [[78 FR 5689, Jan. 25, 2013]]
+
+
+--------------------------------------------------------------------------------
+Subpart B—Preemption of State Law
+--------------------------------------------------------------------------------
+
+
+  § 160.201 Statutory basis.
+  --------------------------
+
+    The provisions of this subpart implement section 1178 of the Act, section 262 of Public Law 104-191, section 264(c) of Public Law 104-191, and section 13421(a) of Public Law 111-5.
+
+    [[78 FR 5689, Jan. 25, 2013]]
+
+
+  § 160.202 Definitions.
+  ----------------------
+
+    For purposes of this subpart, the following terms have the following meanings:
+
+    Contrary, when used to compare a provision of State law to a standard, requirement, or implementation specification adopted under this subchapter, means:
+
+    (1) A covered entity or business associate would find it impossible to comply with both the State and Federal requirements; or
+
+    (2) The provision of State law stands as an obstacle to the accomplishment and execution of the full purposes and objectives of part C of title XI of the Act, section 264 of Public Law 104-191, or sections 13400-13424 of Public Law 111-5, as applicable.
+
+    More stringent means, in the context of a comparison of a provision of State law and a standard, requirement, or implementation specification adopted under subpart E of part 164 of this subchapter, a State law that meets one or more of the following criteria:
+
+    (1) With respect to a use or disclosure, the law prohibits or restricts a use or disclosure in circumstances under which such use or disclosure otherwise would be permitted under this subchapter, except if the disclosure is:
+
+    (i) Required by the Secretary in connection with determining whether a covered entity or business associate is in compliance with this subchapter; or
+
+    (ii) To the individual who is the subject of the individually identifiable health information.
+
+    (2) With respect to the rights of an individual, who is the subject of the individually identifiable health information, regarding access to or amendment of individually identifiable health information, permits greater rights of access or amendment, as applicable.
+
+    (3) With respect to information to be provided to an individual who is the subject of the individually identifiable health information about a use, a disclosure, rights, and remedies, provides the greater amount of information.
+
+    (4) With respect to the form, substance, or the need for express legal permission from an individual, who is the subject of the individually identifiable health information, for use or disclosure of individually identifiable health information, provides requirements that narrow the scope or duration, increase the privacy protections afforded (such as by expanding the criteria for), or reduce the coercive effect of the circumstances surrounding the express legal permission, as applicable.
+
+    (5) With respect to recordkeeping or requirements relating to accounting of disclosures, provides for the retention or reporting of more detailed information or for a longer duration.
+
+    (6) With respect to any other matter, provides greater privacy protection for the individual who is the subject of the individually identifiable health information.
+
+    Relates to the privacy of individually identifiable health information means, with respect to a State law, that the State law has the specific purpose of protecting the privacy of health information or affects the privacy of health information in a direct, clear, and substantial way.
+
+    State law means a constitution, statute, regulation, rule, common law, or other State action having the force and effect of law.
+
+    [[65 FR 82798, Dec. 28, 2000, as amended at 67 FR 53266, Aug. 14, 2002; 74 FR 42767, Aug. 24, 2009; 78 FR 5689, Jan. 25, 2013]]
+
+
+  § 160.203 General rule and exceptions.
+  --------------------------------------
+
+    A standard, requirement, or implementation specification adopted under this subchapter that is contrary to a provision of State law preempts the provision of State law. This general rule applies, except if one or more of the following conditions is met:
+
+    (a) A determination is made by the Secretary under § 160.204 that the provision of State law:
+
+    (1) Is necessary:
+
+    (i) To prevent fraud and abuse related to the provision of or payment for health care;
+
+    (ii) To ensure appropriate State regulation of insurance and health plans to the extent expressly authorized by statute or regulation;
+
+    (iii) For State reporting on health care delivery or costs; or
+
+    (iv) For purposes of serving a compelling need related to public health, safety, or welfare, and, if a standard, requirement, or implementation specification under part 164 of this subchapter is at issue, if the Secretary determines that the intrusion into privacy is warranted when balanced against the need to be served; or
+
+    (2) Has as its principal purpose the regulation of the manufacture, registration, distribution, dispensing, or other control of any controlled substances (as defined in 21 U.S.C. 802), or that is deemed a controlled substance by State law.
+
+    (b) The provision of State law relates to the privacy of individually identifiable health information and is more stringent than a standard, requirement, or implementation specification adopted under subpart E of part 164 of this subchapter.
+
+    (c) The provision of State law, including State procedures established under such law, as applicable, provides for the reporting of disease or injury, child abuse, birth, or death, or for the conduct of public health surveillance, investigation, or intervention.
+
+    (d) The provision of State law requires a health plan to report, or to provide access to, information for the purpose of management audits, financial audits, program monitoring and evaluation, or the licensure or certification of facilities or individuals.
+
+    [[65 FR 82798, Dec. 28, 2000, as amended at 67 FR 53266, Aug. 14, 2002]]
+
+
+  § 160.204 Process for requesting exception determinations.
+  ----------------------------------------------------------
+
+    (a) A request to except a provision of State law from preemption under § 160.203(a) may be submitted to the Secretary. A request by a State must be submitted through its chief elected official, or his or her designee. The request must be in writing and include the following information:
+
+    (1) The State law for which the exception is requested;
+
+    (2) The particular standard, requirement, or implementation specification for which the exception is requested;
+
+    (3) The part of the standard or other provision that will not be implemented based on the exception or the additional data to be collected based on the exception, as appropriate;
+
+    (4) How health care providers, health plans, and other entities would be affected by the exception;
+
+    (5) The reasons why the State law should not be preempted by the federal standard, requirement, or implementation specification, including how the State law meets one or more of the criteria at § 160.203(a); and
+
+    (6) Any other information the Secretary may request in order to make the determination.
+
+    (b) Requests for exception under this section must be submitted to the Secretary at an address that will be published in the Federal Register. Until the Secretary's determination is made, the standard, requirement, or implementation specification under this subchapter remains in effect.
+
+    (c) The Secretary's determination under this section will be made on the basis of the extent to which the information provided and other factors demonstrate that one or more of the criteria at § 160.203(a) has been met.
+
+
+  § 160.205 Duration of effectiveness of exception determinations.
+  ----------------------------------------------------------------
+
+    An exception granted under this subpart remains in effect until:
+
+    (a) Either the State law or the federal standard, requirement, or implementation specification that provided the basis for the exception is materially changed such that the ground for the exception no longer exists; or
+
+    (b) The Secretary revokes the exception, based on a determination that the ground supporting the need for the exception no longer exists.
+
+
+--------------------------------------------------------------------------------
+Subpart C—Compliance and Investigations
+--------------------------------------------------------------------------------
+
+  Source: 71 FR 8424, Feb. 16, 2006, unless otherwise noted.
+
+
+  § 160.300 Applicability.
+  ------------------------
+
+    This subpart applies to actions by the Secretary, covered entities, business associates, and others with respect to ascertaining the compliance by covered entities and business associates with, and the enforcement of, the applicable provisions of this part 160 and parts 162 and 164 of this subchapter.
+
+    [[78 FR 5690, Jan. 25, 2013]]
+
+
+  § 160.302 [Reserved]
+  --------------------
+
+
+  § 160.304 Principles for achieving compliance.
+  ----------------------------------------------
+
+    (a) Cooperation. The Secretary will, to the extent practicable and consistent with the provisions of this subpart, seek the cooperation of covered entities and business associates in obtaining compliance with the applicable administrative simplification provisions.
+
+    (b) Assistance. The Secretary may provide technical assistance to covered entities and business associates to help them comply voluntarily with the applicable administrative simplification provisions.
+
+    [[78 FR 5690, Jan. 25, 2013]]
+
+
+  § 160.306 Complaints to the Secretary.
+  --------------------------------------
+
+    (a) Right to file a complaint. A person who believes a covered entity or business associate is not complying with the administrative simplification provisions may file a complaint with the Secretary.
+
+    (b) Requirements for filing complaints. Complaints under this section must meet the following requirements:
+
+    (1) A complaint must be filed in writing, either on paper or electronically.
+
+    (2) A complaint must name the person that is the subject of the complaint and describe the acts or omissions believed to be in violation of the applicable administrative simplification provision(s).
+
+    (3) A complaint must be filed within 180 days of when the complainant knew or should have known that the act or omission complained of occurred, unless this time limit is waived by the Secretary for good cause shown.
+
+    (4) The Secretary may prescribe additional procedures for the filing of complaints, as well as the place and manner of filing, by notice in the Federal Register.
+
+    (c) Investigation. (1) The Secretary will investigate any complaint filed under this section when a preliminary review of the facts indicates a possible violation due to willful neglect.
+
+    (2) The Secretary may investigate any other complaint filed under this section.
+
+    (3) An investigation under this section may include a review of the pertinent policies, procedures, or practices of the covered entity or business associate and of the circumstances regarding any alleged violation.
+
+    (4) At the time of the initial written communication with the covered entity or business associate about the complaint, the Secretary will describe the acts and/or omissions that are the basis of the complaint.
+
+    [[71 FR 8424, Feb. 16, 2006, as amended at 78 FR 5690, Jan. 25, 2013]]
+
+
+  § 160.308 Compliance reviews.
+  -----------------------------
+
+    (a) The Secretary will conduct a compliance review to determine whether a covered entity or business associate is complying with the applicable administrative simplification provisions when a preliminary review of the facts indicates a possible violation due to willful neglect.
+
+    (b) The Secretary may conduct a compliance review to determine whether a covered entity or business associate is complying with the applicable administrative simplification provisions in any other circumstance.
+
+    [[78 FR 5690, Jan. 25, 2013]]
+
+
+  § 160.310 Responsibilities of covered entities and business associates.
+  -----------------------------------------------------------------------
+
+    (a) Provide records and compliance reports. A covered entity or business associate must keep such records and submit such compliance reports, in such time and manner and containing such information, as the Secretary may determine to be necessary to enable the Secretary to ascertain whether the covered entity or business associate has complied or is complying with the applicable administrative simplification provisions.
+
+    (b) Cooperate with complaint investigations and compliance reviews. A covered entity or business associate must cooperate with the Secretary, if the Secretary undertakes an investigation or compliance review of the policies, procedures, or practices of the covered entity or business associate to determine whether it is complying with the applicable administrative simplification provisions.
+
+    (c) Permit access to information. (1) A covered entity or business associate must permit access by the Secretary during normal business hours to its facilities, books, records, accounts, and other sources of information, including protected health information, that are pertinent to ascertaining compliance with the applicable administrative simplification provisions. If the Secretary determines that exigent circumstances exist, such as when documents may be hidden or destroyed, a covered entity or business associate must permit access by the Secretary at any time and without notice.
+
+    (2) If any information required of a covered entity or business associate under this section is in the exclusive possession of any other agency, institution, or person and the other agency, institution, or person fails or refuses to furnish the information, the covered entity or business associate must so certify and set forth what efforts it has made to obtain the information.
+
+    (3) Protected health information obtained by the Secretary in connection with an investigation or compliance review under this subpart will not be disclosed by the Secretary, except if necessary for ascertaining or enforcing compliance with the applicable administrative simplification provisions, if otherwise required by law, or if permitted under 5 U.S.C. 552a(b)(7).
+
+    [[78 FR 5690, Jan. 25, 2013]]
+
+
+  § 160.312 Secretarial action regarding complaints and compliance reviews.
+  -------------------------------------------------------------------------
+
+    (a) Resolution when noncompliance is indicated. (1) If an investigation of a complaint pursuant to § 160.306 or a compliance review pursuant to § 160.308 indicates noncompliance, the Secretary may attempt to reach a resolution of the matter satisfactory to the Secretary by informal means. Informal means may include demonstrated compliance or a completed corrective action plan or other agreement.
+
+    (2) If the matter is resolved by informal means, the Secretary will so inform the covered entity or business associate and, if the matter arose from a complaint, the complainant, in writing.
+
+    (3) If the matter is not resolved by informal means, the Secretary will—
+
+    (i) So inform the covered entity or business associate and provide the covered entity or business associate an opportunity to submit written evidence of any mitigating factors or affirmative defenses for consideration under §§ 160.408 and 160.410 of this part. The covered entity or business associate must submit any such evidence to the Secretary within 30 days (computed in the same manner as prescribed under § 160.526 of this part) of receipt of such notification; and
+
+    (ii) If, following action pursuant to paragraph (a)(3)(i) of this section, the Secretary finds that a civil money penalty should be imposed, inform the covered entity or business associate of such finding in a notice of proposed determination in accordance with § 160.420 of this part.
+
+    (b) Resolution when no violation is found. If, after an investigation pursuant to § 160.306 or a compliance review pursuant to § 160.308, the Secretary determines that further action is not warranted, the Secretary will so inform the covered entity or business associate and, if the matter arose from a complaint, the complainant, in writing.
+
+    [[78 FR 5690, Jan. 25, 2013]]
+
+
+  § 160.314 Investigational subpoenas and inquiries.
+  --------------------------------------------------
+
+    (a) The Secretary may issue subpoenas in accordance with 42 U.S.C. 405(d) and (e), 1320a-7a(j), and 1320d-5 to require the attendance and testimony of witnesses and the production of any other evidence during an investigation or compliance review pursuant to this part. For purposes of this paragraph, a person other than a natural person is termed an “entity.”
+
+    (1) A subpoena issued under this paragraph must—
+
+    (i) State the name of the person (including the entity, if applicable) to whom the subpoena is addressed;
+
+    (ii) State the statutory authority for the subpoena;
+
+    (iii) Indicate the date, time, and place that the testimony will take place;
+
+    (iv) Include a reasonably specific description of any documents or items required to be produced; and
+
+    (v) If the subpoena is addressed to an entity, describe with reasonable particularity the subject matter on which testimony is required. In that event, the entity must designate one or more natural persons who will testify on its behalf, and must state as to each such person that person's name and address and the matters on which he or she will testify. The designated person must testify as to matters known or reasonably available to the entity.
+
+    (2) A subpoena under this section must be served by—
+
+    (i) Delivering a copy to the natural person named in the subpoena or to the entity named in the subpoena at its last principal place of business; or
+
+    (ii) Registered or certified mail addressed to the natural person at his or her last known dwelling place or to the entity at its last known principal place of business.
+
+    (3) A verified return by the natural person serving the subpoena setting forth the manner of service or, in the case of service by registered or certified mail, the signed return post office receipt, constitutes proof of service.
+
+    (4) Witnesses are entitled to the same fees and mileage as witnesses in the district courts of the United States (28 U.S.C. 1821 and 1825). Fees need not be paid at the time the subpoena is served.
+
+    (5) A subpoena under this section is enforceable through the district court of the United States for the district where the subpoenaed natural person resides or is found or where the entity transacts business.
+
+    (b) Investigational inquiries are non-public investigational proceedings conducted by the Secretary.
+
+    (1) Testimony at investigational inquiries will be taken under oath or affirmation.
+
+    (2) Attendance of non-witnesses is discretionary with the Secretary, except that a witness is entitled to be accompanied, represented, and advised by an attorney.
+
+    (3) Representatives of the Secretary are entitled to attend and ask questions.
+
+    (4) A witness will have the opportunity to clarify his or her answers on the record following questioning by the Secretary.
+
+    (5) Any claim of privilege must be asserted by the witness on the record.
+
+    (6) Objections must be asserted on the record. Errors of any kind that might be corrected if promptly presented will be deemed to be waived unless reasonable objection is made at the investigational inquiry. Except where the objection is on the grounds of privilege, the question will be answered on the record, subject to objection.
+
+    (7) If a witness refuses to answer any question not privileged or to produce requested documents or items, or engages in conduct likely to delay or obstruct the investigational inquiry, the Secretary may seek enforcement of the subpoena under paragraph (a)(5) of this section.
+
+    (8) The proceedings will be recorded and transcribed. The witness is entitled to a copy of the transcript, upon payment of prescribed costs, except that, for good cause, the witness may be limited to inspection of the official transcript of his or her testimony.
+
+    (9)(i) The transcript will be submitted to the witness for signature.
+
+    (A) Where the witness will be provided a copy of the transcript, the transcript will be submitted to the witness for signature. The witness may submit to the Secretary written proposed corrections to the transcript, with such corrections attached to the transcript. If the witness does not return a signed copy of the transcript or proposed corrections within 30 days (computed in the same manner as prescribed under § 160.526 of this part) of its being submitted to him or her for signature, the witness will be deemed to have agreed that the transcript is true and accurate.
+
+    (B) Where, as provided in paragraph (b)(8) of this section, the witness is limited to inspecting the transcript, the witness will have the opportunity at the time of inspection to propose corrections to the transcript, with corrections attached to the transcript. The witness will also have the opportunity to sign the transcript. If the witness does not sign the transcript or offer corrections within 30 days (computed in the same manner as prescribed under § 160.526 of this part) of receipt of notice of the opportunity to inspect the transcript, the witness will be deemed to have agreed that the transcript is true and accurate.
+
+    (ii) The Secretary's proposed corrections to the record of transcript will be attached to the transcript.
+
+    (c) Consistent with § 160.310(c)(3), testimony and other evidence obtained in an investigational inquiry may be used by HHS in any of its activities and may be used or offered into evidence in any administrative or judicial proceeding.
+
+
+  § 160.316 Refraining from intimidation or retaliation.
+  ------------------------------------------------------
+
+    A covered entity or business associate may not threaten, intimidate, coerce, harass, discriminate against, or take any other retaliatory action against any individual or other person for—
+
+    (a) Filing of a complaint under § 160.306;
+
+    (b) Testifying, assisting, or participating in an investigation, compliance review, proceeding, or hearing under this part; or
+
+    (c) Opposing any act or practice made unlawful by this subchapter, provided the individual or person has a good faith belief that the practice opposed is unlawful, and the manner of opposition is reasonable and does not involve a disclosure of protected health information in violation of subpart E of part 164 of this subchapter.
+
+    [[71 FR 8424, Feb. 16, 2006, as amended at 78 FR 5691, Jan. 25, 2013]]
+
+
+--------------------------------------------------------------------------------
+Subpart D—Imposition of Civil Money Penalties
+--------------------------------------------------------------------------------
+
+  Source: 71 FR 8426, Feb. 16, 2006, unless otherwise noted.
+
+
+  § 160.400 Applicability.
+  ------------------------
+
+    This subpart applies to the imposition of a civil money penalty by the Secretary under 42 U.S.C. 1320d-5.
+
+
+  § 160.401 Definitions.
+  ----------------------
+
+    As used in this subpart, the following terms have the following meanings:
+
+    Reasonable cause means an act or omission in which a covered entity or business associate knew, or by exercising reasonable diligence would have known, that the act or omission violated an administrative simplification provision, but in which the covered entity or business associate did not act with willful neglect.
+
+    Reasonable diligence means the business care and prudence expected from a person seeking to satisfy a legal requirement under similar circumstances.
+
+    Willful neglect means conscious, intentional failure or reckless indifference to the obligation to comply with the administrative simplification provision violated.
+
+    [[74 FR 56130, Oct. 30, 2009, as amended at 78 FR 5691, Jan. 25, 2013]]
+
+
+  § 160.402 Basis for a civil money penalty.
+  ------------------------------------------
+
+    (a) General rule. Subject to § 160.410, the Secretary will impose a civil money penalty upon a covered entity or business associate if the Secretary determines that the covered entity or business associate has violated an administrative simplification provision.
+
+    (b) Violation by more than one covered entity or business associate. (1) Except as provided in paragraph (b)(2) of this section, if the Secretary determines that more than one covered entity or business associate was responsible for a violation, the Secretary will impose a civil money penalty against each such covered entity or business associate.
+
+    (2) A covered entity that is a member of an affiliated covered entity, in accordance with § 164.105(b) of this subchapter, is jointly and severally liable for a civil money penalty for a violation of part 164 of this subchapter based on an act or omission of the affiliated covered entity, unless it is established that another member of the affiliated covered entity was responsible for the violation.
+
+    (c) Violation attributed to a covered entity or business associate. (1) A covered entity is liable, in accordance with the Federal common law of agency, for a civil money penalty for a violation based on the act or omission of any agent of the covered entity, including a workforce member or business associate, acting within the scope of the agency.
+
+    (2) A business associate is liable, in accordance with the Federal common law of agency, for a civil money penalty for a violation based on the act or omission of any agent of the business associate, including a workforce member or subcontractor, acting within the scope of the agency.
+
+    [[78 FR 5691, Jan. 25, 2013]]
+
+
+  § 160.404 Amount of a civil money penalty.
+  ------------------------------------------
+
+    (a) The amount of a civil money penalty will be determined in accordance with paragraph (b) of this section, and §§ 160.406, 160.408, and 160.412. These amounts were adjusted in accordance with the Federal Civil Monetary Penalty Inflation Adjustment Act of 1990, (Pub. L. 101-140), as amended by the Federal Civil Penalties Inflation Adjustment Act Improvements Act of 2015, (section 701 of Pub. L. 114-74), and appear at 45 CFR part 102. These amounts will be updated annually and published at 45 CFR part 102.
+
+    (b) The amount of a civil money penalty that may be imposed is subject to the following limitations:
+
+    (1) For violations occurring prior to February 18, 2009, the Secretary may not impose a civil money penalty—
+
+    (i) In the amount of more than $100 for each violation; or
+
+    (ii) In excess of $25,000 for identical violations during a calendar year (January 1 through the following December 31);
+
+    (2) For violations occurring on or after February 18, 2009, the Secretary may not impose a civil money penalty—
+
+    (i) For a violation in which it is established that the covered entity or business associate did not know and, by exercising reasonable diligence, would not have known that the covered entity or business associate violated such provision,
+
+    (A) In the amount of less than $100 or more than $50,000 for each violation; or
+
+    (B) In excess of $1,500,000 for identical violations during a calendar year (January 1 through the following December 31);
+
+    (ii) For a violation in which it is established that the violation was due to reasonable cause and not to willful neglect,
+
+    (A) In the amount of less than $1,000 or more than $50,000 for each violation; or
+
+    (B) In excess of $1,500,000 for identical violations during a calendar year (January 1 through the following December 31);
+
+    (iii) For a violation in which it is established that the violation was due to willful neglect and was corrected during the 30-day period beginning on the first date the covered entity or business associate liable for the penalty knew, or, by exercising reasonable diligence, would have known that the violation occurred,
+
+    (A) In the amount of less than $10,000 or more than $50,000 for each violation; or
+
+    (B) In excess of $1,500,000 for identical violations during a calendar year (January 1 through the following December 31);
+
+    (iv) For a violation in which it is established that the violation was due to willful neglect and was not corrected during the 30-day period beginning on the first date the covered entity or business associate liable for the penalty knew, or, by exercising reasonable diligence, would have known that the violation occurred,
+
+    (A) In the amount of less than $50,000 for each violation; or
+
+    (B) In excess of $1,500,000 for identical violations during a calendar year (January 1 through the following December 31).
+
+    (3) If a requirement or prohibition in one administrative simplification provision is repeated in a more general form in another administrative simplification provision in the same subpart, a civil money penalty may be imposed for a violation of only one of these administrative simplification provisions.
+
+    [[71 FR 8426, Feb. 16, 2006, as amended at 74 FR 56130, Oct. 30, 2009; 78 FR 5691, Jan. 25, 2013; 81 FR 61581, Sept. 6, 2016]]
+
+
+  § 160.406 Violations of an identical requirement or prohibition.
+  ----------------------------------------------------------------
+
+    The Secretary will determine the number of violations of an administrative simplification provision based on the nature of the covered entity's or business associate's obligation to act or not act under the provision that is violated, such as its obligation to act in a certain manner, or within a certain time, or to act or not act with respect to certain persons. In the case of continuing violation of a provision, a separate violation occurs each day the covered entity or business associate is in violation of the provision.
+
+    [[78 FR 5691, Jan. 25, 2013]]
+
+
+  § 160.408 Factors considered in determining the amount of a civil money penalty.
+  --------------------------------------------------------------------------------
+
+    In determining the amount of any civil money penalty, the Secretary will consider the following factors, which may be mitigating or aggravating as appropriate:
+
+    (a) The nature and extent of the violation, consideration of which may include but is not limited to:
+
+    (1) The number of individuals affected; and
+
+    (2) The time period during which the violation occurred;
+
+    (b) The nature and extent of the harm resulting from the violation, consideration of which may include but is not limited to:
+
+    (1) Whether the violation caused physical harm;
+
+    (2) Whether the violation resulted in financial harm;
+
+    (3) Whether the violation resulted in harm to an individual's reputation; and
+
+    (4) Whether the violation hindered an individual's ability to obtain health care;
+
+    (c) The history of prior compliance with the administrative simplification provisions, including violations, by the covered entity or business associate, consideration of which may include but is not limited to:
+
+    (1) Whether the current violation is the same or similar to previous indications of noncompliance;
+
+    (2) Whether and to what extent the covered entity or business associate has attempted to correct previous indications of noncompliance;
+
+    (3) How the covered entity or business associate has responded to technical assistance from the Secretary provided in the context of a compliance effort; and
+
+    (4) How the covered entity or business associate has responded to prior complaints;
+
+    (d) The financial condition of the covered entity or business associate, consideration of which may include but is not limited to:
+
+    (1) Whether the covered entity or business associate had financial difficulties that affected its ability to comply;
+
+    (2) Whether the imposition of a civil money penalty would jeopardize the ability of the covered entity or business associate to continue to provide, or to pay for, health care; and
+
+    (3) The size of the covered entity or business associate; and
+
+    (e) Such other matters as justice may require.
+
+    [[78 FR 5691, Jan. 25, 2013]]
+
+
+  § 160.410 Affirmative defenses.
+  -------------------------------
+
+    (a) The Secretary may not:
+
+    (1) Prior to February 18, 2011, impose a civil money penalty on a covered entity or business associate for an act that violates an administrative simplification provision if the covered entity or business associate establishes that the violation is punishable under 42 U.S.C. 1320d-6.
+
+    (2) On or after February 18, 2011, impose a civil money penalty on a covered entity or business associate for an act that violates an administrative simplification provision if the covered entity or business associate establishes that a penalty has been imposed under 42 U.S.C. 1320d-6 with respect to such act.
+
+    (b) For violations occurring prior to February 18, 2009, the Secretary may not impose a civil money penalty on a covered entity for a violation if the covered entity establishes that an affirmative defense exists with respect to the violation, including the following:
+
+    (1) The covered entity establishes, to the satisfaction of the Secretary, that it did not have knowledge of the violation, determined in accordance with the Federal common law of agency, and by exercising reasonable diligence, would not have known that the violation occurred; or
+
+    (2) The violation is—
+
+    (i) Due to circumstances that would make it unreasonable for the covered entity, despite the exercise of ordinary business care and prudence, to comply with the administrative simplification provision violated and is not due to willful neglect; and
+
+    (ii) Corrected during either:
+
+    (A) The 30-day period beginning on the first date the covered entity liable for the penalty knew, or by exercising reasonable diligence would have known, that the violation occurred; or
+
+    (B) Such additional period as the Secretary determines to be appropriate based on the nature and extent of the failure to comply.
+
+    (c) For violations occurring on or after February 18, 2009, the Secretary may not impose a civil money penalty on a covered entity or business associate for a violation if the covered entity or business associate establishes to the satisfaction of the Secretary that the violation is—
+
+    (1) Not due to willful neglect; and
+
+    (2) Corrected during either:
+
+    (i) The 30-day period beginning on the first date the covered entity or business associate liable for the penalty knew, or, by exercising reasonable diligence, would have known that the violation occurred; or
+
+    (ii) Such additional period as the Secretary determines to be appropriate based on the nature and extent of the failure to comply.
+
+    [[78 FR 5692, Jan. 25, 2013]]
+
+
+  § 160.412 Waiver.
+  -----------------
+
+    For violations described in § 160.410(b)(2) or (c) that are not corrected within the period specified under such paragraphs, the Secretary may waive the civil money penalty, in whole or in part, to the extent that the payment of the penalty would be excessive relative to the violation.
+
+    [[8 FR 5692, Jan. 25, 2013]]
+
+
+  § 160.414 Limitations.
+  ----------------------
+
+    No action under this subpart may be entertained unless commenced by the Secretary, in accordance with § 160.420, within 6 years from the date of the occurrence of the violation.
+
+
+  § 160.416 Authority to settle.
+  ------------------------------
+
+    Nothing in this subpart limits the authority of the Secretary to settle any issue or case or to compromise any penalty.
+
+
+  § 160.418 Penalty not exclusive.
+  --------------------------------
+
+    Except as otherwise provided by 42 U.S.C. 1320d-5(b)(1) and 42 U.S.C. 299b-22(f)(3), a penalty imposed under this part is in addition to any other penalty prescribed by law.
+
+    [[78 FR 5692, Jan. 25, 2013]]
+
+
+  § 160.420 Notice of proposed determination.
+  -------------------------------------------
+
+    (a) If a penalty is proposed in accordance with this part, the Secretary must deliver, or send by certified mail with return receipt requested, to the respondent, written notice of the Secretary's intent to impose a penalty. This notice of proposed determination must include—
+
+    (1) Reference to the statutory basis for the penalty;
+
+    (2) A description of the findings of fact regarding the violations with respect to which the penalty is proposed (except that, in any case where the Secretary is relying upon a statistical sampling study in accordance with § 160.536 of this part, the notice must provide a copy of the study relied upon by the Secretary);
+
+    (3) The reason(s) why the violation(s) subject(s) the respondent to a penalty;
+
+    (4) The amount of the proposed penalty and a reference to the subparagraph of § 160.404 upon which it is based.
+
+    (5) Any circumstances described in § 160.408 that were considered in determining the amount of the proposed penalty; and
+
+    (6) Instructions for responding to the notice, including a statement of the respondent's right to a hearing, a statement that failure to request a hearing within 90 days permits the imposition of the proposed penalty without the right to a hearing under § 160.504 or a right of appeal under § 160.548 of this part, and the address to which the hearing request must be sent.
+
+    (b) The respondent may request a hearing before an ALJ on the proposed penalty by filing a request in accordance with § 160.504 of this part.
+
+    [[71 FR 8426, Feb. 16, 2006, as amended at 74 FR 56131, Oct. 30, 2009]]
+
+
+  § 160.422 Failure to request a hearing.
+  ---------------------------------------
+
+    If the respondent does not request a hearing within the time prescribed by § 160.504 of this part and the matter is not settled pursuant to § 160.416, the Secretary will impose the proposed penalty or any lesser penalty permitted by 42 U.S.C. 1320d-5. The Secretary will notify the respondent by certified mail, return receipt requested, of any penalty that has been imposed and of the means by which the respondent may satisfy the penalty, and the penalty is final on receipt of the notice. The respondent has no right to appeal a penalty under § 160.548 of this part with respect to which the respondent has not timely requested a hearing.
+
+
+  § 160.424 Collection of penalty.
+  --------------------------------
+
+    (a) Once a determination of the Secretary to impose a penalty has become final, the penalty will be collected by the Secretary, subject to the first sentence of 42 U.S.C. 1320a-7a(f).
+
+    (b) The penalty may be recovered in a civil action brought in the United States district court for the district where the respondent resides, is found, or is located.
+
+    (c) The amount of a penalty, when finally determined, or the amount agreed upon in compromise, may be deducted from any sum then or later owing by the United States, or by a State agency, to the respondent.
+
+    (d) Matters that were raised or that could have been raised in a hearing before an ALJ, or in an appeal under 42 U.S.C. 1320a-7a(e), may not be raised as a defense in a civil action by the United States to collect a penalty under this part.
+
+
+  § 160.426 Notification of the public and other agencies.
+  --------------------------------------------------------
+
+    Whenever a proposed penalty becomes final, the Secretary will notify, in such manner as the Secretary deems appropriate, the public and the following organizations and entities thereof and the reason it was imposed: the appropriate State or local medical or professional organization, the appropriate State agency or agencies administering or supervising the administration of State health care programs (as defined in 42 U.S.C. 1320a-7(h)), the appropriate utilization and quality control peer review organization, and the appropriate State or local licensing agency or organization (including the agency specified in 42 U.S.C. 1395aa(a), 1396a(a)(33)).
+
+
+--------------------------------------------------------------------------------
+Subpart E—Procedures for Hearings
+--------------------------------------------------------------------------------
+
+  Source: 71 FR 8428, Feb. 16, 2006, unless otherwise noted.
+
+
+  § 160.500 Applicability.
+  ------------------------
+
+    This subpart applies to hearings conducted relating to the imposition of a civil money penalty by the Secretary under 42 U.S.C. 1320d-5.
+
+
+  § 160.502 Definitions.
+  ----------------------
+
+    As used in this subpart, the following term has the following meaning:
+
+    Board means the members of the HHS Departmental Appeals Board, in the Office of the Secretary, who issue decisions in panels of three.
+
+
+  § 160.504 Hearing before an ALJ.
+  --------------------------------
+
+    (a) A respondent may request a hearing before an ALJ. The parties to the hearing proceeding consist of—
+
+    (1) The respondent; and
+
+    (2) The officer(s) or employee(s) of HHS to whom the enforcement authority involved has been delegated.
+
+    (b) The request for a hearing must be made in writing signed by the respondent or by the respondent's attorney and sent by certified mail, return receipt requested, to the address specified in the notice of proposed determination. The request for a hearing must be mailed within 90 days after notice of the proposed determination is received by the respondent. For purposes of this section, the respondent's date of receipt of the notice of proposed determination is presumed to be 5 days after the date of the notice unless the respondent makes a reasonable showing to the contrary to the ALJ.
+
+    (c) The request for a hearing must clearly and directly admit, deny, or explain each of the findings of fact contained in the notice of proposed determination with regard to which the respondent has any knowledge. If the respondent has no knowledge of a particular finding of fact and so states, the finding shall be deemed denied. The request for a hearing must also state the circumstances or arguments that the respondent alleges constitute the grounds for any defense and the factual and legal basis for opposing the penalty, except that a respondent may raise an affirmative defense under § 160.410(b)(1) at any time.
+
+    (d) The ALJ must dismiss a hearing request where—
+
+    (1) On motion of the Secretary, the ALJ determines that the respondent's hearing request is not timely filed as required by paragraphs (b) or does not meet the requirements of paragraph (c) of this section;
+
+    (2) The respondent withdraws the request for a hearing;
+
+    (3) The respondent abandons the request for a hearing; or
+
+    (4) The respondent's hearing request fails to raise any issue that may properly be addressed in a hearing.
+
+
+  § 160.506 Rights of the parties.
+  --------------------------------
+
+    (a) Except as otherwise limited by this subpart, each party may—
+
+    (1) Be accompanied, represented, and advised by an attorney;
+
+    (2) Participate in any conference held by the ALJ;
+
+    (3) Conduct discovery of documents as permitted by this subpart;
+
+    (4) Agree to stipulations of fact or law that will be made part of the record;
+
+    (5) Present evidence relevant to the issues at the hearing;
+
+    (6) Present and cross-examine witnesses;
+
+    (7) Present oral arguments at the hearing as permitted by the ALJ; and
+
+    (8) Submit written briefs and proposed findings of fact and conclusions of law after the hearing.
+
+    (b) A party may appear in person or by a representative. Natural persons who appear as an attorney or other representative must conform to the standards of conduct and ethics required of practitioners before the courts of the United States.
+
+    (c) Fees for any services performed on behalf of a party by an attorney are not subject to the provisions of 42 U.S.C. 406, which authorizes the Secretary to specify or limit their fees.
+
+
+  § 160.508 Authority of the ALJ.
+  -------------------------------
+
+    (a) The ALJ must conduct a fair and impartial hearing, avoid delay, maintain order, and ensure that a record of the proceeding is made.
+
+    (b) The ALJ may—
+
+    (1) Set and change the date, time and place of the hearing upon reasonable notice to the parties;
+
+    (2) Continue or recess the hearing in whole or in part for a reasonable period of time;
+
+    (3) Hold conferences to identify or simplify the issues, or to consider other matters that may aid in the expeditious disposition of the proceeding;
+
+    (4) Administer oaths and affirmations;
+
+    (5) Issue subpoenas requiring the attendance of witnesses at hearings and the production of documents at or in relation to hearings;
+
+    (6) Rule on motions and other procedural matters;
+
+    (7) Regulate the scope and timing of documentary discovery as permitted by this subpart;
+
+    (8) Regulate the course of the hearing and the conduct of representatives, parties, and witnesses;
+
+    (9) Examine witnesses;
+
+    (10) Receive, rule on, exclude, or limit evidence;
+
+    (11) Upon motion of a party, take official notice of facts;
+
+    (12) Conduct any conference, argument or hearing in person or, upon agreement of the parties, by telephone; and
+
+    (13) Upon motion of a party, decide cases, in whole or in part, by summary judgment where there is no disputed issue of material fact. A summary judgment decision constitutes a hearing on the record for the purposes of this subpart.
+
+    (c) The ALJ—
+
+    (1) May not find invalid or refuse to follow Federal statutes, regulations, or Secretarial delegations of authority and must give deference to published guidance to the extent not inconsistent with statute or regulation;
+
+    (2) May not enter an order in the nature of a directed verdict;
+
+    (3) May not compel settlement negotiations;
+
+    (4) May not enjoin any act of the Secretary; or
+
+    (5) May not review the exercise of discretion by the Secretary with respect to whether to grant an extension under § 160.410(b)(2)(ii)(B) or (c)(2)(ii) of this part or to provide technical assistance under 42 U.S.C. 1320d-5(b)(2)(B).
+
+    [[71 FR 8428, Feb. 16, 2006, as amended at 78 FR 34266, June 7, 2013]]
+
+
+  § 160.510 Ex parte contacts.
+  ----------------------------
+
+    No party or person (except employees of the ALJ's office) may communicate in any way with the ALJ on any matter at issue in a case, unless on notice and opportunity for both parties to participate. This provision does not prohibit a party or person from inquiring about the status of a case or asking routine questions concerning administrative functions or procedures.
+
+
+  § 160.512 Prehearing conferences.
+  ---------------------------------
+
+    (a) The ALJ must schedule at least one prehearing conference, and may schedule additional prehearing conferences as appropriate, upon reasonable notice, which may not be less than 14 business days, to the parties.
+
+    (b) The ALJ may use prehearing conferences to discuss the following—
+
+    (1) Simplification of the issues;
+
+    (2) The necessity or desirability of amendments to the pleadings, including the need for a more definite statement;
+
+    (3) Stipulations and admissions of fact or as to the contents and authenticity of documents;
+
+    (4) Whether the parties can agree to submission of the case on a stipulated record;
+
+    (5) Whether a party chooses to waive appearance at an oral hearing and to submit only documentary evidence (subject to the objection of the other party) and written argument;
+
+    (6) Limitation of the number of witnesses;
+
+    (7) Scheduling dates for the exchange of witness lists and of proposed exhibits;
+
+    (8) Discovery of documents as permitted by this subpart;
+
+    (9) The time and place for the hearing;
+
+    (10) The potential for the settlement of the case by the parties; and
+
+    (11) Other matters as may tend to encourage the fair, just and expeditious disposition of the proceedings, including the protection of privacy of individually identifiable health information that may be submitted into evidence or otherwise used in the proceeding, if appropriate.
+
+    (c) The ALJ must issue an order containing the matters agreed upon by the parties or ordered by the ALJ at a prehearing conference.
+
+
+  § 160.514 Authority to settle.
+  ------------------------------
+
+    The Secretary has exclusive authority to settle any issue or case without the consent of the ALJ.
+
+
+  § 160.516 Discovery.
+  --------------------
+
+    (a) A party may make a request to another party for production of documents for inspection and copying that are relevant and material to the issues before the ALJ.
+
+    (b) For the purpose of this section, the term “documents” includes information, reports, answers, records, accounts, papers and other data and documentary evidence. Nothing contained in this section may be interpreted to require the creation of a document, except that requested data stored in an electronic data storage system must be produced in a form accessible to the requesting party.
+
+    (c) Requests for documents, requests for admissions, written interrogatories, depositions and any forms of discovery, other than those permitted under paragraph (a) of this section, are not authorized.
+
+    (d) This section may not be construed to require the disclosure of interview reports or statements obtained by any party, or on behalf of any party, of persons who will not be called as witnesses by that party, or analyses and summaries prepared in conjunction with the investigation or litigation of the case, or any otherwise privileged documents.
+
+    (e)(1) When a request for production of documents has been received, within 30 days the party receiving that request must either fully respond to the request, or state that the request is being objected to and the reasons for that objection. If objection is made to part of an item or category, the part must be specified. Upon receiving any objections, the party seeking production may then, within 30 days or any other time frame set by the ALJ, file a motion for an order compelling discovery. The party receiving a request for production may also file a motion for protective order any time before the date the production is due.
+
+    (2) The ALJ may grant a motion for protective order or deny a motion for an order compelling discovery if the ALJ finds that the discovery sought—
+
+    (i) Is irrelevant;
+
+    (ii) Is unduly costly or burdensome;
+
+    (iii) Will unduly delay the proceeding; or
+
+    (iv) Seeks privileged information.
+
+    (3) The ALJ may extend any of the time frames set forth in paragraph (e)(1) of this section.
+
+    (4) The burden of showing that discovery should be allowed is on the party seeking discovery.
+
+
+  § 160.518 Exchange of witness lists, witness statements, and exhibits.
+  ----------------------------------------------------------------------
+
+    (a) The parties must exchange witness lists, copies of prior written statements of proposed witnesses, and copies of proposed hearing exhibits, including copies of any written statements that the party intends to offer in lieu of live testimony in accordance with § 160.538, not more than 60, and not less than 15, days before the scheduled hearing, except that if a respondent intends to introduce the evidence of a statistical expert, the respondent must provide the Secretarial party with a copy of the statistical expert's report not less than 30 days before the scheduled hearing.
+
+    (b)(1) If, at any time, a party objects to the proposed admission of evidence not exchanged in accordance with paragraph (a) of this section, the ALJ must determine whether the failure to comply with paragraph (a) of this section should result in the exclusion of that evidence.
+
+    (2) Unless the ALJ finds that extraordinary circumstances justified the failure timely to exchange the information listed under paragraph (a) of this section, the ALJ must exclude from the party's case-in-chief—
+
+    (i) The testimony of any witness whose name does not appear on the witness list; and
+
+    (ii) Any exhibit not provided to the opposing party as specified in paragraph (a) of this section.
+
+    (3) If the ALJ finds that extraordinary circumstances existed, the ALJ must then determine whether the admission of that evidence would cause substantial prejudice to the objecting party.
+
+    (i) If the ALJ finds that there is no substantial prejudice, the evidence may be admitted.
+
+    (ii) If the ALJ finds that there is substantial prejudice, the ALJ may exclude the evidence, or, if he or she does not exclude the evidence, must postpone the hearing for such time as is necessary for the objecting party to prepare and respond to the evidence, unless the objecting party waives postponement.
+
+    (c) Unless the other party objects within a reasonable period of time before the hearing, documents exchanged in accordance with paragraph (a) of this section will be deemed to be authentic for the purpose of admissibility at the hearing.
+
+
+  § 160.520 Subpoenas for attendance at hearing.
+  ----------------------------------------------
+
+    (a) A party wishing to procure the appearance and testimony of any person at the hearing may make a motion requesting the ALJ to issue a subpoena if the appearance and testimony are reasonably necessary for the presentation of a party's case.
+
+    (b) A subpoena requiring the attendance of a person in accordance with paragraph (a) of this section may also require the person (whether or not the person is a party) to produce relevant and material evidence at or before the hearing.
+
+    (c) When a subpoena is served by a respondent on a particular employee or official or particular office of HHS, the Secretary may comply by designating any knowledgeable HHS representative to appear and testify.
+
+    (d) A party seeking a subpoena must file a written motion not less than 30 days before the date fixed for the hearing, unless otherwise allowed by the ALJ for good cause shown. That motion must—
+
+    (1) Specify any evidence to be produced;
+
+    (2) Designate the witnesses; and
+
+    (3) Describe the address and location with sufficient particularity to permit those witnesses to be found.
+
+    (e) The subpoena must specify the time and place at which the witness is to appear and any evidence the witness is to produce.
+
+    (f) Within 15 days after the written motion requesting issuance of a subpoena is served, any party may file an opposition or other response.
+
+    (g) If the motion requesting issuance of a subpoena is granted, the party seeking the subpoena must serve it by delivery to the person named, or by certified mail addressed to that person at the person's last dwelling place or principal place of business.
+
+    (h) The person to whom the subpoena is directed may file with the ALJ a motion to quash the subpoena within 10 days after service.
+
+    (i) The exclusive remedy for contumacy by, or refusal to obey a subpoena duly served upon, any person is specified in 42 U.S.C. 405(e).
+
+
+  § 160.522 Fees.
+  ---------------
+
+    The party requesting a subpoena must pay the cost of the fees and mileage of any witness subpoenaed in the amounts that would be payable to a witness in a proceeding in United States District Court. A check for witness fees and mileage must accompany the subpoena when served, except that, when a subpoena is issued on behalf of the Secretary, a check for witness fees and mileage need not accompany the subpoena.
+
+
+  § 160.524 Form, filing, and service of papers.
+  ----------------------------------------------
+
+    (a) Forms. (1) Unless the ALJ directs the parties to do otherwise, documents filed with the ALJ must include an original and two copies.
+
+    (2) Every pleading and paper filed in the proceeding must contain a caption setting forth the title of the action, the case number, and a designation of the paper, such as motion to quash subpoena.
+
+    (3) Every pleading and paper must be signed by and must contain the address and telephone number of the party or the person on whose behalf the paper was filed, or his or her representative.
+
+    (4) Papers are considered filed when they are mailed.
+
+    (b) Service. A party filing a document with the ALJ or the Board must, at the time of filing, serve a copy of the document on the other party. Service upon any party of any document must be made by delivering a copy, or placing a copy of the document in the United States mail, postage prepaid and addressed, or with a private delivery service, to the party's last known address. When a party is represented by an attorney, service must be made upon the attorney in lieu of the party.
+
+    (c) Proof of service. A certificate of the natural person serving the document by personal delivery or by mail, setting forth the manner of service, constitutes proof of service.
+
+
+  § 160.526 Computation of time.
+  ------------------------------
+
+    (a) In computing any period of time under this subpart or in an order issued thereunder, the time begins with the day following the act, event or default, and includes the last day of the period unless it is a Saturday, Sunday, or legal holiday observed by the Federal Government, in which event it includes the next business day.
+
+    (b) When the period of time allowed is less than 7 days, intermediate Saturdays, Sundays, and legal holidays observed by the Federal Government must be excluded from the computation.
+
+    (c) Where a document has been served or issued by placing it in the mail, an additional 5 days must be added to the time permitted for any response. This paragraph does not apply to requests for hearing under § 160.504.
+
+
+  § 160.528 Motions.
+  ------------------
+
+    (a) An application to the ALJ for an order or ruling must be by motion. Motions must state the relief sought, the authority relied upon and the facts alleged, and must be filed with the ALJ and served on all other parties.
+
+    (b) Except for motions made during a prehearing conference or at the hearing, all motions must be in writing. The ALJ may require that oral motions be reduced to writing.
+
+    (c) Within 10 days after a written motion is served, or such other time as may be fixed by the ALJ, any party may file a response to the motion.
+
+    (d) The ALJ may not grant a written motion before the time for filing responses has expired, except upon consent of the parties or following a hearing on the motion, but may overrule or deny the motion without awaiting a response.
+
+    (e) The ALJ must make a reasonable effort to dispose of all outstanding motions before the beginning of the hearing.
+
+
+  § 160.530 Sanctions.
+  --------------------
+
+    The ALJ may sanction a person, including any party or attorney, for failing to comply with an order or procedure, for failing to defend an action or for other misconduct that interferes with the speedy, orderly or fair conduct of the hearing. The sanctions must reasonably relate to the severity and nature of the failure or misconduct. The sanctions may include—
+
+    (a) In the case of refusal to provide or permit discovery under the terms of this part, drawing negative factual inferences or treating the refusal as an admission by deeming the matter, or certain facts, to be established;
+
+    (b) Prohibiting a party from introducing certain evidence or otherwise supporting a particular claim or defense;
+
+    (c) Striking pleadings, in whole or in part;
+
+    (d) Staying the proceedings;
+
+    (e) Dismissal of the action;
+
+    (f) Entering a decision by default;
+
+    (g) Ordering the party or attorney to pay the attorney's fees and other costs caused by the failure or misconduct; and
+
+    (h) Refusing to consider any motion or other action that is not filed in a timely manner.
+
+
+  § 160.532 Collateral estoppel.
+  ------------------------------
+
+    When a final determination that the respondent violated an administrative simplification provision has been rendered in any proceeding in which the respondent was a party and had an opportunity to be heard, the respondent is bound by that determination in any proceeding under this part.
+
+
+  § 160.534 The hearing.
+  ----------------------
+
+    (a) The ALJ must conduct a hearing on the record in order to determine whether the respondent should be found liable under this part.
+
+    (b) (1) The respondent has the burden of going forward and the burden of persuasion with respect to any:
+
+    (i) Affirmative defense pursuant to § 160.410 of this part;
+
+    (ii) Challenge to the amount of a proposed penalty pursuant to §§ 160.404-160.408 of this part, including any factors raised as mitigating factors; or
+
+    (iii) Claim that a proposed penalty should be reduced or waived pursuant to § 160.412 of this part; and
+
+    (iv) Compliance with subpart D of part 164, as provided under § 164.414(b).
+
+    (2) The Secretary has the burden of going forward and the burden of persuasion with respect to all other issues, including issues of liability other than with respect to subpart D of part 164, and the existence of any factors considered aggravating factors in determining the amount of the proposed penalty.
+
+    (3) The burden of persuasion will be judged by a preponderance of the evidence.
+
+    (c) The hearing must be open to the public unless otherwise ordered by the ALJ for good cause shown.
+
+    (d)(1) Subject to the 15-day rule under § 160.518(a) and the admissibility of evidence under § 160.540, either party may introduce, during its case in chief, items or information that arose or became known after the date of the issuance of the notice of proposed determination or the request for hearing, as applicable. Such items and information may not be admitted into evidence, if introduced—
+
+    (i) By the Secretary, unless they are material and relevant to the acts or omissions with respect to which the penalty is proposed in the notice of proposed determination pursuant to § 160.420 of this part, including circumstances that may increase penalties; or
+
+    (ii) By the respondent, unless they are material and relevant to an admission, denial or explanation of a finding of fact in the notice of proposed determination under § 160.420 of this part, or to a specific circumstance or argument expressly stated in the request for hearing under § 160.504, including circumstances that may reduce penalties.
+
+    (2) After both parties have presented their cases, evidence may be admitted in rebuttal even if not previously exchanged in accordance with § 160.518.
+
+    [[71 FR 8428, Feb. 16, 2006, as amended at 74 FR 42767, Aug. 24, 2009; 78 FR 5692, Jan. 25, 2013]]
+
+
+  § 160.536 Statistical sampling.
+  -------------------------------
+
+    (a) In meeting the burden of proof set forth in § 160.534, the Secretary may introduce the results of a statistical sampling study as evidence of the number of violations under § 160.406 of this part, or the factors considered in determining the amount of the civil money penalty under § 160.408 of this part. Such statistical sampling study, if based upon an appropriate sampling and computed by valid statistical methods, constitutes prima facie evidence of the number of violations and the existence of factors material to the proposed civil money penalty as described in §§ 160.406 and 160.408.
+
+    (b) Once the Secretary has made a prima facie case, as described in paragraph (a) of this section, the burden of going forward shifts to the respondent to produce evidence reasonably calculated to rebut the findings of the statistical sampling study. The Secretary will then be given the opportunity to rebut this evidence.
+
+
+  § 160.538 Witnesses.
+  --------------------
+
+    (a) Except as provided in paragraph (b) of this section, testimony at the hearing must be given orally by witnesses under oath or affirmation.
+
+    (b) At the discretion of the ALJ, testimony of witnesses other than the testimony of expert witnesses may be admitted in the form of a written statement. The ALJ may, at his or her discretion, admit prior sworn testimony of experts that has been subject to adverse examination, such as a deposition or trial testimony. Any such written statement must be provided to the other party, along with the last known address of the witness, in a manner that allows sufficient time for the other party to subpoena the witness for cross-examination at the hearing. Prior written statements of witnesses proposed to testify at the hearing must be exchanged as provided in § 160.518.
+
+    (c) The ALJ must exercise reasonable control over the mode and order of interrogating witnesses and presenting evidence so as to:
+
+    (1) Make the interrogation and presentation effective for the ascertainment of the truth;
+
+    (2) Avoid repetition or needless consumption of time; and
+
+    (3) Protect witnesses from harassment or undue embarrassment.
+
+    (d) The ALJ must permit the parties to conduct cross-examination of witnesses as may be required for a full and true disclosure of the facts.
+
+    (e) The ALJ may order witnesses excluded so that they cannot hear the testimony of other witnesses, except that the ALJ may not order to be excluded—
+
+    (1) A party who is a natural person;
+
+    (2) In the case of a party that is not a natural person, the officer or employee of the party appearing for the entity pro se or designated as the party's representative; or
+
+    (3) A natural person whose presence is shown by a party to be essential to the presentation of its case, including a person engaged in assisting the attorney for the Secretary.
+
+
+  § 160.540 Evidence.
+  -------------------
+
+    (a) The ALJ must determine the admissibility of evidence.
+
+    (b) Except as provided in this subpart, the ALJ is not bound by the Federal Rules of Evidence. However, the ALJ may apply the Federal Rules of Evidence where appropriate, for example, to exclude unreliable evidence.
+
+    (c) The ALJ must exclude irrelevant or immaterial evidence.
+
+    (d) Although relevant, evidence may be excluded if its probative value is substantially outweighed by the danger of unfair prejudice, confusion of the issues, or by considerations of undue delay or needless presentation of cumulative evidence.
+
+    (e) Although relevant, evidence must be excluded if it is privileged under Federal law.
+
+    (f) Evidence concerning offers of compromise or settlement are inadmissible to the extent provided in Rule 408 of the Federal Rules of Evidence.
+
+    (g) Evidence of crimes, wrongs, or acts other than those at issue in the instant case is admissible in order to show motive, opportunity, intent, knowledge, preparation, identity, lack of mistake, or existence of a scheme. This evidence is admissible regardless of whether the crimes, wrongs, or acts occurred during the statute of limitations period applicable to the acts or omissions that constitute the basis for liability in the case and regardless of whether they were referenced in the Secretary's notice of proposed determination under § 160.420 of this part.
+
+    (h) The ALJ must permit the parties to introduce rebuttal witnesses and evidence.
+
+    (i) All documents and other evidence offered or taken for the record must be open to examination by both parties, unless otherwise ordered by the ALJ for good cause shown.
+
+
+  § 160.542 The record.
+  ---------------------
+
+    (a) The hearing must be recorded and transcribed. Transcripts may be obtained following the hearing from the ALJ. A party that requests a transcript of hearing proceedings must pay the cost of preparing the transcript unless, for good cause shown by the party, the payment is waived by the ALJ or the Board, as appropriate.
+
+    (b) The transcript of the testimony, exhibits, and other evidence admitted at the hearing, and all papers and requests filed in the proceeding constitute the record for decision by the ALJ and the Secretary.
+
+    (c) The record may be inspected and copied (upon payment of a reasonable fee) by any person, unless otherwise ordered by the ALJ for good cause shown.
+
+    (d) For good cause, the ALJ may order appropriate redactions made to the record.
+
+
+  § 160.544 Post hearing briefs.
+  ------------------------------
+
+    The ALJ may require the parties to file post-hearing briefs. In any event, any party may file a post-hearing brief. The ALJ must fix the time for filing the briefs. The time for filing may not exceed 60 days from the date the parties receive the transcript of the hearing or, if applicable, the stipulated record. The briefs may be accompanied by proposed findings of fact and conclusions of law. The ALJ may permit the parties to file reply briefs.
+
+
+  § 160.546 ALJ's decision.
+  -------------------------
+
+    (a) The ALJ must issue a decision, based only on the record, which must contain findings of fact and conclusions of law.
+
+    (b) The ALJ may affirm, increase, or reduce the penalties imposed by the Secretary.
+
+    (c) The ALJ must issue the decision to both parties within 60 days after the time for submission of post-hearing briefs and reply briefs, if permitted, has expired. If the ALJ fails to meet the deadline contained in this paragraph, he or she must notify the parties of the reason for the delay and set a new deadline.
+
+    (d) Unless the decision of the ALJ is timely appealed as provided for in § 160.548, the decision of the ALJ will be final and binding on the parties 60 days from the date of service of the ALJ's decision.
+
+
+  § 160.548 Appeal of the ALJ's decision.
+  ---------------------------------------
+
+    (a) Any party may appeal the decision of the ALJ to the Board by filing a notice of appeal with the Board within 30 days of the date of service of the ALJ decision. The Board may extend the initial 30 day period for a period of time not to exceed 30 days if a party files with the Board a request for an extension within the initial 30 day period and shows good cause.
+
+    (b) If a party files a timely notice of appeal with the Board, the ALJ must forward the record of the proceeding to the Board.
+
+    (c) A notice of appeal must be accompanied by a written brief specifying exceptions to the initial decision and reasons supporting the exceptions. Any party may file a brief in opposition to the exceptions, which may raise any relevant issue not addressed in the exceptions, within 30 days of receiving the notice of appeal and the accompanying brief. The Board may permit the parties to file reply briefs.
+
+    (d) There is no right to appear personally before the Board or to appeal to the Board any interlocutory ruling by the ALJ.
+
+    (e) Except for an affirmative defense under § 160.410(a)(1) or (2) of this part, the Board may not consider any issue not raised in the parties' briefs, nor any issue in the briefs that could have been raised before the ALJ but was not.
+
+    (f) If any party demonstrates to the satisfaction of the Board that additional evidence not presented at such hearing is relevant and material and that there were reasonable grounds for the failure to adduce such evidence at the hearing, the Board may remand the matter to the ALJ for consideration of such additional evidence.
+
+    (g) The Board may decline to review the case, or may affirm, increase, reduce, reverse or remand any penalty determined by the ALJ.
+
+    (h) The standard of review on a disputed issue of fact is whether the initial decision of the ALJ is supported by substantial evidence on the whole record. The standard of review on a disputed issue of law is whether the decision is erroneous.
+
+    (i) Within 60 days after the time for submission of briefs and reply briefs, if permitted, has expired, the Board must serve on each party to the appeal a copy of the Board's decision and a statement describing the right of any respondent who is penalized to seek judicial review.
+
+    (j)(1) The Board's decision under paragraph (i) of this section, including a decision to decline review of the initial decision, becomes the final decision of the Secretary 60 days after the date of service of the Board's decision, except with respect to a decision to remand to the ALJ or if reconsideration is requested under this paragraph.
+
+    (2) The Board will reconsider its decision only if it determines that the decision contains a clear error of fact or error of law. New evidence will not be a basis for reconsideration unless the party demonstrates that the evidence is newly discovered and was not previously available.
+
+    (3) A party may file a motion for reconsideration with the Board before the date the decision becomes final under paragraph (j)(1) of this section. A motion for reconsideration must be accompanied by a written brief specifying any alleged error of fact or law and, if the party is relying on additional evidence, explaining why the evidence was not previously available. Any party may file a brief in opposition within 15 days of receiving the motion for reconsideration and the accompanying brief unless this time limit is extended by the Board for good cause shown. Reply briefs are not permitted.
+
+    (4) The Board must rule on the motion for reconsideration not later than 30 days from the date the opposition brief is due. If the Board denies the motion, the decision issued under paragraph (i) of this section becomes the final decision of the Secretary on the date of service of the ruling. If the Board grants the motion, the Board will issue a reconsidered decision, after such procedures as the Board determines necessary to address the effect of any error. The Board's decision on reconsideration becomes the final decision of the Secretary on the date of service of the decision, except with respect to a decision to remand to the ALJ.
+
+    (5) If service of a ruling or decision issued under this section is by mail, the date of service will be deemed to be 5 days from the date of mailing.
+
+    (k)(1) A respondent's petition for judicial review must be filed within 60 days of the date on which the decision of the Board becomes the final decision of the Secretary under paragraph (j) of this section.
+
+    (2) In compliance with 28 U.S.C. 2112(a), a copy of any petition for judicial review filed in any U.S. Court of Appeals challenging the final decision of the Secretary must be sent by certified mail, return receipt requested, to the General Counsel of HHS. The petition copy must be a copy showing that it has been time-stamped by the clerk of the court when the original was filed with the court.
+
+    (3) If the General Counsel of HHS received two or more petitions within 10 days after the final decision of the Secretary, the General Counsel will notify the U.S. Judicial Panel on Multidistrict Litigation of any petitions that were received within the 10 day period.
+
+    [[71 FR 8428, Feb. 16, 2006, as amended at 78 FR 34266, June 7, 2013]]
+
+
+  § 160.550 Stay of the Secretary's decision.
+  -------------------------------------------
+
+    (a) Pending judicial review, the respondent may file a request for stay of the effective date of any penalty with the ALJ. The request must be accompanied by a copy of the notice of appeal filed with the Federal court. The filing of the request automatically stays the effective date of the penalty until such time as the ALJ rules upon the request.
+
+    (b) The ALJ may not grant a respondent's request for stay of any penalty unless the respondent posts a bond or provides other adequate security.
+
+    (c) The ALJ must rule upon a respondent's request for stay within 10 days of receipt.
+
+
+  § 160.552 Harmless error.
+  -------------------------
+
+    No error in either the admission or the exclusion of evidence, and no error or defect in any ruling or order or in any act done or omitted by the ALJ or by any of the parties is ground for vacating, modifying or otherwise disturbing an otherwise appropriate ruling or order or act, unless refusal to take such action appears to the ALJ or the Board inconsistent with substantial justice. The ALJ and the Board at every stage of the proceeding must disregard any error or defect in the proceeding that does not affect the substantial rights of the parties.

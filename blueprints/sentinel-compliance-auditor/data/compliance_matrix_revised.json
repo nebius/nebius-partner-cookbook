@@ -1,0 +1,4219 @@
+[
+  {
+    "sop_id": "SOP-AIML-001",
+    "title": "Model Development Lifecycle",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification",
+      "No post-market monitoring plan as required by Article 72"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-001",
+    "title": "Model Development Lifecycle",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-001",
+    "title": "Model Development Lifecycle",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SR 11-7",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Independent model validation entirely absent",
+      "No model performance monitoring or back-testing procedures",
+      "Missing model documentation standards \u2014 no model cards or technical specs"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-002",
+    "title": "Training Data Management and Curation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Human oversight procedures exist but do not specify override mechanisms per Article 14",
+      "Transparency requirements are addressed generically without referencing Article 13 specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-002",
+    "title": "Training Data Management and Curation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "MEASURE function has some metrics but lacks systematic bias and fairness testing",
+      "MANAGE function described at high level without specific mitigation procedures"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-002",
+    "title": "Training Data Management and Curation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)",
+      "No documented lawful basis for any processing activity",
+      "Consent mechanisms missing \u2014 no opt-in, withdrawal, or records"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-002",
+    "title": "Training Data Management and Curation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Business Associate Agreements mentioned but no BAA inventory or review cycle",
+      "Audit controls referenced but logging granularity and retention unspecified"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-003",
+    "title": "Model Training and Hyperparameter Optimization",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Human oversight procedures exist but do not specify override mechanisms per Article 14",
+      "Transparency requirements are addressed generically without referencing Article 13 specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-003",
+    "title": "Model Training and Hyperparameter Optimization",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "GOVERN function absent \u2014 no AI governance body or accountability structure",
+      "No AI risk management framework adopted or referenced",
+      "AI system inventory does not exist \u2014 no mapping of AI to organizational risk"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-004",
+    "title": "Model Versioning and Registry Management",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Transparency requirements are addressed generically without referencing Article 13 specifics",
+      "Technical documentation exists but does not cover all Annex IV requirements"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-004",
+    "title": "Model Versioning and Registry Management",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Validation mentioned but not independent from development team",
+      "Model documentation exists but does not include limitations and assumptions"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-004",
+    "title": "Model Versioning and Registry Management",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-005",
+    "title": "Feature Engineering and Feature Store Operations",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No AI risk management framework adopted or referenced",
+      "AI system inventory does not exist \u2014 no mapping of AI to organizational risk",
+      "No bias, fairness, or equity testing methodology for AI systems"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-005",
+    "title": "Feature Engineering and Feature Store Operations",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Model inventory exists but lacks risk-tiering methodology",
+      "Validation mentioned but not independent from development team"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-006",
+    "title": "Model Performance Monitoring",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Transparency requirements are addressed generically without referencing Article 13 specifics",
+      "Technical documentation exists but does not cover all Annex IV requirements"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-006",
+    "title": "Model Performance Monitoring",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SR 11-7",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No escalation path for model risk findings to board/senior management",
+      "Challenger models not required or used for high-impact decisions",
+      "No model risk management framework or model inventory"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-006",
+    "title": "Model Performance Monitoring",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "MANAGE function described at high level without specific mitigation procedures",
+      "Stakeholder engagement mentioned but no structured feedback mechanisms"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-007",
+    "title": "Model Retraining and Continuous Learning",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Technical documentation exists but does not cover all Annex IV requirements",
+      "Quality management system references are vague and not linked to Article 17"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-007",
+    "title": "Model Retraining and Continuous Learning",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Validation mentioned but not independent from development team",
+      "Model documentation exists but does not include limitations and assumptions"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-007",
+    "title": "Model Retraining and Continuous Learning",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-008",
+    "title": "AI System Risk Classification",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-008",
+    "title": "AI System Risk Classification",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "AI risk categories referenced but GOVERN function not fully operationalized",
+      "MAP function partially addressed \u2014 not all AI systems inventoried with risk profiles"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-009",
+    "title": "Algorithmic Bias Detection and Mitigation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No AI system risk classification or conformity assessment procedure",
+      "Missing fundamental rights impact assessment for high-risk AI systems",
+      "No provisions for AI system registration in the EU database per Article 49"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-009",
+    "title": "Algorithmic Bias Detection and Mitigation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No structured approach to AI trustworthiness (reliability, safety, accountability)",
+      "GOVERN function absent \u2014 no AI governance body or accountability structure",
+      "No AI risk management framework adopted or referenced"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-009",
+    "title": "Algorithmic Bias Detection and Mitigation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Privacy notices exist but lack the specificity required by Articles 13-14",
+      "Lawful basis for processing mentioned but not documented per processing activity"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-010",
+    "title": "Explainability and Interpretability Standards",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Human oversight mechanisms entirely absent despite high-risk classification",
+      "No post-market monitoring plan as required by Article 72",
+      "Missing data governance requirements for training data per Article 10"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-010",
+    "title": "Explainability and Interpretability Standards",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-010",
+    "title": "Explainability and Interpretability Standards",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-010",
+    "title": "Explainability and Interpretability Standards",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Privacy notices exist but lack the specificity required by Articles 13-14",
+      "Lawful basis for processing mentioned but not documented per processing activity"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-011",
+    "title": "ML Pipeline Orchestration",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-011",
+    "title": "ML Pipeline Orchestration",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-012",
+    "title": "GPU and Compute Resource Management",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-013",
+    "title": "Experiment Tracking and Reproducibility",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing fundamental rights impact assessment for high-risk AI systems",
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-013",
+    "title": "Experiment Tracking and Reproducibility",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing AI impact assessment process",
+      "No structured approach to AI trustworthiness (reliability, safety, accountability)",
+      "GOVERN function absent \u2014 no AI governance body or accountability structure"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-013",
+    "title": "Experiment Tracking and Reproducibility",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Model documentation exists but does not include limitations and assumptions",
+      "Ongoing monitoring referenced but performance thresholds not defined"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-014",
+    "title": "Model Documentation and Model Cards",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No AI system risk classification or conformity assessment procedure",
+      "Missing fundamental rights impact assessment for high-risk AI systems",
+      "No provisions for AI system registration in the EU database per Article 49"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-014",
+    "title": "Model Documentation and Model Cards",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No structured approach to AI trustworthiness (reliability, safety, accountability)",
+      "GOVERN function absent \u2014 no AI governance body or accountability structure",
+      "No AI risk management framework adopted or referenced"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-014",
+    "title": "Model Documentation and Model Cards",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-015",
+    "title": "Foundation Model and Transfer Learning Usage",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-015",
+    "title": "Foundation Model and Transfer Learning Usage",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-016",
+    "title": "Synthetic Data Generation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-016",
+    "title": "Synthetic Data Generation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No documented minimum necessary policies for PHI access",
+      "Business Associate oversight completely absent",
+      "No individual rights procedures (access, amendment, accounting of disclosures)"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-016",
+    "title": "Synthetic Data Generation",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "AI system inventory does not exist \u2014 no mapping of AI to organizational risk",
+      "No bias, fairness, or equity testing methodology for AI systems",
+      "Missing AI impact assessment process"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-017",
+    "title": "Model Compression and Optimization",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-017",
+    "title": "Model Compression and Optimization",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "AI system inventory does not exist \u2014 no mapping of AI to organizational risk",
+      "No bias, fairness, or equity testing methodology for AI systems",
+      "Missing AI impact assessment process"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-018",
+    "title": "Model Serving and Inference Infrastructure",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined",
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-018",
+    "title": "Model Serving and Inference Infrastructure",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification",
+      "No post-market monitoring plan as required by Article 72"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-019",
+    "title": "A/B Testing and Canary Releases for Models",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-AIML-019",
+    "title": "A/B Testing and Canary Releases for Models",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "MANAGE function described at high level without specific mitigation procedures",
+      "Stakeholder engagement mentioned but no structured feedback mechanisms"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-020",
+    "title": "AI Safety and Alignment Testing",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Human oversight mechanisms entirely absent despite high-risk classification",
+      "No post-market monitoring plan as required by Article 72",
+      "Missing data governance requirements for training data per Article 10"
+    ]
+  },
+  {
+    "sop_id": "SOP-AIML-020",
+    "title": "AI Safety and Alignment Testing",
+    "business_unit": "AI/ML Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Stakeholder engagement mentioned but no structured feedback mechanisms",
+      "AI risk categories referenced but GOVERN function not fully operationalized"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-001",
+    "title": "Clinical Decision Support System Validation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Technical documentation exists but does not cover all Annex IV requirements",
+      "Quality management system references are vague and not linked to Article 17"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-001",
+    "title": "Clinical Decision Support System Validation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-001",
+    "title": "Clinical Decision Support System Validation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "MAP function partially addressed \u2014 not all AI systems inventoried with risk profiles",
+      "MEASURE function has some metrics but lacks systematic bias and fairness testing"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-002",
+    "title": "Medical Device Software Classification",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Human oversight procedures exist but do not specify override mechanisms per Article 14",
+      "Transparency requirements are addressed generically without referencing Article 13 specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-003",
+    "title": "Clinical Trial Data Integration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-003",
+    "title": "Clinical Trial Data Integration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-004",
+    "title": "Patient Risk Scoring Algorithms",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Quality management system references are vague and not linked to Article 17",
+      "Risk classification is mentioned but lacks formal methodology per Article 6/Annex III"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-004",
+    "title": "Patient Risk Scoring Algorithms",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Audit controls referenced but logging granularity and retention unspecified",
+      "Access controls mentioned but minimum necessary standard not operationalized"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-004",
+    "title": "Patient Risk Scoring Algorithms",
+    "business_unit": "Clinical AI Products",
+    "regulation": "SR 11-7",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing model documentation standards \u2014 no model cards or technical specs",
+      "No escalation path for model risk findings to board/senior management",
+      "Challenger models not required or used for high-impact decisions"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-004",
+    "title": "Patient Risk Scoring Algorithms",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-005",
+    "title": "Diagnostic AI Accuracy and Calibration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Risk classification is mentioned but lacks formal methodology per Article 6/Annex III",
+      "Human oversight procedures exist but do not specify override mechanisms per Article 14"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-005",
+    "title": "Diagnostic AI Accuracy and Calibration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No AI risk management framework adopted or referenced",
+      "AI system inventory does not exist \u2014 no mapping of AI to organizational risk",
+      "No bias, fairness, or equity testing methodology for AI systems"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-006",
+    "title": "Clinical AI Human Override Procedures",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Human oversight procedures exist but do not specify override mechanisms per Article 14",
+      "Transparency requirements are addressed generically without referencing Article 13 specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-006",
+    "title": "Clinical AI Human Override Procedures",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-006",
+    "title": "Clinical AI Human Override Procedures",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-007",
+    "title": "Adverse Event Detection and Reporting",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-007",
+    "title": "Adverse Event Detection and Reporting",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414",
+      "No documented minimum necessary policies for PHI access",
+      "Business Associate oversight completely absent"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-008",
+    "title": "Electronic Health Record Integration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "PHI handling procedures exist but workforce training is only annual, not role-based",
+      "Business Associate Agreements mentioned but no BAA inventory or review cycle"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-008",
+    "title": "Electronic Health Record Integration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Missing data classification scheme linked to confidentiality controls",
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-009",
+    "title": "Clinical Workflow Automation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-009",
+    "title": "Clinical Workflow Automation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-009",
+    "title": "Clinical Workflow Automation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "AI risk categories referenced but GOVERN function not fully operationalized",
+      "MAP function partially addressed \u2014 not all AI systems inventoried with risk profiles"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-010",
+    "title": "Medical Imaging AI Pipeline",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Human oversight mechanisms entirely absent despite high-risk classification",
+      "No post-market monitoring plan as required by Article 72",
+      "Missing data governance requirements for training data per Article 10"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-010",
+    "title": "Medical Imaging AI Pipeline",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Business Associate Agreements mentioned but no BAA inventory or review cycle",
+      "Audit controls referenced but logging granularity and retention unspecified"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-010",
+    "title": "Medical Imaging AI Pipeline",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No AI risk management framework adopted or referenced",
+      "AI system inventory does not exist \u2014 no mapping of AI to organizational risk",
+      "No bias, fairness, or equity testing methodology for AI systems"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-011",
+    "title": "Drug Interaction Checking System",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-011",
+    "title": "Drug Interaction Checking System",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-012",
+    "title": "Clinical AI Output Documentation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-012",
+    "title": "Clinical AI Output Documentation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-012",
+    "title": "Clinical AI Output Documentation",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-013",
+    "title": "Patient Safety Monitoring",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-013",
+    "title": "Patient Safety Monitoring",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414",
+      "No documented minimum necessary policies for PHI access"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-014",
+    "title": "Clinical AI Feedback Loop Management",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-014",
+    "title": "Clinical AI Feedback Loop Management",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "MAP function partially addressed \u2014 not all AI systems inventoried with risk profiles",
+      "MEASURE function has some metrics but lacks systematic bias and fairness testing"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-015",
+    "title": "Regulatory Submission for AI Medical Devices",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Risk classification is mentioned but lacks formal methodology per Article 6/Annex III",
+      "Human oversight procedures exist but do not specify override mechanisms per Article 14"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-016",
+    "title": "Clinical Validation Study Design",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Technical documentation exists but does not cover all Annex IV requirements",
+      "Quality management system references are vague and not linked to Article 17"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-016",
+    "title": "Clinical Validation Study Design",
+    "business_unit": "Clinical AI Products",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-CLIN-017",
+    "title": "Post-Market Surveillance for AI Products",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing data governance requirements for training data per Article 10",
+      "No AI system risk classification or conformity assessment procedure",
+      "Missing fundamental rights impact assessment for high-risk AI systems"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-017",
+    "title": "Post-Market Surveillance for AI Products",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-018",
+    "title": "Clinical AI Labeling and Instructions for Use",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing data governance requirements for training data per Article 10",
+      "No AI system risk classification or conformity assessment procedure",
+      "Missing fundamental rights impact assessment for high-risk AI systems"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-019",
+    "title": "Clinical Data De-identification",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-019",
+    "title": "Clinical Data De-identification",
+    "business_unit": "Clinical AI Products",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Lawful basis for processing mentioned but not documented per processing activity",
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-020",
+    "title": "Telehealth AI Integration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-020",
+    "title": "Telehealth AI Integration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Quality management system references are vague and not linked to Article 17",
+      "Risk classification is mentioned but lacks formal methodology per Article 6/Annex III"
+    ]
+  },
+  {
+    "sop_id": "SOP-CLIN-020",
+    "title": "Telehealth AI Integration",
+    "business_unit": "Clinical AI Products",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing",
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-001",
+    "title": "Data Classification and Labeling",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Privacy notices exist but lack the specificity required by Articles 13-14",
+      "Lawful basis for processing mentioned but not documented per processing activity"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-001",
+    "title": "Data Classification and Labeling",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-001",
+    "title": "Data Classification and Labeling",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-002",
+    "title": "Data Retention and Disposal",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-002",
+    "title": "Data Retention and Disposal",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-002",
+    "title": "Data Retention and Disposal",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-003",
+    "title": "Data Quality Management",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification",
+      "No post-market monitoring plan as required by Article 72"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-003",
+    "title": "Data Quality Management",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing AI impact assessment process",
+      "No structured approach to AI trustworthiness (reliability, safety, accountability)",
+      "GOVERN function absent \u2014 no AI governance body or accountability structure"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-004",
+    "title": "Data Catalog and Metadata Management",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague",
+      "DPIA process described but threshold criteria for triggering a DPIA are missing"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-004",
+    "title": "Data Catalog and Metadata Management",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed",
+      "No penetration testing program or vulnerability scanning schedule",
+      "Vendor/third-party risk assessment process entirely absent"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-005",
+    "title": "Data Access Control and Authorization",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-005",
+    "title": "Data Access Control and Authorization",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-005",
+    "title": "Data Access Control and Authorization",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-006",
+    "title": "Data Protection Impact Assessment",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Consent mechanisms missing \u2014 no opt-in, withdrawal, or records",
+      "No Record of Processing Activities (Article 30) maintained",
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-006",
+    "title": "Data Protection Impact Assessment",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-007",
+    "title": "Data Subject Rights Management",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Lawful basis for processing mentioned but not documented per processing activity",
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-007",
+    "title": "Data Subject Rights Management",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Business Associate Agreements mentioned but no BAA inventory or review cycle",
+      "Audit controls referenced but logging granularity and retention unspecified"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-008",
+    "title": "Consent Management",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing",
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-008",
+    "title": "Consent Management",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Business Associate Agreements mentioned but no BAA inventory or review cycle",
+      "Audit controls referenced but logging granularity and retention unspecified"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-009",
+    "title": "Cross-Border Data Transfer",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague",
+      "DPIA process described but threshold criteria for triggering a DPIA are missing"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-010",
+    "title": "Data Breach Response and Notification",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-010",
+    "title": "Data Breach Response and Notification",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No individual rights procedures (access, amendment, accounting of disclosures)",
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-010",
+    "title": "Data Breach Response and Notification",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Change management exists but lacks segregation of duties for approvals",
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-011",
+    "title": "Data Lineage Tracking",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Transparency requirements are addressed generically without referencing Article 13 specifics",
+      "Technical documentation exists but does not cover all Annex IV requirements"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-011",
+    "title": "Data Lineage Tracking",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-011",
+    "title": "Data Lineage Tracking",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-012",
+    "title": "Data Sharing Agreements",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-012",
+    "title": "Data Sharing Agreements",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-013",
+    "title": "Record of Processing Activities",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-014",
+    "title": "Anonymization and Pseudonymization",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague",
+      "DPIA process described but threshold criteria for triggering a DPIA are missing"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-014",
+    "title": "Anonymization and Pseudonymization",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-015",
+    "title": "Third-Party Data Processor Oversight",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "International transfers acknowledged but Standard Contractual Clauses not referenced",
+      "Privacy notices exist but lack the specificity required by Articles 13-14"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-015",
+    "title": "Third-Party Data Processor Oversight",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-015",
+    "title": "Third-Party Data Processor Oversight",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Incident response plan exists but tabletop exercises are not scheduled",
+      "Change management exists but lacks segregation of duties for approvals"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-016",
+    "title": "Data Minimization Standards",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "International transfers acknowledged but Standard Contractual Clauses not referenced",
+      "Privacy notices exist but lack the specificity required by Articles 13-14"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-016",
+    "title": "Data Minimization Standards",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-017",
+    "title": "Privacy by Design and Default",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-017",
+    "title": "Privacy by Design and Default",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing fundamental rights impact assessment for high-risk AI systems",
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-018",
+    "title": "Cookie and Online Tracking Consent",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-DGP-019",
+    "title": "Children's Data Protection",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No Record of Processing Activities (Article 30) maintained",
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-019",
+    "title": "Children's Data Protection",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "PHI handling procedures exist but workforce training is only annual, not role-based",
+      "Business Associate Agreements mentioned but no BAA inventory or review cycle"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-020",
+    "title": "Data Protection Officer Responsibilities",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No documented lawful basis for any processing activity",
+      "Consent mechanisms missing \u2014 no opt-in, withdrawal, or records",
+      "No Record of Processing Activities (Article 30) maintained"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-021",
+    "title": "Lawful Basis Determination",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing",
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-022",
+    "title": "Automated Decision-Making Transparency",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No documented lawful basis for any processing activity",
+      "Consent mechanisms missing \u2014 no opt-in, withdrawal, or records",
+      "No Record of Processing Activities (Article 30) maintained"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-022",
+    "title": "Automated Decision-Making Transparency",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing fundamental rights impact assessment for high-risk AI systems",
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification"
+    ]
+  },
+  {
+    "sop_id": "SOP-DGP-022",
+    "title": "Automated Decision-Making Transparency",
+    "business_unit": "Data Governance & Privacy",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-001",
+    "title": "Credit Scoring Model Governance",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Ongoing monitoring referenced but performance thresholds not defined",
+      "Governance structure mentioned but roles of model owner vs. validator not delineated"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-001",
+    "title": "Credit Scoring Model Governance",
+    "business_unit": "Financial Services",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-001",
+    "title": "Credit Scoring Model Governance",
+    "business_unit": "Financial Services",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "AI risk categories referenced but GOVERN function not fully operationalized",
+      "MAP function partially addressed \u2014 not all AI systems inventoried with risk profiles"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-002",
+    "title": "Fraud Detection System Operations",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Governance structure mentioned but roles of model owner vs. validator not delineated",
+      "Model inventory exists but lacks risk-tiering methodology"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-002",
+    "title": "Fraud Detection System Operations",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-002",
+    "title": "Fraud Detection System Operations",
+    "business_unit": "Financial Services",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-003",
+    "title": "Payment Processing Controls",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-004",
+    "title": "Anti-Money Laundering Procedures",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-004",
+    "title": "Anti-Money Laundering Procedures",
+    "business_unit": "Financial Services",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-005",
+    "title": "Know Your Customer Verification",
+    "business_unit": "Financial Services",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-005",
+    "title": "Know Your Customer Verification",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-006",
+    "title": "Lending Decision Documentation",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-006",
+    "title": "Lending Decision Documentation",
+    "business_unit": "Financial Services",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-006",
+    "title": "Lending Decision Documentation",
+    "business_unit": "Financial Services",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Privacy notices exist but lack the specificity required by Articles 13-14",
+      "Lawful basis for processing mentioned but not documented per processing activity"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-007",
+    "title": "Financial Model Validation",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Challenger models not required or used for high-impact decisions",
+      "No model risk management framework or model inventory",
+      "Independent model validation entirely absent"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-008",
+    "title": "Market Risk Assessment",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Governance structure mentioned but roles of model owner vs. validator not delineated",
+      "Model inventory exists but lacks risk-tiering methodology"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-008",
+    "title": "Market Risk Assessment",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-009",
+    "title": "Operational Risk Management",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Model documentation exists but does not include limitations and assumptions",
+      "Ongoing monitoring referenced but performance thresholds not defined"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-009",
+    "title": "Operational Risk Management",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined",
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-010",
+    "title": "Regulatory Capital Reporting",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-011",
+    "title": "Interest Rate Risk Management",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-012",
+    "title": "Collections and Recovery Procedures",
+    "business_unit": "Financial Services",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-012",
+    "title": "Collections and Recovery Procedures",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-013",
+    "title": "Financial Data Reconciliation",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-014",
+    "title": "Third-Party Payment Provider Management",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls",
+      "No formal change management process \u2014 changes deployed without approval workflows"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-014",
+    "title": "Third-Party Payment Provider Management",
+    "business_unit": "Financial Services",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No Record of Processing Activities (Article 30) maintained",
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-015",
+    "title": "Transaction Monitoring and Alerts",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-015",
+    "title": "Transaction Monitoring and Alerts",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-016",
+    "title": "Financial Reporting and Disclosure",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-017",
+    "title": "Customer Complaint Handling \u2014 Financial Products",
+    "business_unit": "Financial Services",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "International transfers acknowledged but Standard Contractual Clauses not referenced",
+      "Privacy notices exist but lack the specificity required by Articles 13-14"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-017",
+    "title": "Customer Complaint Handling \u2014 Financial Products",
+    "business_unit": "Financial Services",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-018",
+    "title": "Credit Risk Model Back-Testing",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-018",
+    "title": "Credit Risk Model Back-Testing",
+    "business_unit": "Financial Services",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "AI risk categories referenced but GOVERN function not fully operationalized",
+      "MAP function partially addressed \u2014 not all AI systems inventoried with risk profiles"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-019",
+    "title": "Stress Testing Procedures",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Challenger models not required or used for high-impact decisions",
+      "No model risk management framework or model inventory",
+      "Independent model validation entirely absent"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-020",
+    "title": "Fair Lending Compliance",
+    "business_unit": "Financial Services",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Ongoing monitoring referenced but performance thresholds not defined",
+      "Governance structure mentioned but roles of model owner vs. validator not delineated"
+    ]
+  },
+  {
+    "sop_id": "SOP-FIN-020",
+    "title": "Fair Lending Compliance",
+    "business_unit": "Financial Services",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-FIN-020",
+    "title": "Fair Lending Compliance",
+    "business_unit": "Financial Services",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-001",
+    "title": "Information Security Policy Framework",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-001",
+    "title": "Information Security Policy Framework",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-001",
+    "title": "Information Security Policy Framework",
+    "business_unit": "Information Security",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)",
+      "No documented lawful basis for any processing activity",
+      "Consent mechanisms missing \u2014 no opt-in, withdrawal, or records"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-002",
+    "title": "Access Control and Identity Management",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-002",
+    "title": "Access Control and Identity Management",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-002",
+    "title": "Access Control and Identity Management",
+    "business_unit": "Information Security",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-003",
+    "title": "Network Security and Segmentation",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-003",
+    "title": "Network Security and Segmentation",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Business Associate oversight completely absent",
+      "No individual rights procedures (access, amendment, accounting of disclosures)",
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-004",
+    "title": "Endpoint Protection and Management",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-004",
+    "title": "Endpoint Protection and Management",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "PHI handling procedures exist but workforce training is only annual, not role-based",
+      "Business Associate Agreements mentioned but no BAA inventory or review cycle"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-005",
+    "title": "Vulnerability Management and Patching",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-005",
+    "title": "Vulnerability Management and Patching",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-006",
+    "title": "Security Incident Response",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed",
+      "No penetration testing program or vulnerability scanning schedule"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-006",
+    "title": "Security Incident Response",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-006",
+    "title": "Security Incident Response",
+    "business_unit": "Information Security",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Privacy notices exist but lack the specificity required by Articles 13-14",
+      "Lawful basis for processing mentioned but not documented per processing activity"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-007",
+    "title": "Security Awareness Training",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-007",
+    "title": "Security Awareness Training",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-008",
+    "title": "Cryptographic Controls and Key Management",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Missing data classification scheme linked to confidentiality controls",
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-008",
+    "title": "Cryptographic Controls and Key Management",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-008",
+    "title": "Cryptographic Controls and Key Management",
+    "business_unit": "Information Security",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No documented lawful basis for any processing activity",
+      "Consent mechanisms missing \u2014 no opt-in, withdrawal, or records",
+      "No Record of Processing Activities (Article 30) maintained"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-009",
+    "title": "Cloud Security Standards",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-009",
+    "title": "Cloud Security Standards",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-010",
+    "title": "Application Security Testing",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-010",
+    "title": "Application Security Testing",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Audit controls referenced but logging granularity and retention unspecified",
+      "Access controls mentioned but minimum necessary standard not operationalized"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-011",
+    "title": "Third-Party Security Assessment",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-011",
+    "title": "Third-Party Security Assessment",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Audit controls referenced but logging granularity and retention unspecified",
+      "Access controls mentioned but minimum necessary standard not operationalized"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-011",
+    "title": "Third-Party Security Assessment",
+    "business_unit": "Information Security",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-012",
+    "title": "Security Logging and Monitoring",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-012",
+    "title": "Security Logging and Monitoring",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-013",
+    "title": "Physical Security Controls",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-013",
+    "title": "Physical Security Controls",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Audit controls referenced but logging granularity and retention unspecified",
+      "Access controls mentioned but minimum necessary standard not operationalized"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-014",
+    "title": "Mobile Device Management",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-014",
+    "title": "Mobile Device Management",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No documented minimum necessary policies for PHI access",
+      "Business Associate oversight completely absent",
+      "No individual rights procedures (access, amendment, accounting of disclosures)"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-015",
+    "title": "Data Loss Prevention",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-015",
+    "title": "Data Loss Prevention",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-015",
+    "title": "Data Loss Prevention",
+    "business_unit": "Information Security",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague",
+      "DPIA process described but threshold criteria for triggering a DPIA are missing"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-016",
+    "title": "Penetration Testing Program",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-016",
+    "title": "Penetration Testing Program",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Audit controls referenced but logging granularity and retention unspecified",
+      "Access controls mentioned but minimum necessary standard not operationalized"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-017",
+    "title": "Security Architecture Review",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": [
+      "Change management exists but lacks segregation of duties for approvals",
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-018",
+    "title": "Zero Trust Network Architecture",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-018",
+    "title": "Zero Trust Network Architecture",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-019",
+    "title": "Privileged Access Management",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined",
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-019",
+    "title": "Privileged Access Management",
+    "business_unit": "Information Security",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-020",
+    "title": "Business Email Compromise Prevention",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-021",
+    "title": "Supply Chain Security",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-ISEC-021",
+    "title": "Supply Chain Security",
+    "business_unit": "Information Security",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ISEC-022",
+    "title": "Security Metrics and Reporting",
+    "business_unit": "Information Security",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-001",
+    "title": "Change Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-001",
+    "title": "Change Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-002",
+    "title": "Incident Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-002",
+    "title": "Incident Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Audit controls referenced but logging granularity and retention unspecified",
+      "Access controls mentioned but minimum necessary standard not operationalized"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-003",
+    "title": "Problem Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined",
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-004",
+    "title": "Configuration Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-004",
+    "title": "Configuration Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-005",
+    "title": "Capacity Planning and Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Incident response plan exists but tabletop exercises are not scheduled",
+      "Change management exists but lacks segregation of duties for approvals"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-006",
+    "title": "Disaster Recovery",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-006",
+    "title": "Disaster Recovery",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Audit controls referenced but logging granularity and retention unspecified",
+      "Access controls mentioned but minimum necessary standard not operationalized"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-007",
+    "title": "Business Continuity Planning",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-007",
+    "title": "Business Continuity Planning",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414",
+      "No documented minimum necessary policies for PHI access"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-008",
+    "title": "Backup and Restoration",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Incident response plan exists but tabletop exercises are not scheduled",
+      "Change management exists but lacks segregation of duties for approvals"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-008",
+    "title": "Backup and Restoration",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-009",
+    "title": "System Availability Monitoring",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-010",
+    "title": "Cloud Infrastructure Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-010",
+    "title": "Cloud Infrastructure Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414",
+      "No documented minimum necessary policies for PHI access"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-011",
+    "title": "Database Administration",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-011",
+    "title": "Database Administration",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-012",
+    "title": "Release Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-013",
+    "title": "Service Level Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Change management exists but lacks segregation of duties for approvals",
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-014",
+    "title": "IT Asset Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined",
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-014",
+    "title": "IT Asset Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-015",
+    "title": "Network Operations",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Change management exists but lacks segregation of duties for approvals",
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-016",
+    "title": "Server Provisioning and Decommissioning",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-016",
+    "title": "Server Provisioning and Decommissioning",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-017",
+    "title": "Environment Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-017",
+    "title": "Environment Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-018",
+    "title": "Infrastructure as Code Standards",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed",
+      "No penetration testing program or vulnerability scanning schedule"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-019",
+    "title": "Log Management and Retention",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-ITOP-019",
+    "title": "Log Management and Retention",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-ITOP-020",
+    "title": "DNS and Certificate Management",
+    "business_unit": "IT Operations & Infrastructure",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-001",
+    "title": "Employee Onboarding and Access Provisioning",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-001",
+    "title": "Employee Onboarding and Access Provisioning",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414",
+      "No documented minimum necessary policies for PHI access"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-002",
+    "title": "Background Check and Screening",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague",
+      "DPIA process described but threshold criteria for triggering a DPIA are missing"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-002",
+    "title": "Background Check and Screening",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-002",
+    "title": "Background Check and Screening",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-003",
+    "title": "Security Clearance Management",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-003",
+    "title": "Security Clearance Management",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-004",
+    "title": "Employee Termination and Offboarding",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-004",
+    "title": "Employee Termination and Offboarding",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-004",
+    "title": "Employee Termination and Offboarding",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-005",
+    "title": "Acceptable Use Policy",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-005",
+    "title": "Acceptable Use Policy",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-006",
+    "title": "Remote Work and BYOD Policy",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-006",
+    "title": "Remote Work and BYOD Policy",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-006",
+    "title": "Remote Work and BYOD Policy",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-007",
+    "title": "Employee Data Privacy",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-007",
+    "title": "Employee Data Privacy",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-008",
+    "title": "Mandatory Compliance Training",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-008",
+    "title": "Mandatory Compliance Training",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-008",
+    "title": "Mandatory Compliance Training",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "International transfers acknowledged but Standard Contractual Clauses not referenced",
+      "Privacy notices exist but lack the specificity required by Articles 13-14"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-008",
+    "title": "Mandatory Compliance Training",
+    "business_unit": "Human Resources",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-009",
+    "title": "Code of Ethics and Conduct",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-010",
+    "title": "Whistleblower Protection",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-010",
+    "title": "Whistleblower Protection",
+    "business_unit": "Human Resources",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing fundamental rights impact assessment for high-risk AI systems",
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-011",
+    "title": "Conflict of Interest Disclosure",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls",
+      "No formal change management process \u2014 changes deployed without approval workflows"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-012",
+    "title": "AI Ethics Committee Governance",
+    "business_unit": "Human Resources",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-012",
+    "title": "AI Ethics Committee Governance",
+    "business_unit": "Human Resources",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "GOVERN function absent \u2014 no AI governance body or accountability structure",
+      "No AI risk management framework adopted or referenced",
+      "AI system inventory does not exist \u2014 no mapping of AI to organizational risk"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-013",
+    "title": "Diversity, Equity, and Non-Discrimination",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Lawful basis for processing mentioned but not documented per processing activity",
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-013",
+    "title": "Diversity, Equity, and Non-Discrimination",
+    "business_unit": "Human Resources",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Technical documentation exists but does not cover all Annex IV requirements",
+      "Quality management system references are vague and not linked to Article 17"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-014",
+    "title": "Workplace Health and Safety",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined",
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-015",
+    "title": "Performance Review and Documentation",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague",
+      "DPIA process described but threshold criteria for triggering a DPIA are missing"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-016",
+    "title": "Contractor and Temporary Staff Management",
+    "business_unit": "Human Resources",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-016",
+    "title": "Contractor and Temporary Staff Management",
+    "business_unit": "Human Resources",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-016",
+    "title": "Contractor and Temporary Staff Management",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Privacy notices exist but lack the specificity required by Articles 13-14",
+      "Lawful basis for processing mentioned but not documented per processing activity"
+    ]
+  },
+  {
+    "sop_id": "SOP-HR-017",
+    "title": "Employee Data Subject Access Requests",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-018",
+    "title": "AI-Assisted HR Decision Making",
+    "business_unit": "Human Resources",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-018",
+    "title": "AI-Assisted HR Decision Making",
+    "business_unit": "Human Resources",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-HR-018",
+    "title": "AI-Assisted HR Decision Making",
+    "business_unit": "Human Resources",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No AI risk management framework adopted or referenced",
+      "AI system inventory does not exist \u2014 no mapping of AI to organizational risk",
+      "No bias, fairness, or equity testing methodology for AI systems"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-001",
+    "title": "Regulatory Change Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-001",
+    "title": "Regulatory Change Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-001",
+    "title": "Regulatory Change Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls",
+      "No formal change management process \u2014 changes deployed without approval workflows"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-001",
+    "title": "Regulatory Change Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "International transfers acknowledged but Standard Contractual Clauses not referenced",
+      "Privacy notices exist but lack the specificity required by Articles 13-14"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-001",
+    "title": "Regulatory Change Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-001",
+    "title": "Regulatory Change Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "MEASURE function has some metrics but lacks systematic bias and fairness testing",
+      "MANAGE function described at high level without specific mitigation procedures"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-002",
+    "title": "Compliance Risk Assessment",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-002",
+    "title": "Compliance Risk Assessment",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Validation mentioned but not independent from development team",
+      "Model documentation exists but does not include limitations and assumptions"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-002",
+    "title": "Compliance Risk Assessment",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Transparency requirements are addressed generically without referencing Article 13 specifics",
+      "Technical documentation exists but does not cover all Annex IV requirements"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-003",
+    "title": "Internal Audit Program",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Missing data classification scheme linked to confidentiality controls",
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-003",
+    "title": "Internal Audit Program",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-003",
+    "title": "Internal Audit Program",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-003",
+    "title": "Internal Audit Program",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SR 11-7",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Independent model validation entirely absent",
+      "No model performance monitoring or back-testing procedures",
+      "Missing model documentation standards \u2014 no model cards or technical specs"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-004",
+    "title": "External Audit Coordination",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-004",
+    "title": "External Audit Coordination",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-005",
+    "title": "Regulatory Filing and Reporting",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414",
+      "No documented minimum necessary policies for PHI access"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-005",
+    "title": "Regulatory Filing and Reporting",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "International transfers acknowledged but Standard Contractual Clauses not referenced",
+      "Privacy notices exist but lack the specificity required by Articles 13-14"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-005",
+    "title": "Regulatory Filing and Reporting",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-006",
+    "title": "Contract Review and Approval",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No documented lawful basis for any processing activity",
+      "Consent mechanisms missing \u2014 no opt-in, withdrawal, or records",
+      "No Record of Processing Activities (Article 30) maintained"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-006",
+    "title": "Contract Review and Approval",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414",
+      "No documented minimum necessary policies for PHI access",
+      "Business Associate oversight completely absent"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-006",
+    "title": "Contract Review and Approval",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed",
+      "No penetration testing program or vulnerability scanning schedule",
+      "Vendor/third-party risk assessment process entirely absent"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-007",
+    "title": "Intellectual Property Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification",
+      "No post-market monitoring plan as required by Article 72"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-008",
+    "title": "Litigation Hold and E-Discovery",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-008",
+    "title": "Litigation Hold and E-Discovery",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-009",
+    "title": "Compliance Training Program",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-009",
+    "title": "Compliance Training Program",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Lawful basis for processing mentioned but not documented per processing activity",
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-009",
+    "title": "Compliance Training Program",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Transparency requirements are addressed generically without referencing Article 13 specifics",
+      "Technical documentation exists but does not cover all Annex IV requirements"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-009",
+    "title": "Compliance Training Program",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Change management exists but lacks segregation of duties for approvals",
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-010",
+    "title": "Policy Lifecycle Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-010",
+    "title": "Policy Lifecycle Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-010",
+    "title": "Policy Lifecycle Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-011",
+    "title": "Regulatory Inquiry Response",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No individual rights procedures (access, amendment, accounting of disclosures)",
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-011",
+    "title": "Regulatory Inquiry Response",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-011",
+    "title": "Regulatory Inquiry Response",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Transparency requirements are addressed generically without referencing Article 13 specifics",
+      "Technical documentation exists but does not cover all Annex IV requirements"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-012",
+    "title": "Board and Committee Governance",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-012",
+    "title": "Board and Committee Governance",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SR 11-7",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-013",
+    "title": "Compliance Monitoring and Testing",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "No penetration testing program or vulnerability scanning schedule",
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-013",
+    "title": "Compliance Monitoring and Testing",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-013",
+    "title": "Compliance Monitoring and Testing",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-013",
+    "title": "Compliance Monitoring and Testing",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SR 11-7",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No model performance monitoring or back-testing procedures",
+      "Missing model documentation standards \u2014 no model cards or technical specs",
+      "No escalation path for model risk findings to board/senior management"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-014",
+    "title": "Sanctions and Export Control",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-015",
+    "title": "Ethics Hotline Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-015",
+    "title": "Ethics Hotline Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-016",
+    "title": "Vendor Compliance Assessment",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "No penetration testing program or vulnerability scanning schedule",
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-016",
+    "title": "Vendor Compliance Assessment",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-016",
+    "title": "Vendor Compliance Assessment",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing",
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-017",
+    "title": "Regulatory Licensing Management",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-018",
+    "title": "Cross-Jurisdictional Compliance Coordination",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-018",
+    "title": "Cross-Jurisdictional Compliance Coordination",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-018",
+    "title": "Cross-Jurisdictional Compliance Coordination",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No individual rights procedures (access, amendment, accounting of disclosures)",
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-019",
+    "title": "AI Regulation Compliance Framework",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No AI system risk classification or conformity assessment procedure",
+      "Missing fundamental rights impact assessment for high-risk AI systems",
+      "No provisions for AI system registration in the EU database per Article 49"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-019",
+    "title": "AI Regulation Compliance Framework",
+    "business_unit": "Legal & Compliance",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-LEGC-019",
+    "title": "AI Regulation Compliance Framework",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Model documentation exists but does not include limitations and assumptions",
+      "Ongoing monitoring referenced but performance thresholds not defined"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-020",
+    "title": "Enforcement Action Response Plan",
+    "business_unit": "Legal & Compliance",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Technical documentation exists but does not cover all Annex IV requirements",
+      "Quality management system references are vague and not linked to Article 17"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-020",
+    "title": "Enforcement Action Response Plan",
+    "business_unit": "Legal & Compliance",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-020",
+    "title": "Enforcement Action Response Plan",
+    "business_unit": "Legal & Compliance",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No Data Protection Impact Assessment process for high-risk processing",
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)",
+      "No documented lawful basis for any processing activity"
+    ]
+  },
+  {
+    "sop_id": "SOP-LEGC-020",
+    "title": "Enforcement Action Response Plan",
+    "business_unit": "Legal & Compliance",
+    "regulation": "SR 11-7",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Ongoing monitoring referenced but performance thresholds not defined",
+      "Governance structure mentioned but roles of model owner vs. validator not delineated"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-001",
+    "title": "Secure Software Development Lifecycle",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Change management exists but lacks segregation of duties for approvals",
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-001",
+    "title": "Secure Software Development Lifecycle",
+    "business_unit": "Product & Engineering",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-001",
+    "title": "Secure Software Development Lifecycle",
+    "business_unit": "Product & Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No provisions for AI system registration in the EU database per Article 49",
+      "Human oversight mechanisms entirely absent despite high-risk classification",
+      "No post-market monitoring plan as required by Article 72"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-002",
+    "title": "Code Review and Approval",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-003",
+    "title": "API Design and Security Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-003",
+    "title": "API Design and Security Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-004",
+    "title": "Software Quality Assurance",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed",
+      "No penetration testing program or vulnerability scanning schedule"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-005",
+    "title": "Performance Testing and Benchmarking",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined",
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-006",
+    "title": "Accessibility Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "DPIA process described but threshold criteria for triggering a DPIA are missing",
+      "International transfers acknowledged but Standard Contractual Clauses not referenced"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-007",
+    "title": "Feature Flag Management",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-008",
+    "title": "Technical Debt Management",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing data classification scheme linked to confidentiality controls",
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-009",
+    "title": "Open Source Software Usage",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Incident response plan exists but tabletop exercises are not scheduled",
+      "Change management exists but lacks segregation of duties for approvals"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-009",
+    "title": "Open Source Software Usage",
+    "business_unit": "Product & Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-010",
+    "title": "Microservices Architecture Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-011",
+    "title": "CI/CD Pipeline Security",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-011",
+    "title": "CI/CD Pipeline Security",
+    "business_unit": "Product & Engineering",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414",
+      "No documented minimum necessary policies for PHI access"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-012",
+    "title": "Software Bill of Materials",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-012",
+    "title": "Software Bill of Materials",
+    "business_unit": "Product & Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Quality management system references are vague and not linked to Article 17",
+      "Risk classification is mentioned but lacks formal methodology per Article 6/Annex III"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-013",
+    "title": "Product Security Incident Response",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-013",
+    "title": "Product Security Incident Response",
+    "business_unit": "Product & Engineering",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-014",
+    "title": "User Acceptance Testing",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed",
+      "No penetration testing program or vulnerability scanning schedule",
+      "Vendor/third-party risk assessment process entirely absent"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-015",
+    "title": "Technical Documentation Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-015",
+    "title": "Technical Documentation Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-016",
+    "title": "Data Migration Procedures",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments",
+      "Missing data classification scheme linked to confidentiality controls"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-016",
+    "title": "Data Migration Procedures",
+    "business_unit": "Product & Engineering",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-017",
+    "title": "Service Deprecation and Sunset",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-017",
+    "title": "Service Deprecation and Sunset",
+    "business_unit": "Product & Engineering",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-018",
+    "title": "API Versioning and Backward Compatibility",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No penetration testing program or vulnerability scanning schedule",
+      "Vendor/third-party risk assessment process entirely absent",
+      "No documented system availability or processing integrity commitments"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-019",
+    "title": "Platform Reliability Engineering",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Availability commitments exist but recovery objectives (RTO/RPO) are not quantified",
+      "Logical access controls described but periodic access reviews not mandated"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-020",
+    "title": "AI Feature Integration Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "EU AI Act",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Quality management system references are vague and not linked to Article 17",
+      "Risk classification is mentioned but lacks formal methodology per Article 6/Annex III"
+    ]
+  },
+  {
+    "sop_id": "SOP-PENG-020",
+    "title": "AI Feature Integration Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-PENG-020",
+    "title": "AI Feature Integration Standards",
+    "business_unit": "Product & Engineering",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-001",
+    "title": "Customer Data Handling",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)",
+      "No documented lawful basis for any processing activity",
+      "Consent mechanisms missing \u2014 no opt-in, withdrawal, or records"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-001",
+    "title": "Customer Data Handling",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-001",
+    "title": "Customer Data Handling",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed",
+      "No penetration testing program or vulnerability scanning schedule"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-002",
+    "title": "Customer Onboarding",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-002",
+    "title": "Customer Onboarding",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Access controls mentioned but minimum necessary standard not operationalized",
+      "Breach notification referenced but lacks the 60-day timeline specifics"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-002",
+    "title": "Customer Onboarding",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Incident response plan exists but tabletop exercises are not scheduled",
+      "Change management exists but lacks segregation of duties for approvals"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-003",
+    "title": "Support Ticket Management",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-004",
+    "title": "Customer Identity Verification",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-004",
+    "title": "Customer Identity Verification",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-004",
+    "title": "Customer Identity Verification",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-005",
+    "title": "Customer Communication Standards",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No individual rights procedures (access, amendment, accounting of disclosures)",
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-005",
+    "title": "Customer Communication Standards",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "International transfers acknowledged but Standard Contractual Clauses not referenced",
+      "Privacy notices exist but lack the specificity required by Articles 13-14"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-006",
+    "title": "Complaint Resolution",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague",
+      "DPIA process described but threshold criteria for triggering a DPIA are missing"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-006",
+    "title": "Complaint Resolution",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-007",
+    "title": "Service Level Agreement Management",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-008",
+    "title": "Customer Data Portability",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Data subject rights procedures exist but response timelines exceed 30 days or are vague",
+      "DPIA process described but threshold criteria for triggering a DPIA are missing"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-009",
+    "title": "Customer Account Termination",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No Record of Processing Activities (Article 30) maintained",
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-009",
+    "title": "Customer Account Termination",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-010",
+    "title": "Customer Consent Management",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Privacy notices exist but lack the specificity required by Articles 13-14",
+      "Lawful basis for processing mentioned but not documented per processing activity"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-010",
+    "title": "Customer Consent Management",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Business Associate oversight completely absent",
+      "No individual rights procedures (access, amendment, accounting of disclosures)",
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-011",
+    "title": "Customer Feedback and NPS Program",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "No Record of Processing Activities (Article 30) maintained",
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-012",
+    "title": "Escalation Procedures",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "No formal change management process \u2014 changes deployed without approval workflows",
+      "Missing continuous monitoring \u2014 security events not aggregated or reviewed",
+      "No penetration testing program or vulnerability scanning schedule"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-012",
+    "title": "Escalation Procedures",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "PHI handling procedures exist but workforce training is only annual, not role-based",
+      "Business Associate Agreements mentioned but no BAA inventory or review cycle"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-013",
+    "title": "Customer Data Breach Communication",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-013",
+    "title": "Customer Data Breach Communication",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)",
+      "No PHI de-identification methodology (neither Safe Harbor nor Expert Determination)",
+      "Missing breach notification procedures entirely \u2014 no reference to 45 CFR 164.400-414"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-014",
+    "title": "Knowledge Base Management",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-015",
+    "title": "Customer Access to AI Explanations",
+    "business_unit": "Customer Operations",
+    "regulation": "EU AI Act",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-015",
+    "title": "Customer Access to AI Explanations",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-015",
+    "title": "Customer Access to AI Explanations",
+    "business_unit": "Customer Operations",
+    "regulation": "NIST AI RMF",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "MANAGE function described at high level without specific mitigation procedures",
+      "Stakeholder engagement mentioned but no structured feedback mechanisms"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-016",
+    "title": "Multi-Channel Support Standards",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "compliant",
+    "weaknesses": []
+  },
+  {
+    "sop_id": "SOP-COPS-016",
+    "title": "Multi-Channel Support Standards",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Breach notification referenced but lacks the 60-day timeline specifics",
+      "PHI handling procedures exist but workforce training is only annual, not role-based"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-017",
+    "title": "Customer Satisfaction Monitoring",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Change management exists but lacks segregation of duties for approvals",
+      "Monitoring is mentioned but alert thresholds and escalation paths are undefined"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-018",
+    "title": "Third-Party Support Provider Management",
+    "business_unit": "Customer Operations",
+    "regulation": "SOC 2",
+    "compliance_level": "partial",
+    "weaknesses": [
+      "Logical access controls described but periodic access reviews not mandated",
+      "Incident response plan exists but tabletop exercises are not scheduled"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-018",
+    "title": "Third-Party Support Provider Management",
+    "business_unit": "Customer Operations",
+    "regulation": "HIPAA",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Business Associate oversight completely absent",
+      "No individual rights procedures (access, amendment, accounting of disclosures)",
+      "Missing risk analysis as required by 45 CFR 164.308(a)(1)(ii)(A)"
+    ]
+  },
+  {
+    "sop_id": "SOP-COPS-018",
+    "title": "Third-Party Support Provider Management",
+    "business_unit": "Customer Operations",
+    "regulation": "GDPR",
+    "compliance_level": "gap",
+    "weaknesses": [
+      "Data subject rights procedures completely absent \u2014 no access, erasure, or portability",
+      "No Data Protection Impact Assessment process for high-risk processing",
+      "Cross-border data transfers occur with no documented safeguards (Chapter V)"
+    ]
+  }
+]

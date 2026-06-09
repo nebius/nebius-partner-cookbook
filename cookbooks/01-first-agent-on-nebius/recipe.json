@@ -1,0 +1,73 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "first-agent-on-nebius",
+  "order": 1,
+  "eyebrow": "Foundation",
+  "title": "Your First Agent on Nebius",
+  "upcoming": false,
+  "tagline": "A production-grade FastAPI agent with streaming, observability, and zero magic.",
+  "difficulty": "beginner",
+  "estimatedReadingTime": "8 min",
+  "estimatedRunTime": "5 min",
+  "stack": {
+    "primary": ["nebius-agentkit"],
+    "secondary": ["fastapi", "structlog", "prometheus", "docker"]
+  },
+  "tags": ["agent", "streaming", "observability", "fastapi", "starter"],
+  "story": {
+    "problem": "You called OpenAI from a Python script. How do you get from there to something you'd actually deploy?",
+    "solution": "A small FastAPI service that streams a single Nebius chat completion as Server-Sent Events, with structured logs, Prometheus metrics, rate limits, security headers, and a multi-stage Dockerfile.",
+    "outcome": "A starter you can clone, configure, and ship in under ten minutes."
+  },
+  "prerequisites": [
+    "Python 3.12+",
+    "uv installed (https://docs.astral.sh/uv/)",
+    "A Nebius API key",
+    "Docker (optional, for the production image)"
+  ],
+  "models": [
+    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" }
+  ],
+  "assets": {
+    "hero": "assets/hero.png",
+    "architecture": "docs/architecture.svg"
+  },
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/01-first-agent-on-nebius",
+    "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY",
+    "run": "uv sync && make dev"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/agent/run",
+      "streaming": true,
+      "description": "Run the agent against a user prompt and stream SSE events back."
+    },
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "description": "Liveness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/readyz",
+      "description": "Readiness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/metrics",
+      "description": "Prometheus metrics scrape endpoint."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "docs/deployment.md"
+  },
+  "nextRecipe": "domain-knowledge-pinecone-nexus",
+  "authors": [
+    { "name": "Clément Sauvage", "url": "https://clementsauvage.me" }
+  ],
+  "publishedAt": "2026-06-04",
+  "updatedAt": "2026-06-04"
+}

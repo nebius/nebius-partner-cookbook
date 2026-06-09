@@ -1,0 +1,93 @@
+name: deploy-app
+
+on:
+  workflow_run:
+    workflows: ["lint-app"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-app
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0  # full history needed for Clever Cloud git push
+
+      - id: deployable
+        run: |
+          set -euo pipefail
+
+          latest_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          if [ "${{ github.event.workflow_run.head_sha }}" != "$latest_main" ]; then
+            echo "Skipping stale frontend deploy for ${{ github.event.workflow_run.head_sha }}; latest main is $latest_main."
+            echo "should_deploy=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            changed_files="$(git diff --name-only HEAD^ HEAD)"
+          else
+            changed_files="$(git ls-files)"
+          fi
+
+          should_deploy=false
+          while IFS= read -r file; do
+            case "$file" in
+              app/*|packages/*|scripts/*|README/*|schemas/*|README.md|package.json|bun.lock|bunfig.toml|.nvmrc|.github/workflows/deploy-app.yml|.github/workflows/lint-app.yml)
+                should_deploy=true
+                ;;
+              cookbooks/*/README.md|cookbooks/*/recipe.json|cookbooks/*/assets/*|cookbooks/*/docs/*)
+                should_deploy=true
+                ;;
+            esac
+          done <<< "$changed_files"
+
+          echo "should_deploy=$should_deploy" >> "$GITHUB_OUTPUT"
+          if [ "$should_deploy" = "false" ]; then
+            echo "No frontend-impacting changes detected; skipping Clever Cloud frontend deploy."
+          fi
+
+      - name: Install Clever Cloud CLI
+        if: steps.deployable.outputs.should_deploy == 'true'
+        run: npm install -g clever-tools
+
+      - name: Deploy to Clever Cloud
+        if: steps.deployable.outputs.should_deploy == 'true'
+        env:
+          CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+          CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+          CLEVER_APP_ID_FRONTEND: ${{ secrets.CLEVER_APP_ID_FRONTEND }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+          NEXT_PUBLIC_GITHUB_REPO: ${{ vars.NEXT_PUBLIC_GITHUB_REPO }}
+          CLEVER_NODE_OPTIONS: "--max-old-space-size=2048"
+        run: |
+          if [ -z "${CLEVER_APP_ID_FRONTEND:-}" ]; then
+            echo "Missing GitHub secret CLEVER_APP_ID_FRONTEND for the frontend Clever app." >&2
+            exit 1
+          fi
+          clever login --token "$CLEVER_TOKEN" --secret "$CLEVER_SECRET"
+          clever link "$CLEVER_APP_ID_FRONTEND"
+          clever env set NODE_ENV production
+          clever env set NODE_OPTIONS -- "$CLEVER_NODE_OPTIONS"
+          clever env set NEXT_TELEMETRY_DISABLED 1
+          clever env set HOSTNAME 0.0.0.0
+          clever env set CC_NODE_BUILD_TOOL bun
+          clever env set CC_CUSTOM_BUILD_TOOL "bun"
+          clever env set CC_NODE_DEV_DEPENDENCIES "install"
+          clever env set CC_POST_BUILD_HOOK "NEXT_TELEMETRY_DISABLED=1 bun run build:deploy"
+          clever env set CC_RUN_COMMAND "bun run start:deploy"
+          clever env set PORT 8080
+          clever env set NEXT_PUBLIC_SITE_URL "$NEXT_PUBLIC_SITE_URL"
+          clever env set NEXT_PUBLIC_GITHUB_REPO "$NEXT_PUBLIC_GITHUB_REPO"
+          clever deploy --force

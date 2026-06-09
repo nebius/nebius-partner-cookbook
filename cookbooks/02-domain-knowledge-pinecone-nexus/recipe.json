@@ -1,0 +1,66 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "domain-knowledge-pinecone-nexus",
+  "order": 2,
+  "eyebrow": "Knowledge",
+  "title": "Domain Knowledge with Pinecone Nexus",
+  "upcoming": false,
+  "tagline": "Compile your data into task-ready knowledge artifacts with Pinecone Nexus — and ground answers with typed, per-field citations.",
+  "difficulty": "intermediate",
+  "estimatedReadingTime": "13 min",
+  "estimatedRunTime": "6 min",
+  "stack": {
+    "primary": ["nebius-agentkit", "pinecone-nexus"],
+    "secondary": ["fastapi", "structlog", "prometheus", "docker"]
+  },
+  "tags": ["agent", "rag", "knowledge", "knowledge-engine", "pinecone-nexus", "citations"],
+  "story": {
+    "problem": "The agent from Cookbook #1 is fluent but ignorant — and bolting on classic RAG just hands it raw documents at inference time, burning tokens, adding latency, and inviting hallucination.",
+    "solution": "Use Pinecone Nexus as a knowledge engine instead of a plain vector store: its Context Compiler turns your data estate into task-specific knowledge artifacts, and the agent queries them with KnowQL — moving reasoning upstream into knowledge compilation.",
+    "outcome": "An agent that answers domain questions from compiled, governed knowledge — with typed fields, per-field citations, and confidence scores instead of plausible guesses."
+  },
+  "prerequisites": [
+    "Python 3.12+",
+    "uv installed (https://docs.astral.sh/uv/)",
+    "A Nebius API key",
+    "A Pinecone API key with Nexus access (https://www.pinecone.io)",
+    "Docker (optional)"
+  ],
+  "models": [
+    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" },
+    { "id": "Qwen/Qwen3-Embedding-8B", "role": "embed" }
+  ],
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/02-domain-knowledge-pinecone-nexus",
+    "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY and PINECONE_API_KEY",
+    "run": "uv sync && make dev"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/agent/run",
+      "streaming": true,
+      "description": "Recommend books from Pinecone-backed Goodreads knowledge and stream SSE events back."
+    },
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "description": "Liveness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/readyz",
+      "description": "Readiness probe."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "docs/deployment.md"
+  },
+  "nextRecipe": "real-time-data-tavily",
+  "authors": [
+    { "name": "Clément Sauvage", "url": "https://clementsauvage.me" }
+  ],
+  "publishedAt": "2026-06-04",
+  "updatedAt": "2026-05-16"
+}

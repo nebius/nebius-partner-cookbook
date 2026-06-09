@@ -1,0 +1,481 @@
+---
+sop_id: "SOP-ITOP-002"
+title: "Incident Management"
+business_unit: "IT Operations & Infrastructure"
+version: "2.8"
+effective_date: "2025-12-28"
+last_reviewed: "2026-10-04"
+next_review: "2027-04-18"
+owner: "Samantha Torres, VP of IT Operations"
+approver: "David Park, VP of Engineering"
+classification: "Internal"
+regulations:
+  - "SOC 2"
+  - "HIPAA"
+status: "Active"
+---
+
+# STANDARD OPERATING PROCEDURE: INCIDENT MANAGEMENT
+
+## 1. Purpose and Scope
+
+### 1.1 Purpose
+The purpose of this Standard Operating Procedure (SOP) is to establish a standardized, enterprise-wide framework for the identification, classification, logging, escalation, investigation, resolution, and post-incident review of all incidents that affect, or may affect, the confidentiality, integrity, or availability of Meridian Health Technologies, Inc. (“Meridian”) information systems, products, and data. This SOP ensures that Meridian maintains operational resilience, meets its regulatory obligations, and protects the interests of its customers, patients, and stakeholders.
+
+### 1.2 Scope
+This SOP applies to all Meridian business units, subsidiaries, and global offices, including Boston (Headquarters), London, Berlin, Singapore, and Toronto. It governs incidents originating within or impacting the following Meridian environments and product lines:
+
+- **Clinical AI Platform:** All production and staging deployments of clinical decision support tools, diagnostic imaging analysis engines, patient risk scoring models, and adverse event prediction systems deployed across 340+ hospitals and clinics. This includes all systems classified as high-risk AI under the EU AI Act Annex III.
+- **HealthPay Financial Services:** Payment processing systems, patient financing modules, medical lending platforms, claims automation engines, and associated credit scoring and fraud detection models subject to SR 11-7 guidance.
+- **MedInsight Analytics:** Population health analytics platforms, care gap identification systems, and outcomes prediction models handling Protected Health Information (PHI) for approximately 12 million patients.
+- **Meridian SaaS Platform:** The multi-tenant, AWS-hosted cloud infrastructure layer (us-east-1, eu-west-1, Azure DR) that underpins all Meridian products, including all supporting data pipelines, API gateways, identity services, and observability tooling.
+- **Corporate IT Systems:** Internal productivity suites, collaboration platforms, HR systems, financial systems, and network infrastructure supporting Meridian’s approximately 2,400 employees globally.
+
+This SOP applies to all full-time employees, contractors, consultants, interns, and third-party service providers who have access to Meridian information systems or who support Meridian operations (collectively, “Personnel”). All Personnel are required to report any known or suspected incident in accordance with the procedures defined herein.
+
+### 1.3 Out of Scope
+- Standard service requests (e.g., password resets, software installation requests) are managed through the IT Service Desk process defined in SOP-ITOP-005 (Service Request Management) and are not considered incidents unless they meet the criteria for a security or major operational event.
+- Routine system maintenance and planned changes are managed through SOP-ENG-003 (Change Management) unless a change directly causes an unplanned service interruption, at which point this SOP governs the resulting incident.
+
+---
+
+## 2. Definitions and Acronyms
+
+### 2.1 Definitions
+
+| Term | Definition |
+|------|------------|
+| **Incident** | An unplanned interruption to an IT service, a reduction in the quality of an IT service, or an event that has not yet impacted service but poses a significant risk of doing so. This includes security breaches, data exposures, and violations of Meridian’s acceptable use policies. |
+| **Major Incident** | An incident that results in significant business disruption, poses material risk to customer or patient data, or triggers regulatory notification obligations. All Severity 1 (SEV1) and Severity 2 (SEV2) incidents are classified as Major Incidents. |
+| **Security Incident** | An incident that results in, or has a reasonable likelihood of resulting in, unauthorized access to, use, disclosure, modification, or destruction of information systems or data. This includes confirmed breaches, malware infections, phishing campaigns, and denial-of-service attacks. |
+| **Privacy Incident** | A subset of Security Incidents involving the potential or confirmed compromise of Personal Data or Protected Health Information (PHI), specifically triggering analysis under GDPR, HIPAA, or applicable state data breach notification laws. |
+| **Event** | Any observable occurrence within a system or network. Events are logged continuously; an event becomes an incident when it crosses a defined threshold of impact or risk. |
+| **Alert** | A notification generated by a monitoring, observability, or security tool indicating that a potential incident condition has been detected. Alerts require triage as defined in Section 5.2. |
+| **War Room** | A dedicated communication channel (physical or virtual bridge) convened for the coordinated, real-time investigation and resolution of a Major Incident. |
+| **Post-Incident Review (PIR)** | A formal, blameless analysis conducted after incident resolution to identify root causes, contributing factors, process failures, and actionable preventative measures. |
+| **Recovery Time Objective (RTO)** | The targeted maximum duration of time that a business process or service may remain unavailable before the business impact becomes unacceptable. Meridian sets qualitative, business-aligned recovery targets for critical services, which are documented in service-specific runbooks rather than as fixed global thresholds. |
+| **Recovery Point Objective (RPO)** | The targeted maximum period of data loss, measured in time, that is acceptable in a recovery scenario. Individual service owners define acceptable data loss parameters during business impact analyses. |
+| **Personal Data** | Any information relating to an identified or identifiable natural person, as defined under GDPR Article 4(1). |
+| **Protected Health Information (PHI)** | Individually identifiable health information held or transmitted by a covered entity or its business associate, as defined under HIPAA 45 CFR §160.103. |
+
+### 2.2 Acronyms
+
+| Acronym | Full Form |
+|---------|-----------|
+| AWS | Amazon Web Services |
+| BCP | Business Continuity Plan |
+| CISO | Chief Information Security Officer |
+| CPO/DPO | Chief Privacy Officer / Data Protection Officer |
+| DR | Disaster Recovery |
+| GDPR | General Data Protection Regulation |
+| HIPAA | Health Insurance Portability and Accountability Act |
+| KPI | Key Performance Indicator |
+| MTBF | Mean Time Between Failures |
+| MTTR | Mean Time to Resolve |
+| NIST | National Institute of Standards and Technology |
+| PHI | Protected Health Information |
+| PIR | Post-Incident Review |
+| RACI | Responsible, Accountable, Consulted, Informed |
+| RPO | Recovery Point Objective |
+| RTO | Recovery Time Objective |
+| SEV | Severity Level |
+| SLA | Service Level Agreement |
+| SOC | Service Organization Controls |
+| SOP | Standard Operating Procedure |
+| SRE | Site Reliability Engineering |
+| VP | Vice President |
+
+---
+
+## 3. Roles and Responsibilities
+
+The following RACI matrix defines the roles and responsibilities for the incident management lifecycle. Specific named role-holders are identified where applicable; functional responsibilities may be delegated to qualified designees.
+
+| Activity / Decision | Incident Responder | Service Owner | Incident Commander | CISO (Rachel Kim) | VP IT Ops (Samantha Torres) | General Counsel (Maria Gonzalez) | CCO (Thomas Anderson) |
+|----------------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Incident Detection & Triage | R | C | A | I | I | - | - |
+| SEV3/SEV4 Resolution | R | A | - | - | I | - | - |
+| SEV1/SEV2 Declaration | C | R | A | I | R | I | I |
+| War Room Facilitation | C | C | R, A | C | C | - | - |
+| Security Incident Containment | R | C | C | A | I | I | I |
+| Privacy Breach Determination | - | - | - | C | C | A, R | R |
+| Regulatory Notification Decision | - | - | - | C | I | A, R | R |
+| Customer Communications | - | C | - | - | R, A | C | C |
+| Post-Incident Review | R | R, A | C | C | C | - | I |
+
+**Key:** R=Responsible, A=Accountable, C=Consulted, I=Informed
+
+### 3.1 Role Definitions
+
+- **Incident Responder:** Any Meridian personnel actively engaged in the diagnosis, mitigation, or resolution of an incident. This includes SREs, DevOps engineers, security analysts, and on-call specialists from the relevant business unit.
+- **Service Owner:** The individual or team accountable for the operational health of a specific service or system. Service owners maintain the runbooks, escalation paths, and service-specific recovery procedures for their domain. A current Service Owner registry is maintained in the IT Operations Confluence space.
+- **Incident Commander:** A designated individual responsible for coordinating the response to a Major Incident. The Incident Commander manages the War Room, assigns investigation streams, tracks the timeline, and serves as the single point of communication authority. The VP of IT Operations maintains a roster of trained Incident Commanders; the primary on-call Incident Commander is reachable via PagerDuty escalation policy "IM-Global-Commander."
+- **Chief Information Security Officer (CISO) – Rachel Kim:** Holds ultimate accountability for the security incident response capability. Authorizes forensic investigations and engagement with external cybersecurity firms. Must be notified within 30 minutes of any confirmed or suspected Security Incident.
+- **VP of IT Operations – Samantha Torres:** Accountable for the operational incident management process, tooling, and SLAs. Authorizes customer-facing outage communications. Approves all SEV1 PIR reports.
+- **General Counsel – Maria Gonzalez:** Provides legal guidance on regulatory notification obligations, breach disclosure requirements, and communications during incidents with potential legal or contractual implications. Must be consulted on all privacy incidents involving EU, California, or other regulated data subjects.
+- **Chief Compliance Officer (CCO) – Thomas Anderson:** Ensures incident response aligns with SOC 2, HITRUST, ISO 27001, and other compliance framework requirements. Oversees documentation generation for external audits.
+- **Chief Privacy Officer / DPO – Dr. Klaus Weber:** Leads the assessment of privacy incidents involving Personal Data, including PHI. Determines GDPR breach notification obligations and coordinates with supervisory authorities as required.
+
+---
+
+## 4. Policy Statements
+
+### 4.1 Commitment to Operational Resilience
+Meridian Health Technologies is committed to maintaining the availability, integrity, and confidentiality of its systems, products, and data. The incident management program is designed to minimize service disruption, reduce mean time to resolution, and prevent incident recurrence through a structured lifecycle of detection, response, learning, and improvement.
+
+### 4.2 All Incidents Must Be Reported
+All Personnel have an affirmative obligation to immediately report any observed, suspected, or potential incident through the established channels defined in Section 5.1. No Personnel shall delay reporting to independently assess the validity or severity of an event. Retaliation against individuals who report incidents in good faith is strictly prohibited.
+
+### 4.3 Severity-Based Response
+Meridian classifies all incidents according to a standard four-tier severity schema (Section 5.3). Response targets, escalation triggers, and communication cadences are calibrated to incident severity to ensure a proportionate allocation of resources.
+
+### 4.4 Blameless Post-Incident Analysis
+Meridian conducts Post-Incident Reviews using a blameless methodology. The objective of a PIR is to identify systemic vulnerabilities, process gaps, and engineering improvements, not to assign individual fault. Personnel are expected to participate transparently and fully.
+
+### 4.5 Availability Commitment
+Meridian designs its critical service tiers with high-availability architectures, including active-active multi-AZ deployments within AWS us-east-1 and eu-west-1 regions, automated failover mechanisms, and a dedicated disaster recovery environment within Azure. Recovery objectives are aligned to business impact tolerances as defined in service-specific runbooks and Meridian’s Business Continuity Plan (SOP-BCP-001). Service owners are responsible for documenting and periodically testing recovery procedures.
+
+### 4.6 Logical Access Controls
+Access to Meridian’s incident management platforms, War Room bridges, and incident-related forensic tooling is controlled through role-based access controls (RBAC) enforced via Okta single sign-on. Incident management platform access is granted based on functional role requirements, with access groups defined and managed by the IT Operations team. User access to incident records is logged for audit trail completeness.
+
+### 4.7 Audit Controls and Logging
+Meridian maintains comprehensive audit logging across its production environments, including AWS CloudTrail, VPC Flow Logs, application logs aggregated in Splunk, and security telemetry from Datadog Security Monitoring. Incident-related actions, communications, and decisions are captured within the incident timeline and retained as part of the permanent incident record.
+
+### 4.8 Regulatory Compliance
+All incidents shall be managed in a manner consistent with Meridian’s obligations under SOC 2, HIPAA, GDPR, ISO 27001, HITRUST, and the EU Medical Device Regulation (MDR), as applicable to the affected systems and data. Specific regulatory response procedures are integrated into the incident workflow as defined in Section 5.10.
+
+### 4.9 Access Control During Incidents
+During incident response, access to affected systems may be elevated beyond standard permissions to enable investigation and remediation. Such elevation of access must be authorized by the Incident Commander for Major Incidents, logged in the incident record, and fully revoked upon incident closure. The IT Operations team shall review emergency access grants within one business day of revocation to ensure no lingering entitlements.
+
+---
+
+## 5. Detailed Procedures
+
+### 5.1 Incident Identification and Logging
+
+#### 5.1.1 Identification Channels
+Incidents may be identified through any of the following channels:
+
+| Channel | Mechanism | Applicable For |
+|---------|-----------|----------------|
+| **Automated Alerting** | Datadog monitors, Splunk alerts, PagerDuty integrations | Infrastructure degradation, application errors, security tooling alerts |
+| **Customer Report** | Zendesk ticket escalated by Customer Success | Product defects, user-facing outages |
+| **Internal Report** | Slack channel `#incident-response`, email to `it-ops@meridian.com`, or direct escalation | Any Personnel observation |
+| **Security Operations Center (SOC)** | 24/7 monitoring by managed security provider, alerts to `#sec-alerts` | Suspicious authentication activity, threat intelligence indicators, perimeter events |
+| **Regulatory Inquiry** | Direct communication from supervisory authority or auditor | Compliance-driven investigations |
+
+#### 5.1.2 Incident Logging
+All incidents, regardless of identification channel, must be logged as a ticket within Jira Service Management (JSM) within 15 minutes of initial triage. The JSM incident ticket serves as the system of record for the entire incident lifecycle and shall contain:
+
+- Unique incident ID (auto-generated: INC-XXXXX)
+- Date/time of first detection
+- Detection channel
+- Affected service(s) and environment(s)
+- Initial severity classification
+- Summary of symptoms and impact
+- Owner assignment (initial triage responder)
+- Link to associated PagerDuty alert (if applicable)
+
+### 5.2 Initial Triage and Validation
+
+Upon detection, the responding individual (Incident Responder or on-call SRE) shall perform the following triage procedure:
+
+1. **Acknowledge the Alert (5 minutes):** Acknowledge the PagerDuty page and join the designated incident bridge. Silence non-actionable dependent alerts that may contribute to alert fatigue.
+2. **Validate the Signal (10 minutes):** Determine whether the alert represents a genuine incident. Validate against:
+   - Is the service actually degraded or unavailable? Check synthetic monitors, canary deployments, and external probe status.
+   - Is there an active, confirmed change correlated with the event? (Consult recent deployments via LaunchDarkly, Terraform apply logs, or the #eng-deployments Slack channel.)
+   - Are multiple independent telemetry sources corroborating the event?
+3. **Preliminary Classification (15 minutes):** Assign an initial severity level based on the criteria in Section 5.3. If the initial triage responder is uncertain, escalate to the on-call Incident Commander for classification.
+4. **Escalation Trigger:** If the incident meets SEV1 or SEV2 criteria, or if there is confirmed or suspected unauthorized access to data, immediately escalate to the Incident Commander and CISO per Section 5.4.
+
+If the alert is determined to be a false positive or non-actionable noise, the responder shall suppress or tune the alerting rule and document the rationale within the JSM ticket before closure.
+
+### 5.3 Severity Classification
+
+Incidents are classified according to the following severity matrix. Classification determines response targets, communication cadences, and escalation paths.
+
+| Severity | Definition | Examples | Initial Response SLA | Resolution Target | Communication Cadence |
+|:---:|------------|----------|:---:|:---:|------------------------|
+| **SEV1 – Critical** | Complete loss of a critical service affecting all users/customers; confirmed breach involving PHI, Personal Data, or financial data; incident requiring immediate regulatory notification. | Clinical AI Platform unavailable for all hospital customers; HealthPay payment processing down; confirmed exfiltration of PHI. | 5 minutes | Continuous effort until resolved; 24/7 War Room | Internal: every 30 min. Customer: every 1 hour. Executive: on declaration, then every 2 hours. |
+| **SEV2 – High** | Significant degradation of a critical service affecting >50% of users; unavailability of a non-critical but material service; suspected but unconfirmed data compromise. | Diagnostic imaging engine latency >30s; MedInsight dashboards unavailable; suspected phishing campaign with credential compromise. | 15 minutes | Within 4 hours; War Room active during business hours | Internal: every 1 hour. Customer: every 2 hours. Executive: every 4 hours. |
+| **SEV3 – Moderate** | Partial service degradation affecting a subset of users; non-material service disruption; isolated security event contained with no data exposure. | Single hospital tenant login failures; non-production staging environment outage; isolated malware detection successfully quarantined. | 30 minutes | Within 8 business hours | Internal: on resolution. Customer: as needed (Service Owner discretion). |
+| **SEV4 – Low** | Cosmetic or minor issue; single-user impact; non-material event requiring investigation. | UI rendering glitch on reporting module; internal wiki unavailable; single-account unusual activity detected. | 2 business hours | Within 3 business days | Internal: on resolution. |
+
+**Note on Recovery Targets:** The Resolution Targets specified above represent Meridian’s commitment to restoring service functionality and are designed to align with business impact tolerances. These targets assume standard operating conditions and exclude force majeure events. Where specific quantitative Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) are warranted for individual services—particularly those governed by customer contractual SLAs—those metrics are documented within service-specific runbooks and Meridian’s Business Impact Analysis register, not within this global classification schema.
+
+### 5.4 Escalation Procedure
+
+#### 5.4.1 Technical Escalation
+If the assigned Incident Responder is unable to diagnose or mitigate an incident within 2x the Initial Response SLA for the declared severity, the responder must escalate to the Service Owner or their designated on-call delegate. If the Service Owner is unreachable, escalation proceeds to the VP of Engineering for the affected unit.
+
+#### 5.4.2 Management Escalation
+The following management stakeholders must be engaged according to severity:
+
+| Stakeholder | SEV1 | SEV2 | SEV3 | SEV4 |
+|-------------|:---:|:---:|:---:|:---:|
+| VP of IT Operations (Samantha Torres) | Immediate | 15 min | 1 hour | As needed |
+| CISO (Rachel Kim) – Security incidents only | Immediate | 15 min | 1 hour | As needed |
+| VP of Engineering (David Park) | 15 min | 30 min | 2 hours | As needed |
+| Chief Product Officer | 30 min | 1 hour | - | - |
+| Chief Privacy Officer / DPO (Dr. Klaus Weber) – Privacy incidents | 30 min | 1 hour | 2 hours | - |
+| General Counsel (Maria Gonzalez) – Privacy or regulatory risk | 30 min | 1 hour | - | - |
+| Chief Compliance Officer (Thomas Anderson) | 1 hour | 2 hours | 4 hours | - |
+| Chief Executive Officer | 1 hour | 4 hours | - | - |
+| VP of Communications (for media risk) | 2 hours | 4 hours | - | - |
+
+#### 5.4.3 External Escalation
+The CISO, in consultation with General Counsel, may authorize engagement with external incident response firms, forensic investigators, or law enforcement. Mandiant is Meridian’s pre-contracted incident response retainer; engagement is triggered via the PagerDuty "IR-Retainer" on-call policy.
+
+### 5.5 Major Incident Management (War Room)
+
+All SEV1 and SEV2 incidents are managed via a formal War Room construct.
+
+#### 5.5.1 War Room Assembly
+1. **Incident Commander:** The on-call Incident Commander (PagerDuty "IM-Global-Commander") assumes command within 5 minutes of SEV1/SEV2 declaration.
+2. **Communication Bridge:** A dedicated Zoom bridge shall be established (auto-provisioned via PagerDuty integration). All responders join the bridge. The bridge ID is published to the `#incident-response` Slack channel.
+3. **Slack War Room Channel:** A dedicated Slack channel, `#warroom-{INCIDENT_ID}`, is created for text-based coordination, command log, and external stakeholder transparency.
+4. **Role Assignments:** The Incident Commander explicitly assigns the following War Room roles within 10 minutes:
+   - **Scribe:** Maintains the chronological timeline of all investigative actions, findings, and decisions.
+   - **Communications Lead:** Drafts and disseminates status updates per the severity communication cadence.
+   - **Investigation Lead(s):** One lead per investigation stream (e.g., frontend, backend API, database, security).
+
+#### 5.5.2 War Room Operations
+1. **Status Updates:** The Investigation Leads provide verbal status updates every 15 minutes during active investigation.
+2. **Timeline Tracking:** The Scribe logs all material actions in the `#warroom-{INCIDENT_ID}` channel, including: hypotheses formulated, commands executed, artifacts collected, configuration changes made, and decisions to escalate.
+3. **Handoff Protocol:** For prolonged incidents (>8 hours), the Incident Commander designates a relief commander and ensures a complete context handoff, including a summary of current state, active investigation streams, and outstanding hypotheses.
+4. **War Room Discipline:** All responders are expected to maintain professional conduct. Communications are directed to the Incident Commander. Side-channel investigations must be reported back to the War Room.
+
+#### 5.5.3 War Room Closure
+The Incident Commander, in consultation with Investigation Leads and the Service Owner, declares the incident mitigated when service is restored to a normalized state and the immediate risk of recurrence or data exfiltration is contained. Post-incident monitoring is established per Section 5.7.
+
+### 5.6 Investigation and Diagnosis
+
+All incidents undergo a structured investigation process:
+
+1. **Stabilization First:** The immediate priority is to stabilize service and prevent further impact. This may involve deploying a known-good build, rolling back a database migration, failing over to a standby region, or quarantining affected hosts. Full root cause analysis may be deferred until after stabilization.
+2. **Forensic Data Collection:** For Security Incidents and SEV1 operational incidents, the following forensic data shall be preserved prior to any action that may destroy evidence:
+   - System memory captures from affected EC2 instances (via AWS Systems Manager Run Command)
+   - EBS volume snapshots
+   - Relevant CloudTrail, VPC Flow Log, and application log segments
+   - Database query logs
+   - Relevant Git commit histories and CI/CD deploy logs
+3. **Hypothesis-Driven Investigation:** Investigation Leads document explicit hypotheses and execute diagnostic actions to validate or disprove each. All hypotheses, decisions, and findings are captured in the War Room timeline.
+4. **Access During Investigation:** Investigation Leads may request temporary elevation of privileges necessary for diagnosis. Such elevations must be approved by the Incident Commander, logged in the War Room channel, and fully revoked within 1 business day of incident closure.
+
+### 5.7 Resolution and Recovery
+
+#### 5.7.1 Resolution Actions
+Resolution is achieved when the root cause is confirmed and corrective action is applied. Acceptable resolution actions include, but are not limited to:
+- Deploying a code hotfix via the emergency change process (SOP-ENG-003 Section 7)
+- Rolling back a configuration change
+- Failing over to the disaster recovery environment (SOP-BCP-001)
+- Isolating and terminating unauthorized access
+- Applying a security patch to remediate a vulnerability
+
+All resolution actions must be peer-reviewed by a qualified engineer not previously involved in the specific investigation stream, and approved by the Service Owner prior to implementation on production systems, unless the delay in review poses a greater risk of further service degradation (documented in the War Room timeline).
+
+#### 5.7.2 Service Restoration Validation
+Prior to declaring an incident resolved, the Service Owner must validate:
+- Core service functionality is restored and synthetic health checks are passing
+- Error budgets and SLO metrics have returned to within operational thresholds
+- Affected customer populations have been validated for service restoration
+- Any security containment measures (network segmentation, access suspension) have been verified as intact
+
+#### 5.7.3 Post-Recovery Monitoring
+Following incident resolution, enhanced monitoring is applied for a minimum of:
+- **SEV1:** 24 hours (continuous active monitoring)
+- **SEV2:** 12 hours
+- **SEV3:** 4 hours
+- **SEV4:** At Service Owner discretion
+
+Enhanced monitoring includes elevated synthetic check frequency, increased metric granularity, and additional logging verbosity. If no recurrence or anomalous behavior is detected, monitoring returns to baseline.
+
+### 5.8 Incident Closure
+
+An incident is formally closed when the following conditions are met:
+1. Service restoration has been validated per Section 5.7.2.
+2. Post-recovery monitoring has elapsed without incident.
+3. The incident timeline (War Room log and JSM timeline) is complete and reviewed by the Service Owner.
+4. All temporary access grants have been fully revoked.
+5. Any newly identified vulnerabilities or risks that do not require immediate remediation are logged as Jira backlog items and linked to the incident record.
+6. The Communications Lead has disseminated a final status update to affected stakeholders.
+
+### 5.9 Post-Incident Review (PIR)
+
+#### 5.9.1 PIR Timelines
+| Severity | PIR Completion Deadline | PIR Owner |
+|:---:|:---:|---|
+| SEV1 | 5 business days from closure | VP of IT Operations (Samantha Torres) |
+| SEV2 | 10 business days from closure | Service Owner |
+| SEV3 | 15 business days from closure | Service Owner (optional, at discretion) |
+| SEV4 | Optional; captured as incident report notes | Incident Responder |
+
+#### 5.9.2 PIR Process
+1. **PIR Document:** The Service Owner prepares a PIR document using the standard template (available in Confluence: `ITOps > Templates > PIR_Template_v2.5.docx`). The document includes:
+   - Incident summary (service, severity, duration, customer impact)
+   - Detailed timeline (sourced from War Room log and Jira)
+   - Root Cause Analysis (5 Whys or equivalent methodology)
+   - Contributing factors (e.g., monitoring gaps, process failures, architectural weaknesses)
+   - What went well (to reinforce positive behaviors)
+   - What could be improved
+   - Action items with assigned owners and due dates
+2. **PIR Review Meeting:** The PIR owner convenes a 60-minute meeting with all incident responders, the Service Owner, and any relevant stakeholders. The meeting format:
+   - Walk the timeline (20 min)
+   - Discuss root cause and contributing factors (20 min)
+   - Review, refine, and assign action items (20 min)
+3. **Action Item Tracking:** All PIR action items are logged as Jira issues, linked to the incident, and tracked through completion. Action items are reviewed at the monthly IT Operations Service Review meeting.
+
+### 5.10 Regulatory and Privacy Incident Procedures
+
+#### 5.10.1 Privacy Incident Trigger
+A privacy incident escalation is triggered if there is confirmed or reasonably suspected unauthorized access to, or disclosure of, Personal Data or PHI. All Personnel who become aware of such an event must immediately notify the CPO/DPO (Dr. Klaus Weber) and CISO (Rachel Kim) via the PagerDuty "IM-Privacy" escalation policy.
+
+#### 5.10.2 Privacy Incident Assessment
+Upon notification, the CPO/DPO, in coordination with CISO and General Counsel, will lead a privacy incident assessment to determine:
+- Nature and scope of the affected data (categories, approximate volume, data subjects)
+- Circumstances of the access or disclosure (malicious actor, misconfiguration, third-party error, internal error)
+- Regulatory frameworks triggered (GDPR, HIPAA, state breach notification laws, EU MDR)
+- Notification obligations and timelines
+
+For GDPR-governed data, the assessment shall specifically determine whether the incident is likely to result in a risk to the rights and freedoms of natural persons, requiring notification to supervisory authorities within 72 hours per Article 33.
+
+#### 5.10.3 Breach Determination
+The determination of whether a reportable breach has occurred rests jointly with the CPO/DPO and General Counsel, based on the factual findings of the security incident investigation. This determination shall be documented in writing and retained per Meridian’s Records Retention Schedule (SOP-LEG-001).
+
+---
+
+## 6. Controls and Safeguards
+
+### 6.1 Administrative Controls
+
+| Control | Description | Mechanism |
+|---------|-------------|-----------|
+| Incident Management Policy | This SOP and associated procedures, reviewed and updated semi-annually | Documented in Confluence; version-controlled |
+| On-Call Scheduling | Tiered on-call coverage across all business units, 24x7x365 for critical services | PagerDuty schedules with escalation policies per service tier |
+| Incident Commander Training | Formal training and certification program for Incident Commander role | Multi-module curriculum including simulation exercises; refreshed annually |
+| Vendor Incident Coordination | Pre-established communication channels with critical third-party vendors (AWS, Azure, Datadog, Splunk, Mandiant) | Escalation contacts maintained in Vendor Contact Registry |
+| Access Management | Incident management platform access granted only to Personnel with validated functional roles; emergency access grants logged, time-bounded, and reviewed post-incident | Okta RBAC; JSM projects with role-based permissions |
+
+### 6.2 Technical Controls
+
+| Control | Description | Tool/System |
+|---------|-------------|-------------|
+| Infrastructure Monitoring | Real-time telemetry collection and alerting across all AWS and Azure environments | Datadog agents on all EC2 instances and EKS clusters; 30-second metric granularity on critical services |
+| Application Performance Monitoring | Distributed tracing, error tracking, and SLO burn-rate alerting for all microservices | Datadog APM with service maps; error budgets defined per service tier |
+| Synthetic Monitoring | Multi-region API endpoint probes simulating critical user journeys | Datadog Synthetic Tests (Boston, London, Singapore probes); run every 60 seconds on critical paths |
+| Log Aggregation | Centralized shipping of all application, system, and security logs with near-real-time searchability | Splunk Cloud (retention tiers: hot 30 days, warm 90 days, cold 365 days) |
+| Security Information and Event Management | Threat detection rules, anomaly detection, and security alert correlation | Splunk Enterprise Security; Datadog Security Monitoring |
+| Alerting and Escalation | Incident alerts routed to appropriate on-call rotations with automated escalation | PagerDuty with Meridian-specific service dependency mapping |
+| Incident Management Platform | Central ticketing, timeline, and communication artifact repository | Jira Service Management (JSM) |
+| Status Page | Public-facing service status communication | Atlassian Statuspage (`status.meridian.com`) |
+
+### 6.3 Logical Access Controls
+Access to Meridian’s production management plane (AWS Console, `meridian-prod` AWS account), incident management systems (JSM), monitoring dashboards (Datadog), and log repositories (Splunk) is controlled through Okta SSO integration with AWS IAM Identity Center. User access is provisioned based on functional role, with group memberships managed by the IT Operations Identity team. Access to customer data within production systems requires just-in-time elevation via Teleport, which generates a fully attributable audit trail. Access to incident records in JSM is restricted to authenticated users with project-level permissions; read-only access to closed incident reports may be granted to relevant personnel upon request.
+
+---
+
+## 7. Monitoring, Metrics, and Reporting
+
+### 7.1 Key Performance Indicators (KPIs)
+
+The IT Operations team tracks the following KPIs to measure the effectiveness of the incident management program. Targets represent Meridian’s ongoing performance objectives.
+
+| KPI | Definition | Target | Measurement Period |
+|-----|-----------|:---:|---------------------|
+| Mean Time to Acknowledge (MTTA) | Average time from PagerDuty alert trigger to responder acknowledgment | ≤ 5 minutes | Rolling 30-day |
+| Mean Time to Resolve (MTTR) | Average time from incident logging to service restoration; tracked by severity | SEV1: ≤ 90 min; SEV2: ≤ 180 min; SEV3: ≤ 480 min | Rolling 90-day |
+| Incident Recurrence Rate | Percentage of incidents where the same root cause recurs within 90 days | < 5% | Quarterly |
+| PIR Completion Rate | Percentage of SEV1/SEV2 incidents with PIR completed within SLA | ≥ 95% | Quarterly |
+| Action Item Closure | Percentage of PIR action items closed within target due date (30 days) | ≥ 90% | Monthly |
+| False Positive Alert Rate | Percentage of PagerDuty alerts determined to be non-actionable | ≤ 35% | Monthly |
+
+### 7.2 Dashboards and Reporting
+
+- **Real-Time Operations Dashboard:** A Datadog dashboard (`Meridian - Incident Command`) presents current open incidents, War Room active status, on-call rosters, and critical service health. Displayed on IT Operations NOC screens in the Boston HQ.
+- **Monthly Incident Management Report:** Generated by IT Operations Analytics, distributed to VPs of Engineering, IT Operations, and the CISO. Includes: total incident volume by severity and business unit, MTTA/MTTR trends, top incident root cause categories, PIR completion status, and action item aging.
+- **Quarterly Service Review:** Presented to the Chief Technology Officer and Executive Leadership Team. Includes KPI trends, major incident summaries, and process improvement initiatives.
+
+### 7.3 Audit and Compliance Reporting
+The CCO (Thomas Anderson) may request incident records, timelines, and action item statuses for purposes of SOC 2, HITRUST, ISO 27001, or customer audit submissions. All such requests shall be fulfilled by IT Operations within 5 business days.
+
+---
+
+## 8. Exception Handling and Escalation
+
+### 8.1 Exception Types
+The following recognized deviations from this SOP may be authorized under defined circumstances:
+
+| Exception Type | Example Scenario | Approver |
+|----------------|------------------|----------|
+| Severity Downgrade | SEV1 declared but after 30 minutes of investigation, impact confined to a single non-critical tenant | Incident Commander, concurred by Service Owner |
+| PIR Timeline Extension | Incident with complex root cause involving third-party vendor investigation | VP of IT Operations (Samantha Torres) |
+| War Room Process Modification | Low-risk SEV2 where full role assignment is disproportionate to incident complexity | Incident Commander |
+| Emergency Change Outside Standard Window | Hotfix deployment required during a SEV1 | Service Owner per SOP-ENG-003 Section 7 |
+| PIR Waiver | SEV3 with clearly documented, well-understood, non-recurring root cause | Service Owner |
+
+### 8.2 Exception Documentation
+All exceptions must be documented within the JSM incident ticket, capturing:
+- The specific SOP provision being excepted
+- The rationale for the exception
+- The approver (name and timestamp)
+- Any compensating controls applied
+
+Exception documentation is reviewed at the Quarterly Service Review.
+
+---
+
+## 9. Training Requirements
+
+### 9.1 Training Programs
+
+| Training | Audience | Frequency | Delivery Method | Owner |
+|-----------|----------|:---:|---|---|
+| Incident Management SOP Awareness | All Personnel | Annually; on-boarding | Workday Learning module | IT Operations / HR |
+| PagerDuty Responder Training | All SREs, on-call engineers, Incident Responders | Annually | Instructor-led; simulation | IT Operations |
+| Incident Commander Certification | Designated Incident Commander pool | Annually (recertification) | Multi-session curriculum including live War Room simulation exercises | IT Operations |
+| Privacy Incident Response | CPO/DPO office, Legal, CISO team, select IT Operations staff | Annually | Tabletop exercise led by CPO/DPO and General Counsel | CPO/DPO Office |
+| Security Incident Response Drill | CISO team, IT Operations, select engineering leads | Quarterly | Simulated security incident (phishing, malware) | CISO |
+
+### 9.2 Training Tracking
+Completion of all training is tracked within the Workday Learning Management System. Non-completion of mandatory training within 30 days of the assigned due date is escalated to the individual's manager and noted in their HR record. Personnel who are not current on required training may not be assigned to on-call rotations.
+
+---
+
+## 10. Related Policies and References
+
+### 10.1 Internal Meridian SOPs
+
+| SOP ID | Title | Relationship |
+|--------|-------|--------------|
+| SOP-BCP-001 | Business Continuity and Disaster Recovery | DR failover procedures during SEV1 incidents |
+| SOP-ENG-003 | Change Management | Emergency change process invoked during incident resolution |
+| SOP-SEC-001 | Security Incident Response | Security-specific response procedures complementing this SOP |
+| SOP-SEC-004 | Vulnerability Management | Remediation of vulnerabilities discovered during PIR |
+| SOP-PRIV-001 | Data Breach Response and Notification | Privacy incident notification workflows |
+| SOP-ITOP-005 | Service Request Management | Distinction between incidents and service requests |
+| SOP-VRM-001 | Vendor Risk Management | Third-party vendor incident coordination |
+| SOP-LEG-001 | Records Retention Schedule | Incident record retention requirements |
+
+### 10.2 External Standards and Frameworks
+
+| Reference | Version/Date | Applicability |
+|-----------|-------------|---------------|
+| NIST SP 800-61, Rev. 2 | August 2012 | Computer Security Incident Handling Guide |
+| NIST CSF | v1.1 | Detection, Response, and Recovery functions |
+| ITIL 4 Incident Management Practice | 2019 | Service management framework alignment |
+| ISO/IEC 27035 | 2016 | Information security incident management |
+| SOC 2 Trust Services Criteria | 2017 (TSP 100) | Security, Availability, and Confidentiality criteria |
+| HIPAA Security Rule | 45 CFR §164.300 et seq. | Administrative, physical, and technical safeguards |
+
+---
+
+## 11. Revision History
+
+| Version | Date | Author | Change Summary |
+|:---:|------|--------|----------------|
+| 1.0 | 2021-03-15 | J. Martinez (IT Ops) | Initial publication. Established foundational incident management framework. |
+| 2.0 | 2022-01-10 | S. Torres (VP IT Ops) | Major revision. Added formal severity matrix with SLAs; introduced Incident Commander role; integrated with PagerDuty and JSM toolchains. |
+| 2.3 | 2022-09-22 | L. Chen (SRE Lead) | Added War Room procedures (Section 5.5); refined PIR process with blameless methodology; updated escalation matrix for new org structure. |
+| 2.5 | 2023-06-14 | S. Torres (VP IT Ops) | Integration of privacy incident procedures per GDPR/HIPAA; added EU MDR clinical product references; added Section 5.10; updated KPI targets; annual review. |
+| 2.7 | 2024-03-05 | A. Patel (IT Ops, Compliance) | Updated related external frameworks (ISO 27035, ITIL 4); refined access control language; aligned with updated DR environment (Azure failover); added Section 8 (Exception Handling). |
+| 2.8 | 2025-12-28 | S. Torres (VP IT Ops) | Comprehensive biennial revision. Updated Service Owner registry; refined severity classification examples for MedInsight platform maturity; updated PIR template version; added post-recovery monitoring section (5.7.3); updated regulatory citations; incorporated feedback from 2025 external audit. Approved by D. Park. |

@@ -1,0 +1,105 @@
+================================================================================
+California SB 942 — California AI Transparency Act (2024)
+================================================================================
+
+Senate Bill
+No. 942
+CHAPTER 291
+An act to add Chapter 25 (commencing with Section 22757) to Division 8 of the Business and Professions Code, relating to consumer protection.
+[
+Approved  by
+Governor
+September 19, 2024.
+Filed with
+Secretary of State
+September 19, 2024.
+]
+LEGISLATIVE COUNSEL'S DIGEST
+SB 942, Becker.
+California AI Transparency Act.
+Existing law requires the Secretary of Government Operations to develop a coordinated plan to, among other things, investigate the feasibility of, and obstacles to, developing standards and technologies for state departments to determine digital content provenance. For the purpose of informing that coordinated plan, existing law requires the secretary to evaluate, among other things, the impact of the proliferation of deepfakes, defined to mean audio or visual content that has been generated or manipulated by artificial intelligence that would falsely appear to be authentic or truthful and that features depictions of people appearing to say or do things they did not say or do without their consent, on state government, California-based businesses, and residents of the state.
+This bill, the California AI Transparency Act, would, among other
+things, require a covered provider, as defined, to make available an artificial intelligence (AI) detection tool at no cost to the user that meets certain criteria, including that the AI detection tool is publicly accessible. The bill would require a covered provider to offer the user an option to include a manifest disclosure in image, video, or audio content, or content that is any combination thereof, created or altered by the covered provider’s generative artificial intelligence (GenAI) system that, among other things, identifies content as AI-generated content and is clear, conspicuous, appropriate for the medium of the content, and understandable to a reasonable person. The bill would require a covered provider to include a latent disclosure in AI-generated image, video, audio content, or content that is any combination thereof, created by the covered provider’s GenAI system that, among other things, to the
+extent that it is technically feasible
+and reasonable conveys certain information, either directly or through a link to a permanent internet website, regarding the provenance of the content. The bill would require a covered provider that knows a third-party licensee modified a licensed GenAI system such that it is no longer capable of including the disclosures described above in content the system creates or alters to revoke the license within 96 hours of discovering the licensee’s action and would require a third-party licensee to cease using a licensed GenAI system after the license for the system has been revoked by the covered provider.
+This bill would make a covered provider that violates these provisions liable for a civil penalty in the amount of $5,000 per violation to
+be collected in a civil action filed by the Attorney General, a city attorney, or a county counsel, as prescribed. The bill would, for a violation by a third-party licensee of the requirement to cease using a licensed GenAI system after the license of the system has been revoked, authorize the Attorney General, a county counsel, or a city attorney to bring a civil action for injunctive relief and reasonable attorney’s fees and costs.
+This bill would make its provisions operative on January 1, 2026.
+Digest Key
+Vote:
+MAJORITY
+Appropriation:
+NO
+Fiscal Committee:
+YES
+Local Program:
+NO
+Bill TextThe people of the State of California do enact as follows:
+SECTION 1. Chapter 25 (commencing with Section 22757) is added to Division 8 of the Business and Professions Code, to read:
+CHAPTER
+25. AI Transparency Act
+22757. This chapter shall be known as the California AI Transparency Act.
+22757.1. As used in this chapter:
+(a) “Artificial intelligence” or “AI” means an engineered or machine-based system that varies in its level of autonomy and that can, for explicit or implicit objectives, infer from the input it receives how to generate outputs that can influence physical or virtual environments.
+(b) “Covered provider” means a person that creates, codes, or otherwise produces a generative artificial intelligence system that has over 1,000,000 monthly visitors or users and is publicly accessible within the geographic boundaries of the state.
+(c) “Generative
+artificial intelligence system” or “GenAI system” means an artificial intelligence that can generate derived synthetic content, including text, images, video, and audio, that emulates the structure and characteristics of the system’s training data.
+(d) “Latent” means present but not manifest.
+(e) “Manifest” means easily perceived, understood, or recognized by a natural person.
+(f) “Metadata” means structural or descriptive information about data.
+(g) “Personal information” has the same meaning as defined in Section 1798.140 of the Civil Code.
+(h) “Personal provenance data” means provenance data
+that contains either of the following:
+(1) Personal information.
+(2) Unique device, system, or service information that is reasonably capable of being associated with a particular user.
+(i) “Provenance data” means data that is embedded into digital content, or that is included in the digital content’s metadata, for the purpose of verifying the digital content’s authenticity, origin, or history of modification.
+(j) “System provenance data” means provenance data that is not reasonably capable of being associated with a particular user and that contains either of the following:
+(1) Information
+regarding the type of device, system, or service that was used to generate a piece of digital content.
+(2) Information related to content authenticity.
+22757.2. (a) A covered provider shall make available an AI detection tool at no cost to the user that meets all of the following criteria:
+(1) The tool allows a user to assess whether image, video, or audio content, or content that is any combination thereof, was created or altered by the covered provider’s GenAI system.
+(2) The tool outputs any system provenance data that is detected in the content.
+(3) The tool does not output any personal provenance data that is
+detected in the content.
+(4) (A) Subject to subparagraph (B), the tool is publicly accessible.
+(B) A covered provider may impose reasonable limitations on access to the tool to prevent, or respond to, demonstrable risks to the security or integrity of its GenAI system.
+(5) The tool allows a user to upload content or provide a uniform resource locator (URL) linking to online content.
+(6) The tool
+supports an application programming interface that allows a user to invoke the tool without visiting the covered provider’s internet website.
+(b) A covered provider shall collect user feedback related to the efficacy of the covered provider’s AI detection tool and incorporate relevant feedback into any attempt to improve the efficacy of the tool.
+(c) A covered provider shall not do any of the following:
+(1) (A) Except as provided in subparagraph (B), collect or retain personal information from users of the covered provider’s AI detection tool.
+(B) (i) A covered provider may collect and retain the contact information
+of a user who submits feedback pursuant to subdivision (b) if the user opts in to being contacted by the covered provider.
+(ii) User information collected pursuant to clause (i) shall be used only to evaluate and improve the efficacy of the covered provider’s AI detection tool.
+(2) Retain any content submitted to the AI detection tool for longer than is necessary to comply with this section.
+(3) Retain any personal provenance data from content submitted to the AI detection tool by a user.
+22757.3. (a) A covered provider shall offer the user the option to include a manifest disclosure in image, video, or audio content, or content that is any combination thereof, created or altered by the covered provider’s GenAI system that meets all of the following criteria:
+(1) The disclosure identifies content as AI-generated content.
+(2) The disclosure is clear, conspicuous, appropriate for the medium of the content, and understandable to a reasonable person.
+(3) The disclosure is permanent or extraordinarily difficult to remove, to the extent it is
+technically feasible.
+(b) A covered provider shall include a latent disclosure in AI-generated image, video, or audio content, or content that is any combination thereof, created by the covered provider’s GenAI system that meets all of the following criteria:
+(1) To the extent that it is technically feasible and reasonable, the disclosure conveys all of the following information, either directly or through a link to a permanent internet website:
+(A) The name of the covered provider.
+(B) The name and version number of the GenAI system that created or altered the content.
+(C) The time and date of the content’s creation or alteration.
+(D) A unique identifier.
+(2) The disclosure is detectable by the covered provider’s AI detection tool.
+(3) The disclosure is consistent with widely accepted industry standards.
+(4) The disclosure is permanent or extraordinarily difficult to remove, to the extent it is technically feasible.
+(c) (1) If a covered provider licenses its GenAI system to a third
+party, the covered provider shall require by contract that the licensee maintain the system’s capability to include a disclosure required by subdivision (b) in content the system creates or alters.
+(2) If a covered provider knows that a third-party licensee modified a licensed GenAI system such that it is no longer capable of including a disclosure required by subdivision (b) in content the system creates or alters, the covered provider shall revoke the license within 96 hours of discovering the licensee’s action.
+(3) A third-party licensee shall cease using a licensed GenAI system after the license for the system has
+been revoked by the covered provider pursuant to paragraph (2).
+22757.4. (a) (1) A covered provider that violates this chapter shall be liable for a civil penalty in the amount of five thousand dollars ($5,000) per violation to be collected in a civil action filed by the Attorney General, a city attorney, or a county counsel.
+(2) A prevailing plaintiff in an action brought pursuant to this subdivision shall be entitled to all reasonable attorney’s costs and fees.
+(b) Each day that a covered provider is in violation of this chapter shall be deemed a discrete violation.
+(c) For a violation by a
+third-party licensee of paragraph (3) of subdivision (c) of Section 22757.3, the Attorney General, a county counsel, or a city attorney may bring a civil action for both of the following:
+(1) Injunctive relief.
+(2) Reasonable attorney’s fees and costs.
+22757.5. This chapter does not apply to any product, service, internet website, or application that provides exclusively non-user-generated video game, television, streaming, movie, or interactive experiences.
+22757.6. This chapter shall become operative on January 1, 2026.

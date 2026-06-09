@@ -1,0 +1,959 @@
+I 
+(Legislative acts) 
+REGULATIONS 
+REGULATION (EU) 2015/847 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL 
+of 20 May 2015 
+on information accompanying transfers of funds and repealing Regulation (EC) No 1781/2006 
+(Text with EEA relevance) 
+THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION, 
+Having regard to the Treaty on the Functioning of the European Union, and in particular Article 114 thereof, 
+Having regard to the proposal from the European Commission, 
+After transmission of the draft legislative act to the national parliaments, 
+Having regard to the opinion of the European Central Bank (1), 
+Having regard to the opinion of the European Economic and Social Committee (2), 
+Acting in accordance with the ordinary legislative procedure (3), 
+Whereas: 
+(1)  
+Flows of illicit money through transfers of funds can damage the integrity, stability and reputation of the 
+financial sector, and threaten the internal market of the Union as well as international development. Money 
+laundering, terrorist financing and organised crime remain significant problems which should be addressed at 
+Union level. The soundness, integrity and stability of the system of transfers of funds and confidence in the 
+financial system as a whole could be seriously jeopardised by the efforts of criminals and their associates to 
+disguise the origin of criminal proceeds or to transfer funds for criminal activities or terrorist purposes. 
+(2)  
+In order to facilitate their criminal activities, money launderers and financers of terrorism are likely to take 
+advantage of the freedom of capital movements within the Union's integrated financial area unless certain 
+coordinating measures are adopted at Union level. International cooperation within the framework of the 
+Financial Action Task Force (FATF) and the global implementation of its recommendations aim to prevent money 
+laundering and terrorist financing while transferring funds. 
+(3)  
+By reason of the scale of the action to be undertaken, the Union should ensure that the International Standards 
+on Combating Money Laundering and the Financing of Terrorism and Proliferation adopted by FATF on 
+5.6.2015 
+L 141/1 
+Official Journal of the European Union 
+EN     
+(1) OJ C 166, 12.6.2013, p. 2. 
+(2) OJ C 271, 19.9.2013, p. 31. 
+(3) Position of the European Parliament of 11 March 2014 (not yet published in the Official Journal) and position of the Council at first 
+reading of 20 April 2015 (not yet published in the Official Journal). Position of the European Parliament of 20 May 2015 (not yet 
+published in the Official Journal). 
+
+
+16 February 2012 (the ‘revised FATF Recommendations’), and, in particular, FATF Recommendation 16 on wire 
+transfers (the ‘FATF Recommendation 16’) and the revised interpretative note for its implementation, are 
+implemented uniformly throughout the Union and that, in particular, there is no discrimination or discrepancy 
+between, on the one hand, national payments within a Member State and, on the other, cross-border payments 
+between Member States. Uncoordinated action by Member States acting alone in the field of cross-border 
+transfers of funds could have a significant impact on the smooth functioning of payment systems at Union level 
+and could therefore damage the internal market in the field of financial services. 
+(4)  
+In order to foster a coherent approach in the international context and to increase the effectiveness of the fight 
+against money laundering and terrorist financing, further Union action should take account of developments at 
+international level, namely the revised FATF Recommendations. 
+(5)  
+The implementation and enforcement of this Regulation, including FATF Recommendation 16, represent relevant 
+and effective means of preventing and combating money-laundering and terrorist financing. 
+(6)  
+This Regulation is not intended to impose unnecessary burdens or costs on payment service providers or on 
+persons who use their services. In this regard, the preventive approach should be targeted and proportionate and 
+should be in full compliance with the free movement of capital, which is guaranteed throughout the Union. 
+(7)  
+In the Union's Revised Strategy on Terrorist Financing of 17 July 2008 (the ‘Revised Strategy’), it was pointed out 
+that efforts must be maintained to prevent terrorist financing and to control the use by suspected terrorists of 
+their own financial resources. It is recognised that FATF is constantly seeking to improve its Recommendations 
+and is working towards a common understanding of how they should be implemented. It is noted in the Revised 
+Strategy that implementation of the revised FATF Recommendations by all FATF members and members of 
+FATF-style regional bodies is assessed on a regular basis and that a common approach to implementation by 
+Member States is therefore important. 
+(8)  
+In order to prevent terrorist financing, measures with the purpose of freezing the funds and the economic 
+resources of certain persons, groups and entities have been taken, including Council Regulations (EC) 
+No 2580/2001 (1), (EC) No 881/2002 (2) and (EU) No 356/2010 (3). To the same end, measures with the purpose 
+of protecting the financial system against the channelling of funds and economic resources for terrorist purposes 
+have also been taken. Directive (EU) 2015/849 of the European Parliament and of the Council (4) contains a 
+number of such measures. Those measures do not, however, fully prevent terrorists or other criminals from 
+accessing payment systems for transferring their funds. 
+(9)  
+The full traceability of transfers of funds can be a particularly important and valuable tool in the prevention, 
+detection and investigation of money laundering and terrorist financing, as well as in the implementation of 
+restrictive measures, in particular those imposed by Regulations (EC) No 2580/2001, (EC) No 881/2002 and (EU) 
+No 356/2010, and in full compliance with Union regulations implementing such measures. It is therefore 
+appropriate, in order to ensure the transmission of information throughout the payment chain, to provide for a 
+system imposing the obligation on payment service providers to accompany transfers of funds with information 
+on the payer and the payee. 
+(10)  
+This Regulation should apply without prejudice to the restrictive measures imposed by regulations based on 
+Article 215 of the Treaty on the Functioning of the European Union (TFEU), such as Regulations (EC) 
+No 2580/2001, (EC) No 881/2002 and (EU) No 356/2010, which may require that payment service providers of 
+payers and of payees, as well as intermediary payment service providers, take appropriate action to freeze certain 
+funds or that they comply with specific restrictions concerning certain transfers of funds. 
+5.6.2015 
+L 141/2 
+Official Journal of the European Union 
+EN     
+(1) Council Regulation (EC) No 2580/2001 of 27 December 2001 on specific restrictive measures directed against certain persons and 
+entities with a view to combating terrorism (OJ L 344, 28.12.2001, p. 70). 
+(2) Council Regulation (EC) No 881/2002 of 27 May 2002 imposing certain specific restrictive measures directed against certain persons 
+and entities associated with the Al-Qaida network (OJ L 139, 29.5.2002, p. 9). 
+(3) Council Regulation (EU) No 356/2010 of 26 April 2010 imposing certain specific restrictive measures directed against certain natural or 
+legal persons, entities or bodies, in view of the situation in Somalia (OJ L 105, 27.4.2010, p. 1). 
+(4) Directive (EU) 2015/849 of the European Parliament and of the Council of 20 May 2015 on the prevention of the use of the financial 
+system for the purpose of money laundering or terrorist financing, amending Regulation (EU) No 648/2012 of the European Parliament 
+and of the Council, and repealing Directive 2005/60/EC of the European Parliament and of the Council and Commission Directive 
+2006/70/EC (see page 73 of this Official Journal). 
+
+
+(11)  
+This Regulation should also apply without prejudice to national legislation transposing Directive 95/46/EC of the 
+European Parliament and of the Council (1). For example, personal data collected for the purpose of complying 
+with this Regulation should not be further processed in a way that is incompatible with Directive 95/46/EC. In 
+particular, further processing of personal data for commercial purposes should be strictly prohibited. The fight 
+against money laundering and terrorist financing is recognised as an important public interest ground by all 
+Member States. Therefore, in applying this Regulation, the transfer of personal data to a third country which does 
+not ensure an adequate level of protection in accordance with Article 25 of Directive 95/46/EC should be 
+permitted in accordance with Article 26 thereof. It is important that payment service providers operating in 
+multiple jurisdictions with branches or subsidiaries located outside the Union should not be prevented from 
+transferring data about suspicious transactions within the same organisation, provided that they apply adequate 
+safeguards. In addition, the payment service providers of the payer and of the payee and the intermediary 
+payment service providers should have in place appropriate technical and organisational measures to protect 
+personal data against accidental loss, alteration, or unauthorised disclosure or access. 
+(12)  
+Persons that merely convert paper documents into electronic data and are acting under a contract with a 
+payment service provider and persons that provide payment service providers solely with messaging or other 
+support systems for transmitting funds or with clearing and settlement systems do not fall within the scope of 
+this Regulation. 
+(13)  
+Transfers of funds corresponding to services referred to in points (a) to (m) and (o) of Article 3 of Directive 
+2007/64/EC of the European Parliament and of the Council (2) do not fall within the scope of this Regulation. It 
+is also appropriate to exclude from the scope of this Regulation transfers of funds that represent a low risk of 
+money laundering or terrorist financing. Such exclusions should cover payment cards, electronic money 
+instruments, mobile phones or other digital or information technology (IT) prepaid or postpaid devices with 
+similar characteristics, where they are used exclusively for the purchase of goods or services and the number of 
+the card, instrument or device accompanies all transfers. However, the use of a payment card, an electronic 
+money instrument, a mobile phone, or any other digital or IT prepaid or postpaid device with similar character­
+istics in order to effect a person-to-person transfer of funds, falls within the scope of this Regulation. In addition, 
+Automated Teller Machine withdrawals, payments of taxes, fines or other levies, transfers of funds carried out 
+through cheque images exchanges, including truncated cheques, or bills of exchange, and transfers of funds where 
+both the payer and the payee are payment service providers acting on their own behalf should be excluded from 
+the scope of this Regulation. 
+(14)  
+In order to reflect the special characteristics of national payment systems, and provided that it is always possible 
+to trace the transfer of funds back to the payer, Member States should be able to exempt from the scope of this 
+Regulation certain domestic low-value transfers of funds, including electronic giro payments, used for the 
+purchase of goods or services. 
+(15)  
+Payment service providers should ensure that the information on the payer and the payee is not missing or 
+incomplete. 
+(16)  
+In order not to impair the efficiency of payment systems, and in order to balance the risk of driving transactions 
+underground as a result of overly strict identification requirements against the potential terrorist threat posed by 
+small transfers of funds, the obligation to check whether information on the payer or the payee is accurate 
+should, in the case of transfers of funds where verification has not yet taken place, be imposed only in respect of 
+individual transfers of funds that exceed EUR 1 000, unless the transfer appears to be linked to other transfers of 
+funds which together would exceed EUR 1 000, the funds have been received or paid out in cash or in 
+anonymous electronic money, or where there are reasonable grounds for suspecting money laundering or 
+terrorist financing. 
+(17)  
+For transfers of funds where verification is deemed to have taken place, payment service providers should not be 
+required to verify information on the payer or the payee accompanying each transfer of funds, provided that the 
+obligations laid down in Directive (EU) 2015/849 are met. 
+5.6.2015 
+L 141/3 
+Official Journal of the European Union 
+EN     
+(1) Directive 95/46/EC of the European Parliament and of the Council of 24 October 1995 on the protection of individuals with regard to 
+the processing of personal data and on the free movement of such data (OJ L 281, 23.11.1995, p. 31). 
+(2) Directive 2007/64/EC of the European Parliament and of the Council of 13 November 2007 on payment services in the internal market 
+amending Directives 97/7/EC, 2002/65/EC, 2005/60/EC and 2006/48/EC and repealing Directive 97/5/EC (OJ L 319, 5.12.2007, p. 1). 
+
+
+(18)  
+In view of the Union legislative acts in respect of payment services, namely Regulation (EC) No 924/2009 of the 
+European Parliament and of the Council (1), Regulation (EU) No 260/2012 of the European Parliament and of the 
+Council (2) and Directive 2007/64/EC, it should be sufficient to provide that only simplified information 
+accompany transfers of funds within the Union, such as the payment account number(s) or a unique transaction 
+identifier. 
+(19)  
+In order to allow the authorities responsible for combating money laundering or terrorist financing in 
+third countries to trace the source of funds used for those purposes, transfers of funds from the Union to outside 
+the Union should carry complete information on the payer and the payee. Those authorities should be granted 
+access to complete information on the payer and the payee only for the purposes of preventing, detecting and 
+investigating money laundering and terrorist financing. 
+(20)  
+The Member State authorities responsible for combating money laundering and terrorist financing, and relevant 
+judicial and law enforcement agencies in the Member States, should intensify cooperation with each other and 
+with relevant third country authorities, including those in developing countries, in order further to strengthen 
+transparency and the sharing of information and best practices. 
+(21)  
+As regards transfers of funds from a single payer to several payees that are to be sent in batch files containing 
+individual transfers from the Union to outside the Union, provision should be made for such individual transfers 
+to carry only the payment account number of the payer or the unique transaction identifier, as well as complete 
+information on the payee, provided that the batch file contains complete information on the payer that is verified 
+for accuracy and complete information on the payee that is fully traceable. 
+(22)  
+In order to check whether the required information on the payer and the payee accompanies transfers of funds, 
+and to help identify suspicious transactions, the payment service provider of the payee and the intermediary 
+payment service provider should have effective procedures in place in order to detect whether information on the 
+payer and the payee is missing or incomplete. Those procedures should include ex-post monitoring or real-time 
+monitoring where appropriate. Competent authorities should ensure that payment service providers include the 
+required transaction information with the wire transfer or related message throughout the payment chain. 
+(23)  
+Given the potential threat of money laundering and terrorist financing presented by anonymous transfers, it is 
+appropriate to require payment service providers to request information on the payer and the payee. In line with 
+the risk-based approach developed by FATF, it is appropriate to identify areas of higher and lower risk, with a 
+view to better targeting the risk of money laundering and terrorist financing. Accordingly, the payment service 
+provider of the payee and the intermediary payment service provider should have effective risk-based procedures 
+that apply where a transfer of funds lacks the required information on the payer or the payee, in order to allow 
+them to decide whether to execute, reject or suspend that transfer and to determine the appropriate follow-up 
+action to take. 
+(24)  
+The payment service provider of the payee and the intermediary payment service provider should exercise special 
+vigilance, assessing the risks, when either becomes aware that information on the payer or the payee is missing 
+or incomplete, and should report suspicious transactions to the competent authorities in accordance with the 
+reporting obligations set out in Directive (EU) 2015/849 and with national measures transposing that Directive. 
+(25)  
+The provisions on transfers of funds in relation to which information on the payer or the payee is missing or 
+incomplete apply without prejudice to any obligations on payment service providers and intermediary payment 
+service providers to suspend and/or reject transfers of funds which breach a provision of civil, administrative or 
+criminal law. 
+(26)  
+With the aim of assisting payment service providers to put effective procedures in place to detect cases in which 
+they receive transfers of funds with missing or incomplete payer or payee information and to take follow-up 
+actions, the European Supervisory Authority (European Banking Authority) (EBA), established by Regulation (EU) 
+5.6.2015 
+L 141/4 
+Official Journal of the European Union 
+EN     
+(1) Regulation (EC) No 924/2009 of the European Parliament and of the Council of 16 September 2009 on cross-border payments in the 
+Community and repealing Regulation (EC) No 2560/2001 (OJ L 266, 9.10.2009, p. 11). 
+(2) Regulation (EU) No 260/2012 of the European Parliament and of the Council of 14 March 2012 establishing technical and business 
+requirements for credit transfers and direct debits in euro and amending Regulation (EC) No 924/2009 (OJ L 94, 30.3.2012, p. 22). 
+
+
+No 1093/2010 of the European Parliament and of the Council (1), the European Supervisory Authority 
+(European Insurance and Occupational Pensions Authority) (EIOPA), established by Regulation (EU) 
+No 1094/2010 of the European Parliament and of the Council (2), and the European Supervisory Authority 
+(European Securities and Markets Authority) (ESMA), established by Regulation (EU) No 1095/2010 of the 
+European Parliament and of the Council (3), should issue guidelines. 
+(27)  
+To enable prompt action to be taken in the fight against money laundering and terrorist financing, payment 
+service providers should respond promptly to requests for information on the payer and the payee from the 
+authorities responsible for combating money laundering or terrorist financing in the Member State where those 
+payment service providers are established. 
+(28)  
+The number of working days in the Member State of the payment service provider of the payer determines the 
+number of days to respond to requests for information on the payer. 
+(29)  
+As it may not be possible in criminal investigations to identify the data required or the individuals involved in a 
+transaction until many months, or even years, after the original transfer of funds, and in order to be able to have 
+access to essential evidence in the context of investigations, it is appropriate to require payment service providers 
+to keep records of information on the payer and the payee for a period of time for the purposes of preventing, 
+detecting and investigating money laundering and terrorist financing. That period should be limited to five years, 
+after which all personal data should be deleted unless national law provides otherwise. If necessary for the 
+purposes of preventing, detecting or investigating money laundering or terrorist financing, and after carrying out 
+an assessment of the necessity and proportionality of the measure, Member States should be able to allow or 
+require retention of records for a further period of no more than five years, without prejudice to national 
+criminal law on evidence applicable to ongoing criminal investigations and legal proceedings. 
+(30)  
+In order to improve compliance with this Regulation, and in accordance with the Commission Communication 
+of 9 December 2010 entitled ‘Reinforcing sanctioning regimes in the financial services sector’, the power to 
+adopt supervisory measures and the sanctioning powers of competent authorities should be enhanced. Adminis­
+trative sanctions and measures should be provided for and, given the importance of the fight against money 
+laundering and terrorist financing, Member States should lay down sanctions and measures that are effective, 
+proportionate and dissuasive. Member States should notify the Commission and the Joint Committee of EBA, 
+EIOPA and ESMA (the ‘ESAs’) thereof. 
+(31)  
+In order to ensure uniform conditions for the implementation of Chapter V of this Regulation, implementing 
+powers should be conferred on the Commission. Those powers should be exercised in accordance with 
+Regulation (EU) No 182/2011 of the European Parliament and of the Council (4). 
+(32)  
+A number of countries and territories which do not form part of the territory of the Union share a monetary 
+union with a Member State, form part of the currency area of a Member State or have signed a monetary 
+convention with the Union represented by a Member State, and have payment service providers that participate 
+directly or indirectly in the payment and settlement systems of that Member State. In order to avoid the 
+application of this Regulation to transfers of funds between the Member States concerned and those countries or 
+territories having a significant negative effect on the economies of those countries or territories, it is appropriate 
+to provide for the possibility for such transfers of funds to be treated as transfers of funds within the Member 
+States concerned. 
+5.6.2015 
+L 141/5 
+Official Journal of the European Union 
+EN     
+(1) Regulation (EU) No 1093/2010 of the European Parliament and of the Council of 24 November 2010 establishing a European 
+Supervisory Authority (European Banking Authority), amending Decision No 716/2009/EC and repealing Commission Decision 
+2009/78/EC (OJ L 331, 15.12.2010, p. 12). 
+(2) Regulation (EU) No 1094/2010 of the European Parliament and of the Council of 24 November 2010 establishing a European 
+Supervisory Authority (European Insurance and Occupational Pensions Authority), amending Decision No 716/2009/EC and repealing 
+Commission Decision 2009/79/EC (OJ L 331, 15.12.2010, p. 48). 
+(3) Regulation (EU) No 1095/2010 of the European Parliament and of the Council of 24 November 2010 establishing a European 
+Supervisory Authority (European Securities and Markets Authority), amending Decision No 716/2009/EC and repealing Commission 
+Decision 2009/77/EC (OJ L 331, 15.12.2010, p. 84). 
+(4) Regulation (EU) No 182/2011 of the European Parliament and of the Council of 16 February 2011 laying down the rules and general 
+principles concerning mechanisms for control by Member States of the Commission's exercise of implementing powers (OJ L 55, 
+28.2.2011, p. 13). 
+
+
+(33)  
+Given the number of amendments that would need to be made to Regulation (EC) No 1781/2006 of the 
+European Parliament and of the Council (1) pursuant to this Regulation, that Regulation should be repealed for 
+reasons of clarity. 
+(34)  
+Since the objectives of this Regulation cannot be sufficiently achieved by the Member States but can rather, by 
+reason of the scale or effects of the action, be better achieved at Union level, the Union may adopt measures, in 
+accordance with the principle of subsidiarity as set out in Article 5 of the Treaty on European Union (TEU). In 
+accordance with the principle of proportionality as set out in that Article, this Regulation does not go beyond 
+what is necessary in order to achieve those objectives. 
+(35)  
+This Regulation respects the fundamental rights and observes the principles recognised by the Charter of 
+Fundamental Rights of the European Union, in particular the right to respect for private and family life 
+(Article 7), the right to the protection of personal data (Article 8), the right to an effective remedy and to a fair 
+trial (Article 47) and the principle of ne bis in idem. 
+(36)  
+In order to ensure the smooth introduction of the anti-money laundering and terrorist financing framework, it is 
+appropriate that the date of application of this Regulation be the same as the deadline for transposition of 
+Directive (EU) 2015/849. 
+(37)  
+The European Data Protection Supervisor was consulted in accordance with Article 28(2) of Regulation (EC) 
+No 45/2001 of the European Parliament and of the Council (2) and delivered an opinion on 4 July 2013 (3), 
+HAVE ADOPTED THIS REGULATION: 
+CHAPTER I 
+SUBJECT MATTER, SCOPE AND DEFINITIONS 
+Article 1 
+Subject matter 
+This Regulation lays down rules on the information on payers and payees, accompanying transfers of funds, in any 
+currency, for the purposes of preventing, detecting and investigating money laundering and terrorist financing, where at 
+least one of the payment service providers involved in the transfer of funds is established in the Union. 
+Article 2 
+Scope 
+1.
+This Regulation shall apply to transfers of funds, in any currency, which are sent or received by a payment service 
+provider or an intermediary payment service provider established in the Union. 
+2.
+This Regulation shall not apply to the services listed in points (a) to (m) and (o) of Article 3 of Directive 
+2007/64/EC. 
+3.
+This Regulation shall not apply to transfers of funds carried out using a payment card, an electronic money 
+instrument or a mobile phone, or any other digital or IT prepaid or postpaid device with similar characteristics, where 
+the following conditions are met: 
+(a)  that card, instrument or device is used exclusively to pay for goods or services; and 
+(b)  the number of that card, instrument or device accompanies all transfers flowing from the transaction. 
+5.6.2015 
+L 141/6 
+Official Journal of the European Union 
+EN     
+(1) Regulation (EC) No 1781/2006 of the European Parliament and of the Council of 15 November 2006 on information on the payer 
+accompanying transfers of funds (OJ L 345, 8.12.2006, p. 1). 
+(2) Regulation (EC) No 45/2001 of the European Parliament and of the Council of 18 December 2000 on the protection of individuals with 
+regard to the processing of personal data by the Community institutions and bodies and on the free movement of such data (OJ L 8, 
+12.1.2001, p. 1). 
+(3) OJ C 32, 4.2.2014, p. 9. 
+
+
+However, this Regulation shall apply when a payment card, an electronic money instrument or a mobile phone, or any 
+other digital or IT prepaid or postpaid device with similar characteristics, is used in order to effect a person-to-person 
+transfer of funds. 
+4.
+This Regulation shall not apply to persons that have no activity other than to convert paper documents into 
+electronic data and that do so pursuant to a contract with a payment service provider, or to persons that have no 
+activity other than to provide payment service providers with messaging or other support systems for transmitting funds 
+or with clearing and settlement systems. 
+This Regulation shall not apply to transfers of funds: 
+(a)  that involve the payer withdrawing cash from the payer's own payment account; 
+(b)  that transfer funds to a public authority as payment for taxes, fines or other levies within a Member State; 
+(c)  where both the payer and the payee are payment service providers acting on their own behalf; 
+(d)  that are carried out through cheque images exchanges, including truncated cheques. 
+5.
+A Member State may decide not to apply this Regulation to transfers of funds within its territory to a payee's 
+payment account permitting payment exclusively for the provision of goods or services where all of the following 
+conditions are met: 
+(a)  the payment service provider of the payee is subject to Directive (EU) 2015/849; 
+(b)  the payment service provider of the payee is able to trace back, through the payee, by means of a unique transaction 
+identifier, the transfer of funds from the person who has an agreement with the payee for the provision of goods or 
+services; 
+(c)  the amount of the transfer of funds does not exceed EUR 1 000. 
+Article 3 
+Definitions 
+For the purposes of this Regulation, the following definitions apply:  
+(1) ‘terrorist financing’ means terrorist financing as defined in Article 1(5) of Directive (EU) 2015/849;  
+(2) ‘money laundering’ means the money laundering activities referred to in Article 1(3) and (4) of Directive (EU) 
+2015/849;  
+(3) ‘payer’ means a person that holds a payment account and allows a transfer of funds from that payment account, or, 
+where there is no payment account, that gives a transfer of funds order;  
+(4) ‘payee’ means a person that is the intended recipient of the transfer of funds;  
+(5) ‘payment service provider’ means the categories of payment service provider referred to in Article 1(1) of Directive 
+2007/64/EC, natural or legal persons benefiting from a waiver pursuant to Article 26 thereof and legal persons 
+benefiting from a waiver pursuant to Article 9 of Directive 2009/110/EC of the European Parliament and of the 
+Council (1), providing transfer of funds services;  
+(6) ‘intermediary payment service provider’ means a payment service provider that is not the payment service provider 
+of the payer or of the payee and that receives and transmits a transfer of funds on behalf of the payment service 
+provider of the payer or of the payee or of another intermediary payment service provider;  
+(7) ‘payment account’ means a payment account as defined in point (14) of Article 4 of Directive 2007/64/EC;  
+(8) ‘funds’ means funds as defined in point (15) of Article 4 of Directive 2007/64/EC; 
+5.6.2015 
+L 141/7 
+Official Journal of the European Union 
+EN     
+(1) Directive 2009/110/EC of the European Parliament and of the Council of 16 September 2009 on the taking up, pursuit and prudential 
+supervision of the business of electronic money institutions amending Directives 2005/60/EC and 2006/48/EC and repealing Directive 
+2000/46/EC (OJ L 267, 10.10.2009, p. 7). 
+
+
+(9) ‘transfer of funds’ means any transaction at least partially carried out by electronic means on behalf of a payer 
+through a payment service provider, with a view to making funds available to a payee through a payment service 
+provider, irrespective of whether the payer and the payee are the same person and irrespective of whether the 
+payment service provider of the payer and that of the payee are one and the same, including: 
+(a)  a credit transfer as defined in point (1) of Article 2 of Regulation (EU) No 260/2012; 
+(b)  a direct debit as defined in point (2) of Article 2 of Regulation (EU) No 260/2012; 
+(c)  a money remittance as defined in point (13) of Article 4 of Directive 2007/64/EC, whether national or cross 
+border; 
+(d)  a transfer carried out using a payment card, an electronic money instrument, or a mobile phone, or any other 
+digital or IT prepaid or postpaid device with similar characteristics;  
+(10) ‘batch file transfer’ means a bundle of several individual transfers of funds put together for transmission;  
+(11) ‘unique transaction identifier’ means a combination of letters, numbers or symbols determined by the payment 
+service provider, in accordance with the protocols of the payment and settlement systems or messaging systems 
+used for the transfer of funds, which permits the traceability of the transaction back to the payer and the payee;  
+(12) ‘person-to-person transfer of funds’ means a transaction between natural persons acting, as consumers, for 
+purposes other than trade, business or profession. 
+CHAPTER II 
+OBLIGATIONS ON PAYMENT SERVICE PROVIDERS 
+SECTION 1 
+Obligations on the payment service provider of the payer 
+Article 4 
+Information accompanying transfers of funds 
+1.
+The payment service provider of the payer shall ensure that transfers of funds are accompanied by the following 
+information on the payer: 
+(a)  the name of the payer; 
+(b)  the payer's payment account number; and 
+(c)  the payer's address, official personal document number, customer identification number or date and place of birth. 
+2.
+The payment service provider of the payer shall ensure that transfers of funds are accompanied by the following 
+information on the payee: 
+(a)  the name of the payee; and 
+(b)  the payee's payment account number. 
+3.
+By way of derogation from point (b) of paragraph 1 and point (b) of paragraph 2, in the case of a transfer not 
+made from or to a payment account, the payment service provider of the payer shall ensure that the transfer of funds is 
+accompanied by a unique transaction identifier rather than the payment account number(s). 
+4.
+Before transferring funds, the payment service provider of the payer shall verify the accuracy of the information 
+referred to in paragraph 1 on the basis of documents, data or information obtained from a reliable and independent 
+source. 
+5.
+Verification as referred to in paragraph 4 shall be deemed to have taken place where: 
+(a)  a payer's identity has been verified in accordance with Article 13 of Directive (EU) 2015/849 and the information 
+obtained pursuant to that verification has been stored in accordance with Article 40 of that Directive; or 
+(b)  Article 14(5) of Directive (EU) 2015/849 applies to the payer. 
+5.6.2015 
+L 141/8 
+Official Journal of the European Union 
+EN     
+
+
+6.
+Without prejudice to the derogations provided for in Articles 5 and 6, the payment service provider of the payer 
+shall not execute any transfer of funds before ensuring full compliance with this Article. 
+Article 5 
+Transfers of funds within the Union 
+1.
+By way of derogation from Article 4(1) and (2), where all payment service providers involved in the payment chain 
+are established in the Union, transfers of funds shall be accompanied by at least the payment account number of both 
+the payer and the payee or, where Article 4(3) applies, the unique transaction identifier, without prejudice to the 
+information requirements laid down in Regulation (EU) No 260/2012, where applicable. 
+2.
+Notwithstanding paragraph 1, the payment service provider of the payer shall, within three working days of 
+receiving a request for information from the payment service provider of the payee or from the intermediary payment 
+service provider, make available the following: 
+(a)  for transfers of funds exceeding EUR 1 000, whether those transfers are carried out in a single transaction or in 
+several transactions which appear to be linked, the information on the payer or the payee in accordance with 
+Article 4; 
+(b)  for transfers of funds not exceeding EUR 1 000 that do not appear to be linked to other transfers of funds which, 
+together with the transfer in question, exceed EUR 1 000, at least: 
+(i)  the names of the payer and of the payee; and 
+(ii)  the payment account numbers of the payer and of the payee or, where Article 4(3) applies, the unique 
+transaction identifier. 
+3.
+By way of derogation from Article 4(4), in the case of transfers of funds referred to in paragraph 2(b) of this 
+Article, the payment service provider of the payer need not verify the information on the payer unless the payment 
+service provider of the payer: 
+(a)  has received the funds to be transferred in cash or in anonymous electronic money; or 
+(b)  has reasonable grounds for suspecting money laundering or terrorist financing. 
+Article 6 
+Transfers of funds to outside the Union 
+1.
+In the case of a batch file transfer from a single payer where the payment service providers of the payees are 
+established outside the Union, Article 4(1) shall not apply to the individual transfers bundled together therein, provided 
+that the batch file contains the information referred to in Article 4(1), (2) and (3), that that information has been verified 
+in accordance with Article 4(4) and (5), and that the individual transfers carry the payment account number of the payer 
+or, where Article 4(3) applies, the unique transaction identifier. 
+2.
+By way of derogation from Article 4(1), and, where applicable, without prejudice to the information required in 
+accordance with Regulation (EU) No 260/2012, where the payment service provider of the payee is established outside 
+the Union, transfers of funds not exceeding EUR 1 000 that do not appear to be linked to other transfers of funds 
+which, together with the transfer in question, exceed EUR 1 000, shall be accompanied by at least: 
+(a)  the names of the payer and of the payee; and 
+(b)  the payment account numbers of the payer and of the payee or, where Article 4(3) applies, the unique transaction 
+identifier. 
+By way of derogation from Article 4(4), the payment service provider of the payer need not verify the information on 
+the payer referred to in this paragraph unless the payment service provider of the payer: 
+(a)  has received the funds to be transferred in cash or in anonymous electronic money; or 
+(b)  has reasonable grounds for suspecting money laundering or terrorist financing. 
+5.6.2015 
+L 141/9 
+Official Journal of the European Union 
+EN     
+
+
+SECTION 2 
+Obligations on the payment service provider of the payee 
+Article 7 
+Detection of missing information on the payer or the payee 
+1.
+The payment service provider of the payee shall implement effective procedures to detect whether the fields 
+relating to the information on the payer and the payee in the messaging or payment and settlement system used to 
+effect the transfer of funds have been filled in using characters or inputs admissible in accordance with the conventions 
+of that system. 
+2.
+The payment service provider of the payee shall implement effective procedures, including, where appropriate, 
+ex-post monitoring or real-time monitoring, in order to detect whether the following information on the payer or the 
+payee is missing: 
+(a)  for transfers of funds where the payment service provider of the payer is established in the Union, the information 
+referred to in Article 5; 
+(b)  for transfers of funds where the payment service provider of the payer is established outside the Union, the 
+information referred to in Article 4(1) and (2); 
+(c)  for batch file transfers where the payment service provider of the payer is established outside the Union, the 
+information referred to in Article 4(1) and (2) in respect of that batch file transfer. 
+3.
+In the case of transfers of funds exceeding EUR 1 000, whether those transfers are carried out in a single 
+transaction or in several transactions which appear to be linked, before crediting the payee's payment account or making 
+the funds available to the payee, the payment service provider of the payee shall verify the accuracy of the information 
+on the payee referred to in paragraph 2 of this Article on the basis of documents, data or information obtained from a 
+reliable and independent source, without prejudice to the requirements laid down in Articles 69 and 70 of Directive 
+2007/64/EC. 
+4.
+In the case of transfers of funds not exceeding EUR 1 000 that do not appear to be linked to other transfers of 
+funds which, together with the transfer in question, exceed EUR 1 000, the payment service provider of the payee need 
+not verify the accuracy of the information on the payee, unless the payment service provider of the payee: 
+(a)  effects the pay-out of the funds in cash or in anonymous electronic money; or 
+(b)  has reasonable grounds for suspecting money laundering or terrorist financing. 
+5.
+Verification as referred to in paragraphs 3 and 4 shall be deemed to have taken place where: 
+(a)  a payee's identity has been verified in accordance with Article 13 of Directive (EU) 2015/849 and the information 
+obtained pursuant to that verification has been stored in accordance with Article 40 of that Directive; or 
+(b)  Article 14(5) of Directive (EU) 2015/849 applies to the payee. 
+Article 8 
+Transfers of funds with missing or incomplete information on the payer or the payee 
+1.
+The payment service provider of the payee shall implement effective risk-based procedures, including procedures 
+based on the risk-sensitive basis referred to in Article 13 of Directive (EU) 2015/849, for determining whether to 
+execute, reject or suspend a transfer of funds lacking the required complete payer and payee information and for taking 
+the appropriate follow-up action. 
+Where the payment service provider of the payee becomes aware, when receiving transfers of funds, that the 
+information referred to in Article 4(1) or (2), Article 5(1) or Article 6 is missing or incomplete or has not been filled in 
+using characters or inputs admissible in accordance with the conventions of the messaging or payment and settlement 
+system as referred to in Article 7(1), the payment service provider of the payee shall reject the transfer or ask for the 
+required information on the payer and the payee before or after crediting the payee's payment account or making the 
+funds available to the payee, on a risk-sensitive basis. 
+5.6.2015 
+L 141/10 
+Official Journal of the European Union 
+EN     
+
+
+2.
+Where a payment service provider repeatedly fails to provide the required information on the payer or the payee, 
+the payment service provider of the payee shall take steps, which may initially include the issuing of warnings and 
+setting of deadlines, before either rejecting any future transfers of funds from that payment service provider, or 
+restricting or terminating its business relationship with that payment service provider. 
+The payment service provider of the payee shall report that failure, and the steps taken, to the competent authority 
+responsible for monitoring compliance with anti-money laundering and counter terrorist financing provisions. 
+Article 9 
+Assessment and reporting 
+The payment service provider of the payee shall take into account missing or incomplete information on the payer or 
+the payee as a factor when assessing whether a transfer of funds, or any related transaction, is suspicious and whether it 
+is to be reported to the Financial Intelligence Unit (FIU) in accordance with Directive (EU) 2015/849. 
+SECTION 3 
+Obligations on intermediary payment service providers 
+Article 10 
+Retention of information on the payer and the payee with the transfer 
+Intermediary payment service providers shall ensure that all the information received on the payer and the payee that 
+accompanies a transfer of funds is retained with the transfer. 
+Article 11 
+Detection of missing information on the payer or the payee 
+1.
+The intermediary payment service provider shall implement effective procedures to detect whether the fields 
+relating to the information on the payer and the payee in the messaging or payment and settlement system used to 
+effect the transfer of funds have been filled in using characters or inputs admissible in accordance with the conventions 
+of that system. 
+2.
+The intermediary payment service provider shall implement effective procedures, including, where appropriate, 
+ex-post monitoring or real-time monitoring, in order to detect whether the following information on the payer or the 
+payee is missing: 
+(a)  for transfers of funds where the payment service providers of the payer and the payee are established in the Union, 
+the information referred to in Article 5; 
+(b)  for transfers of funds where the payment service provider of the payer or of the payee is established outside the 
+Union, the information referred to in Article 4(1) and (2); 
+(c)  for batch file transfers where the payment service provider of the payer or of the payee is established outside the 
+Union, the information referred to in Article 4(1) and (2) in respect of that batch file transfer. 
+Article 12 
+Transfers of funds with missing information on the payer or the payee 
+1.
+The intermediary payment service provider shall establish effective risk-based procedures for determining whether 
+to execute, reject or suspend a transfer of funds lacking the required payer and payee information and for taking the 
+appropriate follow up action. 
+5.6.2015 
+L 141/11 
+Official Journal of the European Union 
+EN     
+
+
+Where the intermediary payment service provider becomes aware, when receiving transfers of funds, that the 
+information referred to in Article 4(1) or (2), Article 5(1) or Article 6 is missing or has not been filled in using 
+characters or inputs admissible in accordance with the conventions of the messaging or payment and settlement system 
+as referred to in Article 7(1) it shall reject the transfer or ask for the required information on the payer and the payee 
+before or after the transmission of the transfer of funds, on a risk-sensitive basis. 
+2.
+Where a payment service provider repeatedly fails to provide the required information on the payer or the payee, 
+the intermediary payment service provider shall take steps, which may initially include the issuing of warnings and 
+setting of deadlines, before either rejecting any future transfers of funds from that payment service provider, or 
+restricting or terminating its business relationship with that payment service provider. 
+The intermediary payment service provider shall report that failure, and the steps taken, to the competent authority 
+responsible for monitoring compliance with anti-money laundering and counter terrorist financing provisions. 
+Article 13 
+Assessment and reporting 
+The intermediary payment service provider shall take into account missing information on the payer or the payee as a 
+factor when assessing whether a transfer of funds, or any related transaction, is suspicious, and whether it is to be 
+reported to the FIU in accordance with Directive (EU) 2015/849. 
+CHAPTER III 
+INFORMATION, DATA PROTECTION AND RECORD-RETENTION 
+Article 14 
+Provision of information 
+Payment service providers shall respond fully and without delay, including by means of a central contact point in 
+accordance with Article 45(9) of Directive (EU) 2015/849, where such a contact point has been appointed, and in 
+accordance with the procedural requirements laid down in the national law of the Member State in which they are 
+established, to enquiries exclusively from the authorities responsible for preventing and combating money laundering or 
+terrorist financing of that Member State concerning the information required under this Regulation. 
+Article 15 
+Data protection 
+1.
+The processing of personal data under this Regulation is subject to Directive 95/46/EC, as transposed into national 
+law. Personal data that is processed pursuant to this Regulation by the Commission or by the ESAs is subject to 
+Regulation (EC) No 45/2001. 
+2.
+Personal data shall be processed by payment service providers on the basis of this Regulation only for the 
+purposes of the prevention of money laundering and terrorist financing and shall not be further processed in a way that 
+is incompatible with those purposes. The processing of personal data on the basis of this Regulation for commercial 
+purposes shall be prohibited. 
+3.
+Payment service providers shall provide new clients with the information required pursuant to Article 10 of 
+Directive 95/46/EC before establishing a business relationship or carrying out an occasional transaction. That 
+information shall, in particular, include a general notice concerning the legal obligations of payment service providers 
+under this Regulation when processing personal data for the purposes of the prevention of money laundering and 
+terrorist financing. 
+4.
+Payment service providers shall ensure that the confidentiality of the data processed is respected. 
+5.6.2015 
+L 141/12 
+Official Journal of the European Union 
+EN     
+
+
+Article 16 
+Record retention 
+1.
+Information on the payer and the payee shall not be retained for longer than strictly necessary. Payment service 
+providers of the payer and of the payee shall retain records of the information referred to in Articles 4 to 7 for a period 
+of five years. 
+2.
+Upon expiry of the retention period referred to in paragraph 1, payment service providers shall ensure that the 
+personal data is deleted, unless otherwise provided for by national law, which shall determine under which circumstances 
+payment service providers may or shall further retain the data. Member States may allow or require further retention 
+only after they have carried out a thorough assessment of the necessity and proportionality of such further retention, 
+and where they consider it to be justified as necessary for the prevention, detection or investigation of money 
+laundering or terrorist financing. That further retention period shall not exceed five years. 
+3.
+Where, on 25 June 2015, legal proceedings concerned with the prevention, detection, investigation or prosecution 
+of suspected money laundering or terrorist financing are pending in a Member State, and a payment service provider 
+holds information or documents relating to those pending proceedings, the payment service provider may retain that 
+information or those documents in accordance with national law for a period of five years from 25 June 2015. Member 
+States may, without prejudice to national criminal law on evidence applicable to ongoing criminal investigations and 
+legal proceedings, allow or require the retention of such information or documents for a further period of five years 
+where the necessity and proportionality of such further retention has been established for the prevention, detection, 
+investigation or prosecution of suspected money laundering or terrorist financing. 
+CHAPTER IV 
+SANCTIONS AND MONITORING 
+Article 17 
+Administrative sanctions and measures 
+1.
+Without prejudice to the right to provide for and impose criminal sanctions, Member States shall lay down the 
+rules on administrative sanctions and measures applicable to breaches of the provisions of this Regulation and shall take 
+all measures necessary to ensure that they are implemented. The sanctions and measures provided for shall be effective, 
+proportionate and dissuasive and shall be consistent with those laid down in accordance with Chapter VI, Section 4, of 
+Directive (EU) 2015/849. 
+Member States may decide not to lay down rules on administrative sanctions or measures for breach of the provisions 
+of this Regulation which are subject to criminal sanctions in their national law. In that case, Member States shall 
+communicate to the Commission the relevant criminal law provisions. 
+2.
+Member States shall ensure that where obligations apply to payment services providers, in the event of a breach of 
+provisions of this Regulation, sanctions or measures can, subject to national law, be applied to the members of the 
+management body and to any other natural person who, under national law, is responsible for the breach. 
+3.
+By 26 June 2017, Member States shall notify the rules referred to in paragraph 1 to the Commission and to the 
+Joint Committee of the ESAs. They shall notify the Commission and the Joint Committee of the ESAs without delay of 
+any subsequent amendments thereto. 
+4.
+In accordance with Article 58(4) of Directive (EU) 2015/849, competent authorities shall have all the supervisory 
+and investigatory powers that are necessary for the exercise of their functions. In the exercise of their powers to impose 
+administrative sanctions and measures, competent authorities shall cooperate closely to ensure that those administrative 
+sanctions or measures produce the desired results and coordinate their action when dealing with cross-border cases. 
+5.6.2015 
+L 141/13 
+Official Journal of the European Union 
+EN     
+
+
+5.
+Member States shall ensure that legal persons can be held liable for the breaches referred to in Article 18 
+committed for their benefit by any person acting individually or as part of an organ of that legal person, and having a 
+leading position within the legal person based on any of the following: 
+(a)  power to represent the legal person; 
+(b)  authority to take decisions on behalf of the legal person; or 
+(c)  authority to exercise control within the legal person. 
+6.
+Member States shall also ensure that legal persons can be held liable where the lack of supervision or control by a 
+person referred to in paragraph 5 of this Article has made it possible to commit one of the breaches referred to in 
+Article 18 for the benefit of that legal person by a person under its authority. 
+7.
+Competent authorities shall exercise their powers to impose administrative sanctions and measures in accordance 
+with this Regulation in any of the following ways: 
+(a)  directly; 
+(b)  in collaboration with other authorities; 
+(c)  under their responsibility by delegation to such other authorities; 
+(d)  by application to the competent judicial authorities. 
+In the exercise of their powers to impose administrative sanctions and measures, competent authorities shall cooperate 
+closely in order to ensure that those administrative sanctions or measures produce the desired results and coordinate 
+their action when dealing with cross-border cases. 
+Article 18 
+Specific provisions 
+Member States shall ensure that their administrative sanctions and measures include at least those laid down by 
+Article 59(2) and (3) of Directive (EU) 2015/849 in the event of the following breaches of this Regulation: 
+(a)  repeated or systematic failure by a payment service provider to include the required information on the payer or the 
+payee, in breach of Article 4, 5 or 6; 
+(b)  repeated, systematic or serious failure by a payment service provider to retain records, in breach of Article 16; 
+(c)  failure by a payment service provider to implement effective risk-based procedures, in breach of Articles 8 or 12; 
+(d)  serious failure by an intermediary payment service provider to comply with Article 11 or 12. 
+Article 19 
+Publication of sanctions and measures 
+In accordance with Article 60(1), (2) and (3) of Directive (EU) 2015/849, the competent authorities shall publish 
+administrative sanctions and measures imposed in the cases referred to in Articles 17 and 18 of this Regulation without 
+undue delay, including information on the type and nature of the breach and the identity of the persons responsible for 
+it, if necessary and proportionate after a case-by-case evaluation. 
+Article 20 
+Application of sanctions and measures by the competent authorities 
+1.
+When determining the type of administrative sanctions or measures and the level of administrative pecuniary 
+sanctions, the competent authorities shall take into account all relevant circumstances, including those listed in 
+Article 60(4) of Directive (EU) 2015/849. 
+5.6.2015 
+L 141/14 
+Official Journal of the European Union 
+EN     
+
+
+2.
+As regards administrative sanctions and measures imposed in accordance with this Regulation, Article 62 of 
+Directive (EU) 2015/849 shall apply. 
+Article 21 
+Reporting of breaches 
+1.
+Member States shall establish effective mechanisms to encourage the reporting to competent authorities of 
+breaches of this Regulation. 
+Those mechanisms shall include at least those referred to in Article 61(2) of Directive (EU) 2015/849. 
+2.
+Payment service providers, in cooperation with the competent authorities, shall establish appropriate internal 
+procedures for their employees, or persons in a comparable position, to report breaches internally through a secure, 
+independent, specific and anonymous channel, proportionate to the nature and size of the payment service provider 
+concerned. 
+Article 22 
+Monitoring 
+1.
+Member States shall require competent authorities to monitor effectively and to take the measures necessary to 
+ensure compliance with this Regulation and encourage, through effective mechanisms, the reporting of breaches of the 
+provisions of this Regulation to competent authorities. 
+2.
+After Member States have notified the rules referred to in paragraph 1 of this Article to the Commission and to 
+the Joint Committee of the ESAs in accordance with Article 17(3), the Commission shall submit a report to the 
+European Parliament and to the Council on the application of Chapter IV, with particular regard to cross-border cases. 
+CHAPTER V 
+IMPLEMENTING POWERS 
+Article 23 
+Committee procedure 
+1.
+The Commission shall be assisted by the Committee on the Prevention of Money Laundering and Terrorist 
+Financing (the ‘Committee’). The Committee shall be a committee within the meaning of Regulation (EU) No 182/2011. 
+2.
+Where reference is made to this paragraph, Article 5 of Regulation (EU) No 182/2011 shall apply. 
+CHAPTER VI 
+DEROGATIONS 
+Article 24 
+Agreements with countries and territories which do not form part of the territory of the Union 
+1.
+The Commission may authorise any Member State to conclude an agreement with a third country or with a 
+territory outside the territorial scope of the TEU and the TFEU as referred to in Article 355 TFEU (the ‘country or 
+territory concerned’), which contains derogations from this Regulation, in order to allow transfers of funds between that 
+country or territory and the Member State concerned to be treated as transfers of funds within that Member State. 
+5.6.2015 
+L 141/15 
+Official Journal of the European Union 
+EN     
+
+
+Such agreements may be authorised only where all of the following conditions are met: 
+(a)  the country or territory concerned shares a monetary union with the Member State concerned, forms part of the 
+currency area of that Member State or has signed a monetary convention with the Union represented by a Member 
+State; 
+(b)  payment service providers in the country or territory concerned participate directly or indirectly in payment and 
+settlement systems in that Member State; and 
+(c)  the country or territory concerned requires payment service providers under its jurisdiction to apply the same rules 
+as those established under this Regulation. 
+2.
+A Member State wishing to conclude an agreement as referred to in paragraph 1 shall submit a request to the 
+Commission and provide it with all the information necessary for the appraisal of the request. 
+3.
+Upon receipt by the Commission of such a request, transfers of funds between that Member State and the country 
+or territory concerned shall be provisionally treated as transfers of funds within that Member State until a decision is 
+reached in accordance with this Article. 
+4.
+If, within two months of receipt of the request, the Commission considers that it does not have all the information 
+necessary for the appraisal of the request, it shall contact the Member State concerned and specify the additional 
+information required. 
+5.
+Within one month of receipt of all the information that it considers to be necessary for the appraisal of the 
+request, the Commission shall notify the requesting Member State accordingly and shall transmit copies of the request to 
+the other Member States. 
+6.
+Within three months of the notification referred to in paragraph 5 of this Article, the Commission shall decide, in 
+accordance with Article 23(2), whether to authorise the Member State concerned to conclude the agreement that is the 
+subject of the request. 
+The Commission shall, in any event, adopt a decision as referred to in the first subparagraph within 18 months of 
+receipt of the request. 
+7.
+By 26 March 2017, Member States that have been authorised to conclude agreements with a country or territory 
+concerned pursuant to Commission Implementing Decision 2012/43/EU (1), Commission Decision 2010/259/EU (2), 
+Commission Decision 2009/853/EC (3) or Commission Decision 2008/982/EC (4) shall provide the Commission with 
+updated information necessary for an appraisal under point (c) of the second subparagraph of paragraph 1. 
+Within three months of receipt of such information, the Commission shall examine the information provided to ensure 
+that the country or territory concerned requires payment service providers under its jurisdiction to apply the same rules 
+as those established under this Regulation. If, after such examination, the Commission considers that the condition laid 
+down in point (c) of the second subparagraph of paragraph 1 is no longer met, it shall repeal the relevant Commission 
+Decision or Commission Implementing Decision. 
+5.6.2015 
+L 141/16 
+Official Journal of the European Union 
+EN     
+(1) Commission Implementing Decision 2012/43/EU of 25 January 2012 authorising the Kingdom of Denmark to conclude agreements 
+with Greenland and the Faroe Islands for transfers of funds between Denmark and each of these territories to be treated as transfers of 
+funds within Denmark, pursuant to Regulation (EC) No 1781/2006 of the European Parliament and of the Council (OJ L 24, 27.1.2012, 
+p. 12). 
+(2) Commission Decision 2010/259/EU of 4 May 2010 authorising the French Republic to conclude an agreement with the Principality of 
+Monaco for transfers of funds between the French Republic and the Principality of Monaco to be treated as transfers of funds within the 
+French Republic, pursuant to Regulation (EC) No 1781/2006 of the European Parliament and of the Council (OJ L 112, 5.5.2010, p. 23). 
+(3) Commission Decision 2009/853/EC of 26 November 2009 authorising France to conclude an agreement with Saint-Pierre-et-Miquelon, 
+Mayotte, New Caledonia, French Polynesia and Wallis and Futuna respectively for transfers of funds between France and each of these 
+territories to be treated as transfers of funds within France, pursuant to Regulation (EC) No 1781/2006 of the European Parliament and 
+of the Council (OJ L 312, 27.11.2009, p. 71). 
+(4) Commission Decision 2008/982/EC of 8 December 2008 authorising the United Kingdom to conclude an agreement with the Bailiwick 
+of Jersey, the Bailiwick of Guernsey and the Isle of Man for transfers of funds between the United Kingdom and each of these territories to 
+be treated as transfers of funds within the United Kingdom, pursuant to Regulation (EC) No 1781/2006 of the European Parliament and 
+of the Council (OJ L 352, 31.12.2008, p. 34). 
+
+
+Article 25 
+Guidelines 
+By 26 June 2017, the ESAs shall issue guidelines addressed to the competent authorities and the payment service 
+providers in accordance with Article 16 of Regulation (EU) No 1093/2010, of Regulation (EU) No 1094/2010 and of 
+Regulation (EU) No 1095/2010, on measures to be taken in accordance with this Regulation, in particular as regards the 
+implementation of Articles 7, 8, 11 and 12. 
+CHAPTER VII 
+FINAL PROVISIONS 
+Article 26 
+Repeal of Regulation (EC) No 1781/2006 
+Regulation (EC) No 1781/2006 is repealed. 
+References to the repealed Regulation shall be construed as references to this Regulation and shall be read in accordance 
+with the correlation table in the Annex. 
+Article 27 
+Entry into force 
+This Regulation shall enter into force on the twentieth day following that of its publication in the Official Journal of the 
+European Union. 
+It shall apply from 26 June 2017. 
+This Regulation shall be binding in its entirety and directly applicable in all Member States. 
+Done at Strasbourg, 20 May 2015. 
+For the European Parliament 
+The President 
+M. SCHULZ  
+For the Council 
+The President 
+Z. KALNIŅA-LUKAŠEVICA   
+5.6.2015 
+L 141/17 
+Official Journal of the European Union 
+EN     
+
+
+ANNEX 
+CORRELATION TABLE 
+Regulation (EC) No 1781/2006 
+This Regulation 
+Article 1 
+Article 1 
+Article 2 
+Article 3 
+Article 3 
+Article 2 
+Article 4 
+Article 4(1) 
+Article 5 
+Article 4 
+Article 6 
+Article 5 
+Article 7 
+Article 7 
+Article 8 
+Article 7 
+Article 9 
+Article 8 
+Article 10 
+Article 9 
+Article 11 
+Article 16 
+Article 12 
+Article 10 
+— 
+Article 11 
+— 
+Article 12 
+— 
+Article 13 
+Article 13 
+— 
+Article 14 
+Article 15 
+Article 15 
+Articles 17 to 22 
+Article 16 
+Article 23 
+Article 17 
+Article 24 
+Article 18 
+— 
+Article 19 
+— 
+— 
+Article 26 
+Article 20 
+Article 27   
+5.6.2015 
+L 141/18 
+Official Journal of the European Union 
+EN     

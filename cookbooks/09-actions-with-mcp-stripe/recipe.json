@@ -1,0 +1,101 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "actions-with-mcp-stripe",
+  "order": 9,
+  "eyebrow": "Actions",
+  "title": "Making Actions with MCP and Stripe",
+  "upcoming": false,
+  "tagline": "Let a book agent take a real test-mode action by creating a Stripe checkout link through MCP.",
+  "difficulty": "advanced",
+  "estimatedReadingTime": "18 min",
+  "estimatedRunTime": "10 min",
+  "stack": {
+    "primary": ["nebius-agentkit", "mcp", "stripe"],
+    "secondary": ["langchain", "langgraph", "langsmith", "fastapi", "structlog", "prometheus", "docker"]
+  },
+  "tags": ["agent", "mcp", "stripe", "actions", "approval", "commerce", "guardrails"],
+  "story": {
+    "problem": "The agent can answer, remember, stay observable, and enforce guardrails, but production agents also need to take external actions safely.",
+    "solution": "Connect Stripe remote MCP in test mode, require explicit user approval, and create a payment link for a fictional book purchase.",
+    "outcome": "An action-capable agent that demonstrates MCP tool use without giving the model uncontrolled side effects."
+  },
+  "prerequisites": [
+    "Python 3.12+",
+    "uv installed (https://docs.astral.sh/uv/)",
+    "A Nebius API key",
+    "A Stripe Sandbox or test-mode account",
+    "A Stripe test-mode secret key for seeding",
+    "A restricted Stripe key for remote MCP runtime calls",
+    "Docker for local Postgres"
+  ],
+  "models": [
+    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" },
+    { "id": "Qwen/Qwen3-30B-A3B-Instruct", "role": "critic" }
+  ],
+  "assets": {
+    "hero": "assets/hero.png"
+  },
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/09-actions-with-mcp-stripe",
+    "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY, STRIPE_SECRET_KEY, and STRIPE_MCP_API_KEY",
+    "run": "docker compose up -d postgres && uv sync && make seed-stripe-books && make dev"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/agent/run",
+      "streaming": true,
+      "description": "Run the guarded action-capable agent and stream approval/action events."
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/{approval_id}",
+      "description": "Approve or reject a pending Stripe MCP action."
+    },
+    {
+      "method": "POST",
+      "path": "/feedback",
+      "description": "Attach user feedback to a LangSmith run inherited from Cookbook #7."
+    },
+    {
+      "method": "GET",
+      "path": "/memory/{user_id}",
+      "description": "List inherited long-term memories."
+    },
+    {
+      "method": "GET",
+      "path": "/memory/{user_id}/summary",
+      "description": "Summarize what the agent knows about a user."
+    },
+    {
+      "method": "DELETE",
+      "path": "/memory/{user_id}",
+      "description": "Delete inherited long-term memories."
+    },
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "description": "Liveness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/readyz",
+      "description": "Readiness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/metrics",
+      "description": "Prometheus metrics scrape endpoint, including approval and Stripe MCP counters."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "docs/deployment.md"
+  },
+  "nextRecipe": "testing-before-production-snowglobe",
+  "authors": [
+    { "name": "Clément Sauvage", "url": "https://clementsauvage.me" }
+  ],
+  "publishedAt": "2026-06-04",
+  "updatedAt": "2026-05-28"
+}

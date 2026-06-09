@@ -1,0 +1,110 @@
+================================================================================
+California AB 853 — California AI Transparency Act Amendments (2025)
+================================================================================
+
+Assembly Bill
+No. 853
+CHAPTER 674
+An act to amend Sections 22757.1, 22757.4, and 22757.6 of, and to add Sections 22757.3.1, 22757.3.2, and 22757.3.3 to, the Business and Professions Code, relating to artificial intelligence.
+[
+Approved  by
+Governor
+October 13, 2025.
+Filed with
+Secretary of State
+October 13, 2025.
+]
+LEGISLATIVE COUNSEL'S DIGEST
+AB 853, Wicks.
+California AI Transparency Act.
+The California AI Transparency Act requires a person that creates, codes, or otherwise produces a generative artificial intelligence system that has over 1,000,000 monthly visitors or users and is publicly accessible within the geographic boundaries of the state to make available an AI detection tool at no cost to the user that, among other things, allows a user to assess whether image, video, or audio content, or content that is a combination thereof, was created or altered by that person’s generative artificial intelligence system and outputs any system provenance data that is detected in the content. Existing law makes the California AI Transparency Act operative on January 1, 2026.
+This bill would delay the operation of the California AI Transparency Act until August 2, 2026.
+This bill would, beginning January 1, 2027,
+additionally require a large online platform, as defined, to, among other things related to the provenance of content on the platform, detect whether any provenance data that is compliant with widely adopted specifications adopted by an established standards-setting body is embedded into or attached to content distributed on the large online platform. The bill would also require, beginning January 1, 2028, a capture device manufacturer, with respect to any capture device the capture device manufacturer
+first produced for sale in the state on or after January 1, 2028, to, among other things, provide a user with the option to include a latent disclosure in content captured by the capture device that conveys certain information, including the name of the capture device manufacturer. The bill would define “capture device” to mean a device that can record photographs, audio, or video content, including, but not limited to, video and still photography cameras, mobile phones with built-in cameras or microphones, and voice
+recorders.
+Existing law requires a covered provider to include a latent disclosure in AI-generated image, video, or audio content, or content that is any combination thereof, created by the covered provider’s GenAI system that, among other things, conveys certain information and is permanent or extraordinarily difficult to remove, to the extent it is technically feasible.
+This bill would, beginning January 1, 2027, prohibit a GenAI system hosting platform, as defined, from knowingly making available a GenAI system that does not place disclosures, pursuant to those
+provisions.
+This bill would declare that its provisions are severable.
+Digest Key
+Vote:
+MAJORITY
+Appropriation:
+NO
+Fiscal Committee:
+YES
+Local Program:
+NO
+Bill TextThe people of the State of California do enact as follows:
+SECTION 1. Section 22757.1 of the Business and Professions Code is amended to read:
+22757.1. As used in this chapter:
+(a) “Artificial intelligence” or “AI” means an engineered or machine-based system that varies in its level of autonomy and that can, for explicit or implicit objectives, infer from the input it receives how to generate outputs that can influence physical or virtual environments.
+(b) “Capture device” means a device that can record photographs, audio, or video content, including, but not limited to, video and still photography cameras, mobile phones with built-in cameras or microphones, and voice recorders.
+(c) (1) “Capture device manufacturer” means a person who produces
+a capture device for sale in the state.
+(2) “Capture device manufacturer” does not include a person exclusively engaged in the assembly of a capture device.
+(d) “Covered provider” means a person that creates, codes, or otherwise produces a generative artificial intelligence system that has over 1,000,000 monthly visitors or users and is publicly accessible within the geographic boundaries of the state.
+(e) “Digital signature” means a cryptography-based method that identifies the user or entity that attests to the information provided in the signed section.
+(f) “Generative
+artificial intelligence system” or “GenAI system” means an artificial intelligence that can generate derived synthetic content, including text, images, video, and audio, that emulates the structure and characteristics of the system’s training data.
+(g) “GenAI hosting platform” means an internet website or application that makes available for download the source code or model weights a generative artificial intelligence system by a resident of the state, regardless of whether the terms of that use include compensation.
+(h) (1) “Large online platform” means a public-facing social media platform, file-sharing platform, mass messaging platform,
+or stand-alone search engine that distributes content to users who did not create or collaborate in creating the content that exceeded 2,000,000 unique monthly users during the preceding 12 months.
+(2) “Large online platform” does not include either of the following:
+(A) A broadband internet access service, as defined in Section 3100 of the Civil Code.
+(B) A telecommunications service, as defined in Section 153 of Title 47 of the United States Code.
+(i) “Latent” means present but not manifest.
+(j) “Manifest” means easily perceived, understood, or recognized by a natural person.
+(k) “Mass messaging platform” means a direct messaging platform that allows users to distribute content to more than 100 users simultaneously.
+(l) “Metadata” means structural or descriptive information about data.
+(m) “Personal information” has the same meaning as defined in Section 1798.140 of the Civil Code.
+(n) (1) “Personal provenance data” means provenance data that contains either
+of the following:
+(A) Personal information.
+(B) Unique device, system, or service information that is reasonably capable of being associated with a particular user.
+(2) “Personal provenance data” does not include information contained within a digital signature.
+(o) “Provenance data” means data that is embedded into digital content, or that is included in the digital content’s metadata, for the
+purpose of verifying the digital content’s authenticity, origin, or history of modification.
+(p) “System provenance data” means provenance data that is not reasonably capable of being associated with a particular user and that contains either of the following:
+(1) Information regarding the type of device, system, or service that was used to generate a piece of digital content.
+(2) Information related to content authenticity.
+SEC. 2. Section 22757.3.1 is added to the Business and Professions Code, to read:
+22757.3.1. (a) A large online platform shall do all of the following:
+(1) Detect whether any provenance data that is compliant with widely adopted specifications adopted by an established
+standards-setting body is embedded into or attached to content distributed on the large online platform.
+(2) (A) Provide a user interface to disclose the availability of system provenance data that reliably indicates that the content was generated or substantially altered by a GenAI system or captured by a capture device.
+(B) The user interface required by this paragraph shall make clearly and conspicuously available to users information sufficient to identify the content’s authenticity, origin, or history of modification, including, but not limited to, all of the following:
+(i) Whether provenance data is available.
+(ii) The name of the GenAI system or capture device that created or substantially altered the content, if
+applicable.
+(iii) Whether any digital signatures are available.
+(3) Allow a user to inspect all available system provenance data that is compliant with widely adopted specifications adopted by an established standards-setting body in an easily accessible manner by any of the following means:
+(A) Directly through the large online platform’s user interface pursuant to paragraph (2).
+(B) Allow the user to download a version of the content with its attached system provenance data.
+(C) Provide a link to the content’s system provenance data displayed on an internet website or in another application provided either by the large online platform or a third party.
+(b) A large online platform shall not, to the extent technically feasible, knowingly strip any system provenance data or digital signature that is compliant with widely adopted specifications adopted by an established standards-setting body from content uploaded or distributed on the large online platform.
+(c) This section shall become operative on January 1, 2027.
+SEC. 3. Section 22757.3.2 is added to the Business and Professions Code, to read:
+22757.3.2. (a) A GenAI system hosting platform shall not knowingly make available a GenAI system that does not place disclosures pursuant to Section 22757.3.
+(b) This section shall become operative on January 1, 2027.
+SEC. 4. Section 22757.3.3 is added to the Business and Professions Code, to read:
+22757.3.3. (a) A capture device manufacturer shall, with respect to any capture device the capture device manufacturer first produced for sale in the state on or after January 1, 2028, do both of the
+following:
+(1) Provide a user with the option to include a latent disclosure in content captured by the capture device that conveys all of the following information:
+(A) The name of the capture device manufacturer.
+(B) The name and version number of the capture device that created or altered the content.
+(C) The time and date of the content’s creation or alteration.
+(2) Embed latent disclosures in content captured by the device by default.
+(b) A capture device manufacturer shall comply with this section only to the extent technically feasible and compliant with widely adopted specifications adopted by an established standards-setting body.
+(c) This section shall become operative on January 1, 2028.
+SEC. 5. Section 22757.4 of the Business and Professions Code is amended to read:
+22757.4. (a) (1) A violator of this chapter shall be liable for a civil penalty in the amount of five thousand dollars ($5,000) per violation to be collected in a civil action filed by the Attorney General, a city attorney, or a county counsel.
+(2) A prevailing plaintiff in an action brought pursuant to this subdivision shall be entitled to all reasonable attorney’s costs and fees.
+(b) Each day that a covered provider, large online platform, or capture device manufacturer is in violation of this chapter shall be deemed a discrete violation.
+(c) For a violation by a third-party licensee of paragraph (3) of subdivision (c) of Section 22757.3, the Attorney General, a county counsel, or a city attorney may bring a civil action for both of the following:
+(1) Injunctive relief.
+(2) Reasonable attorney’s fees and costs.
+SEC. 6. Section 22757.6 of the Business and Professions Code is amended to read:
+22757.6. This chapter shall become operative on August 2, 2026.
+SEC. 7. The provisions of this act are severable. If any provision of this act or its application is held invalid, that invalidity shall not affect other provisions or applications that can be given effect without the invalid provision or application.

@@ -1,0 +1,15 @@
+/.env
+/.venv
+.langgraph_api/
+__pycache__/
+output/
+.claude/
+*.pyc
+*.egg-info/
+.DS_Store
+.idea/
+.mcp.json
+.codex/
+
+# Blueprint installs via pip (Makefile), not uv — ignore stray uv lockfile
+uv.lock

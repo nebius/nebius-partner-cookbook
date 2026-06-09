@@ -1,0 +1,163 @@
+@import "tailwindcss";
+@import "@radix-ui/themes/styles.css";
+
+/* ── Nebius brand tokens ─────────────────────────────────────────────────────
+ *   Brand colors are anchored on:
+ *     #06263A — Nebius deep navy (canvas)
+ *     #DDFF46 — Nebius lime (the one accent)
+ *   The rest of the palette is built from these two, plus a small set of
+ *   muted slate-blues for type and hairlines.
+ */
+@theme {
+  --font-sans: var(--font-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: var(--font-display-jersey), "Jersey 15", "Bebas Neue", "Impact", sans-serif;
+
+  /* Canvas — brand navy and graded surfaces above it */
+  --color-paper: #06263a;
+  --color-paper-warm: #093049;
+  --color-surface: #103a51;
+  --color-surface-raised: #194763;
+
+  /* Type — off-white with a touch of cool blue */
+  --color-ink: #e7eef6;
+  --color-ink-soft: #93a8be;
+  --color-ink-dim: #5a7390;
+
+  /* Rules */
+  --color-edge: #14384f;
+  --color-edge-strong: #24506b;
+
+  /* Signal — Nebius lime, the only accent on the palette */
+  --color-accent: #ddff46;
+  --color-accent-strong: #c8eb2c;
+  --color-accent-soft: rgba(221, 255, 70, 0.1);
+  --color-accent-glow: rgba(221, 255, 70, 0.28);
+
+  /* States */
+  --color-warning: #fbbf24;
+  --color-critical: #f87171;
+  --color-success: #86efac;
+}
+
+/* ── theme ───────────────────────────────────────────────────────────────────
+ *   Dark is the default — the values above. The light theme re-points the same
+ *   tokens; every `bg-paper` / `text-ink` / `text-accent` utility tracks them
+ *   via var(), so the whole UI follows a single `data-theme` attribute on <html>.
+ *   `--canvas-glow` is the r,g,b tint behind the body gradient and dot-grid.
+ */
+:root {
+  color-scheme: dark;
+  --canvas-glow: 221, 255, 70;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-paper: #f4f6f9;
+  --color-paper-warm: #eef1f5;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+
+  --color-ink: #06263a;
+  --color-ink-soft: #3f5870;
+  --color-ink-dim: #6c8398;
+
+  --color-edge: #dde3ea;
+  --color-edge-strong: #c2cdd7;
+
+  /* Lime is unreadable as text on white — darken the accent, keep lime for fills */
+  --color-accent: #5e7200;
+  --color-accent-strong: #4a5b00;
+  --color-accent-soft: rgba(221, 255, 70, 0.4);
+  --color-accent-glow: rgba(150, 180, 20, 0.3);
+
+  --canvas-glow: 90, 110, 0;
+}
+
+/* ── canvas ──────────────────────────────────────────────────────────────── */
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+}
+
+body {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(var(--canvas-glow), 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(var(--canvas-glow), 0.04) 0%, transparent 60%),
+    var(--color-paper);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Fine dot-grid backdrop — barely visible, sets the engineering tone */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(var(--canvas-glow), 0.06) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 0%, transparent 100%);
+}
+
+/* Lift page content above the body::before dot-grid. In @layer base so a
+ * Tailwind positioning utility (.fixed, .absolute) still wins on a child. */
+@layer base {
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+/* ── helpers ─────────────────────────────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern";
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01", "ss02", "zero";
+}
+
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-edge-strong);
+  border-radius: 999px;
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Pulsing dot used for "live" status — subtle and steady */
+@keyframes phosphor-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--color-accent-glow); }
+  50% { opacity: 0.55; box-shadow: 0 0 0 4px transparent; }
+}
+.phosphor-dot {
+  animation: phosphor-pulse 1.6s ease-in-out infinite;
+}
+
+/* Token fade-in for streamed text */
+@keyframes token-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.token-fade {
+  animation: token-fade 80ms ease-out;
+}

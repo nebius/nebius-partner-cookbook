@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nebius.com/cookbook/schemas/readme-config.schema.json",
+  "title": "Root README composition config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["output", "sections"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "output": {
+      "type": "string",
+      "description": "Path to the generated README, relative to this config."
+    },
+    "separator": {
+      "type": "string",
+      "default": "\n\n"
+    },
+    "header": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comment": { "type": "string" }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "source": {
+            "type": "string",
+            "enum": ["human", "generated"]
+          },
+          "file": { "type": "string" },
+          "generator": { "type": "string" },
+          "options": { "type": "object" }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "source": { "const": "human" } } },
+            "then": { "required": ["file"] }
+          },
+          {
+            "if": { "properties": { "source": { "const": "generated" } } },
+            "then": { "required": ["generator"] }
+          }
+        ]
+      }
+    }
+  }
+}

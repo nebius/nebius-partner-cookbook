@@ -1,0 +1,59 @@
+{
+  "$schema": "../../schemas/blueprint.schema.json",
+  "slug": "sentinel-compliance-auditor",
+  "eyebrow": "Compliance",
+  "title": "Sentinel — Regulatory Compliance Auditor",
+  "tagline": "Agentic RAG that audits 200 enterprise SOPs against 36 regulatory frameworks and files gap findings as Jira tickets.",
+  "summary": "Sentinel is a complete, deployable compliance auditor. A LangGraph ReAct agent fans out 10-wide parallel sub-agents that each audit one Standard Operating Procedure against the regulatory frameworks that apply to it — retrieving regulation text from Pinecone via semantic search, optionally checking live guidance with Tavily, recording structured findings, and filing gaps and partials as labeled Jira tickets. It ships with a React UI, a 200-SOP synthetic corpus for a fictional healthcare fintech, a 36-framework regulation knowledge base, and an evaluation harness that scores audit runs against a ground-truth compliance matrix.",
+  "difficulty": "advanced",
+  "estimatedRunTime": "~23 min",
+  "stack": {
+    "primary": ["langgraph", "pinecone", "tavily"],
+    "secondary": ["langsmith", "jira", "fastapi", "react", "openai-sdk", "deepagents"]
+  },
+  "tags": [
+    "agent",
+    "multi-agent",
+    "rag",
+    "compliance",
+    "evaluation",
+    "mcp",
+    "actions",
+    "blueprint"
+  ],
+  "models": [
+    { "id": "deepseek-ai/DeepSeek-V4-Pro", "provider": "nebius", "role": "primary" },
+    { "id": "nvidia/Nemotron-3-Ultra-550b", "provider": "nebius", "role": "production" },
+    { "id": "moonshotai/Kimi-K2.6", "provider": "nebius", "role": "alternate" },
+    { "id": "zai-org/GLM-5.1", "provider": "nebius", "role": "alternate" },
+    { "id": "gpt-5.5", "provider": "openai", "role": "prototype" },
+    { "id": "Qwen/Qwen3-Embedding-8B", "provider": "nebius", "role": "embed" }
+  ],
+  "integrations": ["pinecone", "tavily", "langsmith", "jira", "mcp"],
+  "capabilities": {
+    "hasUI": true,
+    "hasEval": true,
+    "hasDataset": true
+  },
+  "dataset": {
+    "description": "200 synthetic SOPs across 10 business units + 36 regulation frameworks with a ground-truth compliance matrix.",
+    "items": 200
+  },
+  "assets": {
+    "architecture": "README.md"
+  },
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-partner-cookbook/blueprints/sentinel-compliance-auditor",
+    "configure": "cp .env.example .env  # fill NEBIUS_API_KEY, PINECONE_API_KEY, TAVILY_API_KEY; UI_API_KEY is required to run the UI",
+    "run": "make install && make ingest && make ingest-regulations && make dev  # then `make ui` for the web UI on :8080"
+  },
+  "deployment": {
+    "target": "langgraph-cloud",
+    "instructions": "README.md"
+  },
+  "authors": [
+    { "name": "Tikhon Roshchupkin" }
+  ],
+  "publishedAt": "2026-06-09",
+  "updatedAt": "2026-06-09"
+}

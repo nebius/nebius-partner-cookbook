@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nebius.com/cookbook/schemas/blueprint.schema.json",
+  "title": "Agent Blueprint",
+  "description": "Metadata for a single blueprint — a complete, deployable reference application. Looser than recipe.schema.json: blueprints are not part of the sequenced cookbook arc and may diverge from the uniform recipe stack (e.g. a React UI, a LangGraph deploy, a bundled data corpus).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "eyebrow",
+    "title",
+    "tagline",
+    "summary",
+    "difficulty",
+    "estimatedRunTime",
+    "stack",
+    "tags",
+    "models",
+    "integrations",
+    "quickstart",
+    "deployment",
+    "authors",
+    "publishedAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Kebab-case identifier. Must match the blueprint directory name."
+    },
+    "eyebrow": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 24,
+      "description": "Short category label shown above the title on cards (e.g. \"Compliance\")."
+    },
+    "title": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "upcoming": {
+      "type": "boolean",
+      "description": "If true, the blueprint is planned but not yet built; the web card renders at reduced opacity."
+    },
+    "tagline": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A paragraph describing what the blueprint does and demonstrates."
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"]
+    },
+    "estimatedRunTime": {
+      "type": "string",
+      "pattern": "^~?[0-9]+ ?min$",
+      "description": "Approximate end-to-end run time, e.g. \"23 min\"."
+    },
+    "stack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "secondary": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "models": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "provider": { "type": "string" },
+          "role": { "type": "string" }
+        }
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "External services the blueprint wires up (e.g. pinecone, tavily, langsmith, jira)."
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hasUI": { "type": "boolean" },
+        "hasEval": { "type": "boolean" },
+        "hasDataset": { "type": "boolean" }
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string" },
+        "items": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hero": { "type": "string" },
+        "demo": { "type": "string" },
+        "architecture": { "type": "string" }
+      }
+    },
+    "quickstart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clone", "configure", "run"],
+      "properties": {
+        "clone": { "type": "string" },
+        "configure": { "type": "string" },
+        "run": { "type": "string" }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "instructions"],
+      "properties": {
+        "target": { "type": "string" },
+        "instructions": { "type": "string" }
+      }
+    },
+    "authors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "publishedAt": { "type": "string", "format": "date" },
+    "updatedAt": { "type": "string", "format": "date" }
+  }
+}

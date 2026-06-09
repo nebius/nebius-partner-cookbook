@@ -1,0 +1,51 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "TEMPLATE_SLUG",
+  "order": 999,
+  "eyebrow": "TEMPLATE_EYEBROW",
+  "title": "TEMPLATE_TITLE",
+  "upcoming": true,
+  "tagline": "One sentence describing what this recipe demonstrates.",
+  "difficulty": "beginner",
+  "estimatedReadingTime": "8 min",
+  "estimatedRunTime": "5 min",
+  "stack": {
+    "primary": ["nebius-agentkit"],
+    "secondary": ["fastapi", "structlog", "prometheus"]
+  },
+  "tags": ["agent", "fastapi"],
+  "story": {
+    "problem": "Describe the developer pain this recipe addresses.",
+    "solution": "Describe the technical approach in one paragraph.",
+    "outcome": "Describe what the developer will have at the end."
+  },
+  "prerequisites": ["Python 3.12+", "A Nebius API key"],
+  "models": [
+    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" }
+  ],
+  "assets": {
+    "hero": "assets/hero.png"
+  },
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd cookbook/cookbooks/TEMPLATE_DIR",
+    "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY",
+    "run": "make dev"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/agent/run",
+      "streaming": true,
+      "description": "Run the agent against a user prompt and stream SSE events back."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "docs/deployment.md"
+  },
+  "authors": [
+    { "name": "Clément Sauvage", "url": "https://clementsauvage.me" }
+  ],
+  "publishedAt": "2026-06-04",
+  "updatedAt": "2026-06-04"
+}

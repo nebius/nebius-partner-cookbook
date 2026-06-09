@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "short-term-memory-langchain",
+  "order": 5,
+  "eyebrow": "Thread Memory",
+  "title": "Short-Term Memory with LangChain",
+  "upcoming": false,
+  "tagline": "Let a Nebius-backed LangChain agent remember prior turns inside one conversation thread.",
+  "difficulty": "intermediate",
+  "estimatedReadingTime": "12 min",
+  "estimatedRunTime": "6 min",
+  "stack": {
+    "primary": ["nebius-agentkit", "langchain", "langgraph"],
+    "secondary": ["fastapi", "openai-sdk", "structlog", "prometheus", "docker"]
+  },
+  "tags": ["agent", "short-term-memory", "langchain", "langgraph", "streaming", "threads"],
+  "story": {
+    "problem": "The LangGraph agent can orchestrate a request, but without thread memory every follow-up still depends on the client resending enough context.",
+    "solution": "Use LangChain's agent memory model with an in-memory LangGraph checkpointer keyed by thread_id, while keeping the cookbook SSE contract.",
+    "outcome": "A conversational agent that can continue a thread locally and sets up the durable memory story introduced in the next cookbook."
+  },
+  "prerequisites": [
+    "Python 3.12+",
+    "uv installed (https://docs.astral.sh/uv/)",
+    "A Nebius API key",
+    "Docker (optional)"
+  ],
+  "models": [
+    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" }
+  ],
+  "assets": {
+    "hero": "assets/hero.png"
+  },
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/05-short-term-memory-langchain",
+    "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY",
+    "run": "uv sync && make dev"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/agent/run",
+      "streaming": true,
+      "description": "Run the agent with a thread_id and stream SSE events back."
+    },
+    {
+      "method": "DELETE",
+      "path": "/threads/{thread_id}",
+      "description": "Clear the short-term memory for a local conversation thread."
+    },
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "description": "Liveness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/readyz",
+      "description": "Readiness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/metrics",
+      "description": "Prometheus metrics scrape endpoint."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "docs/deployment.md"
+  },
+  "nextRecipe": "long-term-memory-langchain-postgres",
+  "authors": [
+    { "name": "Clément Sauvage", "url": "https://clementsauvage.me" }
+  ],
+  "publishedAt": "2026-06-04",
+  "updatedAt": "2026-05-26"
+}

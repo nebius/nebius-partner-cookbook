@@ -1,0 +1,407 @@
+<?xml version="1.0"?>
+<DIV5 N="807" TYPE="PART" VOLUME="8" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-807&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 807&amp;quot;}">
+<HEAD>PART 807&#x2014;ESTABLISHMENT REGISTRATION AND DEVICE LISTING FOR MANUFACTURERS AND INITIAL IMPORTERS OF DEVICES
+</HEAD>
+<AUTH>
+<HED>Authority:</HED><PSPACE>21 U.S.C. 321, 331, 351, 352, 360, 360c, 360e, 360e-4, 360i, 360j, 360bbb-8b, 371, 374, 379k-1, 381, 393; 42 U.S.C. 264, 271.
+</PSPACE></AUTH>
+<SOURCE>
+<HED>Source:</HED><PSPACE>42 FR 42526, Aug. 23, 1977, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV6 N="A" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-807/subpart-A&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 807 Subpart A&amp;quot;}">
+<HEAD>Subpart A&#x2014;General Provisions</HEAD>
+<DIV8 N="807.3" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.3&quot;,&quot;citation&quot;:&quot;21 CFR 807.3&quot;}">
+<HEAD>&#xA7; 807.3 Definitions.</HEAD>
+<P>(a) <I>Act</I> means the Federal Food, Drug, and Cosmetic Act.</P>
+<P>(b) <I>Commercial distribution</I> means any distribution of a device intended for human use which is held or offered for sale but does not include the following:</P>
+<P>(1) Internal or interplant transfer of a device between establishments within the same parent, subsidiary, and/or affiliate company;</P>
+<P>(2) Any distribution of a device intended for human use which has in effect an approved exemption for investigational use under section 520(g) of the act and part 812 of this chapter;</P>
+<P>(3) Any distribution of a device, before the effective date of part 812 of this chapter, that was not introduced or delivered for introduction into interstate commerce for commercial distribution before May 28, 1976, and that is classified into class III under section 513(f) of the act: <I>Provided,</I> That the device is intended solely for investigational use, and under section 501(f)(2)(A) of the act the device is not required to have an approved premarket approval application as provided in section 515 of the act; or</P>
+<P>(4) For foreign establishments, the distribution of any device that is neither imported nor offered for import into the United States.</P>
+<P>(c) <I>Establishment</I> means a place of business under one management at one general physical location at which a device is manufactured, assembled, or otherwise processed.</P>
+<P>(d) <I>Manufacture, preparation, propagation, compounding, assembly, or processing</I> of a device means the making by chemical, physical, biological, or other procedures of any article that meets the definition of device in section 201(h) of the act. These terms include the following activities:</P>
+<P>(1) Repackaging or otherwise changing the container, wrapper, or labeling of any device package in furtherance of the distribution of the device from the original place of manufacture to the person who makes final delivery or sale to the ultimate consumer;</P>
+<P>(2) Initial importation of devices manufactured in foreign establishments; or</P>
+<P>(3) Initiation of specifications for devices that are manufactured by a second party for subsequent commercial distribution by the person initiating specifications.</P>
+<P>(e) <I>Official correspondent</I> means the person designated by the owner or operator of an establishment as responsible for the following:</P>
+<P>(1) The annual registration of the establishment;</P>
+<P>(2) Contact with the Food and Drug Administration for device listing;</P>
+<P>(3) Maintenance and submission of a current list of officers and directors to the Food and Drug Administration upon the request of the Commissioner; and</P>
+<P>(4) The receipt of pertinent correspondence from the Food and Drug Administration directed to and involving the owner or operator and/or any of the firm's establishments.</P>
+<P>(f) <I>Owner or operator</I> means the corporation, subsidiary, affiliated company, partnership, or proprietor directly responsible for the activities of the registering establishment.</P>
+<P>(g) <I>Initial importer</I> means any importer who furthers the marketing of a device from a foreign manufacturer to the person who makes the final delivery or sale of the device to the ultimate consumer or user, but does not repackage, or otherwise change the container, wrapper, or labeling of the device or device package.</P>
+<P>(h) Any term defined in section 201 of the act shall have that meaning.</P>
+<P>(i) <I>Restricted device</I> means a device for which a requirement restricting sale, distribution, or use has been established by a regulation issued under section 520(e) of the act, by order as a condition of premarket approval under section 515(d)(1)(B)(ii) of the act, or by a performance standard issued in accordance with sections 514(a)(2)(B)(v) and 514(b) of the act.</P>
+<P>(j) <I>Classification name</I> means the term used by the Food and Drug Administration and its classification panels to describe a device or class of devices for purposes of classifying devices under section 513 of the act.</P>
+<P>(k) <I>Product code</I> means the code used by FDA to identify the generic category of a device.</P>
+<P>(l) <I>Representative sampling of advertisements</I> means typical advertising material that gives the promotional claims made for the device.</P>
+<P>(m) <I>Representative sampling of any other labeling</I> means typical labeling material (excluding labels and package inserts) that gives the promotional claims made for the device.</P>
+<P>(n) <I>Material change</I> includes any change or modification in the labeling or advertisements that affects the identity or safety and effectiveness of the device. These changes may include, but are not limited to, changes in the common or usual or proprietary name, declared ingredients or components, intended use, contraindications, warnings, or instructions for use. Changes that are not material may include graphic layouts, grammar, or correction of typographical errors which do not change the content of the labeling, changes in lot number, and, for devices where the biological activity or known composition differs with each lot produced, the labeling containing the actual values for each lot.</P>
+<P>(o) <I>510(k) summary</I> (summary of any information respecting safety and effectiveness) means a summary, submitted under section 513(i) of the act, of the safety and effectiveness information contained in a premarket notification submission upon which a determination of substantial equivalence can be based. Safety and effectiveness information refers to safety and effectiveness data and information supporting a finding of substantial equivalence, including all adverse safety and effectiveness information.</P>
+<P>(p) <I>510(k) statement</I> means a statement, made under section 513(i) of the act, asserting that all information in a premarket notification submission regarding safety and effectiveness will be made available within 30 days of request by any person if the device described in the premarket notification submission is determined to be substantially equivalent. The information to be made available will be a duplicate of the premarket notification submission, including any adverse safety and effectiveness information, but excluding all patient identifiers, and trade secret or confidential commercial information, as defined in &#xA7; 20.61 of this chapter.</P>
+<P>(q) <I>Class III certification</I> means a certification that the submitter of the 510(k) has conducted a reasonable search of all known information about the class III device and other similar, legally marketed devices.</P>
+<P>(r) <I>Class III summary</I> means a summary of the types of safety and effectiveness problems associated with the type of device being compared and a citation to the information upon which the summary is based. The summary must be comprehensive and describe the problems to which the type of device is susceptible and the causes of such problems.</P>
+<P>(s) <I>United States</I> agent means a person residing or maintaining a place of business in the United States whom a foreign establishment designates as its agent. This definition excludes mailboxes, answering machines or services, or other places where an individual acting as the foreign establishment's agent is not physically present.</P>
+<P>(t) <I>Wholesale distributor</I> means any person (other than the manufacturer or the initial importer) who distributes a device from the original place of manufacture to the person who makes the final delivery or sale of the device to the ultimate consumer or user.</P>
+<P>(u) <I>Fiscal year</I> means the FDA fiscal year, which runs from October 1 through September 30.</P>
+<P>(v) <I>FURLS</I> means the Food and Drug Administration's Unified</P>
+<P>Registration and Listing System,</P>
+<P>(w) <I>FDA premarket submission number</I> means the number assigned by FDA to a premarket device submission, such as a Premarket Approval Application (PMA); Humanitarian Device Exemption (HDE); New Drug Application (NDA); Biologics License Application (BLA); de novo classification petition; or Premarket Notification (510(k)).</P>
+<P>(x) <I>Importer</I> means, for purposes of this part, a company or individual in the United States that is an owner, consignee, or recipient, even if not the initial owner, consignee, or recipient, of the foreign establishment's device that is imported into the United States. An importer does not include the consumer or patient who ultimately purchases, receives, or uses the device, unless the foreign establishment ships the device directly to the consumer or patient.</P>
+<P>(y) <I>Person who imports or offers for import</I> means, for purposes of this part, an agent, broker, or other entity, other than a carrier, that the foreign establishment uses to facilitate the import of its device into the United States.</P>
+<CITA TYPE="N">[42 FR 42526, Aug. 23, 1977, as amended at 43 FR 37997, Aug. 25, 1978; 57 FR 18066, Apr. 28, 1992; 58 FR 46522, Sept. 1, 1993; 59 FR 64295, Dec. 14, 1994; 60 FR 63606, Dec. 11, 1995; 63 FR 51826, Sept. 29, 1998; 66 FR 59159, Nov. 27, 2001; 77 FR 45940, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="B" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-807/subpart-B&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 807 Subpart B&amp;quot;}">
+<HEAD>Subpart B&#x2014;Procedures for Device Establishments</HEAD>
+<DIV8 N="807.20" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.20&quot;,&quot;citation&quot;:&quot;21 CFR 807.20&quot;}">
+<HEAD>&#xA7; 807.20 Who must register and submit a device list?</HEAD>
+<P>(a) An owner or operator of an establishment not exempt under section 510(g) of the Federal Food, Drug, and Cosmetic Act or subpart D of this part who is engaged in the manufacture, preparation, propagation, compounding, assembly, or processing of a device intended for human use shall register and submit listing information for those devices in commercial distribution, except that registration and listing information may be submitted by the parent, subsidiary, or affiliate company for all the domestic or foreign establishments under the control of one of these organizations when operations are conducted at more than one establishment and there exists joint ownership and control among all the establishments. The term &#x201C;device&#x201D; includes all in vitro diagnostic products and in vitro diagnostic biological products not subject to licensing under section 351 of the Public Health Service Act. An owner or operator of an establishment located in any State as defined in section 201(a)(1) of the Federal Food, Drug, and Cosmetic Act shall register its name, places of business, and all establishments and list the devices whether or not the output of the establishments or any particular device so listed enters interstate commerce. The registration and listing requirements shall pertain to any person who is engaged in the manufacture, preparation, propagation, compounding, assembly, or processing of a device intended for human use, including any person who:</P>
+<P>(1) Initiates or develops specifications for a device that is to be manufactured by a second party;</P>
+<P>(2) Sterilizes or otherwise makes a device for or on behalf of a specifications developer or any other person;</P>
+<P>(3) Repackages or relabels a device;</P>
+<P>(4) Reprocesses a single use device that has previously been used on a patient;</P>
+<P>(5) Acts as an initial importer as defined in &#xA7; 807.3(g), except that initial importers may fulfill their listing obligation for any device for which they did not initiate or develop the specifications for the device or repackage or relabel the device by submitting the name and address of the manufacturer. Initial importers shall also be prepared to submit, when requested by FDA, the proprietary name, if any, and the common or usual name of each device for which they are the initial importer;</P>
+<P>(6) Manufactures components or accessories that are ready to be used for any intended health-related purpose and are packaged or labeled for commercial distribution for such health-related purpose, e.g. blood filters, hemodialysis tubing, or devices which of necessity must be further processed by a licensed practitioner or other qualified person to meet the needs of a particular patient, e.g., a manufacturer of ophthalmic lens blanks.</P>
+<P>(b) Registration or listing does not constitute an admission or agreement or determination that a product is a device within the meaning of section 201(h) of the Federal Food, Drug, and Cosmetic Act.</P>
+<P>(c) Registration and listing requirements shall not pertain to any person who acts as a wholesale distributor, as defined in &#xA7; 807.3(t), and who does not manufacture, repackage, process, or relabel a device.</P>
+<P>(d) Owners and operators of establishments or persons engaged in the recovery, screening, testing, processing, storage, or distribution of human cells, tissues, and cellular and tissue-based products, as defined in &#xA7; 1271.3(d) of this chapter, that are regulated under the Federal Food, Drug, and Cosmetic Act must register and list those human cells, tissues, and cellular and tissue-based products with the Center for Biologics Evaluation and Research on Form FDA 3356 following the procedures set out in subpart B of part 1271 of this chapter, instead of the procedures for registration and listing contained in this part, except that the additional listing information requirements of &#xA7; 807.26 remain applicable.</P>
+<P>(e) Owners and operators of establishments that manufacture devices licensed under section 351 of the Public Health Service Act as well as licensed biological products used in the manufacture of a licensed device must register and list following the procedures set out in part 607 of this chapter, instead of the procedures for registration and listing contained in this part.</P>
+<CITA TYPE="N">[77 FR 45941, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.21" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.21&quot;,&quot;citation&quot;:&quot;21 CFR 807.21&quot;}">
+<HEAD>&#xA7; 807.21 How to register establishments and list devices.</HEAD>
+<P>(a) Owners or operators of establishments that are subject to the registration and listing requirements of this part must provide the following information to us using our electronic device registration and listing system, except as provided in paragraphs (b), (c), and (d) of this section:</P>
+<P>(1) Initial establishment registration information as required by &#xA7;&#xA7; 807.22(a) and 807.25;</P>
+<P>(2) Updates to registration information as required by &#xA7;&#xA7; 807.22(b) and 807.25;</P>
+<P>(3) Initial device listing information as required by &#xA7;&#xA7; 807.22(a), 807.25, and 807.28;</P>
+<P>(4) Updates to device listing information as required by &#xA7;&#xA7; 807.22(b), 807.25, and 807.28, including updates to reflect the discontinuance or resumption of the commercial distribution of a previously-listed device as specified at paragraphs (d) and (e) of &#xA7; 807.28.</P>
+<P>(b) If the information under &#xA7; 807.21(a) cannot be submitted electronically, a waiver may be requested. Waivers will be granted only if use of electronic means is not reasonable for the person requesting the waiver. To request a waiver, applicants must send a letter to the Imports and Registration and Listing Team, Division of Regulatory Programs 2, Office of Regulatory Programs, Office of Product Evaluation and Quality, Center for Devices and Radiological Health, Food and Drug Administration, 10903 New Hampshire Ave., Bldg. 66, Rm.1432, Silver Spring, MD 20993-0002, that includes the following information:</P>
+<P>(1) The name and address of the device establishment(s) to be registered, a contact person for the owner or operator of the establishment, and the telephone number at which that person can be reached. If the establishment has already registered in the past, the letter should also include the owner or operator number, registration number, and any listing numbers previously assigned by FDA for devices manufactured at that establishment.</P>
+<P>(2) Information about whether the company is an initial importer as defined in &#xA7; 807.3(g) and, if so, whether it also conducts any other activities or operations relating to devices.</P>
+<P>(3) A statement that use of the Internet is not reasonable for the person requesting the waiver, and an explanation of why such use is not reasonable. The statement must be signed by the owner or operator of the establishment, or by a person employed by the owner or operator who is authorized to make the declaration on behalf of the owner or operator.</P>
+<P>(c) Those owners or operators who have obtained a waiver from filing registration and listing information electronically should refer to &#xA7; 807.34 for information on how to submit such information by postal mail.</P>
+<P>(d) When additional device listing information (e.g., copies of labeling or advertisements) is requested by FDA as described at &#xA7; 807.26(e), such information may be submitted by postal mail or electronically by email, but will not be submitted using the FDA electronic device registration and listing system.</P>
+<CITA TYPE="N">[77 FR 45941, Aug. 2, 2012, as amended at 85 FR 18442, Apr. 2, 2020]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.22" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.22&quot;,&quot;citation&quot;:&quot;21 CFR 807.22&quot;}">
+<HEAD>&#xA7; 807.22 Times for establishment registration and device listing.</HEAD>
+<P>(a) <I>Initial registration and listing.</I> An owner or operator of an establishment who has not previously entered into an operation described in &#xA7; 807.20(a) shall register within 30 days after entering into such an operation and submit device listing information at that time.</P>
+<P>(b) <I>Registration and listing updates.</I> Owners or operators shall review and update all of their establishment registration and device listing information that is on file at FDA, documenting any changes that were not previously reported as follows:</P>
+<P>(1) Annual registration for each fiscal year is required for all establishments. Annual registration shall take place during the period beginning on October 1 and ending on December 31 of each fiscal year;</P>
+<P>(2) Updates to the registration information as described in &#xA7; 807.25(b) shall be made within 30 days of any change to such information;</P>
+<P>(3) Every fiscal year, during the period beginning on October 1 and ending on December 31, owners or operators shall review and update all of their device listing information that is on file at FDA, reporting any changes or deletions to listings and any new listings that were not previously reported. The accuracy of all information on file must be confirmed each year regardless of whether any changes were made to the owner or operator's list of devices; and</P>
+<P>(4) Changes to listing information may also be made at other times, such as when a device is introduced into commercial distribution, when a change is made to a previously-listed device, or when a previously-listed device is removed from commercial distribution.</P>
+<P>(c) <I>Failure to submit required information.</I> Failure to submit any of the required information on time, as specified in paragraphs (a) and (b) of this section, will put the establishment in a &#x201C;failed to register&#x201D; or &#x201C;failed to list&#x201D; status as applicable. The establishment will not be considered active and the establishment registration and device listing information may not appear on the FDA Web site until such time as the owner or operator submits and FDA processes the required information.</P>
+<CITA TYPE="N">[77 FR 45942, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.25" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.25&quot;,&quot;citation&quot;:&quot;21 CFR 807.25&quot;}">
+<HEAD>&#xA7; 807.25 Information required for device establishment registration and device listing.</HEAD>
+<P>(a) All owners or operators that are subject to the registration and listing requirements of this part shall provide such information to us by using the FDA electronic device registration and listing system, unless granted a waiver from electronic submission in accordance with &#xA7; 807.21(b). Electronic submissions of registration and listing information must comply with part 11 of this chapter, except for the requirements in &#xA7; 11.10(b), (c), and (e), and the corresponding requirements in &#xA7; 11.30 of this chapter. Those owners or operators granted a waiver from electronic submission should refer to paragraphs (c) and (g) of this section and &#xA7; 807.34 for instructions on how to submit device registration and listing information.</P>
+<P>(b) Registration information required to be submitted includes: The name and mailing address of the device establishment; the Web site address of the device establishment, if any; the name, address, phone number, fax number, and email address of the owner or operator; the name, address, phone number, fax number, and email address of the establishment's official correspondent; and all trade names used by the establishment.</P>
+<P>(c) Owners or operators who have been granted a waiver from electronic filing must submit the establishment registration information described in paragraph (b) of this section, except for the Web site and email address information, in paper form using the procedures set forth in &#xA7; 807.34.</P>
+<P>(d) Each owner or operator is required to maintain a listing of all officers, directors, and partners for each establishment registered by the owner or operator and to furnish this information to FDA upon request.</P>
+<P>(e) For each establishment, an official correspondent must be designated by the owner or operator to serve as a point of contact with FDA on matters relating to the registration of device establishments and the listing of device products. Each owner or operator shall also provide FDA with the name of a contact person at the owner or operator's offices who will be responsible for identifying the official correspondent for each establishment. The owner or operator contact person will be the official correspondent in the event no one else has been properly designated. The official correspondent is responsible for:</P>
+<P>(1) Providing FDA with all required registration and listing information electronically unless a waiver from electronic submission has been granted in accordance with &#xA7; 807.21(b);</P>
+<P>(2) Receiving all correspondence from FDA concerning registration and listing;</P>
+<P>(3) Supplying, when requested by FDA, the names of all officers, directors, and partners; and</P>
+<P>(4) Receiving communications from FDA by email, or by postal mail if the owner or operator has been granted a waiver from the requirement to file registration and listing information electronically.</P>
+<P>(f) The designation of an official correspondent does not in any manner affect the liability of the owner or operator of the establishment or any other individual under section 301(p) or any other provision of the Federal Food, Drug, and Cosmetic Act.</P>
+<P>(g) Device listing information must be submitted to FDA electronically unless a waiver from electronic submission has been granted in accordance with &#xA7; 807.21(b). Owners or operators who have been granted a waiver must submit the required device listing information, including information required by this paragraph, &#xA7; 807.28, and any listing information requested by FDA under &#xA7; 807.26(e), in paper form using the procedures set forth in &#xA7; 807.34. The information required for each device listed includes:</P>
+<P>(1) The current registration number and name of each establishment under the ownership and control of the owner or operator where the device is manufactured, repackaged, relabeled, or otherwise processed, or where specifications are developed.</P>
+<P>(2) The product code for each device that is exempt from premarket notification and approval or which was in commercial distribution prior to May 28, 1976.</P>
+<P>(3) The proprietary or brand name(s) under which each device is marketed.</P>
+<P>(4) The FDA-assigned premarket submission number of the approved application, cleared premarket notification, granted de novo classification petition, or approved humanitarian device exemption for each device listed that is subject to sections 505, 510(k), 513(f)(2), 515, or 520(m) of the Federal Food, Drug, and Cosmetic Act, which includes devices that are not exempt from premarket notification and approval.</P>
+<P>(5) Each activity or process that is conducted on or done to the device at each establishment, such as manufacturing, repacking, relabeling, developing specifications, remanufacturing, single-use device reprocessing, contract manufacturing, contract sterilizing, or manufacturing for export only.</P>
+<CITA TYPE="N">[77 FR 45942, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.26" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.26&quot;,&quot;citation&quot;:&quot;21 CFR 807.26&quot;}">
+<HEAD>&#xA7; 807.26 Additional listing information.</HEAD>
+<P>(a) Each owner or operator shall maintain a historical file containing the labeling and advertisements in use on the date of initial listing, and in use after October 10, 1978, but before the date of initial listing, as follows:</P>
+<P>(1) For each device subject to section 514 or 515 of the act that is not a restricted device, a copy of all labeling for the device;</P>
+<P>(2) For each restricted device, a copy of all labeling and advertisements for the device;</P>
+<P>(3) For each device that is neither restricted nor subject to section 514 or 515 of the act, a copy of all labels, package inserts, and a representative sampling of any other labeling.</P>
+<P>(b) In addition to the requirements set forth in paragraph (a) of this section, each owner or operator shall maintain in the historical file any labeling or advertisements in which a material change has been made anytime after initial listing.</P>
+<P>(c) Each owner or operator may discard labeling and advertisements from the historical file 3 years after the date of the last shipment of a discontinued device by an owner or operator.</P>
+<P>(d) Location of the file:</P>
+<P>(1) Currently existing systems for maintenance of labeling and advertising may be used for the purpose of maintaining the historical file as long as the information included in the systems fulfills the requirements of this section, but only if the labeling and advertisements are retrievable in a timely manner.</P>
+<P>(2) The contents of the historical file may be physically located in more than one place in the establishment or in more than one establishment provided there exists joint ownership and control among all the establishments maintaining the historical file. If no joint ownership and control exists, the registered establishment must provide the Food and Drug Administration with a letter authorizing the establishment outside its control to maintain the historical file.</P>
+<P>(3) A copy of the certification and disclosure statements as required by part 54 of this chapter shall be retained and physically located at the establishment maintaining the historical file.</P>
+<P>(e) Each owner or operator shall be prepared to submit to the Food and Drug Administration, only upon specific request, the following information:</P>
+<P>(1) For a device subject to section 514 or 515 of the act that is not a restricted device, a copy of all labeling for the device.</P>
+<P>(2) For a device that is a restricted device, a copy of all labeling for the device, a representative sampling of advertisements for the device, and for good cause, a copy of all advertisements for a particular device. A request for all advertisements will, where feasible, be accompanied by an explanation of the basis for such request.</P>
+<P>(3) For a device that is neither a restricted device, nor subject to section 514 of 515 of the act, the label and package insert for the device and a representative sampling of any other labeling for the device.</P>
+<P>(4) For a particular device, a statement of the basis upon which the registrant has determined that the device is not subject to section 514 or 515 of the act.</P>
+<P>(5) For a particular device, a statement of the basis upon which the registrant has determined the device is not a restricted device.</P>
+<P>(6) For a particular device, a statement of the basis for determining that the product is a device rather than a drug.</P>
+<P>(7) For a device that the owner or operator has manufactured for distribution under a label other than its own, the names of all distributors for whom it has been manufactured.</P>
+<P>(f) Labeling, advertisements, and other information to be submitted upon request in accordance with paragraph (e) of this section may be submitted by postal mail or electronically by email, but will not be submitted using the FDA electronic device registration and listing system. Electronic submissions of such information must comply with part 11 of this chapter, except for the requirements in &#xA7; 11.10 (a), (c) through (h), and (k), and the corresponding requirements in &#xA7; 11.30 of this chapter. The information provided in electronic format must be in a form that we can process, review, and archive.</P>
+<CITA TYPE="N">[43 FR 37999, Aug. 25, 1978, as amended at 51 FR 33033, Sept. 18, 1986; 63 FR 5253, Feb. 2, 1998. Redesignated and amended at 77 FR 45943, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.28" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.28&quot;,&quot;citation&quot;:&quot;21 CFR 807.28&quot;}">
+<HEAD>&#xA7; 807.28 Updating device listing information.</HEAD>
+<P>(a) Updating of device listing information is required if an additional establishment begins to engage in any of the activities described in &#xA7; 807.3(d) with respect to a listed device, such as manufacturing, developing specifications, repackaging, relabeling, or otherwise processing the device. Updating of the listing is also required if an establishment begins performing another activity on or to the device, or ceases to perform an activity on or to the device that had previously been identified on the device listing.</P>
+<P>(b) An owner or operator shall create a new device listing using the FDA electronic device registration and listing system:</P>
+<P>(1) If introducing into commercial distribution an exempt device identified with a product code that is not currently listed by the owner or operator; or</P>
+<P>(2) If introducing into commercial distribution a non-exempt device with an FDA premarket submission number that is not currently listed by the owner or operator.</P>
+<P>(c) All device listings for foreign establishments must be submitted before the device may be imported or offered for import into the United States.</P>
+<P>(d) An owner or operator who discontinues commercial distribution of a device shall discontinue the device listing using the FDA electronic device registration and listing system. A device listing is considered discontinued if:</P>
+<P>(1) All devices under an exempt product code have been discontinued or</P>
+<P>(2) All devices associated with an FDA premarket submission number have been discontinued.</P>
+<P>(e) If commercial distribution of a discontinued device is resumed, the owner or operator must reactivate the previously-discontinued listing using the electronic device registration and listing system. Any changes to the listing information for the product that is the subject of the listing such as a new establishment, new activity, or new proprietary name must be made using the electronic device registration and listing system at the time the listing is reactivated.</P>
+<P>(f) FDA will assign one listing number for all devices exempt from premarket notification requirements under a single product code. For products not exempt from premarket notification requirements, a single listing number will be assigned by FDA for each FDA premarket submission number.</P>
+<CITA TYPE="N">[77 FR 45943, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.34" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.34&quot;,&quot;citation&quot;:&quot;21 CFR 807.34&quot;}">
+<HEAD>&#xA7; 807.34 Summary of requirements for owners or operators granted a waiver from submitting required information electronically.</HEAD>
+<P>(a) For initial registration and listing, owners or operators who have been granted a waiver from electronic filing using the procedures set forth in &#xA7; 807.21(b) must send a letter containing all of the registration and listing information described in &#xA7;&#xA7; 807.22, 807.25 (and &#xA7; 807.26 when such information is requested by FDA), at the times described in &#xA7; 807.22, to: The Imports and Registration and Listing Team, Division of Regulatory Programs 2, Office of Regulatory Programs, Office of Product Evaluation and Quality, Center for Devices and Radiological Health, Food and Drug Administration, 10903 New Hampshire Ave., Bldg. 66, Rm. 1432, Silver Spring, MD 20993-0002.</P>
+<P>(b) As specified in &#xA7; 807.22(b)(1) and (b)(3), all owners or operators shall update their establishment registration and device listings annually during the period beginning on October 1 and ending on December 31 of each fiscal year.</P>
+<P>(c) Failure to submit any of the required information on time, as specified in &#xA7; 807.22(a) and (b), will put the establishment in a &#x201C;failed to register&#x201D; or &#x201C;failed to list&#x201D; status as applicable.</P>
+<P>The establishment will not be considered active and the establishment registration and device listing information may not appear on the FDA Web site until the required information is submitted to and processed by FDA.</P>
+<CITA TYPE="N">[77 FR 45943, Aug. 2, 2012, as amended at 85 FR 18442, Apr. 2, 2020]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.35" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.35&quot;,&quot;citation&quot;:&quot;21 CFR 807.35&quot;}">
+<HEAD>&#xA7; 807.35 Notification of registrant.</HEAD>
+<P>(a) The Food and Drug Administration will assign each device establishment a registration number after verifying the initial establishment registration information that has been submitted. The owner or operator of the establishment will also be assigned an identifying number. Both numbers will be sent to the official correspondent by email, or by postal mail if the owner or operator has been granted a waiver from the requirement to file registration and listing information electronically.</P>
+<P>(b) Owners or operators of device establishments who also manufacture or process biological products (including devices licensed under section 351 of the Public Health Service Act) or drug products at the same establishment must also register and list those products under part 607 or part 207 of this chapter, as appropriate. Registration and listing for human blood and blood products, devices licensed under section 351 of the Public Health Service Act, and licensed biological products used in the manufacture of a device licensed under section 351 of the Public Health Service Act, are subject to part 607 of this chapter; registration and listing for all other drug products (including other biological products that are also regulated as drug products) are subject to part 207 of this chapter.</P>
+<P>(c) Although establishment registration and device listing are required to engage in the device activities described in &#xA7; 807.20, validation of registration and the assignment of a device listing number in itself does not establish that the holder of the registration is legally qualified to deal in such devices and does not represent a determination by the Food and Drug Administration as to the status of any device.</P>
+<CITA TYPE="N">[69 FR 11312, Mar. 10, 2004, as amended at 77 FR 45943, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.37" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.37&quot;,&quot;citation&quot;:&quot;21 CFR 807.37&quot;}">
+<HEAD>&#xA7; 807.37 Public availability of establishment registration and device listing information.</HEAD>
+<P>(a) Establishment registration and device listing information is available for public inspection in accordance with section 510(f) of the Federal Food, Drug, and Cosmetic Act and will be posted on the FDA website, with the exception of the information identified in paragraph (b) of this section. Requests for information by persons who do not have access to the internet should be directed to the Imports and Registration and Listing Team, Division of Regulatory Programs 2, Office of Regulatory Programs, Office of Product Evaluation and Quality, Center for Devices and Radiological Health, Food and Drug Administration, 10903 New Hampshire Ave., Bldg. 66, Rm.1432, Silver Spring, MD 20993-0002. In addition, there will be available for inspection at each of the Food and Drug Administration district offices the same information for firms within the geographical area of such district offices. Upon request, verification of a registration number or location of a registered establishment will be provided.</P>
+<P>(b) The following listing information will not be available for public inspection or posted on the FDA Web site:</P>
+<P>(1) For contract manufacturers, contract sterilizers, and private label manufacturers, the proprietary or brand name(s) under which a device is marketed and the FDA-assigned premarket submission number, if this information would reveal a confidential business relationship;</P>
+<P>(2) FDA-assigned listing numbers.</P>
+<CITA TYPE="N">[77 FR 45943, Aug. 2, 2012, as amended at 85 FR 18442, Apr. 2, 2020]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.39" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.39&quot;,&quot;citation&quot;:&quot;21 CFR 807.39&quot;}">
+<HEAD>&#xA7; 807.39 Misbranding by reference to establishment registration or to registration number.</HEAD>
+<P>Registration of a device establishment or assignment of a registration number does not in any way denote approval of the establishment or its products. Any representation that creates an impression of official approval because of registration or possession of a registration number is misleading and constitutes misbranding.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="C" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-807/subpart-C&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 807 Subpart C&amp;quot;}">
+<HEAD>Subpart C&#x2014;Procedures for Foreign Device Establishments</HEAD>
+<DIV8 N="807.40" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.40&quot;,&quot;citation&quot;:&quot;21 CFR 807.40&quot;}">
+<HEAD>&#xA7; 807.40 Establishment registration and device listing for foreign establishments importing or offering for import devices into the United States.</HEAD>
+<P>(a) Any establishment within any foreign country engaged in the manufacture, preparation, propagation, compounding, or processing of a device that is imported or offered for import into the United States shall register such establishment and list such devices using the FDA electronic device registration and listing system in conformance with the procedures in this section, &#xA7; 807.41, and subpart B of this part. The official correspondent for the foreign establishment shall facilitate communication between the foreign establishment's management and representatives of FDA for matters relating to the registration of device establishments and the listing of device products.</P>
+<P>(b) Each foreign establishment required to register under paragraph (a) of this section shall submit the name, address, and phone number of its United States agent as part of its initial and updated registration information in accordance with subpart B of this part. Each foreign establishment shall designate only one United States agent and may designate the United States agent to act as its official correspondent.</P>
+<P>(1) The United States agent shall reside or maintain a place of business in the United States.</P>
+<P>(2) Upon request from FDA, the United States agent shall assist FDA in communications with the foreign establishment, respond to questions concerning the foreign establishment's products that are imported or offered for import into the United States, and assist FDA in scheduling inspections of the foreign establishment. If the agency is unable to contact the foreign establishment directly or expeditiously, FDA may provide information or documents to the United States agent, and such an action shall be considered to be equivalent to providing the same information or documents to the foreign establishment.</P>
+<P>(3) The foreign establishment or the United States agent shall report changes in the United States agent's name, address, or phone number to FDA within 10-business days of the change.</P>
+<P>(c) No device may be imported or offered for import into the United States unless it is the subject of a device listing as required under subpart B of this part and is manufactured, prepared, propagated, compounded, or processed at a registered foreign establishment; however, this restriction does not apply to devices imported or offered for import under the investigational use provisions of part 812 of this chapter.</P>
+<P>(d) The device establishment registration and device listing information shall be in the English language.</P>
+<CITA TYPE="N">[66 FR 59160, Nov. 27, 2001, as amended at 77 FR 45944, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.41" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.41&quot;,&quot;citation&quot;:&quot;21 CFR 807.41&quot;}">
+<HEAD>&#xA7; 807.41 Identification of importers and persons who import or offer for import.</HEAD>
+<P>(a) Upon initial registration, annually, and at the time of any changes, each foreign establishment required to register and list as provided in &#xA7; 807.40(a) must, using the FDA electronic device registration and listing system, submit the name, address, telephone and fax numbers, email address, and registration number, if any has been assigned, of any importer (defined in &#xA7; 807.3(x)) of the establishment's devices that is known to the foreign establishment. The foreign establishment must also specify which of the establishment's listed products each importer receives from the foreign establishment.</P>
+<P>(b) Upon initial registration, annually, and at the time of any changes, each foreign establishment required to register and list as provided in &#xA7; 807.40(a) must, using the FDA electronic device registration and listing system, submit the name, address, telephone and fax numbers, email address, and registration number, if any has been assigned, of each person who imports or offers for import the establishment's devices into the United States. The term &#x201C;person who imports or offers for import,&#x201D; which is defined in &#xA7; 807.3(y), includes agents, brokers, or other parties used by the foreign establishment to facilitate the import of its device into the United States.</P>
+<P>(c) For each individual or organization identified by the foreign establishment under paragraphs (a) and (b) of this section, the foreign establishment must submit to FDA electronically the current FDA premarket submission number and any other identifying information that is known to the establishment for each device being imported or offered for import by the named individuals or organizations.</P>
+<CITA TYPE="N">[77 FR 45944, Aug. 2, 2012]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="D" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-807/subpart-D&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 807 Subpart D&amp;quot;}">
+<HEAD>Subpart D&#x2014;Exemptions</HEAD>
+<DIV8 N="807.65" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.65&quot;,&quot;citation&quot;:&quot;21 CFR 807.65&quot;}">
+<HEAD>&#xA7; 807.65 Exemptions for device establishments.</HEAD>
+<P>The following classes of persons are exempt from registration in accordance with &#xA7; 807.20 under the provisions of section 510(g)(1), (g)(2), and (g)(3) of the act, or because the Commissioner of Food and Drugs has found, under section 510(g)(5) of the act, that such registration is not necessary for the protection of the public health. The exemptions in paragraphs (d), (e), (f), and (i) of this section are limited to those classes of persons located in any State as defined in section 201(a)(1) of the act.</P>
+<P>(a) A manufacturer of raw materials or components to be used in the manufacture or assembly of a device who would otherwise not be required to register under the provisions of this part.</P>
+<P>(b) A manufacturer of devices to be used solely for veterinary purposes.</P>
+<P>(c) A manufacturer of general purpose articles such as chemical reagents or laboratory equipment whose uses are generally known by persons trained in their use and which are not labeled or promoted for medical uses.</P>
+<P>(d) Licensed practitioners, including physicians, dentists, and optometrists, who manufacture or otherwise alter devices solely for use in their practice.</P>
+<P>(e) Pharmacies, surgical supply outlets, or other similar retail establishments making final delivery or sale to the ultimate user. This exemption also applies to a pharmacy or other similar retail establishment that purchases a device for subsequent distribution under its own name, e.g., a properly labeled health aid such as an elastic bandage or crutch, indicating &#x201C;distributed by&#x201D; or &#x201C;manufactured for&#x201D; followed by the name of the pharmacy.</P>
+<P>(f) Persons who manufacture, prepare, propagate, compound, or process devices solely for use in research, teaching, or analysis and do not introduce such devices into commercial distribution.</P>
+<P>(g) [Reserved]</P>
+<P>(h) Carriers by reason of their receipt, carriage, holding or delivery of devices in the usual course of business as carriers.</P>
+<P>(i) Persons who dispense devices to the ultimate consumer or whose major responsibility is to render a service necessary to provide the consumer (i.e., patient, physician, layman, etc.) with a device or the benefits to be derived from the use of a device; for example, a hearing aid dispenser, optician, clinical laboratory, assembler of diagnostic x-ray systems, and personnel from a hospital, clinic, dental laboratory, orthotic or prosthetic retail facility, whose primary responsibility to the ultimate consumer is to dispense or provide a service through the use of a previously manufactured device.</P>
+<CITA TYPE="N">[42 FR 42526, Aug. 23, 1977, as amended at 58 FR 46523, Sept. 1, 1993; 61 FR 44615, Aug. 28, 1996; 65 FR 17136, Mar. 31, 2000; 66 FR 59160, Nov. 27, 2001]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="E" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-21/part-807/subpart-E&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;21 CFR Part 807 Subpart E&amp;quot;}">
+<HEAD>Subpart E&#x2014;Premarket Notification Procedures</HEAD>
+<DIV8 N="807.81" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.81&quot;,&quot;citation&quot;:&quot;21 CFR 807.81&quot;}">
+<HEAD>&#xA7; 807.81 When a premarket notification submission is required.</HEAD>
+<P>(a) Except as provided in paragraph (b) of this section, each person who is required to register his establishment pursuant to &#xA7; 807.20 must submit a premarket notification submission to the Food and Drug Administration at least 90 days before he proposes to begin the introduction or delivery for introduction into interstate commerce for commercial distribution of a device intended for human use which meets any of the following criteria:</P>
+<P>(1) The device is being introduced into commercial distribution for the first time; that is, the device is not of the same type as, or is not substantially equivalent to, (i) a device in commercial distribution before May 28, 1976, or (ii) a device introduced for commercial distribution after May 28, 1976, that has subsequently been reclassified into class I or II.</P>
+<P>(2) The device is being introduced into commercial distribution for the first time by a person required to register, whether or not the device meets the criteria in paragraph (a)(1) of this section.</P>
+<P>(3) The device is one that the person currently has in commercial distribution or is reintroducing into commercial distribution, but that is about to be significantly changed or modified in design, components, method of manufacture, or intended use. The following constitute significant changes or modifications that require a premarket notification:</P>
+<P>(i) A change or modification in the device that could significantly affect the safety or effectiveness of the device, e.g., a significant change or modification in design, material, chemical composition, energy source, or manufacturing process.</P>
+<P>(ii) A major change or modification in the intended use of the device.</P>
+<P>(b)(1) A premarket notification under this subpart is not required for a device for which:</P>
+<P>(i) A premarket approval application under section 515 of the act, or for which a petition to reclassify under section 513(f)(2) of the act, is pending before the Food and Drug Administration, or</P>
+<P>(ii) There is a predetermined change control plan (PCCP) cleared under section 515C of the act, provided that the change is consistent with the PCCP.</P>
+<P>(2) The appropriate FDA Center Director may determine that the submission and grant of a written request for an exception or alternative under &#xA7; 801.128 or &#xA7; 809.11 of this chapter satisfies the requirement in paragraph (a)(3) of this section.</P>
+<P>(c) In addition to complying with the requirements of this part, owners or operators of device establishments that manufacture radiation-emitting electronic products, as defined in &#xA7; 1000.3 of this chapter, shall comply with the reporting requirements of part 1002 of this chapter.</P>
+<CITA TYPE="N">[42 FR 42526, Aug. 23, 1977, as amended at 72 FR 73601, Dec. 28, 2007; 89 FR 18792, Mar. 15, 2024]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.85" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.85&quot;,&quot;citation&quot;:&quot;21 CFR 807.85&quot;}">
+<HEAD>&#xA7; 807.85 Exemption from premarket notification.</HEAD>
+<P>(a) A custom device is exempt from premarket notification requirements of this subpart if the device is within the meaning of section 520(b) of the Federal Food, Drug, and Cosmetic Act.</P>
+<P>(1) It is intended for use by a patient named in the order of the physician or dentist (or other specially qualified person); or</P>
+<P>(2) It is intended solely for use by a physician or dentist (or other specially qualified person) and is not generally available to, or generally used by, other physicians or dentists (or other specially qualified persons).</P>
+<P>(b) A distributor who places a device into commercial distribution for the first time under his own name and a repackager who places his own name on a device and does not change any other labeling or otherwise affect the device shall be exempted from the premarket notification requirements of this subpart if:</P>
+<P>(1) The device was in commercial distribution before May 28, 1976; or</P>
+<P>(2) A premarket notification submission was filed by another person.</P>
+<CITA TYPE="N">[42 FR 42526, Aug. 23, 1977, as amended at 81 FR 70340, Oct. 12, 2016]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.87" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.87&quot;,&quot;citation&quot;:&quot;21 CFR 807.87&quot;}">
+<HEAD>&#xA7; 807.87 Information required in a premarket notification submission.</HEAD>
+<P>Each premarket notification submission shall contain the following information:</P>
+<P>(a) The device name, including both the trade or proprietary name and the common or usual name or classification name of the device.</P>
+<P>(b) The establishment registration number, if applicable, of the owner or operator submitting the premarket notification submission.</P>
+<P>(c) The class in which the device has been put under section 513 of the act and, if known, its appropriate panel; or, if the owner or operator determines that the device has not been classified under such section, a statement of that determination and the basis for the person's determination that the device is not so classified.</P>
+<P>(d) Action taken by the person required to register to comply with the requirements of the act under section 514 for performance standards.</P>
+<P>(e) Proposed labels, labeling, and advertisements sufficient to describe the device, its intended use, and the directions for its use. Where applicable, photographs or engineering drawings should be supplied.</P>
+<P>(f) A statement indicating the device is similar to and/or different from other products of comparable type in commercial distribution, accompanied by data to support the statement. This information may include an identification of similar products, materials, design considerations, energy expected to be used or delivered by the device, and a description of the operational principles of the device.</P>
+<P>(g) Where a person required to register intends to introduce into commercial distribution a device that has undergone a significant change or modification that could significantly affect the safety or effectiveness of the device, or the device is to be marketed for a new or different indication for use, the premarket notification submission must include appropriate supporting data to show that the manufacturer has considered what consequences and effects the change or modification or new use might have on the safety and effectiveness of the device.</P>
+<P>(h) A 510(k) summary as described in &#xA7; 807.92 or a 510(k) statement as described in &#xA7; 807.93.</P>
+<P>(i) A financial certification or disclosure statement or both, as required by part 54 of this chapter.</P>
+<P>(j) For a submission supported by clinical data:</P>
+<P>(1) If the data are from clinical investigations conducted in the United States, a statement that each investigation was conducted in compliance with applicable requirements in the protection of human subjects regulations in part 50 of this chapter, the institutional review boards regulations in part 56 of this chapter, or was not subject to the regulations under &#xA7; 56.104 or &#xA7; 56.105, and the investigational device exemptions regulations in part 812 of this chapter, or if the investigation was not conducted in compliance with those regulations, a brief statement of the reason for the noncompliance.</P>
+<P>(2) If the data are from clinical investigations conducted outside the United States, the requirements under &#xA7; 812.28 of this chapter apply. If any such investigation was not conducted in accordance with good clinical practice (GCP) as described in &#xA7; 812.28(a) of this chapter, include either a waiver request in accordance with &#xA7; 812.28(c) of the chapter or a brief statement of the reason for not conducting the investigation in accordance with GCP and a description of steps taken to ensure that the data and results are credible and accurate and that the rights, safety, and well-being of subjects have been adequately protected.</P>
+<P>(k) For submissions claiming substantial equivalence to a device which has been classified into class III under section 513(b) of the act:</P>
+<P>(1) Which was introduced or delivered for introduction into interstate commerce for commercial distribution before December 1, 1990; and</P>
+<P>(2) For which no final regulation requiring premarket approval has been issued under section 515(b) of the act, a summary of the types of safety and effectiveness problems associated with the type of devices being compared and a citation to the information upon which the summary is based (class III summary). The 510(k) submitter shall also certify that a reasonable search of all information known or otherwise available about the class III device and other similar legally marketed devices has been conducted (class III certification), as described in &#xA7; 807.94. This information does not refer to information that already has been submitted to the Food and Drug Administration (FDA) under section 519 of the act. FDA may require the submission of the adverse safety and effectiveness data described in the class III summary or citation.</P>
+<P>(l) A statement that the submitter believes, to the best of his or her knowledge, that all data and information submitted in the premarket notification are truthful and accurate and that no material fact has been omitted.</P>
+<P>(m) Any additional information regarding the device requested by the Commissioner that is necessary for the Commissioner to make a finding as to whether or not the device is substantially equivalent to a device in commercial distribution. A request for additional information will advise the owner or operator that there is insufficient information contained in the original premarket notification submission for the Commissioner to make this determination and that the owner or operator may either submit the requested data or a new premarket notification containing the requested information at least 90 days before the owner or operator intends to market the device, or submit a premarket approval application in accordance with section 515 of the act. If the additional information is not submitted within 30 days following the date of the request, the Commissioner will consider the premarket notification to be withdrawn.</P>
+<CITA TYPE="N">[42 FR 42526, Aug. 23, 1977, as amended at 57 FR 18066, Apr. 28, 1992; 59 FR 64295, Dec. 14, 1994; 63 FR 5253, Feb. 2, 1998; 83 FR 7385, Feb. 21, 2018; 89 FR 18793, Mar. 15, 2024]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.90" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.90&quot;,&quot;citation&quot;:&quot;21 CFR 807.90&quot;}">
+<HEAD>&#xA7; 807.90 Format of a premarket notification submission.</HEAD>
+<P>Each premarket notification submission pursuant to this part shall be submitted in accordance with this section. Each submission shall:</P>
+<P>(a)(1) For devices regulated by the Center for Devices and Radiological Health, be addressed to the current address displayed on the website <I>https://www.fda.gov/cdrhsubmissionaddress.</I></P>
+<P>(2) For devices regulated by the Center for Biologics Evaluation and Research, be addressed to the current address displayed on the website <I>https://www.fda.gov/AboutFDA/CentersOffices/OfficeofMedicalProductsandTobacco/CBER/ucm385240.htm;</I> or for devices regulated by the Center for Drug Evaluation and Research, be addressed to the Central Document Room, Center for Drug Evaluation and Research, Food and Drug Administration, 5901-B Ammendale Rd., Beltsville, MD 20705-1266. Information about devices regulated by the Center for Biologics Evaluation and Research is available at <I>https://www.fda.gov/BiologicsBloodVaccines/BloodBloodProducts/ApprovedProducts/default.htm.</I></P>
+<P>(3) All inquiries regarding a premarket notification submission should be sent to the address in this section or one of the current addresses displayed on the Food and Drug Administration's website.</P>
+<P>(b) [Reserved]</P>
+<P>(c) Be submitted as a single version in electronic format.</P>
+<P>(d) Be submitted separately for each product the manufacturer intends to market.</P>
+<P>(e) Designated &#x201C;510(k) Notification&#x201D; in the cover letter.</P>
+<CITA TYPE="N">[42 FR 42526, Aug. 23, 1977, as amended at 53 FR 11252, Apr. 6, 1988; 55 FR 11169, Mar. 27, 1990; 65 FR 17137, Mar. 31, 2000; 70 FR 14986, Mar. 24, 2005; 75 FR 20915, Apr. 22, 2010; 80 FR 18094, Apr. 3, 2015; 84 FR 68339, Dec. 16, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.92" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.92&quot;,&quot;citation&quot;:&quot;21 CFR 807.92&quot;}">
+<HEAD>&#xA7; 807.92 Content and format of a 510(k) summary.</HEAD>
+<P>(a) A 510(k) summary shall be in sufficient detail to provide an understanding of the basis for a determination of substantial equivalence. FDA will accept summaries as well as amendments thereto until such time as FDA issues a determination of substantial equivalence. All 510(k) summaries shall contain the following information:</P>
+<P>(1) The submitter's name, address, telephone number, a contact person, and the date the summary was prepared;</P>
+<P>(2) The name of the device, including the trade or proprietary name if applicable, the common or usual name, and the classification name, if known;</P>
+<P>(3) An identification of the legally marketed device to which the submitter claims equivalence. A legally marketed device to which a new device may be compared for a determination regarding substantial equivalence is a device that was legally marketed prior to May 28, 1976, or a device which has been reclassified from class III to class II or I (the predicate), or a device which has been found to be substantially equivalent through the 510(k) premarket notification process;</P>
+<P>(4) A description of the device that is the subject of the premarket notification submission, such as might be found in the labeling or promotional material for the device, including an explanation of how the device functions, the scientific concepts that form the basis for the device, and the significant physical and performance characteristics of the device, such as device design, material used, and physical properties;</P>
+<P>(5) A statement of the intended use of the device that is the subject of the premarket notification submission, including a general description of the diseases or conditions that the device will diagnose, treat, prevent, cure, or mitigate, including a description, where appropriate, of the patient population for which the device is intended. If the indication statements are different from those of the legally marketed device identified in paragraph (a)(3) of this section, the 510(k) summary shall contain an explanation as to why the differences are not critical to the intended therapeutic, diagnostic, prosthetic, or surgical use of the device, and why the differences do not affect the safety and effectiveness of the device when used as labeled; and</P>
+<P>(6) If the device has the same technological characteristics (i.e., design, material, chemical composition, energy source) as the predicate device identified in paragraph (a)(3) of this section, a summary of the technological characteristics of the new device in comparison to those of the predicate device. If the device has different technological characteristics from the predicate device, a summary of how the technological characteristics of the device compare to a legally marketed device identified in paragraph (a)(3) of this section.</P>
+<P>(b) 510(k) summaries for those premarket submissions in which a determination of substantial equivalence is also based on an assessment of performance data shall contain the following information:</P>
+<P>(1) A brief discussion of the nonclinical tests submitted, referenced, or relied on in the premarket notification submission for a determination of substantial equivalence;</P>
+<P>(2) A brief discussion of the clinical tests submitted, referenced, or relied on in the premarket notification submission for a determination of substantial equivalence. This discussion shall include, where applicable, a description of the subjects upon whom the device was tested, a discussion of the safety or effectiveness data obtained from the testing, with specific reference to adverse effects and complications, and any other information from the clinical testing relevant to a determination of substantial equivalence; and</P>
+<P>(3) The conclusions drawn from the nonclinical and clinical tests that demonstrate that the device is as safe, as effective, and performs as well as or better than the legally marketed device identified in paragraph (a)(3) of this section.</P>
+<P>(c) The summary should be in a separate section of the submission, beginning on a new page and ending on a page not shared with any other section of the premarket notification submission, and should be clearly identified as a &#x201C;510(k) summary.&#x201D;</P>
+<P>(d) Any other information reasonably deemed necessary by the agency.</P>
+<CITA TYPE="N">[57 FR 18066, Apr. 28, 1992, as amended at 59 FR 64295, Dec. 14, 1994]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.93" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.93&quot;,&quot;citation&quot;:&quot;21 CFR 807.93&quot;}">
+<HEAD>&#xA7; 807.93 Content and format of a 510(k) statement.</HEAD>
+<P>(a)(1) A 510(k) statement submitted as part of a premarket notification shall state as follows:</P>
+<EXTRACT>
+<P>I certify that, in my capacity as (the position held in company by person required to submit the premarket notification, preferably the official correspondent in the firm), of (company name), I will make available all information included in this premarket notification on safety and effectiveness within 30 days of request by any person if the device described in the premarket notification submission is determined to be substantially equivalent. The information I agree to make available will be a duplicate of the premarket notification submission, including any adverse safety and effectiveness information, but excluding all patient identifiers, and trade secret and confidential commercial information, as defined in 21 CFR 20.61.</P></EXTRACT>
+<P>(2) The statement in paragraph (a)(1) of this section should be signed by the certifier, made on a separate page of the premarket notification submission, and clearly identified as &#x201C;510(k) statement.&#x201D;</P>
+<P>(b) All requests for information included in paragraph (a) of this section shall be made in writing to the certifier, whose name will be published by FDA on the list of premarket notification submissions for which substantial equivalence determinations have been made.</P>
+<P>(c) The information provided to requestors will be a duplicate of the premarket notification submission, including any adverse information, but excluding all patient identifiers, and trade secret and confidential commercial information as defined in &#xA7; 20.61 of this chapter.</P>
+<CITA TYPE="N">[59 FR 64295, Dec. 14, 1994]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.94" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.94&quot;,&quot;citation&quot;:&quot;21 CFR 807.94&quot;}">
+<HEAD>&#xA7; 807.94 Format of a class III certification.</HEAD>
+<P>(a) A class III certification submitted as part of a premarket notification shall state as follows:</P>
+<EXTRACT>
+<P>I certify, in my capacity as (position held in company), of (company name), that I have conducted a reasonable search of all information known or otherwise available about the types and causes of safety or effectiveness problems that have been reported for the (type of device). I further certify that I am aware of the types of problems to which the (type of device) is susceptible and that, to the best of my knowledge, the following summary of the types and causes of safety or effectiveness problems about the (type of device) is complete and accurate.</P></EXTRACT>
+<P>(b) The statement in paragraph (a) of this section should be signed by the certifier, clearly identified as &#x201C;class III certification,&#x201D; and included at the beginning of the section of the premarket notification submission that sets forth the class III summary.</P>
+<CITA TYPE="N">[59 FR 64296, Dec. 14, 1994]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.95" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.95&quot;,&quot;citation&quot;:&quot;21 CFR 807.95&quot;}">
+<HEAD>&#xA7; 807.95 Confidentiality of information.</HEAD>
+<P>(a) The Food and Drug Administration will disclose publicly whether there exists a premarket notification submission under this part:</P>
+<P>(1) Where the device is on the market, i.e., introduced or delivered for introduction into interstate commerce for commercial distribution;</P>
+<P>(2) Where the person submitting the premarket notification submission has disclosed, through advertising or any other manner, his intent to market the device to scientists, market analysts, exporters, or other individuals who are not employees of, or paid consultants to, the establishment and who are not in an advertising or law firm pursuant to commercial arrangements with appropriate safeguards for secrecy; or</P>
+<P>(3) Where the device is not on the market and the intent to market the device has not been so disclosed, except where the submission is subject to an exception under paragraph (b) or (c) of this section.</P>
+<P>(b) The Food and Drug Administration will not disclose publicly the existence of a premarket notification submission for a device that is not on the market and where the intent to market the device has not been disclosed for 90 days from the date of receipt of the submission, if:</P>
+<P>(1) The person submitting the premarket notification submission requests in the submission that the Food and Drug Administration hold as confidential commercial information the intent to market the device and submits a certification to the Commissioner:</P>
+<P>(i) That the person considers his intent to market the device to be confidential commercial information;</P>
+<P>(ii) That neither the person nor, to the best of his knowledge, anyone else, has disclosed through advertising or any other manner, his intent to market the device to scientists, market analysts, exporters, or other individuals, except employees of, or paid consultants to, the establishment or individuals in an advertising or law firm pursuant to commercial arrangements with appropriate safeguards for secrecy;</P>
+<P>(iii) That the person will immediately notify the Food and Drug Administration if he discloses the intent to market the device to anyone, except employees of, or paid consultants to, the establishment or individuals in an advertising or law firm pursuant to commercial arrangements with appropriate safeguards for secrecy;</P>
+<P>(iv) That the person has taken precautions to protect the confidentiality of the intent to market the device; and</P>
+<P>(v) That the person understands that the submission to the government of false information is prohibited by 18 U.S.C. 1001 and 21 U.S.C. 331(q); and</P>
+<P>(2) The Commissioner agrees that the intent to market the device is confidential commercial information.</P>
+<P>(c) Where the Commissioner determines that the person has complied with the procedures described in paragraph (b) of this section with respect to a device that is not on the market and where the intent to market the device has not been disclosed, and the Commissioner agrees that the intent to market the device is confidential commercial information, the Commissioner will not disclose the existence of the submission for 90 days from the date of its receipt by the agency. In addition, the Commissioner will continue not to disclose the existence of such a submission for the device for an additional time when any of the following occurs:</P>
+<P>(1) The Commissioner requests in writing additional information regarding the device pursuant to &#xA7; 807.87(h), in which case the Commissioner will not disclose the existence of the submission until 90 days after the Food and Drug Administration's receipt of a complete premarket notification submission;</P>
+<P>(2) The Commissioner determines that the device intended to be introduced is a class III device and cannot be marketed without premarket approval or reclassification, in which case the Commissioner will not disclose the existence of the submission unless a petition for reclassification is submitted under section 513(f)(2) of the act and its existence can be disclosed under &#xA7; 860.5(d) of this chapter; or</P>
+<P>(d) FDA will make a 510(k) summary of the safety and effectiveness data available to the public within 30 days of the issuance of a determination that the device is substantially equivalent to another device. Accordingly, even when a 510(k) submitter has complied with the conditions set forth in paragraphs (b) and (c) of this section, confidentiality for a premarket notification submission cannot be granted beyond 30 days after FDA issues a determination of equivalency.</P>
+<P>(e) Data or information submitted with, or incorporated by reference in, a premarket notification submission (other than safety and effectiveness data that have not been disclosed to the public) shall be available for disclosure by the Food and Drug Administration when the intent to market the device is no longer confidential in accordance with this section, unless exempt from public disclosure in accordance with part 20 of this chapter. Upon final classification, data and information relating to safety and effectiveness of a device classified in class I (general controls) or class II (performance standards) shall be available for public disclosure. Data and information relating to safety and effectiveness of a device classified in class III (premarket approval) that have not been released to the public shall be retained as confidential unless such data and information become available for release to the public under &#xA7; 860.5(d) or other provisions of this chapter.</P>
+<CITA TYPE="N">[42 FR 42526, Aug. 23, 1977, as amended at 53 FR 11252, Apr. 6, 1988; 57 FR 18067, Apr. 28, 1992; 59 FR 64296, Dec. 14, 1994; 84 FR 68339, Dec. 16, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="807.97" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.97&quot;,&quot;citation&quot;:&quot;21 CFR 807.97&quot;}">
+<HEAD>&#xA7; 807.97 Misbranding by reference to premarket notification.</HEAD>
+<P>Submission of a premarket notification in accordance with this subpart, and a subsequent determination by the Commissioner that the device intended for introduction into commercial distribution is substantially equivalent to a device in commercial distribution before May 28, 1976, or is substantially equivalent to a device introduced into commercial distribution after May 28, 1976, that has subsequently been reclassified into class I or II, does not in any way denote official approval of the device. Any representation that creates an impression of official approval of a device because of complying with the premarket notification regulations is misleading and constitutes misbranding.</P>
+</DIV8>
+
+<DIV8 N="807.100" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-21/section-807.100&quot;,&quot;citation&quot;:&quot;21 CFR 807.100&quot;}">
+<HEAD>&#xA7; 807.100 FDA action on a premarket notification.</HEAD>
+<P>(a) After review of a premarket notification, FDA will:</P>
+<P>(1) Issue an order declaring the device to be substantially equivalent to a legally marketed predicate device;</P>
+<P>(2) Issue an order declaring the device to be not substantially equivalent to any legally marketed predicate device;</P>
+<P>(3) Request additional information; or</P>
+<P>(4) Withhold the decision until a certification or disclosure statement is submitted to FDA under part 54 of this chapter.</P>
+<P>(5) Advise the applicant that the premarket notification is not required. Until the applicant receives an order declaring a device substantially equivalent, the applicant may not proceed to market the device.</P>
+<P>(b) FDA will determine that a device is substantially equivalent to a predicate device using the following criteria:</P>
+<P>(1) The device has the same intended use as the predicate device; and</P>
+<P>(2) The device:</P>
+<P>(i) Has the same technological characteristics as the predicate device; or</P>
+<P>(ii)(A) Has different technological characteristics, such as a significant change in the materials, design, energy source, or other features of the device from those of the predicate device;</P>
+<P>(B) The data submitted establishes that the device is substantially equivalent to the predicate device and contains information, including clinical data if deemed necessary by the Commissioner, that demonstrates that the device is as safe and as effective as a legally marketed device; and</P>
+<P>(C) Does not raise different questions of safety and effectiveness than the predicate device.</P>
+<P>(3) The predicate device has not been removed from the market at the initiative of the Commissioner of Food and Drugs or has not been determined to be misbranded or adulterated by a judicial order.</P>
+<CITA TYPE="N">[57 FR 58403, Dec. 10, 1992, as amended at 63 FR 5253, Feb. 2, 1998]
+</CITA>
+</DIV8>
+
+</DIV6>
+</DIV5>

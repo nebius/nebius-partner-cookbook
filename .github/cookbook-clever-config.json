@@ -1,0 +1,265 @@
+{
+  "01-first-agent-on-nebius": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_01",
+    "vars": [
+      "ENV",
+      "LOG_LEVEL",
+      "CORS_ORIGINS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY"
+    ]
+  },
+  "02-domain-knowledge-pinecone-nexus": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_02",
+    "vars": [
+      "ENV",
+      "CORS_ORIGINS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL",
+      "NEBIUS_EMBEDDING_MODEL",
+      "NEBIUS_ENABLE_PRICING_LOOKUP",
+      "NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_EMBEDDING_PRICE_PER_MILLION_TOKENS",
+      "PINECONE_INDEX_NAME"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY",
+      "PINECONE_API_KEY"
+    ],
+    "unset": [
+      "PINECONE_NAMESPACE"
+    ]
+  },
+  "03-real-time-data-tavily": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_03",
+    "vars": [
+      "ENV",
+      "LOG_LEVEL",
+      "CORS_ORIGINS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL",
+      "NEBIUS_EMBEDDING_MODEL",
+      "NEBIUS_ENABLE_PRICING_LOOKUP",
+      "NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_EMBEDDING_PRICE_PER_MILLION_TOKENS",
+      "PINECONE_INDEX_NAME",
+      "TAVILY_SEARCH_DEPTH",
+      "TAVILY_MAX_RESULTS"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY",
+      "PINECONE_API_KEY",
+      "TAVILY_API_KEY"
+    ]
+  },
+  "04-stronger-agents-langchain-langgraph": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_04",
+    "vars": [
+      "ENV",
+      "LOG_LEVEL",
+      "CORS_ORIGINS",
+      "ALLOW_LOCALHOST_CORS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL",
+      "NEBIUS_EMBEDDING_MODEL",
+      "NEBIUS_ENABLE_PRICING_LOOKUP",
+      "NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_EMBEDDING_PRICE_PER_MILLION_TOKENS",
+      "PINECONE_INDEX_NAME",
+      "TAVILY_SEARCH_DEPTH",
+      "TAVILY_MAX_RESULTS",
+      "DIRECT_RESPONSE_MAX_TOKENS",
+      "DELIBERATE_RESPONSE_MAX_TOKENS",
+      "FIRST_TOKEN_TARGET_MS"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY",
+      "PINECONE_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "unset": [
+      "PINECONE_NAMESPACE"
+    ]
+  },
+  "05-short-term-memory-langchain": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_05",
+    "vars": [
+      "ENV",
+      "LOG_LEVEL",
+      "CORS_ORIGINS",
+      "ALLOW_LOCALHOST_CORS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL",
+      "NEBIUS_ENABLE_PRICING_LOOKUP",
+      "NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS",
+      "DIRECT_RESPONSE_MAX_TOKENS",
+      "DELIBERATE_RESPONSE_MAX_TOKENS",
+      "FIRST_TOKEN_TARGET_MS"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY"
+    ]
+  },
+  "06-long-term-memory-langchain-postgres": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_06",
+    "addons": [
+      "CLEVER_PG_ADDON"
+    ],
+    "vars": [
+      "ENV",
+      "LOG_LEVEL",
+      "CORS_ORIGINS",
+      "ALLOW_LOCALHOST_CORS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL",
+      "NEBIUS_ENABLE_PRICING_LOOKUP",
+      "NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS",
+      "DIRECT_RESPONSE_MAX_TOKENS",
+      "DELIBERATE_RESPONSE_MAX_TOKENS",
+      "FIRST_TOKEN_TARGET_MS",
+      "MEMORY_BACKEND",
+      "LONG_TERM_MEMORY_LIMIT"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY"
+    ]
+  },
+  "07-observability-langsmith": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_07",
+    "addons": [
+      "CLEVER_PG_ADDON"
+    ],
+    "values": {
+      "LANGSMITH_TRACING": "true",
+      "LANGSMITH_ENDPOINT": "https://eu.api.smith.langchain.com",
+      "LANGSMITH_PROJECT": "Agent Blueprint Recipes"
+    },
+    "vars": [
+      "ENV",
+      "LOG_LEVEL",
+      "CORS_ORIGINS",
+      "ALLOW_LOCALHOST_CORS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL",
+      "NEBIUS_ENABLE_PRICING_LOOKUP",
+      "NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS",
+      "DIRECT_RESPONSE_MAX_TOKENS",
+      "DELIBERATE_RESPONSE_MAX_TOKENS",
+      "FIRST_TOKEN_TARGET_MS",
+      "MEMORY_BACKEND",
+      "LONG_TERM_MEMORY_LIMIT"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY",
+      "LANGSMITH_API_KEY"
+    ]
+  },
+  "08-adding-guardrails-langchain": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_08",
+    "addons": [
+      "CLEVER_PG_ADDON"
+    ],
+    "values": {
+      "LANGSMITH_TRACING": "true",
+      "LANGSMITH_ENDPOINT": "https://eu.api.smith.langchain.com",
+      "LANGSMITH_PROJECT": "Agent Blueprint Recipes"
+    },
+    "vars": [
+      "ENV",
+      "LOG_LEVEL",
+      "CORS_ORIGINS",
+      "ALLOW_LOCALHOST_CORS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL",
+      "NEBIUS_ENABLE_PRICING_LOOKUP",
+      "NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS",
+      "DIRECT_RESPONSE_MAX_TOKENS",
+      "DELIBERATE_RESPONSE_MAX_TOKENS",
+      "FIRST_TOKEN_TARGET_MS",
+      "MEMORY_BACKEND",
+      "LONG_TERM_MEMORY_LIMIT",
+      "GUARDRAILS_ENABLED",
+      "GUARDRAILS_TOPIC",
+      "GUARDRAILS_MAX_OUTPUT_CHARS"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY",
+      "LANGSMITH_API_KEY"
+    ]
+  },
+  "09-actions-with-mcp-stripe": {
+    "app_id": "CLEVER_APP_ID_COOKBOOK_09",
+    "addons": [
+      "CLEVER_PG_ADDON"
+    ],
+    "mapped_vars": {
+      "LANGSMITH_PROJECT": "LANGSMITH_PROJECT_COOKBOOK_09"
+    },
+    "vars": [
+      "ENV",
+      "LOG_LEVEL",
+      "CORS_ORIGINS",
+      "ALLOW_LOCALHOST_CORS",
+      "RATE_LIMIT_ENABLED",
+      "RATE_LIMIT_REQUESTS_PER_DAY",
+      "RATE_LIMIT_TRUST_PROXY_HEADERS",
+      "NEBIUS_BASE_URL",
+      "NEBIUS_MODEL",
+      "NEBIUS_ENABLE_PRICING_LOOKUP",
+      "NEBIUS_INPUT_PRICE_PER_MILLION_TOKENS",
+      "NEBIUS_OUTPUT_PRICE_PER_MILLION_TOKENS",
+      "DIRECT_RESPONSE_MAX_TOKENS",
+      "DELIBERATE_RESPONSE_MAX_TOKENS",
+      "FIRST_TOKEN_TARGET_MS",
+      "MEMORY_BACKEND",
+      "LONG_TERM_MEMORY_LIMIT",
+      "LANGSMITH_TRACING",
+      "LANGSMITH_ENDPOINT",
+      "GUARDRAILS_ENABLED",
+      "GUARDRAILS_TOPIC",
+      "GUARDRAILS_MAX_OUTPUT_CHARS",
+      "STRIPE_MCP_BASE_URL",
+      "BOOK_CATALOG_PATH",
+      "APPROVAL_TTL_SECONDS"
+    ],
+    "secrets": [
+      "NEBIUS_API_KEY",
+      "LANGSMITH_API_KEY",
+      "STRIPE_MCP_API_KEY"
+    ]
+  }
+}

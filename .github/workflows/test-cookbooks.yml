@@ -1,0 +1,140 @@
+name: test-cookbooks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: test-cookbooks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      cookbooks: ${{ steps.changed.outputs.cookbooks }}
+      has_changes: ${{ steps.changed.outputs.has_changes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: changed
+        run: |
+          set -euo pipefail
+
+          all_cookbooks() {
+            find cookbooks -maxdepth 2 -mindepth 2 -name pyproject.toml \
+              -not -path 'cookbooks/_template/*' \
+              | sed 's#/pyproject.toml$##' \
+              | xargs -n1 basename \
+              | sort
+          }
+
+          to_json() {
+            if [ "$#" -eq 0 ]; then
+              echo '[]'
+              return
+            fi
+            printf '%s\n' "$@" | sort -u | jq -R . | jq -sc .
+          }
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+          else
+            base="${{ github.event.before }}"
+          fi
+          head="${{ github.sha }}"
+
+          test_all=false
+          if [ -z "$base" ] || [[ "$base" =~ ^0+$ ]] || ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
+            test_all=true
+          fi
+
+          changed=()
+          if [ "$test_all" = true ]; then
+            mapfile -t changed < <(all_cookbooks)
+          else
+            while IFS= read -r file; do
+              case "$file" in
+                .github/workflows/test-cookbooks.yml|scripts/test-cookbooks.ts|.python-version|AGENTS.md)
+                  test_all=true
+                  ;;
+                cookbooks/*/*)
+                  cookbook="${file#cookbooks/}"
+                  cookbook="${cookbook%%/*}"
+                  relative="${file#cookbooks/$cookbook/}"
+                  if [ "$cookbook" = "_template" ] || [ ! -f "cookbooks/$cookbook/pyproject.toml" ]; then
+                    continue
+                  fi
+                  case "$relative" in
+                    app/*|scripts/*|pyproject.toml|uv.lock|.python-version|Dockerfile|Makefile|.env.example)
+                      changed+=("$cookbook")
+                      ;;
+                  esac
+                  ;;
+              esac
+            done < <(git diff --name-only "$base" "$head")
+          fi
+
+          if [ "$test_all" = true ]; then
+            mapfile -t changed < <(all_cookbooks)
+          fi
+
+          books=$(to_json "${changed[@]}")
+          echo "$books" > changed-cookbooks.json
+          echo "cookbooks=$books" >> "$GITHUB_OUTPUT"
+
+          if [ "$books" = "[]" ]; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: changed-cookbooks
+          path: changed-cookbooks.json
+          retention-days: 1
+
+  noop:
+    needs: discover
+    if: needs.discover.outputs.has_changes == 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "No cookbook runtime changes detected."
+
+  test:
+    needs: discover
+    if: needs.discover.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cookbook: ${{ fromJson(needs.discover.outputs.cookbooks) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.5.0"
+
+      - name: Sync deps
+        working-directory: cookbooks/${{ matrix.cookbook }}
+        run: uv sync --frozen
+
+      - name: Lint
+        working-directory: cookbooks/${{ matrix.cookbook }}
+        run: |
+          uv run ruff check
+          uv run ruff format --check
+
+      - name: Test
+        working-directory: cookbooks/${{ matrix.cookbook }}
+        run: uv run pytest -v

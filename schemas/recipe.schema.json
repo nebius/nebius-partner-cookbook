@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nebius.com/cookbook/schemas/recipe.schema.json",
+  "title": "Agent Blueprint Recipe",
+  "description": "Metadata for a single cookbook recipe. Source of truth for the recipes table and the web app catalog.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "order",
+    "eyebrow",
+    "title",
+    "tagline",
+    "difficulty",
+    "estimatedReadingTime",
+    "estimatedRunTime",
+    "stack",
+    "tags",
+    "story",
+    "prerequisites",
+    "models",
+    "quickstart",
+    "endpoints",
+    "deployment",
+    "authors",
+    "publishedAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Kebab-case identifier. Must match the cookbook directory slug."
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Position in the cookbook sequence. Must match the directory prefix NN."
+    },
+    "eyebrow": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 24,
+      "description": "Short narrative-arc label shown above the title on recipe cards (e.g. \"Foundation\")."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "upcoming": {
+      "type": "boolean",
+      "description": "If true, the recipe is planned but not yet built; the web card renders at reduced opacity."
+    },
+    "tagline": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"]
+    },
+    "estimatedReadingTime": {
+      "type": "string",
+      "pattern": "^[0-9]+ ?min$"
+    },
+    "estimatedRunTime": {
+      "type": "string",
+      "pattern": "^[0-9]+ ?min$"
+    },
+    "stack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "secondary": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "story": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem", "solution", "outcome"],
+      "properties": {
+        "problem": { "type": "string", "minLength": 1 },
+        "solution": { "type": "string", "minLength": 1 },
+        "outcome": { "type": "string", "minLength": 1 }
+      }
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "models": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "role"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "role": {
+            "type": "string",
+            "enum": ["primary", "planner", "writer", "critic", "embed", "rerank"]
+          }
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hero": { "type": "string" },
+        "demo": { "type": "string" },
+        "architecture": { "type": "string" }
+      }
+    },
+    "quickstart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clone", "configure", "run"],
+      "properties": {
+        "clone": { "type": "string" },
+        "configure": { "type": "string" },
+        "run": { "type": "string" }
+      }
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["method", "path", "description"],
+        "properties": {
+          "method": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+          },
+          "path": { "type": "string", "pattern": "^/" },
+          "streaming": { "type": "boolean" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "instructions"],
+      "properties": {
+        "target": { "type": "string" },
+        "instructions": { "type": "string" }
+      }
+    },
+    "nextRecipe": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "authors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}

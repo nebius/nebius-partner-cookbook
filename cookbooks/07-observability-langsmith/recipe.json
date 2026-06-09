@@ -1,0 +1,93 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "observability-langsmith",
+  "order": 7,
+  "eyebrow": "Observability",
+  "title": "Observability with LangSmith",
+  "upcoming": false,
+  "tagline": "Trace, inspect, monitor, and improve a Nebius-backed LangChain agent with LangSmith.",
+  "difficulty": "advanced",
+  "estimatedReadingTime": "14 min",
+  "estimatedRunTime": "8 min",
+  "stack": {
+    "primary": ["nebius-agentkit", "langsmith", "langchain"],
+    "secondary": ["fastapi", "openai-sdk", "structlog", "prometheus", "docker"]
+  },
+  "tags": ["agent", "observability", "langsmith", "tracing", "monitoring", "feedback"],
+  "story": {
+    "problem": "A stateful agent can work locally while still being opaque in production: no trace tree, no feedback loop, and no way to debug a bad run.",
+    "solution": "Enable the full LangSmith SaaS workflow with tracing, metadata, tags, feedback capture, privacy controls, and production monitoring guidance.",
+    "outcome": "An observable agent whose runs can be inspected, compared, and improved without relying only on logs."
+  },
+  "prerequisites": [
+    "Python 3.12+",
+    "uv installed (https://docs.astral.sh/uv/)",
+    "A Nebius API key",
+    "A LangSmith API key (https://docs.langchain.com/langsmith/home)",
+    "Docker for local Postgres"
+  ],
+  "models": [
+    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" }
+  ],
+  "assets": {
+    "hero": "assets/hero.png"
+  },
+  "quickstart": {
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/07-observability-langsmith",
+    "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY and LANGSMITH_API_KEY",
+    "run": "docker compose up -d postgres && uv sync && make dev"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/agent/run",
+      "streaming": true,
+      "description": "Run the traced agent and stream SSE events back."
+    },
+    {
+      "method": "POST",
+      "path": "/feedback",
+      "description": "Attach user feedback to a LangSmith run."
+    },
+    {
+      "method": "GET",
+      "path": "/memory/{user_id}",
+      "description": "List the inherited long-term memories stored for a user."
+    },
+    {
+      "method": "GET",
+      "path": "/memory/{user_id}/summary",
+      "description": "Summarize what the agent knows about a user."
+    },
+    {
+      "method": "DELETE",
+      "path": "/memory/{user_id}",
+      "description": "Delete the inherited long-term memories stored for a user."
+    },
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "description": "Liveness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/readyz",
+      "description": "Readiness probe."
+    },
+    {
+      "method": "GET",
+      "path": "/metrics",
+      "description": "Prometheus metrics scrape endpoint."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "docs/deployment.md"
+  },
+  "nextRecipe": "adding-guardrails-langchain",
+  "authors": [
+    { "name": "Clément Sauvage", "url": "https://clementsauvage.me" }
+  ],
+  "publishedAt": "2026-06-04",
+  "updatedAt": "2026-05-26"
+}

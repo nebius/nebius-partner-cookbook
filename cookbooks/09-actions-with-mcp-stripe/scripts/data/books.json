@@ -1,0 +1,94 @@
+{
+  "books": [
+    {
+      "slug": "the-nebius-cloud-atlas",
+      "title": "The Nebius Cloud Atlas",
+      "author": "Nia Vector",
+      "isbn": "9781600000010",
+      "description": "A bright science-fiction field guide to cloud cities, inference markets, and the agents who route between them.",
+      "prices": { "usd": 1499, "eur": 1399, "gbp": 1199, "sgd": 1999 },
+      "cover_image_path": "the-nebius-cloud-atlas.png"
+    },
+    {
+      "slug": "pinecones-in-the-vector-garden",
+      "title": "Pinecones in the Vector Garden",
+      "author": "Ada Embedding",
+      "isbn": "9781600000027",
+      "description": "A cozy mystery where every clue is hidden in a semantic garden tended by a very opinionated retriever.",
+      "prices": { "usd": 1299, "eur": 1199, "gbp": 1099, "sgd": 1799 },
+      "cover_image_path": "pinecones-in-the-vector-garden.png"
+    },
+    {
+      "slug": "agent-at-the-end-of-the-prompt",
+      "title": "Agent at the End of the Prompt",
+      "author": "Lila Chain",
+      "isbn": "9781600000034",
+      "description": "A playful novella about a book agent that learns when to answer, when to retrieve, and when to ask for approval.",
+      "prices": { "usd": 1099, "eur": 999, "gbp": 899, "sgd": 1499 },
+      "cover_image_path": "agent-at-the-end-of-the-prompt.png"
+    },
+    {
+      "slug": "the-checkout-graph",
+      "title": "The Checkout Graph",
+      "author": "Max Token",
+      "isbn": "9781600000041",
+      "description": "A brisk startup satire about a LangGraph node that refuses to create payment links without human approval.",
+      "prices": { "usd": 1599, "eur": 1499, "gbp": 1299, "sgd": 2199 },
+      "cover_image_path": "the-checkout-graph.png"
+    },
+    {
+      "slug": "embeddings-and-espresso",
+      "title": "Embeddings & Espresso",
+      "author": "Clara Context",
+      "isbn": "9781600000058",
+      "description": "A café novel about baristas, book clubs, vector search, and the perfect recommendation over a double shot.",
+      "prices": { "usd": 1399, "eur": 1299, "gbp": 1099, "sgd": 1899 },
+      "cover_image_path": "embeddings-and-espresso.png"
+    },
+    {
+      "slug": "the-retrieval-society",
+      "title": "The Retrieval Society",
+      "author": "Jonas Index",
+      "isbn": "9781600000065",
+      "description": "An adventure about librarians who can find any lost paragraph, provided the metadata is not cursed.",
+      "prices": { "usd": 1699, "eur": 1599, "gbp": 1399, "sgd": 2299 },
+      "cover_image_path": "the-retrieval-society.png"
+    },
+    {
+      "slug": "guardrails-for-dreaming-machines",
+      "title": "Guardrails for Dreaming Machines",
+      "author": "Mira Policy",
+      "isbn": "9781600000072",
+      "description": "A warm speculative essay collection about safety, refusal, and the strange poetry of well-bounded agents.",
+      "prices": { "usd": 999, "eur": 899, "gbp": 799, "sgd": 1399 },
+      "cover_image_path": "guardrails-for-dreaming-machines.png"
+    },
+    {
+      "slug": "ten-thousand-tiny-agents",
+      "title": "Ten Thousand Tiny Agents",
+      "author": "Theo Router",
+      "isbn": "9781600000089",
+      "description": "A comic ensemble novel where tiny specialist agents argue over tools, memory, and who gets to write the final answer.",
+      "prices": { "usd": 1499, "eur": 1399, "gbp": 1199, "sgd": 1999 },
+      "cover_image_path": "ten-thousand-tiny-agents.png"
+    },
+    {
+      "slug": "the-sandbox-bookshop",
+      "title": "The Sandbox Bookshop",
+      "author": "Samira Stripe",
+      "isbn": "9781600000096",
+      "description": "A cheerful commerce fable about a test-mode bookshop where every checkout is safe, reversible, and fake.",
+      "prices": { "usd": 1299, "eur": 1199, "gbp": 1099, "sgd": 1799 },
+      "cover_image_path": "the-sandbox-bookshop.png"
+    },
+    {
+      "slug": "when-the-model-learned-to-read",
+      "title": "When the Model Learned to Read",
+      "author": "Lucie Latency",
+      "isbn": "9781600000102",
+      "description": "A thoughtful near-future novel about an AI model discovering literature, timing budgets, and the value of citations.",
+      "prices": { "usd": 1199, "eur": 1099, "gbp": 999, "sgd": 1599 },
+      "cover_image_path": "when-the-model-learned-to-read.png"
+    }
+  ]
+}
