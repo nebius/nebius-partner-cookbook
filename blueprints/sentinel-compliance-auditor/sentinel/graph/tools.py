@@ -410,10 +410,12 @@ IMPORTANT: Retrieve, assess, and record findings for each regulation before movi
 
 ## Assessment rubric
 Compliance level — apply the FIRST rule that fits:
-- "gap" — the requirement is not addressed anywhere in the SOP, or what the SOP prescribes would directly violate it. Reserve "gap" for ABSENT or CONTRADICTED requirements.
-- "partial" — the SOP addresses the requirement but incompletely: a named element is missing (e.g. covers encryption at rest but not in transit), or the control lacks a cadence, owner, or measurable threshold, or it is stated only as aspiration/intent ("the team should consider...") rather than an implemented control.
-- "compliant" — the requirement is addressed with specific, implemented controls: concrete mechanisms, named roles/owners, defined frequencies or thresholds.
-Common error to avoid: marking "gap" when the SOP addresses the control with weaker specificity than the regulation demands — that is "partial", not "gap".
+- "gap" — the requirement is not addressed anywhere in the SOP, or what the SOP prescribes would directly violate it, or the ONLY coverage is aspirational language with no mechanism behind it ("the team should consider...", "we aim to..."). Evidence test: if you cannot quote SOP text that concretely implements the requirement — only related or adjacent content — the level is gap.
+- "partial" — the SOP concretely implements PART of the requirement: a named element is missing (e.g. covers encryption at rest but not in transit), or the control exists but lacks a cadence, owner, or measurable threshold the regulation calls for.
+- "compliant" — EVERY element of the requirement is implemented with concrete mechanisms, plus defined ownership/frequency/thresholds where the requirement demands them. Mentioning the topic is not implementing it; vague or generic coverage is never "compliant".
+Calibration — both errors matter:
+- Do NOT downgrade to "gap" when the SOP concretely addresses the control with weaker specificity than the regulation demands — that is "partial".
+- Do NOT upgrade to "compliant" because the SOP discusses the subject. Your evidence_quote must show the implementing text; if the quote is aspiration or a heading, the level is "partial" at best.
 
 Severity — anchor on actual exposure, not on the compliance level:
 - "critical" — direct ePHI/cardholder-data exposure, a legally mandated control absent with known enforcement precedent, or patient-safety impact
