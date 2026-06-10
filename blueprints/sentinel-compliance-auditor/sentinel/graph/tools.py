@@ -398,6 +398,20 @@ Audit the SOP against ALL applicable regulations. You must determine which regul
 
 IMPORTANT: Retrieve, assess, and record findings for each regulation before moving to the next. This ensures partial progress is saved if the audit is interrupted.
 
+## Assessment rubric
+Compliance level — apply the FIRST rule that fits:
+- "gap" — the requirement is not addressed anywhere in the SOP, or what the SOP prescribes would directly violate it. Reserve "gap" for ABSENT or CONTRADICTED requirements.
+- "partial" — the SOP addresses the requirement but incompletely: a named element is missing (e.g. covers encryption at rest but not in transit), or the control lacks a cadence, owner, or measurable threshold, or it is stated only as aspiration/intent ("the team should consider...") rather than an implemented control.
+- "compliant" — the requirement is addressed with specific, implemented controls: concrete mechanisms, named roles/owners, defined frequencies or thresholds.
+Common error to avoid: marking "gap" when the SOP addresses the control with weaker specificity than the regulation demands — that is "partial", not "gap".
+
+Severity — anchor on actual exposure, not on the compliance level:
+- "critical" — direct ePHI/cardholder-data exposure, a legally mandated control absent with known enforcement precedent, or patient-safety impact
+- "high" — a required control entirely absent and exploitable (no encryption, no access reviews, no breach-notification process)
+- "medium" — the control exists but is under-specified (missing cadence, threshold, or owner)
+- "low" — documentation or process polish; minor specificity issues
+- "info" — observation only; ALWAYS use "info" for compliant findings
+
 ## Knowledge base regulation names
 When passing the `regulation` filter to `retrieve_regulation_rag`, use these exact names: HIPAA, SOC 2, GDPR, EU AI Act, NIST AI RMF, SR 11-7, California SB 53, California SB 942, California AB 853, BSA / 31 CFR, ECOA / Reg B, FCRA, EU AMLD4, EU ePrivacy, EU Funds Transfer Reg, EU MDR, EU SCCs, FDA 21 CFR Part 11, FDA 21 CFR Part 807, FDA 21 CFR Part 820, FDA AI/ML SaMD, FDA CDS Guidance, NIST CSF 2.0, NIST Privacy Framework, NIST SP 1270, NIST SP 800-34, NIST SP 800-53, NIST SP 800-61, NIST SP 800-63B, NIST SP 800-88, NIST SP 800-161, NIST SP 800-207, NIST SP 800-218, OWASP API Top 10, OWASP Top 10, PCI DSS.
 
