@@ -113,7 +113,9 @@ def _chunk_regulation_file(
     split_pattern: str,
     extract_header,
     continuation_prefix: str,
-    chunk_size: int = 1200,
+    # ~700 tokens per chunk. The previous 1200 chars (~300 tokens) was tiny for
+    # a 4096-dim 32k-context embedder and split clauses across chunks.
+    chunk_size: int = 2800,
     overlap: int = 200,
 ) -> list[dict]:
     text = filepath.read_text(encoding="utf-8")
@@ -145,8 +147,12 @@ def chunk_regulation(filepath: Path) -> list[dict]:
             filepath, split_pattern=r"(?=^### )",
             extract_header=md_header("###"), continuation_prefix="### ",
         )
+    # `^[ \t]*§ ` matches both eCFR-indented ("  § 164.312") and unindented
+    # ("§ 1020.220", the BSA/31 CFR style) section headers — the old
+    # two-space-indented pattern left 57% of the index (all of BSA) with no
+    # section structure at all.
     return _chunk_regulation_file(
-        filepath, split_pattern=r"(?=^  § |\n={40,}|\n-{40,})",
+        filepath, split_pattern=r"(?=^[ \t]*§ |\n={40,}|\n-{40,})",
         extract_header=_txt_header, continuation_prefix="§ ",
     )
 

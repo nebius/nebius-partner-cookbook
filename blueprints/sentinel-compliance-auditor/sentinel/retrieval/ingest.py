@@ -37,6 +37,65 @@ def parse_sop(filepath: Path) -> dict:
     return {"frontmatter": frontmatter, "body": body, "path": str(filepath)}
 
 
+def _word_split(text: str, chunk_size: int, overlap: int) -> list[str]:
+    """Last-resort splitter for a single paragraph longer than chunk_size:
+    packs words by actual character count (a words-per-chunk estimate
+    overshoots chunk_size badly on long legal words) and carries roughly
+    ``overlap`` chars of trailing words into the next piece."""
+    words = text.split()
+    pieces: list[str] = []
+    buf: list[str] = []
+    buf_len = 0
+    for word in words:
+        if buf and buf_len + len(word) + 1 > chunk_size:
+            pieces.append(" ".join(buf))
+            carry: list[str] = []
+            carry_len = 0
+            for back in reversed(buf):
+                if carry_len + len(back) + 1 > overlap:
+                    break
+                carry.insert(0, back)
+                carry_len += len(back) + 1
+            buf, buf_len = carry, carry_len
+        buf.append(word)
+        buf_len += len(word) + 1
+    if buf:
+        pieces.append(" ".join(buf))
+    return pieces
+
+
+def _split_long_section(section: str, chunk_size: int, overlap: int) -> list[str]:
+    """Split an oversized section at paragraph boundaries, packing whole
+    paragraphs up to ``chunk_size``. Blind word-splitting cuts legal clauses
+    mid-sentence; paragraph packing keeps (a)/(b) sub-paragraphs and prose
+    paragraphs intact. Only a single paragraph that alone exceeds
+    ``chunk_size`` falls back to the word splitter."""
+    pieces: list[str] = []
+    buf: list[str] = []
+    buf_len = 0
+
+    def _flush():
+        nonlocal buf, buf_len
+        if buf:
+            pieces.append("\n\n".join(buf))
+            buf, buf_len = [], 0
+
+    for para in re.split(r"\n{2,}", section):
+        para = para.strip()
+        if not para:
+            continue
+        if len(para) > chunk_size:
+            _flush()
+            pieces.extend(_word_split(para, chunk_size, overlap))
+            continue
+        if buf and buf_len + len(para) + 2 > chunk_size:
+            _flush()
+        buf.append(para)
+        buf_len += len(para) + 2
+    _flush()
+    return pieces
+
+
 def chunk_sections(
     text: str,
     *,
@@ -51,8 +110,8 @@ def chunk_sections(
 
     The one section chunker shared by the SOP ingester and both regulation
     chunkers (.txt and .md): sections come from ``split_pattern``; a section
-    longer than ``chunk_size`` is word-split (~5 chars/word) with ``overlap``
-    chars carried over, each continuation re-titled
+    longer than ``chunk_size`` is split at paragraph boundaries (word-split
+    only as a last resort), each continuation re-titled
     ``{continuation_prefix}{header} (continued)``.
     """
     sections = re.split(split_pattern, text, flags=re.MULTILINE)
@@ -65,18 +124,10 @@ def chunk_sections(
         if len(section) <= chunk_size:
             pairs.append((section, header))
             continue
-        words = section.split()
-        words_per_chunk = chunk_size // 5  # ~5 chars per word avg
-        start = 0
-        part = 0
-        while start < len(words):
-            end = start + words_per_chunk
-            chunk_text = " ".join(words[start:end])
+        for part, piece in enumerate(_split_long_section(section, chunk_size, overlap)):
             if header and part > 0:
-                chunk_text = f"{continuation_prefix}{header} (continued)\n\n{chunk_text}"
-            pairs.append((chunk_text, header))
-            part += 1
-            start = end - overlap // 5
+                piece = f"{continuation_prefix}{header} (continued)\n\n{piece}"
+            pairs.append((piece, header))
     return pairs
 
 
