@@ -49,6 +49,8 @@ Sub-agent invocations are wrapped in a try/except — transient errors (e.g. Neb
 
 Retries are per-SOP only: `_audit_single_sop_with_retry` makes up to `MAX_RETRIES` (4) re-attempts with backoff (longer when `rate_limited`), accumulating tokens across attempts. The batch orchestrators (`audit_sops`, `audit_all_sops`) call it once per SOP — do NOT re-add a batch-level retry layer on top; stacking the two multiplied to MAX_RETRIES² sub-agent runs per stubborn SOP. Statuses `truncated` (would truncate again) and `invalid` (bad input) are not retried.
 
+Sub-agents are traced in LangSmith: trace context is contextvars-based and dies at the ThreadPoolExecutor boundary, so the audit tools take an injected `config: RunnableConfig` and pass a COPY of its callback manager into `subagent.invoke` (`_subagent_invoke_config` — copy preserves `parent_run_id`, isolates handlers so each worker's usage callback stays private). Sub-agent LLM runs are tagged `sentinel_subagent` in metadata; `validate_run.py` excludes them from outer-agent trace-token sums (their tokens come from the `Sub-agent tokens:` lines, which also cover retries) — keep the tag or costs double-count. `SUBAGENT_TRACING=off` disables propagation (~6k extra spans on a full 200-SOP audit).
+
 ### Multi-model support
 - **Prototype** (`sentinel_prototype`): GPT-5.5 via OpenAI API — no Tavily
 - **Grounded** (`sentinel_grounded`): GPT-5.5 via OpenAI API + Tavily web search

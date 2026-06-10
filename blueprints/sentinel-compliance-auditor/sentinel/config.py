@@ -33,6 +33,10 @@ else:
 MODEL_MAX_TOKENS = 16_000
 REASONING_EFFORT = os.environ.get("REASONING_EFFORT", "off")  # off, high, max
 MAX_AUDIT_WORKERS = int(os.environ.get("MAX_AUDIT_WORKERS", "10"))
+# Propagate LangSmith trace context into sub-agent worker threads (per-SOP
+# traces under the audit tool's run). A full 200-SOP audit emits ~6k extra
+# spans — set "off" to keep only outer-agent tracing on giant runs.
+SUBAGENT_TRACING = os.environ.get("SUBAGENT_TRACING", "on").strip().lower() not in ("off", "false", "0")
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 OPENAI_MODEL = "gpt-5.5"

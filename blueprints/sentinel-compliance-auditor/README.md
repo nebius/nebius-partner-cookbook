@@ -48,7 +48,7 @@ User Query (via UI or LangGraph API)
 **Orchestration:** LangGraph ReAct agent with per-SOP sub-agents, optional deepagents upgrade
 **Retrieval:** Pinecone vector search (Qwen3-Embedding-8B, 4096 dims)
 **Grounding:** Tavily live regulation search
-**Observability:** LangSmith tracing with cost tracking; token-line emit/parse centralized in `sentinel/token_accounting.py` (summed per audit call by UI + `validate_run.py`)
+**Observability:** LangSmith tracing with cost tracking — including per-SOP sub-agent traces parented under the audit tool's run (`SUBAGENT_TRACING=off` to disable); token-line emit/parse centralized in `sentinel/token_accounting.py` (summed per audit call by UI + `validate_run.py`)
 **Actuation:** Jira Cloud REST API for filing compliance gap tickets
 **Deployment:** LangGraph Cloud + UI (FastAPI + React)
 

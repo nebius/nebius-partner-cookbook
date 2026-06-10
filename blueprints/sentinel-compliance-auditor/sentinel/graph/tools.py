@@ -8,6 +8,7 @@ import threading
 import time
 from typing import NamedTuple
 
+from langchain_core.runnables import RunnableConfig
 from langchain_core.tools import tool
 
 logger = logging.getLogger(__name__)
@@ -454,6 +455,11 @@ def _build_subagent_model(provider: str = "nebius", model_name: str | None = Non
         max_tokens=MODEL_MAX_TOKENS,
         http_client=_get_shared_http_client(),
         reasoning=True,
+        # Tags sub-agent LLM runs in LangSmith so validate_run.py can exclude
+        # them from the OUTER agent's trace-token sums (sub-agent tokens are
+        # counted from the "Sub-agent tokens:" lines — without the tag they'd
+        # double-count once trace propagation puts them in the trace).
+        extra_metadata={"sentinel_subagent": True},
     )
 
 
@@ -501,7 +507,30 @@ def _parse_findings_json(messages) -> str | None:
     return None
 
 
-def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bool = True, model_name: str | None = None) -> SopAuditResult:
+def _subagent_invoke_config(usage_cb, parent_callbacks) -> dict:
+    """Build the config for ``subagent.invoke``: recursion limit, per-sub-agent
+    token accounting, and — when a parent callback manager is provided —
+    LangSmith trace propagation.
+
+    Trace context is contextvars-based and dies at the ThreadPoolExecutor
+    boundary, so sub-agents used to be invisible in LangSmith. Passing a COPY
+    of the parent's callback manager parents each sub-agent's run tree under
+    the audit tool's run explicitly: the copy preserves ``parent_run_id`` but
+    isolates the handler lists, so this sub-agent's ``usage_cb`` doesn't leak
+    into sibling workers sharing the same parent manager."""
+    from langchain_core.callbacks import BaseCallbackManager
+
+    if isinstance(parent_callbacks, BaseCallbackManager):
+        callbacks = parent_callbacks.copy()
+        callbacks.add_handler(usage_cb, inherit=True)
+    elif isinstance(parent_callbacks, list):
+        callbacks = [usage_cb, *parent_callbacks]
+    else:
+        callbacks = [usage_cb]
+    return {"recursion_limit": 120, "callbacks": callbacks}
+
+
+def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bool = True, model_name: str | None = None, parent_callbacks=None) -> SopAuditResult:
     """Core implementation for auditing a single SOP."""
     from langchain.agents import create_agent
     from sentinel.retrieval.local import load_sop_by_id, load_sop_chunks
@@ -554,7 +583,7 @@ def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bo
                     ),
                 }],
             },
-            config={"recursion_limit": 120, "callbacks": [usage_cb]},
+            config=_subagent_invoke_config(usage_cb, parent_callbacks),
         )
     except Exception as e:
         elapsed = time.time() - start
@@ -707,11 +736,12 @@ def _audit_single_sop_with_retry(
     provider: str = "nebius",
     use_tavily: bool = True,
     model_name: str | None = None,
+    parent_callbacks=None,
 ) -> SopAuditResult:
     """Audit one SOP, retrying transient failures. Tokens accumulate across every
     attempt (failed attempts are still billed); the returned findings are the
     final attempt's."""
-    result = _audit_single_sop_impl(sop_id, provider=provider, use_tavily=use_tavily, model_name=model_name)
+    result = _audit_single_sop_impl(sop_id, provider=provider, use_tavily=use_tavily, model_name=model_name, parent_callbacks=parent_callbacks)
     tok_in, tok_out = result.input_tokens, result.output_tokens
     for attempt in range(1, MAX_RETRIES + 1):
         if not _is_retryable(result):
@@ -719,7 +749,7 @@ def _audit_single_sop_with_retry(
         delay = _retry_delay(attempt, result.rate_limited)
         logger.info("Retry attempt %d/%d for %s (waiting %.0fs)", attempt, MAX_RETRIES, sop_id, delay)
         time.sleep(delay)
-        result = _audit_single_sop_impl(sop_id, provider=provider, use_tavily=use_tavily, model_name=model_name)
+        result = _audit_single_sop_impl(sop_id, provider=provider, use_tavily=use_tavily, model_name=model_name, parent_callbacks=parent_callbacks)
         tok_in += result.input_tokens
         tok_out += result.output_tokens
     return result._replace(input_tokens=tok_in, output_tokens=tok_out)
@@ -1020,17 +1050,25 @@ def create_jira_tickets(findings_json: str) -> str:
 
 def build_tools(provider: str = "nebius", use_tavily: bool = True, model_name: str | None = None) -> list:
     """Build the complete tool list for the agent, parameterized by provider, Tavily, and optional model_name override."""
+    from sentinel.config import SUBAGENT_TRACING
 
-    def _run_one(sop_id: str) -> SopAuditResult:
-        return _audit_single_sop_with_retry(sop_id, provider=provider, use_tavily=use_tavily, model_name=model_name)
+    def _parent_callbacks(config: RunnableConfig | None):
+        """Extract the tool run's callback manager for trace propagation into
+        sub-agent worker threads (None ⇒ sub-agents trace as before: not at all)."""
+        if not SUBAGENT_TRACING or not config:
+            return None
+        return config.get("callbacks")
+
+    def _run_one(sop_id: str, parent_callbacks=None) -> SopAuditResult:
+        return _audit_single_sop_with_retry(sop_id, provider=provider, use_tavily=use_tavily, model_name=model_name, parent_callbacks=parent_callbacks)
 
     @tool
-    def _audit_single_sop(sop_id: str) -> str:
+    def _audit_single_sop(sop_id: str, config: RunnableConfig) -> str:
         """Audit one SOP against all relevant regulations using a sub-agent with access to the regulation knowledge base. Accepts an SOP ID (e.g. 'SOP-AIML-009') or title (e.g. 'Algorithmic Bias Detection'). The sub-agent determines which regulations apply and iteratively retrieves regulatory text."""
-        return _run_one(sop_id).summary
+        return _run_one(sop_id, _parent_callbacks(config)).summary
 
     @tool
-    def _audit_sops(sop_ids: list[str]) -> str:
+    def _audit_sops(sop_ids: list[str], config: RunnableConfig) -> str:
         """Audit a specific list of SOPs in parallel using sub-agents. Accepts a list of SOP IDs (e.g. ['SOP-AIML-009', 'SOP-ISEC-008']) or titles. Use this when the user asks to audit a subset of SOPs — by business unit, regulation, or explicit list. For ALL SOPs, use audit_all_sops instead."""
         import concurrent.futures
         from sentinel.config import MAX_AUDIT_WORKERS
@@ -1040,10 +1078,11 @@ def build_tools(provider: str = "nebius", use_tavily: bool = True, model_name: s
 
         workers = min(len(sop_ids), MAX_AUDIT_WORKERS)
         results_by_id: dict[str, SopAuditResult] = {}
+        callbacks = _parent_callbacks(config)
 
         def _audit_one(sid: str) -> SopAuditResult:
             try:
-                return _run_one(sid)
+                return _run_one(sid, callbacks)
             except Exception as e:
                 return SopAuditResult(
                     f"{sid}: FAILED — {e}", [],
@@ -1071,9 +1110,10 @@ def build_tools(provider: str = "nebius", use_tavily: bool = True, model_name: s
         return summary
 
     @tool
-    def _audit_all_sops() -> str:
+    def _audit_all_sops(config: RunnableConfig) -> str:
         """Run the full audit across ALL 200 SOPs using sub-agents. Each SOP gets its own auditor sub-agent with access to the regulation knowledge base. Fans out with configurable parallelism (MAX_AUDIT_WORKERS)."""
-        return _audit_all_sops_impl(_run_one)
+        callbacks = _parent_callbacks(config)
+        return _audit_all_sops_impl(lambda sid: _run_one(sid, callbacks))
 
     _audit_single_sop.name = "audit_single_sop"
     _audit_sops.name = "audit_sops"

@@ -35,6 +35,16 @@ def _get_langsmith_client():
     return Client()
 
 
+def _is_subagent_llm_run(run) -> bool:
+    """Sub-agent LLM runs are tagged sentinel_subagent in their LangSmith
+    metadata (set by _build_subagent_model). Their tokens are counted from the
+    "Sub-agent tokens:" lines in the audit output, so they must be excluded
+    from the OUTER agent's trace-token sums or they'd double-count now that
+    trace propagation puts them in the trace."""
+    meta = (run.extra or {}).get("metadata", {}) if getattr(run, "extra", None) else {}
+    return bool(isinstance(meta, dict) and meta.get("sentinel_subagent"))
+
+
 def _find_audit_text(obj):
     """Recursively search for the audit output string in a nested structure."""
     if isinstance(obj, str) and "Audit complete" in obj and len(obj) > 1000:
@@ -74,9 +84,13 @@ def fetch_run_data(run_id: str) -> dict:
         trace_id=run_id,
         run_type="llm",
     ))
+    subagent_llm_runs = 0
     trace_cache_read = 0
     trace_cache_creation = 0
     for r in llm_runs:
+        if _is_subagent_llm_run(r):
+            subagent_llm_runs += 1
+            continue
         trace_input_tokens += r.prompt_tokens or 0
         trace_output_tokens += r.completion_tokens or 0
         if r.extra:
@@ -84,7 +98,15 @@ def fetch_run_data(run_id: str) -> dict:
             if isinstance(usage, dict):
                 trace_cache_read += usage.get("cache_read_input_tokens", 0) or 0
                 trace_cache_creation += usage.get("cache_creation_input_tokens", 0) or 0
-    if llm_runs:
+    if subagent_llm_runs:
+        print(f"  ({subagent_llm_runs} sub-agent LLM runs in trace — excluded from outer totals, counted via token lines)")
+    # Model name: prefer an outer-agent run; any run as fallback.
+    for r in llm_runs:
+        if not _is_subagent_llm_run(r):
+            llm_meta = r.extra.get("metadata", {}) if r.extra else {}
+            model = llm_meta.get("ls_model_name")
+            break
+    if model is None and llm_runs:
         llm_meta = llm_runs[0].extra.get("metadata", {}) if llm_runs[0].extra else {}
         model = llm_meta.get("ls_model_name")
     cache_note = ""
@@ -172,10 +194,11 @@ def fetch_run_data(run_id: str) -> dict:
 def parse_run_stats(content: str, run_data: dict) -> dict:
     """Compute cost from outer agent trace tokens + sub-agent tokens from audit output.
 
-    The LangSmith trace only captures the outer Sentinel agent's LLM calls
-    (sub-agents run in ThreadPoolExecutor and don't propagate trace context).
-    Sub-agent tokens are summed across every audit tool output in the trace.
-    Total cost = outer agent + sub-agent, both at the same model pricing.
+    Sub-agent LLM runs may appear in the trace (SUBAGENT_TRACING propagates
+    trace context into the worker threads) but are tagged and excluded from
+    the outer totals in fetch_run_data — sub-agent tokens are always counted
+    from the "Sub-agent tokens:" lines in the audit tool outputs, which also
+    cover retry attempts. Total cost = outer + sub-agent, same model pricing.
     """
     # Outer agent tokens from LangSmith trace LLM runs
     outer_in = run_data.get("trace_input_tokens", 0)
