@@ -18,7 +18,18 @@ NEBIUS_MODELS = {
     "kimi-k2": "moonshotai/Kimi-K2.6",
     "glm-5": "zai-org/GLM-5.1",
 }
-MODEL = NEBIUS_MODELS.get(os.environ.get("NEBIUS_MODEL", "deepseek-v4-pro"), NEBIUS_MODELS["deepseek-v4-pro"])
+_NEBIUS_MODEL_KEY = os.environ.get("NEBIUS_MODEL", "deepseek-v4-pro")
+if _NEBIUS_MODEL_KEY in NEBIUS_MODELS:
+    MODEL = NEBIUS_MODELS[_NEBIUS_MODEL_KEY]
+elif _NEBIUS_MODEL_KEY in NEBIUS_MODELS.values():
+    MODEL = _NEBIUS_MODEL_KEY  # full model id passed directly
+else:
+    # Fail fast: a typo'd NEBIUS_MODEL used to fall back silently to DeepSeek,
+    # so you could benchmark the wrong model without noticing.
+    raise ValueError(
+        f"Unknown NEBIUS_MODEL {_NEBIUS_MODEL_KEY!r}. Use one of "
+        f"{sorted(NEBIUS_MODELS)} or a full model id from {sorted(NEBIUS_MODELS.values())}."
+    )
 MODEL_MAX_TOKENS = 16_000
 REASONING_EFFORT = os.environ.get("REASONING_EFFORT", "off")  # off, high, max
 MAX_AUDIT_WORKERS = int(os.environ.get("MAX_AUDIT_WORKERS", "10"))

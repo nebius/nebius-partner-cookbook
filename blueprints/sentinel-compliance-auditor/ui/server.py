@@ -264,7 +264,8 @@ def _sop_title(sop_id: str) -> str:
 
 @app.get("/api/health")
 def health():
-    return {"ok": True, "langgraph_url": LANGGRAPH_URL}
+    # Exempt from the API-key gate (LB probes) — return nothing internal.
+    return {"ok": True}
 
 
 @app.get("/api/eval-results")

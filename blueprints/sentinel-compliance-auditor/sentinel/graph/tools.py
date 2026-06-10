@@ -18,6 +18,8 @@ RATE_LIMIT_BACKOFF = 30
 
 from sentinel.config import PINECONE_API_KEY, TAVILY_API_KEY
 from sentinel.models import (
+    COMPLIANCE_LEVEL_ALIASES,
+    SEVERITY_ALIASES,
     AuditFinding,
     ComplianceLevel,
     normalize_compliance_level,
@@ -229,8 +231,11 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
         """Record a single audit finding. Call this IMMEDIATELY after assessing each requirement — do NOT wait until the end. Each call saves one finding."""
         valid_levels = {"compliant", "partial", "gap"}
         valid_sevs = {"critical", "high", "medium", "low", "info"}
-        cl = compliance_level.lower().strip()
-        sev = severity.lower().strip()
+        # Normalize through the shared alias maps first: the JSON-fallback
+        # path accepts "non-compliant"/"noncompliant" etc., so the tool must
+        # too — bouncing the same output costs the sub-agent an extra turn.
+        cl = COMPLIANCE_LEVEL_ALIASES.get(compliance_level.lower().strip(), "")
+        sev = SEVERITY_ALIASES.get(severity.lower().strip(), "")
         if cl not in valid_levels:
             return f"Invalid compliance_level '{compliance_level}'. Must be one of: {', '.join(sorted(valid_levels))}"
         if sev not in valid_sevs:
@@ -867,7 +872,10 @@ def create_jira_tickets(findings_json: str) -> str:
     created = []
     failed = []
     try:
-        for f in findings:
+        for i, f in enumerate(findings):
+            if not isinstance(f, dict):
+                failed.append(f"item {i}: expected an object, got {type(f).__name__}")
+                continue
             sop_id = f.get("sop_id", "")
             clause_id = f.get("clause_id", f.get("requirement_id", ""))
             summary, labels, description, priority = _build_jira_issue_fields(
