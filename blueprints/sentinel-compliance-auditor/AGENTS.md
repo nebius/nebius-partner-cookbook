@@ -10,7 +10,7 @@ Sentinel is a regulatory compliance auditor agent that audits 200 synthetic SOPs
 make install              # Install into .venv (includes dev, deep, rag extras)
 make ingest               # Ingest SOPs into Pinecone
 make ingest-regulations   # Ingest regulation texts into Pinecone (namespace: regulations)
-make test                 # Run regression tests (58 tests, no API keys needed)
+make test                 # Run regression tests (158 tests, no API keys needed)
 make dev                  # LangGraph dev server on port 2024
 make ui                   # UI (FastAPI + React) on port 8080
 make deploy               # Deploy to LangGraph Cloud (remote Docker build)

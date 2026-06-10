@@ -42,7 +42,7 @@ jobs:
         run: ruff check .
 
       - name: Test
-        # 150 hermetic tests — no API keys needed (conftest injects dummies).
+        # Hermetic — no API keys needed (conftest injects dummies).
         run: pytest tests/ -q
 
       - uses: actions/setup-node@v4

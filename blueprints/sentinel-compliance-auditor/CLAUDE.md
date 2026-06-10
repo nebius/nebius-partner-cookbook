@@ -10,7 +10,7 @@ Sentinel is a regulatory compliance auditor agent that audits 200 synthetic SOPs
 make install              # Install into .venv (includes dev, deep, rag extras)
 make ingest               # Ingest SOPs into Pinecone
 make ingest-regulations   # Ingest regulation texts into Pinecone (namespace: regulations)
-make test                 # Run regression tests (150 tests, no API keys needed)
+make test                 # Run regression tests (158 tests, no API keys needed)
 make dev                  # LangGraph dev server on port 2024
 make ui                   # UI (FastAPI + React) on port 8080
 make deploy               # Deploy to LangGraph Cloud (remote Docker build)
@@ -98,6 +98,8 @@ When an audit finding is a gap or partial at medium+ severity, the `create_jira_
 | `scripts/compare_audit_runs.py` | Side-by-side comparison of N audit runs: quality, cost, tokens, latency, tool-call counts |
 | `scripts/run_qa_eval.py` | Q&A eval runner: naive, prototype, grounded, optimized, production modes |
 | `scripts/inspect_tool_calls.py` | LangSmith tool call inspector: shows all tool calls with args, timing, and output token counts for a run (`--show-output`, `--json`) |
+| `scripts/eval_retrieval.py` | Retrieval recall@k against the Q&A dataset's expected citations (`--top-k`, `--editions`, `--filtered`, `--misses`) |
+| `scripts/check_jsx.mjs` | Parses all UI JSX with babel-standalone (same compiler the browser uses); run by CI |
 
 ## LangGraph Cloud deployment
 
@@ -129,7 +131,8 @@ When an audit finding is a gap or partial at medium+ severity, the `create_jira_
 
 ### Regulations
 - 36 regulation frameworks in `data/regulations/` as .txt, .md, .pdf, and .xml files
-- 16,289 chunks ingested into Pinecone namespace `regulations` (from 43 .txt/.md source files, including PDF-extracted texts; re-ingested 2026-06-10 — the namespace is cleared on each re-ingest, so the index holds exactly the current files' chunks)
+- 14,513 chunks ingested into Pinecone namespace `regulations` (from 46 .txt/.md source files including PDF-extracted texts and the gitignored SOC 2/PCI DSS copies; re-ingested 2026-06-10 with the structure-aware chunker — the namespace is cleared on each re-ingest, so the index holds exactly the current files' chunks)
+- Retrieval quality is measured by `scripts/eval_retrieval.py` (recall@k of the Q&A dataset's expected citations). Post-re-ingest baseline at top_k=15: clause recall 0.45 / section recall 0.52 across 133 citations (0.500/0.583 on the pre-SOC 2 citation set with the current-edition filter, up from 0.435/0.528). Re-run it after changing chunking, editions, or top_k — don't tune retrieval blind
 - Historical editions: HIPAA (2017, 2020, 2024, current), NIST AI RMF (2022 drafts, final), EU AI Act (2021 proposal, final)
 - SOC 2 (AICPA) and PCI DSS (PCI SSC) texts are copyrighted: they live locally in `data/regulations/` and are ingested, but are **gitignored and must never be committed** — see `data/regulations/README.md` for download instructions if missing
 - Each chunk carries `regulation`, `edition`, `section`, and `source` metadata for filtered retrieval

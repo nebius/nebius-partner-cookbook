@@ -102,7 +102,7 @@ from `config.PRICING` — change prices in one place.
 ### Test
 
 ```bash
-make test    # Run all 150 regression tests
+make test    # Run all 158 regression tests
 ```
 
 Tests cover JSON parsing/repair, retry classification and the sub-agent fan-out, the benchmark parsing pipeline (including an emit↔parse round-trip against the real audit summary format), Jira ticket building (httpx mocked), SSE token accounting, SOP loading, metrics, and config validation. No API keys or external services required.

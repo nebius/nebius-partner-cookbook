@@ -23,7 +23,7 @@
   ],
   "models": [
     { "id": "deepseek-ai/DeepSeek-V4-Pro", "provider": "nebius", "role": "primary" },
-    { "id": "nvidia/Nemotron-3-Ultra-550b", "provider": "nebius", "role": "production" },
+    { "id": "nvidia/Nemotron-3-Ultra-550b-a55b", "provider": "nebius", "role": "production" },
     { "id": "moonshotai/Kimi-K2.6", "provider": "nebius", "role": "alternate" },
     { "id": "zai-org/GLM-5.1", "provider": "nebius", "role": "alternate" },
     { "id": "gpt-5.5", "provider": "openai", "role": "prototype" },
