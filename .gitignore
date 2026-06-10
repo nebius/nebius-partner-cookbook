@@ -60,3 +60,6 @@ coverage/
 
 # Test artifacts
 test-results/
+
+# Local review notes
+blueprints/sentinel-compliance-auditor/review_findings.md
