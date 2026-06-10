@@ -10,6 +10,7 @@ Usage:
     python scripts/validate_run.py --original <run_id>         # Use original matrix
 """
 import json
+import os
 import re
 import sys
 from collections import Counter, defaultdict
@@ -21,6 +22,8 @@ from sentinel.token_accounting import AUDIT_TOOL_NAMES, sum_sub_agent_tokens
 
 MATRIX_PATH = Path("data/compliance_matrix.json")
 REVISED_MATRIX_PATH = Path("data/compliance_matrix_revised.json")
+
+LANGSMITH_PROJECT = os.environ.get("LANGCHAIN_PROJECT", "sentinel-agent")
 
 LEVEL_ORDER = {"compliant": 0, "partial": 1, "gap": 2}
 
@@ -67,7 +70,7 @@ def fetch_run_data(run_id: str) -> dict:
     trace_output_tokens = 0
     print(f"  Fetching LLM runs for token totals...")
     llm_runs = list(client.list_runs(
-        project_name="sentinel-agent",
+        project_name=LANGSMITH_PROJECT,
         trace_id=run_id,
         run_type="llm",
     ))
@@ -98,7 +101,7 @@ def fetch_run_data(run_id: str) -> dict:
     # its own token lines, so all must be gathered (not just the first).
     audit_outputs: list[str] = []
     tool_runs = list(client.list_runs(
-        project_name="sentinel-agent",
+        project_name=LANGSMITH_PROJECT,
         trace_id=run_id,
         run_type="tool",
     ))
@@ -124,7 +127,7 @@ def fetch_run_data(run_id: str) -> dict:
     # Fallback: search Prompt chain runs (for pending root runs)
     if not content:
         chain_runs = list(client.list_runs(
-            project_name="sentinel-agent",
+            project_name=LANGSMITH_PROJECT,
             trace_id=run_id,
             run_type="chain",
             filter='eq(name, "Prompt")',
@@ -141,7 +144,7 @@ def fetch_run_data(run_id: str) -> dict:
     end_time = root.end_time
     if not end_time:
         all_children = list(client.list_runs(
-            project_name="sentinel-agent",
+            project_name=LANGSMITH_PROJECT,
             trace_id=run_id,
         ))
         ended = [c.end_time for c in all_children if c.end_time]

@@ -1,1 +1,7 @@
+# Direct dependencies of the scripts/ utilities. The project venv created by
+# `make install` already covers these via the package extras; this file exists
+# for running the scripts standalone.
 openai>=1.30.0
+langsmith>=0.1.0
+python-dotenv>=1.0.0
+tiktoken>=0.7.0

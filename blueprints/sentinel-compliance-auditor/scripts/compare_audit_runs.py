@@ -18,6 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from scripts.validate_run import (
+    LANGSMITH_PROJECT,
     PRICING,
     fetch_run_data,
     parse_run_stats,
@@ -37,7 +38,7 @@ def fetch_tool_calls(run_id: str) -> dict:
     client = Client()
 
     tool_runs = list(client.list_runs(
-        project_name="sentinel-agent",
+        project_name=LANGSMITH_PROJECT,
         trace_id=run_id,
         run_type="tool",
     ))

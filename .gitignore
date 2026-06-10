@@ -57,3 +57,6 @@ data/*.json.gz.*
 # Coverage
 coverage/
 .nyc_output/
+
+# Test artifacts
+test-results/

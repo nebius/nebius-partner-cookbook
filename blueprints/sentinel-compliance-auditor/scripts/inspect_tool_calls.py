@@ -12,9 +12,12 @@ Usage:
     python scripts/inspect_tool_calls.py <run_id> --json            # machine-readable JSON
 """
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from typing import Optional
+
+LANGSMITH_PROJECT = os.environ.get("LANGCHAIN_PROJECT", "sentinel-agent")
 
 
 def _get_langsmith_client():
@@ -82,7 +85,7 @@ def _format_seconds(secs: float) -> str:
     return f"{secs/60:.1f}m"
 
 
-def fetch_tool_calls(run_id: str, project_name: str = "sentinel-agent", log=None):
+def fetch_tool_calls(run_id: str, project_name: str = LANGSMITH_PROJECT, log=None):
     if log is None:
         log = sys.stderr
     client = _get_langsmith_client()

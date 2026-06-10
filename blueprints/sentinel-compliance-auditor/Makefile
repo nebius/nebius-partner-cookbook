@@ -1,8 +1,11 @@
 PYTHON = .venv/bin/python
 
-.PHONY: install ingest dev up build deploy ui ui-local test eval eval-naive eval-prototype eval-grounded eval-optimized eval-production eval-all eval-smoke
+.PHONY: install ingest ingest-regulations dev up build deploy ui ui-local test eval eval-naive eval-prototype eval-grounded eval-optimized eval-production eval-all eval-smoke
 
-install:
+.venv:
+	python3 -m venv .venv
+
+install: .venv
 	$(PYTHON) -m pip install -e ".[dev,deep,rag,ui]"
 
 ingest:
