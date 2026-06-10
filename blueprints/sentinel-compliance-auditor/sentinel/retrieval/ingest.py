@@ -131,7 +131,7 @@ def with_retries(fn, attempts: int = 3, base_delay: float = 2.0):
     """Call ``fn()``, retrying transient failures with exponential backoff.
 
     Used around Nebius embedding calls and Pinecone queries/upserts: a single
-    5xx on one batch must not abort a 2,386-chunk ingestion, and a transient
+    5xx on one batch must not abort a 16k-chunk ingestion, and a transient
     error must not fail a sub-agent's RAG tool call."""
     for attempt in range(1, attempts + 1):
         try:

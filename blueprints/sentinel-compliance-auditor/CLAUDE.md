@@ -29,7 +29,7 @@ Key modules:
 Ingestion/retrieval invariants:
 - One section chunker: `chunk_sections()` in `ingest.py` is shared by `chunk_sop` and both regulation chunkers (parameterized by split pattern, header extractor, continuation prefix) — don't fork per-format copies
 - Re-ingestion clears the target namespace before upserting (stale vectors from shrunken/renamed files must not pollute retrieval)
-- Nebius embedding calls, Pinecone upserts, and `retrieve_regulation_text` queries are wrapped in `with_retries()` (3 attempts, backoff + jitter) — one 5xx must not abort a 2,386-chunk ingestion or fail a sub-agent tool call
+- Nebius embedding calls, Pinecone upserts, and `retrieve_regulation_text` queries are wrapped in `with_retries()` (3 attempts, backoff + jitter) — one 5xx must not abort a 16k-chunk ingestion or fail a sub-agent tool call
 - SOP files are parsed once per process behind `_parsed_sops()` (lru_cache) in `retrieval/local.py`; call `_parsed_sops.cache_clear()` after editing SOP files in a live process
 
 ### Sub-agent architecture (not single-shot LLM calls)
