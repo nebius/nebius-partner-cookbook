@@ -129,15 +129,33 @@ jobs:
       matrix:
         include: ${{ fromJson(needs.discover.outputs.deployables) }}
     steps:
+      # The Clever Cloud credentials have never been configured (the
+      # 'production' environment holds no secrets/variables). Skip with a
+      # warning instead of failing every cookbook push until they exist.
+      - name: Check Clever Cloud credentials
+        id: creds
+        env:
+          CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+        run: |
+          if [ -z "$CLEVER_TOKEN" ]; then
+            echo "::warning::Clever Cloud credentials not configured — skipping deploy of ${{ matrix.cookbook }}. Add the CLEVER_* secrets and runtime variables to the 'production' environment to enable deploys."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v6
+        if: steps.creds.outputs.configured == 'true'
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
 
       - name: Install Clever Cloud CLI
+        if: steps.creds.outputs.configured == 'true'
         run: npm install -g clever-tools
 
       - name: Deploy cookbook backend to Clever Cloud
+        if: steps.creds.outputs.configured == 'true'
         env:
           CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
           CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
