@@ -2,7 +2,7 @@
 
 Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieval/eval, UI, and scripts/tests/plumbing. Overall the codebase follows its documented invariants well (token accounting, message-type handling, Jira client cleanup); the items below are the exceptions, prioritized.
 
-**Remediation status (2026-06-10):** all HIGH and MEDIUM findings are fixed, plus LOWs 12, 27, 28, 30, 32; each fixed finding is tagged with its commit below. Still open: the agent-pricing-registry and chunker bullets of 35, and LOWs 19, 23, 24, 29, 31.
+**Remediation status (2026-06-10):** all 36 findings are fixed; each is tagged with its fixing commit below.
 
 ## Top issues — can corrupt results or multiply cost
 
@@ -100,7 +100,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** build a module-level `{sop_id: (path, title, unit)}` index once.
 
-### 19. `list_regulations` makes 36 sequential Pinecone queries (LOW) — ⬜ open
+### 19. `list_regulations` makes 36 sequential Pinecone queries (LOW) — ✅ fixed (f18d46c)
 `sentinel/graph/tools.py:86-98` — one round trip per regulation just to harvest metadata; multi-second tool call.
 
 **Fix:** parallelize with a small thread pool, or precompute the inventory at ingest time.
@@ -120,10 +120,10 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** default remaining numeric fields to 0 in `mapEvalResults`, or add per-screen error boundaries.
 
-### 23. No Stop button; AbortController is dead code (LOW) — ⬜ open
+### 23. No Stop button; AbortController is dead code (LOW) — ✅ fixed (da07e7e)
 `audit.jsx:35, 43-44` — `streamRef.current = ctrl` is never used; a long `audit_all_sops` run can't be cancelled. Pairs with finding 4 for server-side cancellation.
 
-### 24. Stale aborted-stream `onError` can mark a fresh race run failed (LOW) — ⬜ open
+### 24. Stale aborted-stream `onError` can mark a fresh race run failed (LOW) — ✅ fixed (da07e7e)
 `compare.jsx:61-125` — effect cleanup calls `ctrl.abort()`; the old stream's `onError` fires asynchronously and can flip the *new* run's agents to error.
 
 **Fix:** ignore `err.name === "AbortError"` or check `ctrlRef.current === ctrl` before applying handler effects.
@@ -148,7 +148,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** run inputs through `COMPLIANCE_LEVEL_ALIASES`/`SEVERITY_ALIASES` first.
 
-### 29. Retrieval-budget race + wasted budget on empty queries (LOW) — ⬜ open
+### 29. Retrieval-budget race + wasted budget on empty queries (LOW) — ✅ fixed (f18d46c)
 `sentinel/graph/tools.py:242-244, 268-271` — check-then-increment race on `_retrieval_calls["count"]` under parallel tool calls; `_search_web_capped` burns a budget unit before `search_web` rejects an empty query.
 
 **Fix:** validate the query before decrementing budget; lock or accept slight overrun.
@@ -158,7 +158,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** accept values already in `NEBIUS_MODELS.values()` as-is; warn or raise on unknown keys.
 
-### 31. Retrieval/ingest misc (LOW) — ⬜ open
+### 31. Retrieval/ingest misc (LOW) — ✅ fixed (5b300dc)
 - `sentinel/retrieval/local.py:34-35` — fuzzy-match score computed against title length even when the match was on SOP ID; score against the field that matched.
 - `sentinel/retrieval/ingest_regulations.py:74-78` — `_detect_regulation` unanchored substring matching with insertion-order precedence; sort keys longest-first and use `startswith`.
 - `ingest_regulations.py:101-109` — `===`-ruler sections lose their titles (header strips to `""`); take the next non-empty line.
@@ -181,7 +181,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** mocked-`run_one` retry tests; round-trip test feeding an `_audit_all_sops_impl`-shaped summary through `parse_full_findings`; unit-test `_build_jira_issue_fields`/`_render_ticket_description`/`create_jira_tickets` with httpx mocked.
 
-### 35. Duplication worth consolidating (MEDIUM) — ◐ partial (59fd637: metrics consolidated; pricing registry + chunkers open)
+### 35. Duplication worth consolidating (MEDIUM) — ✅ fixed (59fd637 metrics, 5b300dc chunkers, 4abfb88 agent registry + shared primitives)
 - `compute_metrics`/`macro_f1` duplicated in `scripts/validate_run.py:298-358` and `sentinel/eval/metrics.py:62-186`; `validate_run.compare_runs` duplicates `compare_audit_runs.py` for the 2-run case.
 - Agent labels/pricing hardcoded in `audit.jsx:3-8`, `compare.jsx:3-12`, `ui/server.py:99-109`, `app-forge.jsx:49-54`, plus `config.py:PRICING` — a price change touches 5 places. Also duplicated `Th`/`Td`, `truncate`, `summarizeArgs`, trace-link markup across JSX files. Consider an `/api/agents` registry endpoint and shared primitives.
 - Three near-identical chunkers: `_chunk_txt`/`_chunk_md` (`ingest_regulations.py:88-189`) and `chunk_sop` (`ingest.py:79-101`); extract one `_chunk_sections` helper.
@@ -212,8 +212,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 ## Remaining work
 
-1. Finding 35, open bullets — agent label/pricing registry endpoint (5 duplicated sites) and `_chunk_sections` chunker consolidation.
-2. LOWs as time permits: 19 (parallelize `list_regulations` queries), 23 (UI Stop button — server-side cancel now exists, so wiring the AbortController is worthwhile), 24 (stale-abort `onError`), 29 (retrieval-budget race), 31 (retrieval/ingest misc).
+None — all 36 findings closed. Operational note: the regulation header improvements from finding 31 (322 ruler sections gained titles) only reach Pinecone metadata after a `make ingest-regulations` re-run.
 
 ### Fix-note deviations
 
