@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from langchain_openai import ChatOpenAI
 
-from sentinel.config import MODEL, NEBIUS_MODELS
+from sentinel.config import MODEL, MODEL_MAX_TOKENS, NEBIUS_MODELS
 from sentinel.graph.tools import build_tools
 
 SENTINEL_SYSTEM_PROMPT = """You are Sentinel, an expert regulatory compliance auditor for Meridian Health Technologies, an AI-powered healthcare fintech company.
@@ -33,14 +33,17 @@ You MUST NOT cite regulatory requirements that you did not successfully retrieve
 ## Scope guardrail
 You are ONLY a regulatory compliance auditor. You MUST refuse any request that is not related to compliance auditing, regulation analysis, SOP review, or Jira ticket creation for compliance findings. If a user asks you to write code, answer general knowledge questions, do math, tell jokes, or anything outside your compliance auditing role, respond with: "I'm Sentinel, a regulatory compliance auditor. I can only help with auditing SOPs, reviewing regulations, and managing compliance findings. Please ask me a compliance-related question." Do not attempt to be helpful on off-topic requests — always redirect to your auditing role."""
 
-def _build_model(provider: str = "nebius") -> ChatOpenAI:
+def _build_model(provider: str = "nebius", model: str | None = None, reasoning: bool = True) -> ChatOpenAI:
+    """Single outer-agent model factory: pooled httpx client, MODEL_MAX_TOKENS,
+    and reasoning plumbing for every provider/model combination."""
     from sentinel.chat_model import build_chat_model
     from sentinel.graph.tools import _get_shared_http_client
     return build_chat_model(
         provider,
-        max_tokens=16_000,
+        model=model,
+        max_tokens=MODEL_MAX_TOKENS,
         http_client=_get_shared_http_client(),
-        reasoning=True,
+        reasoning=reasoning,
     )
 
 
@@ -49,12 +52,20 @@ def _build_deep_agent(model, tools):
     from deepagents import GeneralPurposeSubagentProfile, create_deep_agent, register_harness_profile
     from deepagents.profiles.harness.harness_profiles import HarnessProfileConfig
 
-    register_harness_profile(
-        f"openai:{MODEL}",
-        HarnessProfileConfig(
-            general_purpose_subagent=GeneralPurposeSubagentProfile(enabled=False),
-        ),
-    )
+    # The profile key must name the model this agent actually runs, or the
+    # general-purpose sub-agent override silently fails to apply.
+    profile_key = f"openai:{getattr(model, 'model_name', MODEL)}"
+    try:
+        register_harness_profile(
+            profile_key,
+            HarnessProfileConfig(
+                general_purpose_subagent=GeneralPurposeSubagentProfile(enabled=False),
+            ),
+        )
+    except Exception:
+        # All 7 graphs build in one process — a re-registration error must not
+        # crash the LangGraph Cloud build; the override is an optimization.
+        pass
 
     return create_deep_agent(
         model=model,
@@ -108,9 +119,10 @@ def build_agent_grounded():
 
 def _build_agent_nebius_model(model_key: str):
     """Build a Sentinel agent with an alternate Nebius model + Tavily."""
-    from sentinel.chat_model import build_chat_model
     model_id = NEBIUS_MODELS[model_key]
-    model = build_chat_model("nebius", model=model_id, max_tokens=16_000)
+    # reasoning=False: the thinking/reasoning_effort chat-template kwargs are
+    # DeepSeek-specific; Nemotron/Kimi/GLM use their own defaults.
+    model = _build_model("nebius", model=model_id, reasoning=False)
     tools = build_tools(provider="nebius", use_tavily=True, model_name=model_id)
     try:
         return _build_deep_agent(model, tools)
