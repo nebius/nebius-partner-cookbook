@@ -320,9 +320,60 @@ const Meter = ({ label, value, accent, live }) => (
   </div>
 );
 
+// ── shared helpers, previously duplicated across audit/compare/eval ─────────
+
+const truncate = (s, n) => {
+  const t = s || "";
+  return t.length > n ? t.slice(0, n) + "…" : t;
+};
+
+const summarizeArgs = (args) => {
+  if (!args || typeof args !== "object") return "";
+  const entries = Object.entries(args);
+  if (entries.length === 0) return "{}";
+  return entries.map(([k, v]) => `${k}: ${truncate(JSON.stringify(v), 60)}`).join(", ");
+};
+
+// LangSmith trace pill — Audit meter row and Compare agent columns
+const TraceLink = ({ url }) => url ? (
+  <a href={url} target="_blank" rel="noopener noreferrer"
+     style={{
+       display: "inline-flex", alignItems: "center", gap: 6,
+       padding: "5px 11px", borderRadius: 999,
+       border: "1px solid var(--forge-cyan-deep)",
+       color: "var(--forge-cyan)",
+       font: "700 10px/1 var(--forge-font)",
+       letterSpacing: "0.10em", textTransform: "uppercase",
+       textDecoration: "none", whiteSpace: "nowrap",
+     }}>
+    <Icon name="arrowUR" size={10} color="var(--forge-cyan)"/>
+    Trace
+  </a>
+) : null;
+
+// Light-table header/data cells (Audit findings register, Eval tables)
+const Th = ({ children, align }) => (
+  <th style={{
+    font: "600 11px/1 var(--forge-font)", letterSpacing: "0.12em", textTransform: "uppercase",
+    color: "var(--forge-on-light-mute)", padding: "14px 18px",
+    textAlign: align || "left", whiteSpace: "nowrap",
+  }}>{children}</th>
+);
+
+const Td = ({ children, muted, align, style }) => (
+  <td style={{
+    padding: "14px 18px",
+    font: "400 13px/19px var(--forge-font)",
+    color: muted ? "var(--forge-on-light-mute)" : "var(--forge-on-light)",
+    textAlign: align || "left",
+    verticalAlign: "top", ...style,
+  }}>{children}</td>
+);
+
 Object.assign(window, {
   Icons, Icon, Slab, Panel, PaperCard,
   StatCard, OutlinePill, LimePill, StatusChip,
   Btn, LinkArrow, SectionTitle, M, Spinner, SpinnerStyle, StreamPane,
   Markdown, Meter,
+  truncate, summarizeArgs, TraceLink, Th, Td,
 });

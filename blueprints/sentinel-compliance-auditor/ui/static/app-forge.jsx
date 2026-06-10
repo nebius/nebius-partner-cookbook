@@ -46,12 +46,9 @@ function useForgeData() {
   return { version, status };
 }
 
-const EVAL_AGENT_META = {
-  prototype:  { label: "Prototype agent",   sublabel: "GPT-5.5 + Pinecone" },
-  grounded:     { label: "Grounded agent",    sublabel: "GPT-5.5 + Pinecone + Tavily" },
-  optimized:  { label: "Optimized agent",   sublabel: "DeepSeek-V4-Pro + Pinecone + Tavily" },
-  nemotron:   { label: "Production agent",  sublabel: "Nemotron-Ultra + Tavily + LangSmith + Snowglobe" },
-};
+// Eval-screen labels come from /agents.js (window.SENTINEL_AGENTS), generated
+// by ui/server.py from the one agent registry.
+const EVAL_AGENT_META = (window.SENTINEL_AGENTS || {}).evalMeta || {};
 
 function mapEvalResults(api) {
   const mapMode = (m, key) => {

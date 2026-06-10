@@ -354,21 +354,6 @@ const RowLabel = ({ children }) => (
   }}>{children}</div>
 );
 
-const Th = ({ children, align }) => (
-  <th style={{
-    font: "600 11px/1 var(--forge-font)", letterSpacing: "0.12em", textTransform: "uppercase",
-    color: "var(--forge-on-light-mute)", padding: "14px 18px",
-    textAlign: align || "left", whiteSpace: "nowrap",
-  }}>{children}</th>
-);
-const Td = ({ children, muted, align, style }) => (
-  <td style={{
-    padding: "14px 18px",
-    font: "400 13px/19px var(--forge-font)",
-    color: muted ? "var(--forge-on-light-mute)" : "var(--forge-on-light)",
-    textAlign: align || "left",
-    verticalAlign: "top", ...style,
-  }}>{children}</td>
-);
+// Th / Td come from primitives.jsx
 
 Object.assign(window, { EvalScreen });

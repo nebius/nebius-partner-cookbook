@@ -29,7 +29,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(PROJECT_ROOT / ".env")
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi.responses import Response, StreamingResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -42,7 +42,9 @@ from sentinel.config import (
     JIRA_EMAIL,
     JIRA_PROJECT_KEY,
     MODEL,
+    NEBIUS_MODELS,
     OPENAI_MODEL,
+    PRICING,
     SOP_BUSINESS_UNITS,
 )
 from sentinel.token_accounting import AUDIT_TOOL_NAMES, parse_tokens_from_result
@@ -97,6 +99,14 @@ def _trace_url(run_id: str) -> str | None:
         return None
     return f"https://smith.langchain.com/o/{tenant}/projects/p/{project}/r/{run_id}?poll=true"
 
+# ── Agent registry ───────────────────────────────────────────────────────────
+# The single source for agent labels, graph ids, models, and (via
+# config.PRICING) prices. Served to the React app as /agents.js — the JSX
+# screens and app-forge.jsx read window.SENTINEL_AGENTS instead of carrying
+# their own copies, so a price or label change happens in one place.
+
+_NEMOTRON_MODEL = NEBIUS_MODELS["nemotron"]
+
 PARALLEL_AGENTS = [
     {"key": "naive",  "label": "Naive RAG",        "sublabel": "DeepSeek-V4-Pro",
      "tagline": "1 retrieval + 1 LLM call · no tools",
@@ -106,8 +116,35 @@ PARALLEL_AGENTS = [
      "graph_id": "sentinel_grounded", "model": OPENAI_MODEL},
     {"key": "nemotron", "label": "Production agent", "sublabel": "Nemotron-Ultra + Tavily + LangSmith + Snowglobe",
      "tagline": "ReAct · Pinecone + web · sub-agent fan-out",
-     "graph_id": "sentinel_nemotron", "model": "nvidia/Nemotron-3-Ultra-550b-a55b"},
+     "graph_id": "sentinel_nemotron", "model": _NEMOTRON_MODEL},
 ]
+
+AUDIT_AGENTS = [
+    {"key": "sentinel_prototype",      "graph_id": "sentinel_prototype", "label": "Prototype",
+     "sublabel": "GPT-5.5", "model": OPENAI_MODEL},
+    {"key": "sentinel_prototype_plus", "graph_id": "sentinel_grounded",  "label": "Grounded",
+     "sublabel": "GPT-5.5 + Tavily", "model": OPENAI_MODEL},
+    {"key": "sentinel_production",     "graph_id": "sentinel_optimized", "label": "Optimized",
+     "sublabel": "DeepSeek-V4-Pro + Tavily", "model": MODEL},
+    {"key": "sentinel_nemotron",       "graph_id": "sentinel_nemotron",  "label": "Production",
+     "sublabel": "Nemotron-Ultra + Tavily + LangSmith + Snowglobe", "model": _NEMOTRON_MODEL},
+]
+
+EVAL_AGENT_META = {
+    "prototype": {"label": "Prototype agent",  "sublabel": "GPT-5.5 + Pinecone"},
+    "grounded":  {"label": "Grounded agent",   "sublabel": "GPT-5.5 + Pinecone + Tavily"},
+    "optimized": {"label": "Optimized agent",  "sublabel": "DeepSeek-V4-Pro + Pinecone + Tavily"},
+    "nemotron":  {"label": "Production agent", "sublabel": "Nemotron-Ultra + Tavily + LangSmith + Snowglobe"},
+}
+
+
+def _agent_registry() -> dict:
+    return {
+        "pricing": PRICING,
+        "audit": [{**a, "pricing": PRICING.get(a["model"], {"input": 0, "output": 0})} for a in AUDIT_AGENTS],
+        "race": PARALLEL_AGENTS,
+        "evalMeta": EVAL_AGENT_META,
+    }
 
 app = FastAPI(title="Sentinel UI", version="0.1.0")
 
@@ -266,6 +303,17 @@ def _sop_title(sop_id: str) -> str:
 def health():
     # Exempt from the API-key gate (LB probes) — return nothing internal.
     return {"ok": True}
+
+
+@app.get("/agents.js")
+def agents_js():
+    """Agent registry as a synchronous script (loaded by index.html before the
+    app bundles), so labels/pricing render on first paint without a fetch."""
+    payload = json.dumps(_agent_registry(), indent=2)
+    return Response(
+        f"window.SENTINEL_AGENTS = {payload};\n",
+        media_type="application/javascript",
+    )
 
 
 @app.get("/api/eval-results")
