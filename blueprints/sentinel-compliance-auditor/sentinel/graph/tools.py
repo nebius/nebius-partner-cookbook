@@ -13,9 +13,18 @@ from langchain_core.tools import tool
 
 logger = logging.getLogger(__name__)
 
+import os
+
 MAX_RETRIES = 4
 RETRY_BACKOFF = 5
 RATE_LIMIT_BACKOFF = 30
+# If NO sub-agent completes for this long, the fan-out declares the remaining
+# ones wedged and returns with what it has. Observed failure mode (2026-06-10
+# Nemotron run): provider streams left in CLOSE_WAIT never raise, three hung
+# workers held as_completed + executor shutdown hostage for 60+ minutes and
+# the whole audit produced nothing. Healthy fan-outs complete a SOP every
+# minute or two, so 20 minutes of total silence means wedged, not slow.
+AUDIT_STALL_TIMEOUT_S = int(os.environ.get("AUDIT_STALL_TIMEOUT_S", "1200"))
 
 from sentinel.config import PINECONE_API_KEY, TAVILY_API_KEY
 from sentinel.models import (
@@ -755,6 +764,51 @@ def _audit_single_sop_with_retry(
     return result._replace(input_tokens=tok_in, output_tokens=tok_out)
 
 
+def _run_fanout_with_stall_guard(audit_one, items: list, workers: int) -> dict:
+    """Fan ``audit_one(item)`` out over a thread pool, abandoning the run if NO
+    future completes within AUDIT_STALL_TIMEOUT_S.
+
+    Wedged provider streams (sockets the server closed that never raise on our
+    side) used to hold ``as_completed`` — and the executor's shutdown — hostage
+    forever, losing the entire audit. Stalled SOPs are returned as failed
+    results; their worker threads leak until the stream dies, but the audit
+    RETURNS with everything that completed.
+
+    ``items`` are (sop_id, callable_arg) pairs; returns {sop_id: SopAuditResult}.
+    """
+    import concurrent.futures
+
+    results: dict[str, SopAuditResult] = {}
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=workers)
+    try:
+        future_sids = {executor.submit(audit_one, arg): sid for sid, arg in items}
+        pending = set(future_sids)
+        while pending:
+            done, pending = concurrent.futures.wait(
+                pending, timeout=AUDIT_STALL_TIMEOUT_S,
+                return_when=concurrent.futures.FIRST_COMPLETED,
+            )
+            if not done:
+                stalled = sorted(future_sids[f] for f in pending)
+                logger.error(
+                    "Audit fan-out stalled: no completions for %ds; abandoning %d SOPs: %s",
+                    AUDIT_STALL_TIMEOUT_S, len(stalled), ", ".join(stalled),
+                )
+                for f in pending:
+                    f.cancel()
+                    results[future_sids[f]] = SopAuditResult(
+                        f"{future_sids[f]}: FAILED — stalled (no fan-out progress for {AUDIT_STALL_TIMEOUT_S}s; provider stream hung)",
+                        [], status="failed",
+                    )
+                break
+            for f in done:
+                results[future_sids[f]] = f.result()
+    finally:
+        # wait=False: hung threads must not block the audit's return.
+        executor.shutdown(wait=False, cancel_futures=True)
+    return results
+
+
 def _audit_all_sops_impl(run_one, max_workers: int | None = None) -> str:
     """Core implementation for auditing all SOPs.
 
@@ -766,15 +820,13 @@ def _audit_all_sops_impl(run_one, max_workers: int | None = None) -> str:
     there is deliberately no second batch-level retry layer here — stacking
     the two multiplied to MAX_RETRIES² sub-agent runs per stubborn SOP.
     """
-    import concurrent.futures
     from sentinel.config import MAX_AUDIT_WORKERS
     from sentinel.retrieval.local import list_all_sops
 
     workers = max_workers or MAX_AUDIT_WORKERS
     all_sops = list_all_sops()
 
-    def _audit_one(sop_meta: dict) -> SopAuditResult:
-        sid = sop_meta["sop_id"]
+    def _audit_one(sid: str) -> SopAuditResult:
         try:
             return run_one(sid)
         except Exception as e:
@@ -783,12 +835,9 @@ def _audit_all_sops_impl(run_one, max_workers: int | None = None) -> str:
                 status="failed", rate_limited=_is_rate_limited_error(str(e)),
             )
 
-    results_by_id: dict[str, SopAuditResult] = {}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
-        futures = {executor.submit(_audit_one, s): s["sop_id"] for s in all_sops}
-        for future in concurrent.futures.as_completed(futures):
-            sid = futures[future]
-            results_by_id[sid] = future.result()
+    results_by_id = _run_fanout_with_stall_guard(
+        _audit_one, [(s["sop_id"], s["sop_id"]) for s in all_sops], workers,
+    )
 
     results = list(results_by_id.values())
     still_failed = sum(1 for r in results if _is_retryable(r))
@@ -1070,14 +1119,12 @@ def build_tools(provider: str = "nebius", use_tavily: bool = True, model_name: s
     @tool
     def _audit_sops(sop_ids: list[str], config: RunnableConfig) -> str:
         """Audit a specific list of SOPs in parallel using sub-agents. Accepts a list of SOP IDs (e.g. ['SOP-AIML-009', 'SOP-ISEC-008']) or titles. Use this when the user asks to audit a subset of SOPs — by business unit, regulation, or explicit list. For ALL SOPs, use audit_all_sops instead."""
-        import concurrent.futures
         from sentinel.config import MAX_AUDIT_WORKERS
 
         if not sop_ids:
             return "No SOP IDs provided."
 
         workers = min(len(sop_ids), MAX_AUDIT_WORKERS)
-        results_by_id: dict[str, SopAuditResult] = {}
         callbacks = _parent_callbacks(config)
 
         def _audit_one(sid: str) -> SopAuditResult:
@@ -1089,11 +1136,9 @@ def build_tools(provider: str = "nebius", use_tavily: bool = True, model_name: s
                     status="failed", rate_limited=_is_rate_limited_error(str(e)),
                 )
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
-            futures = {executor.submit(_audit_one, sid): sid for sid in sop_ids}
-            for future in concurrent.futures.as_completed(futures):
-                sid = futures[future]
-                results_by_id[sid] = future.result()
+        results_by_id = _run_fanout_with_stall_guard(
+            _audit_one, [(sid, sid) for sid in sop_ids], workers,
+        )
 
         results = list(results_by_id.values())
         still_failed = sum(1 for r in results if _is_retryable(r))

@@ -178,3 +178,40 @@ class TestAuditAllSopsFanout:
         summary = self._run(run_one)
         assert "SOP-B-001: FAILED — connection reset" in summary
         assert "Failed after retries: 1" in summary
+
+
+class TestStallGuard:
+    def test_wedged_workers_do_not_hang_the_fanout(self, monkeypatch):
+        """Regression (2026-06-10 Nemotron run): provider streams the server
+        had closed never raised, and three hung workers held the fan-out —
+        and the executor shutdown — hostage for 60+ minutes, losing the whole
+        audit. The stall guard must return with completed results and mark
+        the wedged SOPs failed."""
+        import threading
+        import sentinel.graph.tools as tools_mod
+        from sentinel.graph.tools import _run_fanout_with_stall_guard
+
+        monkeypatch.setattr(tools_mod, "AUDIT_STALL_TIMEOUT_S", 1)
+        hang_forever = threading.Event()
+
+        def audit_one(sid):
+            if sid == "SOP-HUNG-001":
+                hang_forever.wait(timeout=30)  # far beyond the stall window
+                return _ok(sid)
+            return _ok(sid)
+
+        items = [(sid, sid) for sid in ("SOP-A-001", "SOP-B-001", "SOP-HUNG-001")]
+        results = _run_fanout_with_stall_guard(audit_one, items, workers=3)
+        hang_forever.set()  # release the leaked thread
+
+        assert results["SOP-A-001"].status == "ok"
+        assert results["SOP-B-001"].status == "ok"
+        assert results["SOP-HUNG-001"].status == "failed"
+        assert "stalled" in results["SOP-HUNG-001"].summary
+
+    def test_normal_completion_unaffected(self):
+        from sentinel.graph.tools import _run_fanout_with_stall_guard
+
+        results = _run_fanout_with_stall_guard(_ok, [(s, s) for s in ("SOP-A-001", "SOP-B-001")], workers=2)
+        assert all(r.status == "ok" for r in results.values())
+        assert set(results) == {"SOP-A-001", "SOP-B-001"}
