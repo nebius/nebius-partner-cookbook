@@ -16,6 +16,21 @@ SEVERITY_TO_PRIORITY = {
 }
 
 
+class JiraError(RuntimeError):
+    """Jira API call failed. Carries the response body so the agent (and its
+    retry reasoning) can see Jira's field-level diagnostics — a bare
+    raise_for_status() discards which field a 400 rejected."""
+
+
+def _raise_for_status(resp, action: str) -> None:
+    import httpx
+
+    try:
+        resp.raise_for_status()
+    except httpx.HTTPStatusError as e:
+        raise JiraError(f"{action} failed: HTTP {resp.status_code} — {resp.text[:500]}") from e
+
+
 class JiraClient:
     """Sync client for Jira Cloud REST API v3. One method: create_issue."""
 
@@ -47,7 +62,8 @@ class JiraClient:
         """POST /rest/api/3/issue. Returns {'key': 'SENT-42', 'url': '...'}."""
         fields: dict[str, Any] = {
             "project": {"key": self._project_key},
-            "summary": summary[:240],
+            # Jira rejects summaries containing newlines; collapse whitespace.
+            "summary": " ".join(summary.split())[:240],
             "issuetype": {"name": self._issue_type},
             "labels": labels,
             "description": _plain_text_to_adf(description),
@@ -56,7 +72,7 @@ class JiraClient:
             fields["priority"] = {"name": priority}
 
         resp = self._http.post(f"{self._site}/rest/api/3/issue", json={"fields": fields})
-        resp.raise_for_status()
+        _raise_for_status(resp, "create_issue")
         data = resp.json()
         key = data["key"]
         return {"key": key, "url": f"{self._site}/browse/{key}"}
@@ -75,7 +91,7 @@ class JiraClient:
             "maxResults": max_results,
         }
         resp = self._http.post(f"{self._site}/rest/api/3/search/jql", json=body)
-        resp.raise_for_status()
+        _raise_for_status(resp, "list_issues")
         return resp.json().get("issues", [])
 
     def close(self) -> None:

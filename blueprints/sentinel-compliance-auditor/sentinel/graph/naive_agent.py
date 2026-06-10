@@ -44,17 +44,34 @@ def _build_model():
     )
 
 
+def _content_to_text(content) -> str:
+    """Flatten message content to plain text. Content can be a string or a
+    list of content blocks ({"type": "text", ...}) — callers .strip() the
+    result, so never return a list."""
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts = []
+        for block in content:
+            if isinstance(block, str):
+                parts.append(block)
+            elif isinstance(block, dict) and block.get("type") == "text":
+                parts.append(block.get("text", ""))
+        return "".join(parts)
+    return ""
+
+
 def _extract_user_message(state: _NaiveState) -> str:
     """Pull the most recent human message from the conversation."""
     for msg in reversed(state.get("messages", [])):
         # LangGraph sometimes hands us dict form, sometimes BaseMessage
         if isinstance(msg, dict):
             if msg.get("role") in ("user", "human") or msg.get("type") in ("human", "user"):
-                return msg.get("content", "") or ""
+                return _content_to_text(msg.get("content"))
         else:
             mtype = getattr(msg, "type", "")
             if mtype in ("human", "user"):
-                return getattr(msg, "content", "") or ""
+                return _content_to_text(getattr(msg, "content", ""))
     return ""
 
 
