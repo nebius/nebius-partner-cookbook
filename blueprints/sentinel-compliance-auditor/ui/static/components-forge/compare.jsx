@@ -449,7 +449,7 @@ const AgentSlab = ({ agent: a }) => {
                   {!isFinal && <Spinner size={8} color="var(--forge-lime)"/>}
                   {isFinal ? "Final answer" : "Streaming response"}
                 </div>
-                <Markdown text={item.text} />
+                <Markdown text={item.text} live={a.status === "running"} />
               </div>
             );
           }

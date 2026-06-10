@@ -303,7 +303,7 @@ const AuditScreen = ({ loadStatus }) => {
                     ? "1px solid rgba(212,250,80,0.18)"
                     : "1px solid var(--forge-border-dark)",
                 }}>
-                  <Markdown text={responseText} />
+                  <Markdown text={responseText} live={audit.status === "running"} />
                 </div>
               )}
 

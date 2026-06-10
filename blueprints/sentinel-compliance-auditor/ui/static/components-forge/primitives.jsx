@@ -287,14 +287,21 @@ const _markedOpts = (() => {
   return true;
 })();
 
-const Markdown = ({ text, style }) => {
+// While `live` (streaming), the parse is skipped and the raw text rendered as
+// plain text: parsing + sanitising the full growing answer on every token is
+// O(n²) over the stream and stalls long audits (×3 streams on Compare). The
+// markdown parse happens once, when `live` flips false.
+const Markdown = ({ text, style, live }) => {
   const html = React.useMemo(() => {
-    if (!text) return "";
+    if (!text || live) return "";
     if (typeof marked === "undefined") return text.replace(/</g, "&lt;");
     const raw = marked.parse(text);
     // If DOMPurify failed to load, fall back to escaping rather than inject raw HTML.
     return typeof DOMPurify !== "undefined" ? DOMPurify.sanitize(raw) : raw.replace(/</g, "&lt;");
-  }, [text]);
+  }, [text, live]);
+  if (live) {
+    return <div className="forge-md" style={{ whiteSpace: "pre-wrap", ...style }}>{text}</div>;
+  }
   return <div className="forge-md" style={style} dangerouslySetInnerHTML={{ __html: html }} />;
 };
 

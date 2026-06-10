@@ -62,13 +62,15 @@ function mapEvalResults(api) {
       label: meta.label || key,
       sublabel: meta.sublabel || "",
       model: m.model,
-      total: m.total,
+      // Default every numeric field: one eval JSON missing a field must not
+      // unmount the Eval screen on a .toFixed() of undefined.
+      total: m.total ?? 0,
       totalCost: m.total_cost_usd ?? 0,
       answerCost: m.answer_cost_usd ?? m.total_cost_usd ?? 0,
-      latencyAvg: m.latency_avg_s,
-      latencyTotal: m.latency_total_s,
-      inputTokens: m.input_tokens,
-      outputTokens: m.output_tokens,
+      latencyAvg: m.latency_avg_s ?? 0,
+      latencyTotal: m.latency_total_s ?? 0,
+      inputTokens: m.input_tokens ?? 0,
+      outputTokens: m.output_tokens ?? 0,
       binary: {
         accuracy: m.compliance_binary?.accuracy ?? 0,
         recallNonCompliant: m.compliance_binary?.recall_non_compliant ?? 0,

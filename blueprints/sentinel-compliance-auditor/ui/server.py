@@ -12,6 +12,7 @@ API that the React app uses to:
 from __future__ import annotations
 
 import asyncio
+import functools
 import json
 import os
 import queue
@@ -201,27 +202,33 @@ _REG_LABEL = {
 
 
 _SOP_ID_RE = re.compile(r"^SOP-([A-Z]+)-(\d+)$")
+_SOP_FILE_RE = re.compile(r"^sop_([a-z]+)_(\d+)_.*\.md$")
 
 
-def _sop_file_glob(sop_id: str) -> str | None:
-    """`SOP-ISEC-008` → `sop_isec_008_*.md` glob, matching real on-disk filenames."""
-    m = _SOP_ID_RE.match(sop_id.strip())
-    if not m:
-        return None
-    return f"sop_{m.group(1).lower()}_{m.group(2).zfill(3)}_*.md"
+@functools.lru_cache(maxsize=1)
+def _sop_path_index() -> dict[str, Path]:
+    """{'SOP-ISEC-008' → path} from one walk of the SOP tree.
+
+    /api/findings resolves title + unit for up to 100 Jira issues per request;
+    without the index each resolution rglob'd the whole tree (~200 walks)."""
+    index: dict[str, Path] = {}
+    if not SOPS_DIR.exists():
+        return index
+    for path in SOPS_DIR.rglob("sop_*.md"):
+        m = _SOP_FILE_RE.match(path.name)
+        if m:
+            index[f"SOP-{m.group(1).upper()}-{m.group(2)}"] = path
+    return index
 
 
 def _find_sop_path(sop_id: str) -> Path | None:
-    if not SOPS_DIR.exists():
+    m = _SOP_ID_RE.match(sop_id.strip())
+    if not m:
         return None
-    glob = _sop_file_glob(sop_id)
-    if not glob:
-        return None
-    for path in SOPS_DIR.rglob(glob):
-        return path
-    return None
+    return _sop_path_index().get(f"SOP-{m.group(1)}-{m.group(2).zfill(3)}")
 
 
+@functools.lru_cache(maxsize=512)
 def _sop_unit(sop_id: str) -> str:
     """Resolve SOP-XYZ-NNN → business unit display label (e.g. 'Information Security')."""
     path = _find_sop_path(sop_id)
@@ -234,6 +241,7 @@ def _sop_unit(sop_id: str) -> str:
     return _BU_LABELS.get(bu_dir[:2], bu_dir.replace("_", " ").title())
 
 
+@functools.lru_cache(maxsize=512)
 def _sop_title(sop_id: str) -> str:
     """Read the `title:` frontmatter of a SOP. Returns '' if not found."""
     path = _find_sop_path(sop_id)
@@ -610,11 +618,14 @@ def _normalize_event(event, agent: str = "") -> list[str]:
             if isinstance(content, str) and content:
                 return [json.dumps({"type": "token", "agent": agent, "text": content})]
         elif msg_type in ("tool", "ToolMessage", "ToolMessageChunk") and content:
+            # ToolMessage content can be a list of content blocks; the client
+            # calls string methods on it (startsWith/match), so coerce here.
+            text = content if isinstance(content, str) else json.dumps(content, default=str)
             return [json.dumps({
                 "type": "tool_result", "agent": agent,
                 "name": msg.get("name", ""),
                 "tool_call_id": msg.get("tool_call_id", ""),
-                "text": content,
+                "text": text,
             })]
 
     elif event.event == "values" and isinstance(event.data, dict):
