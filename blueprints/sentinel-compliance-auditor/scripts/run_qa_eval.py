@@ -189,7 +189,9 @@ def aggregate(mode: str, rows: list[dict]) -> dict:
 
     model = next((r["output"].get("model") for r in rows if r["output"].get("model")), "")
     answer_cost = estimate_cost(model, in_tokens, out_tokens)
-    judge_cost = estimate_cost(model, judge_in, judge_out)
+    # Judge tokens are priced at the JUDGE's model rate, not the contestant's.
+    from sentinel.eval.judge import JUDGE_MODEL
+    judge_cost = estimate_cost(JUDGE_MODEL, judge_in, judge_out)
 
     # Compliance scoring for sop_compliance questions — both binary (primary) and 3-class (secondary).
     gt: dict = {}
@@ -282,6 +284,40 @@ def aggregate(mode: str, rows: list[dict]) -> dict:
         "per_category": per_category,
         "rows": rows,
     }
+
+
+def _run_config(dataset_path: Path) -> dict:
+    """Provenance stamp: results are only comparable when produced against the
+    same corpus, dataset, judge, and code — record all of it in the payload.
+    (The regulation index once grew ~7x between runs with nothing flagging the
+    old numbers as incomparable.)"""
+    import hashlib
+    import subprocess
+
+    from sentinel.eval.judge import JUDGE_MODEL
+
+    cfg: dict = {
+        "judge_model": JUDGE_MODEL,
+        "temperature": 0.1,
+        "dataset_sha256": hashlib.sha256(dataset_path.read_bytes()).hexdigest()[:16],
+    }
+    try:
+        cfg["git_commit"] = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            capture_output=True, text=True, timeout=5,
+        ).stdout.strip()
+    except Exception:
+        pass
+    try:
+        from pinecone import Pinecone
+        from sentinel.config import PINECONE_API_KEY, PINECONE_INDEX_NAME
+        stats = Pinecone(api_key=PINECONE_API_KEY).Index(PINECONE_INDEX_NAME).describe_index_stats()
+        ns = (getattr(stats, "namespaces", None) or {}).get("regulations")
+        if ns is not None:
+            cfg["kb_regulation_chunks"] = getattr(ns, "vector_count", None) or ns.get("vector_count")
+    except Exception:
+        pass
+    return cfg
 
 
 def write_results(payload: dict, out_dir: Path, label: str, timestamp: str) -> Path:
@@ -423,10 +459,12 @@ def main():
     else:
         modes = [args.mode]
 
+    run_config = _run_config(dataset_path)
     summaries = {}
     for mode in modes:
         print(f"\n--- Running {mode} ({len(rows)} questions, {args.workers} worker(s)) ---")
         summary = run_mode(mode, rows, run_judge, workers=args.workers)
+        summary["config"] = run_config
         # Sanitize mode-name into a filesystem-safe label (agentic-openai → agentic_openai).
         file_label = mode.replace("-", "_")
         path = write_results(summary, results_dir, file_label, timestamp)

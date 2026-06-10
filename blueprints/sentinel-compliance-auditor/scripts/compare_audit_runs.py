@@ -28,6 +28,7 @@ from scripts.validate_run import (
     macro_f1_for,
     worst_level,
 )
+from sentinel.eval.metrics import bootstrap_ci
 
 
 def fetch_tool_calls(run_id: str) -> dict:
@@ -90,9 +91,14 @@ def analyze_run(run_id: str) -> dict:
             "matched": quality["matched"],
             "total": quality["total"],
             "accuracy": quality["matched"] / quality["total"] if quality["total"] else 0,
+            # Coverage-adjusted: missing pairs count as wrong. Without this, a
+            # model that errors out on hard SOPs ranks HIGHER (abstention is
+            # silently rewarded by scoring only the pairs it answered).
+            "accuracy_coverage": quality["matched"] / len(gt) if gt else 0,
             "false_positives": quality["false_positives"],
             "false_negatives": quality["false_negatives"],
             "macro_f1": f1,
+            "macro_f1_ci": bootstrap_ci(gt, predicted)["macro_f1_ci"],
             "missing": len(quality["missing_in_run"]),
             "extra": quality["extra_in_run"],
         },
@@ -152,8 +158,10 @@ def print_comparison(runs: list[dict]):
     print("QUALITY (vs revised compliance matrix)")
     q = [r["quality"] for r in runs]
     print("  Matched".ljust(24) + "".join(fmt(f"{x['matched']}/{x['total']}") for x in q))
-    print("  Accuracy".ljust(24) + "".join(fmt(f"{x['accuracy']:.3f}") for x in q))
+    print("  Accuracy (scored)".ljust(24) + "".join(fmt(f"{x['accuracy']:.3f}") for x in q))
+    print("  Accuracy (coverage)".ljust(24) + "".join(fmt(f"{x.get('accuracy_coverage', 0):.3f}") for x in q))
     print("  Macro F1".ljust(24) + "".join(fmt(f"{x['macro_f1']:.3f}") for x in q))
+    print("  Macro F1 95% CI".ljust(24) + "".join(fmt(f"[{x['macro_f1_ci'][0]:.2f},{x['macro_f1_ci'][1]:.2f}]") for x in q))
     print("  False pos (strict)".ljust(24) + "".join(fmt(str(x["false_positives"])) for x in q))
     print("  False neg (lenient)".ljust(24) + "".join(fmt(str(x["false_negatives"])) for x in q))
     print("  Missing (no finding)".ljust(24) + "".join(fmt(str(x["missing"])) for x in q))
@@ -166,7 +174,10 @@ def print_comparison(runs: list[dict]):
     by_f1 = sorted(runs, key=lambda r: r["quality"]["macro_f1"], reverse=True)
     by_cost = sorted(runs, key=lambda r: r["cost"])
     by_latency = sorted(runs, key=lambda r: r["latency_s"] or float("inf"))
-    print(f"  Best quality:  {by_f1[0]['model'].split('/')[-1]} (F1={by_f1[0]['quality']['macro_f1']:.3f})")
+    best = by_f1[0]["quality"]
+    print(f"  Best quality:  {by_f1[0]['model'].split('/')[-1]} (F1={best['macro_f1']:.3f}, 95% CI [{best['macro_f1_ci'][0]:.3f}, {best['macro_f1_ci'][1]:.3f}])")
+    if len(by_f1) > 1 and by_f1[1]["quality"]["macro_f1"] >= best["macro_f1_ci"][0]:
+        print("  NOTE: runner-up's F1 falls inside the leader's CI — the quality ranking is not statistically significant.")
     print(f"  Cheapest:      {by_cost[0]['model'].split('/')[-1]} (${by_cost[0]['cost']:.2f})")
     print(f"  Fastest:       {by_latency[0]['model'].split('/')[-1]} ({by_latency[0]['latency_s']:.0f}s)")
 

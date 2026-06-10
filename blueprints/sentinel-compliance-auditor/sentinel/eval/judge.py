@@ -1,9 +1,9 @@
 """LLM-as-judge for freeform Q&A answers.
 
-Caveat: by default the judge uses the same Nebius model that's being graded.
-That's a known self-grading bias — documented in the eval comparison output.
-For the demo it keeps cost down and the relative ranking (naive vs agentic)
-is what we care about, not absolute scores.
+The judge is deliberately a NON-contestant model (Kimi-K2.6): the graded
+configurations run DeepSeek-V4-Pro, GPT-5.5, and Nemotron-Ultra, and grading
+any of them with one of their own family invites self-grading bias in exactly
+the per-category patterns the eval is meant to compare.
 """
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ Respond with ONLY a JSON object in this exact form (no markdown, no commentary):
 {{"correctness": 0|1|2, "citations": 0|1|2, "rationale": "one-sentence justification"}}"""
 
 
-JUDGE_MODEL = NEBIUS_MODELS["deepseek-v4-pro"]
+JUDGE_MODEL = NEBIUS_MODELS["kimi-k2"]
 
 
 def _build_judge_model():

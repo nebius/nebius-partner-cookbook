@@ -390,6 +390,13 @@ def print_full_report(gt, predicted, label=""):
     print(f"  False positive:  {m['false_positives']:>4}/{gt_total}  ({fp_pct:.1f}%)  (too strict)")
     print(f"  False negative:  {m['false_negatives']:>4}/{gt_total}  ({fn_pct:.1f}%)  (too lenient)")
     print(f"  Failed:          {failed:>4}/{gt_total}  ({failed_pct:.1f}%)  (missing from run)")
+    from sentinel.eval.metrics import bootstrap_ci
+    ci = bootstrap_ci(gt, predicted)
+    if ci["n"]:
+        acc_lo, acc_hi = ci["accuracy_ci"]
+        f1_lo, f1_hi = ci["macro_f1_ci"]
+        print(f"  95% CI (bootstrap, n={ci['n']} scored): accuracy [{acc_lo:.3f}, {acc_hi:.3f}], macro F1 [{f1_lo:.3f}, {f1_hi:.3f}]")
+        print(f"  Deltas inside these intervals are not significant.")
     print(f"{'='*50}")
 
     # Confusion matrix

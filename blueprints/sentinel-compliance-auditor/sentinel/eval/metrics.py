@@ -189,3 +189,43 @@ def estimate_cost(model: str, input_tokens: int, output_tokens: int) -> float:
     """Tokens × `PRICING` (USD per 1M tokens)."""
     prices = PRICING.get(model, {"input": 0, "output": 0})
     return (input_tokens / 1_000_000) * prices["input"] + (output_tokens / 1_000_000) * prices["output"]
+
+
+def bootstrap_ci(gt: dict, predicted: dict, n_boot: int = 1000, seed: int = 0,
+                 alpha: float = 0.05) -> dict:
+    """Percentile-bootstrap confidence intervals for accuracy and macro F1.
+
+    Resamples the scored keys (gt ∩ predicted) with replacement. Without CIs
+    the benchmark declares winners on point estimates whose ~±4% sampling
+    noise at n=420 swallows typical inter-model deltas.
+    """
+    import random
+
+    keys = [k for k in gt if k in predicted]
+    n = len(keys)
+    if n == 0:
+        return {"n": 0, "accuracy_ci": (0.0, 0.0), "macro_f1_ci": (0.0, 0.0)}
+
+    rng = random.Random(seed)
+    accs: list[float] = []
+    f1s: list[float] = []
+    for _ in range(n_boot):
+        confusion: dict = defaultdict(int)
+        matched = 0
+        for _ in range(n):
+            k = keys[rng.randrange(n)]
+            confusion[(gt[k], predicted[k])] += 1
+            if gt[k] == predicted[k]:
+                matched += 1
+        accs.append(matched / n)
+        f1s.append(macro_f1(confusion))
+
+    accs.sort()
+    f1s.sort()
+    lo = int(n_boot * alpha / 2)
+    hi = max(lo, int(n_boot * (1 - alpha / 2)) - 1)
+    return {
+        "n": n,
+        "accuracy_ci": (accs[lo], accs[hi]),
+        "macro_f1_ci": (f1s[lo], f1s[hi]),
+    }
