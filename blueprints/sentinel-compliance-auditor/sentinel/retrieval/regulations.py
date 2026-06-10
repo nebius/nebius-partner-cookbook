@@ -81,15 +81,23 @@ def format_regulation_context(chunks: list[dict], max_chars: int = 12000) -> str
     parts = []
     total = 0
     for reg, reg_chunks in sorted(by_regulation.items()):
-        parts.append(f"\n### {reg}\n")
-        total += len(parts[-1])
+        # Emit the regulation header lazily so budget exhaustion can't leave a
+        # dangling empty "### {reg}", and count header chars toward max_chars.
+        reg_header = f"\n### {reg}\n"
+        header_emitted = False
         for chunk in reg_chunks:
             section = chunk.get("section", "")
             text = chunk.get("text", "")
-            if total + len(text) > max_chars:
+            section_header = f"**{section}**\n" if section else ""
+            piece = f"{section_header}{text}\n"
+            needed = len(piece) + (0 if header_emitted else len(reg_header))
+            if total + needed > max_chars:
                 break
-            header = f"**{section}**\n" if section else ""
-            parts.append(f"{header}{text}\n")
-            total += len(text)
+            if not header_emitted:
+                parts.append(reg_header)
+                total += len(reg_header)
+                header_emitted = True
+            parts.append(piece)
+            total += len(piece)
 
     return "\n".join(parts)

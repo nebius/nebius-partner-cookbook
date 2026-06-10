@@ -50,7 +50,11 @@ def load_sop_by_id(sop_id: str) -> dict | None:
             return parsed
 
         if query in title.lower() or query in sid.lower():
-            score = len(query) / max(len(title), 1)
+            # Score against the field that actually matched (tightest match
+            # wins) — scoring an ID match against the title length skewed
+            # ranking toward SOPs with short titles.
+            matched_lens = [len(f) for f in (title, sid) if query in f.lower()]
+            score = len(query) / max(min(matched_lens), 1)
             if score > best_score:
                 best_score = score
                 best_match = parsed

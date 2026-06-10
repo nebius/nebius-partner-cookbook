@@ -10,7 +10,7 @@ from sentinel.config import (
     PINECONE_INDEX_NAME,
     REGULATIONS_DIR,
 )
-from sentinel.retrieval.ingest import embed_texts, with_retries
+from sentinel.retrieval.ingest import chunk_sections, embed_texts, md_header, with_retries
 
 REGULATION_MAP = {
     # Core 9 frameworks
@@ -72,9 +72,12 @@ EDITION_PATTERNS = {
 
 
 def _detect_regulation(filename: str) -> str:
-    for prefix, reg in REGULATION_MAP.items():
-        if prefix in filename:
-            return reg
+    # Longest key first + startswith: unanchored substring matching with
+    # insertion-order precedence could attribute a file to whichever shorter
+    # key happened to occur first inside its name.
+    for prefix in sorted(REGULATION_MAP, key=len, reverse=True):
+        if filename.startswith(prefix):
+            return REGULATION_MAP[prefix]
     return "Unknown"
 
 
@@ -85,114 +88,67 @@ def _detect_edition(filename: str) -> str:
     return "current"
 
 
-def _chunk_txt(filepath: Path, chunk_size: int = 1200, overlap: int = 200) -> list[dict]:
-    """Chunk a .txt regulation file by section headers (§ or === markers)."""
+def _txt_header(section: str) -> str:
+    """Header of a .txt regulation section: a '§ ...' line directly, or — when
+    the section opens with a ===/--- ruler — the first non-ruler line below it
+    (the title used to strip to '' and the section lost its name)."""
+    lines = section.split("\n")
+    first = lines[0].strip()
+    if first.startswith("§"):
+        return first.strip("= -§").strip()
+    if first.startswith("=") or first.startswith("-"):
+        title = first.strip("= -§").strip()
+        if title:
+            return title
+        for line in lines[1:]:
+            line = line.strip()
+            if line and set(line) - {"=", "-", " "}:
+                return line.strip("= -§").strip()
+    return ""
+
+
+def _chunk_regulation_file(
+    filepath: Path,
+    *,
+    split_pattern: str,
+    extract_header,
+    continuation_prefix: str,
+    chunk_size: int = 1200,
+    overlap: int = 200,
+) -> list[dict]:
     text = filepath.read_text(encoding="utf-8")
     regulation = _detect_regulation(filepath.stem)
     edition = _detect_edition(filepath.stem)
-
-    sections = re.split(
-        r"(?=^  § |\n={40,}|\n-{40,})",
-        text,
-        flags=re.MULTILINE,
-    )
-
-    chunks = []
-    for section in sections:
-        section = section.strip()
-        if not section or len(section) < 20:
-            continue
-
-        header = ""
-        first_line = section.split("\n", 1)[0].strip()
-        if first_line.startswith("§") or first_line.startswith("="):
-            header = first_line.strip("= -§").strip()
-
-        if len(section) <= chunk_size:
-            chunks.append({
-                "text": section,
-                "section": header,
-                "regulation": regulation,
-                "edition": edition,
-                "source": filepath.name,
-            })
-        else:
-            words = section.split()
-            words_per_chunk = chunk_size // 5
-            start = 0
-            part = 0
-            while start < len(words):
-                end = start + words_per_chunk
-                chunk_text = " ".join(words[start:end])
-                if header and part > 0:
-                    chunk_text = f"§ {header} (continued)\n\n{chunk_text}"
-                chunks.append({
-                    "text": chunk_text,
-                    "section": header,
-                    "regulation": regulation,
-                    "edition": edition,
-                    "source": filepath.name,
-                })
-                part += 1
-                start = end - overlap // 5
-
-    return chunks
-
-
-def _chunk_md(filepath: Path, chunk_size: int = 1200, overlap: int = 200) -> list[dict]:
-    """Chunk a .md regulation file by article/section headers."""
-    text = filepath.read_text(encoding="utf-8")
-    regulation = _detect_regulation(filepath.stem)
-    edition = _detect_edition(filepath.stem)
-
-    sections = re.split(r"(?=^### )", text, flags=re.MULTILINE)
-
-    chunks = []
-    for section in sections:
-        section = section.strip()
-        if not section or len(section) < 20:
-            continue
-
-        header = ""
-        first_line = section.split("\n", 1)[0].strip()
-        if first_line.startswith("###"):
-            header = first_line.lstrip("# ").strip()
-
-        if len(section) <= chunk_size:
-            chunks.append({
-                "text": section,
-                "section": header,
-                "regulation": regulation,
-                "edition": edition,
-                "source": filepath.name,
-            })
-        else:
-            words = section.split()
-            words_per_chunk = chunk_size // 5
-            start = 0
-            part = 0
-            while start < len(words):
-                end = start + words_per_chunk
-                chunk_text = " ".join(words[start:end])
-                if header and part > 0:
-                    chunk_text = f"### {header} (continued)\n\n{chunk_text}"
-                chunks.append({
-                    "text": chunk_text,
-                    "section": header,
-                    "regulation": regulation,
-                    "edition": edition,
-                    "source": filepath.name,
-                })
-                part += 1
-                start = end - overlap // 5
-
-    return chunks
+    return [
+        {
+            "text": chunk_text,
+            "section": header,
+            "regulation": regulation,
+            "edition": edition,
+            "source": filepath.name,
+        }
+        for chunk_text, header in chunk_sections(
+            text,
+            split_pattern=split_pattern,
+            extract_header=extract_header,
+            chunk_size=chunk_size,
+            overlap=overlap,
+            continuation_prefix=continuation_prefix,
+            min_section_len=20,
+        )
+    ]
 
 
 def chunk_regulation(filepath: Path) -> list[dict]:
     if filepath.suffix == ".md":
-        return _chunk_md(filepath)
-    return _chunk_txt(filepath)
+        return _chunk_regulation_file(
+            filepath, split_pattern=r"(?=^### )",
+            extract_header=md_header("###"), continuation_prefix="### ",
+        )
+    return _chunk_regulation_file(
+        filepath, split_pattern=r"(?=^  § |\n={40,}|\n-{40,})",
+        extract_header=_txt_header, continuation_prefix="§ ",
+    )
 
 
 def ingest_regulations():

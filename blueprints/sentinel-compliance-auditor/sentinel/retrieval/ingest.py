@@ -37,6 +37,59 @@ def parse_sop(filepath: Path) -> dict:
     return {"frontmatter": frontmatter, "body": body, "path": str(filepath)}
 
 
+def chunk_sections(
+    text: str,
+    *,
+    split_pattern: str,
+    extract_header,
+    chunk_size: int,
+    overlap: int,
+    continuation_prefix: str,
+    min_section_len: int = 0,
+) -> list[tuple[str, str]]:
+    """Split ``text`` into ``(chunk_text, section_header)`` pairs.
+
+    The one section chunker shared by the SOP ingester and both regulation
+    chunkers (.txt and .md): sections come from ``split_pattern``; a section
+    longer than ``chunk_size`` is word-split (~5 chars/word) with ``overlap``
+    chars carried over, each continuation re-titled
+    ``{continuation_prefix}{header} (continued)``.
+    """
+    sections = re.split(split_pattern, text, flags=re.MULTILINE)
+    pairs: list[tuple[str, str]] = []
+    for section in sections:
+        section = section.strip()
+        if not section or len(section) < min_section_len:
+            continue
+        header = extract_header(section)
+        if len(section) <= chunk_size:
+            pairs.append((section, header))
+            continue
+        words = section.split()
+        words_per_chunk = chunk_size // 5  # ~5 chars per word avg
+        start = 0
+        part = 0
+        while start < len(words):
+            end = start + words_per_chunk
+            chunk_text = " ".join(words[start:end])
+            if header and part > 0:
+                chunk_text = f"{continuation_prefix}{header} (continued)\n\n{chunk_text}"
+            pairs.append((chunk_text, header))
+            part += 1
+            start = end - overlap // 5
+    return pairs
+
+
+def md_header(prefix: str):
+    """Header extractor for markdown sections split on `prefix` ('## ' for
+    SOPs, '###' for regulation .md files). Lines at other heading levels —
+    e.g. the H1 title block before the first section — yield no header."""
+    def extract(section: str) -> str:
+        first = section.split("\n", 1)[0]
+        return first.lstrip("# ").strip() if first.startswith(prefix) else ""
+    return extract
+
+
 def chunk_sop(filepath: Path, chunk_size: int = 1500, overlap: int = 200) -> list[dict]:
     """Split a parsed SOP into chunks, preserving section headers."""
     parsed = parse_sop(filepath)
@@ -48,61 +101,30 @@ def chunk_sop(filepath: Path, chunk_size: int = 1500, overlap: int = 200) -> lis
     business_unit = fm.get("business_unit", filepath.parent.name)
     regulations = fm.get("regulations", [])
 
-    sections = re.split(r"(?=^## )", body, flags=re.MULTILINE)
-
-    chunks = []
-    chunk_idx = 0
-    for section in sections:
-        section = section.strip()
-        if not section:
-            continue
-
-        section_header = ""
-        lines = section.split("\n", 1)
-        if lines[0].startswith("## "):
-            section_header = lines[0].lstrip("# ").strip()
-
-        if len(section) <= chunk_size:
-            chunks.append({
-                "id": f"{sop_id}::chunk-{chunk_idx:04d}",
-                "text": section,
-                "metadata": {
-                    "sop_id": sop_id,
-                    "title": title,
-                    "business_unit": business_unit,
-                    "section": section_header,
-                    "chunk_index": chunk_idx,
-                    "regulations": regulations,
-                    "source_path": str(filepath),
-                },
-            })
-            chunk_idx += 1
-        else:
-            words = section.split()
-            start = 0
-            while start < len(words):
-                end = start + chunk_size // 5  # ~5 chars per word avg
-                chunk_text = " ".join(words[start:end])
-                if section_header and start > 0:
-                    chunk_text = f"## {section_header} (continued)\n\n{chunk_text}"
-
-                chunks.append({
-                    "id": f"{sop_id}::chunk-{chunk_idx:04d}",
-                    "text": chunk_text,
-                    "metadata": {
-                        "sop_id": sop_id,
-                        "title": title,
-                        "business_unit": business_unit,
-                        "section": section_header,
-                        "chunk_index": chunk_idx,
-                        "regulations": regulations,
-                        "source_path": str(filepath),
-                    },
-                })
-                chunk_idx += 1
-                start = end - overlap // 5
-
-    return chunks
+    pairs = chunk_sections(
+        body,
+        split_pattern=r"(?=^## )",
+        extract_header=md_header("## "),
+        chunk_size=chunk_size,
+        overlap=overlap,
+        continuation_prefix="## ",
+    )
+    return [
+        {
+            "id": f"{sop_id}::chunk-{chunk_idx:04d}",
+            "text": chunk_text,
+            "metadata": {
+                "sop_id": sop_id,
+                "title": title,
+                "business_unit": business_unit,
+                "section": section_header,
+                "chunk_index": chunk_idx,
+                "regulations": regulations,
+                "source_path": str(filepath),
+            },
+        }
+        for chunk_idx, (chunk_text, section_header) in enumerate(pairs)
+    ]
 
 
 def with_retries(fn, attempts: int = 3, base_delay: float = 2.0):
