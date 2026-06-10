@@ -28,6 +28,7 @@ def retrieve_regulation_text(
     query: str,
     regulations: list[str] | None = None,
     top_k: int = 20,
+    editions: list[str] | None = None,
 ) -> list[dict]:
     """Retrieve regulation text chunks relevant to a query.
 
@@ -35,16 +36,22 @@ def retrieve_regulation_text(
         query: search query (e.g. SOP title + regulation names)
         regulations: optional filter — only return chunks from these regulations
         top_k: max chunks to return
+        editions: optional filter — e.g. ``["current"]`` to exclude superseded
+            historical editions (HIPAA 2017/2020/2024, EU AI Act 2021 proposal,
+            NIST AI RMF 2022 drafts). ``None`` searches every edition.
 
     Returns:
-        list of dicts with keys: text, section, regulation, source, score
+        list of dicts with keys: text, section, regulation, edition, source, score
     """
     index = _get_index()
     embedding = embed_texts([query])[0]
 
-    filter_dict = None
+    filter_dict: dict | None = {}
     if regulations:
-        filter_dict = {"regulation": {"$in": regulations}}
+        filter_dict["regulation"] = {"$in": regulations}
+    if editions:
+        filter_dict["edition"] = {"$in": editions}
+    filter_dict = filter_dict or None
 
     results = with_retries(lambda: index.query(
         vector=embedding,
@@ -54,13 +61,22 @@ def retrieve_regulation_text(
         filter=filter_dict,
     ))
 
+    # Dedup identical texts: some historical editions are byte-identical to
+    # each other (HIPAA 2017 vs 2020), so without this a top-k can spend
+    # several slots on copies of the same section.
     chunks = []
+    seen_texts: set[str] = set()
     for match in results.matches:
         meta = match.metadata or {}
+        text = meta.get("text", "")
+        if not text or text in seen_texts:
+            continue
+        seen_texts.add(text)
         chunks.append({
-            "text": meta.get("text", ""),
+            "text": text,
             "section": meta.get("section", ""),
             "regulation": meta.get("regulation", ""),
+            "edition": meta.get("edition", "current"),
             "source": meta.get("source", ""),
             "score": match.score,
         })
@@ -69,26 +85,43 @@ def retrieve_regulation_text(
 
 
 def format_regulation_context(chunks: list[dict], max_chars: int = 12000) -> str:
-    """Format retrieved regulation chunks into a text block for the LLM prompt."""
+    """Format retrieved regulation chunks into a text block for the LLM prompt.
+
+    The budget fills in descending-score order (regulation groups ordered by
+    their best chunk) — alphabetical grouping used to let a low-score group
+    exhaust the budget before a high-score one. Duplicate texts are skipped,
+    and non-current editions are labelled so the model can't silently quote
+    superseded text as current law.
+    """
     if not chunks:
         return ""
 
+    ordered = sorted(chunks, key=lambda c: c.get("score", 0.0), reverse=True)
     by_regulation: dict[str, list[dict]] = {}
-    for chunk in chunks:
+    for chunk in ordered:
         reg = chunk.get("regulation", "Unknown")
         by_regulation.setdefault(reg, []).append(chunk)
+    # dict insertion order = order of each regulation's best-scoring chunk
 
     parts = []
     total = 0
-    for reg, reg_chunks in sorted(by_regulation.items()):
+    seen_texts: set[str] = set()
+    for reg, reg_chunks in by_regulation.items():
         # Emit the regulation header lazily so budget exhaustion can't leave a
         # dangling empty "### {reg}", and count header chars toward max_chars.
         reg_header = f"\n### {reg}\n"
         header_emitted = False
         for chunk in reg_chunks:
-            section = chunk.get("section", "")
             text = chunk.get("text", "")
-            section_header = f"**{section}**\n" if section else ""
+            if not text or text in seen_texts:
+                continue
+            seen_texts.add(text)
+            section = chunk.get("section", "")
+            edition = chunk.get("edition", "current")
+            label = section
+            if edition and edition != "current":
+                label = f"{section} [edition: {edition}]".strip()
+            section_header = f"**{label}**\n" if label else ""
             piece = f"{section_header}{text}\n"
             needed = len(piece) + (0 if header_emitted else len(reg_header))
             if total + needed > max_chars:

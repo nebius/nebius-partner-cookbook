@@ -175,15 +175,25 @@ def list_sops(query: str = "") -> str:
     return f"{len(all_sops)} SOPs:\n" + "\n".join(lines)
 
 
+def _editions_filter(edition: str) -> list[str] | None:
+    """Map the tool-level `edition` arg to the retrieval filter. Default is
+    current-only — superseded editions (HIPAA 2017/2020, EU AI Act 2021
+    proposal) must be requested explicitly, not retrieved by accident."""
+    edition = (edition or "").strip().lower()
+    if edition in ("", "all", "any"):
+        return None
+    return [edition]
+
+
 @tool
-def retrieve_regulation_text_tool(query: str, regulation: str = "") -> str:
-    """Retrieve regulation text from the knowledge base for a given query. Optionally filter by regulation name (e.g. 'HIPAA', 'SOC 2', 'GDPR')."""
+def retrieve_regulation_text_tool(query: str, regulation: str = "", edition: str = "current") -> str:
+    """Retrieve regulation text from the knowledge base for a given query. Optionally filter by regulation name (e.g. 'HIPAA', 'SOC 2', 'GDPR'). `edition` defaults to 'current'; pass a historical edition (e.g. '2017', '2021-proposal') or 'all' to search every edition."""
     if not PINECONE_API_KEY:
         return "Pinecone not configured. Use local retrieval mode."
     try:
         from sentinel.retrieval.regulations import retrieve_regulation_text, format_regulation_context
         regs = [regulation] if regulation else None
-        chunks = retrieve_regulation_text(query, regulations=regs, top_k=15)
+        chunks = retrieve_regulation_text(query, regulations=regs, top_k=15, editions=_editions_filter(edition))
         if not chunks:
             return f"No regulation text found for: {query}"
         context = format_regulation_context(chunks)
@@ -281,8 +291,8 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
         return f"Recorded finding #{len(recorded_findings)}: {requirement_id} ({regulation}) — {cl}/{sev}"
 
     @tool
-    def retrieve_regulation_rag(query: str = "", regulation: str = "") -> str:
-        """Search the Pinecone vector store for regulation text chunks via semantic similarity. Use targeted queries like 'HIPAA access control requirements' or 'SOC 2 CC6 logical access'. Optionally filter by regulation name. The `query` argument is required and must be a non-empty search phrase."""
+    def retrieve_regulation_rag(query: str = "", regulation: str = "", edition: str = "current") -> str:
+        """Search the Pinecone vector store for regulation text chunks via semantic similarity. Use targeted queries like 'HIPAA access control requirements' or 'SOC 2 CC6 logical access'. Optionally filter by regulation name. `edition` defaults to 'current'; pass a historical edition (e.g. '2017', '2021-proposal') or 'all' only when comparing editions. The `query` argument is required and must be a non-empty search phrase."""
         if not isinstance(query, str) or not query.strip():
             return "Missing or empty 'query' argument — please re-issue with a specific search phrase"
         if not PINECONE_API_KEY:
@@ -292,7 +302,7 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
         try:
             from sentinel.retrieval.regulations import retrieve_regulation_text, format_regulation_context
             regs = [regulation] if regulation else None
-            chunks = retrieve_regulation_text(query, regulations=regs, top_k=15)
+            chunks = retrieve_regulation_text(query, regulations=regs, top_k=15, editions=_editions_filter(edition))
             if not chunks:
                 return f"No regulation text found for: {query}"
             context = format_regulation_context(chunks)
