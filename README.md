@@ -3,7 +3,7 @@
 <h1 align="center">Agent Blueprint Recipes</h1>
 
 <p align="center">
-  <strong>Production-grade recipes for building AI agents on <a href="https://nebius.com/services/token-factory">Nebius AgentKit</a>.</strong>
+  <strong>Production-grade recipes for building AI agents on <a href="https://nebius.com">Nebius</a>.</strong>
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 ---
 
-Agent Blueprint Recipes is a curated collection of runnable, production-shaped code for building AI agents on Nebius AgentKit. It comes in two tiers. **Recipes** are small, sequenced FastAPI applications — typed, observable, containerized, and tested — that you can clone, configure, and deploy in five minutes. **Blueprints** are complete, deployable reference applications that show what a real agent looks like at full scale.
+Agent Blueprint Recipes is a curated collection of runnable, production-shaped code for building AI agents on Nebius. It comes in two tiers. **Recipes** are small, sequenced FastAPI applications — typed, observable, containerized, and tested — that you can clone, configure, and deploy in five minutes. **Blueprints** are complete, deployable reference applications that show what a real agent looks like at full scale.
 
 It is for engineers who have called an LLM API from a script and want to know what the gap looks like between that script and something they would actually ship.
 
@@ -117,7 +117,7 @@ In another terminal:
 ```bash
 curl -N -X POST http://localhost:8000/agent/run \
   -H 'content-type: application/json' \
-  -d '{"prompt":"Explain Nebius AgentKit in one paragraph."}'
+  -d '{"prompt":"Explain Nebius in one paragraph."}'
 ```
 
 You should see Server-Sent Events streaming back, with `status`, `token`, and `done` events.

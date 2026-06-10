@@ -20,7 +20,7 @@ In another terminal:
 ```bash
 curl -N -X POST http://localhost:8000/agent/run \
   -H 'content-type: application/json' \
-  -d '{"prompt":"Explain Nebius AgentKit in one paragraph."}'
+  -d '{"prompt":"Explain Nebius in one paragraph."}'
 ```
 
 You should see Server-Sent Events streaming back, with `status`, `token`, and `done` events.

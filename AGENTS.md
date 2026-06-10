@@ -6,7 +6,7 @@ This file is the **single source of truth** for any coding agent working on this
 
 ## 1. Project at a glance
 
-The Nebius Cookbook is a public, GitHub-hosted collection of **production-grade recipes** for building AI agents on [Nebius AgentKit](https://nebius.com/services/token-factory). It launches at the Nebius customer conference on **June 9, 2026** (press and analysts in the room) together with a live keynote demo.
+The Nebius Cookbook is a public, GitHub-hosted collection of **production-grade recipes** for building AI agents on [Nebius](https://nebius.com). It launches at the Nebius customer conference on **June 9, 2026** (press and analysts in the room) together with a live keynote demo.
 
 **Ship deadline: ten cookbooks must be ready by June 4, 2026** (five working days before the keynote, to leave room for rehearsal, review, and last-minute fixes). The arc now runs from a first production-shaped agent, through retrieval and real-time context, then LangChain/LangGraph orchestration, short-term memory, long-term memory, LangSmith observability, guardrails, MCP-powered actions, and simulation.
 
@@ -600,7 +600,7 @@ Ten cookbooks must be ready by **June 4, 2026** for the June 9 keynote. Cookbook
 **Story.** A developer who has only ever called OpenAI from Python clones this repo, swaps in a Nebius key, and ships a production-shape FastAPI agent in under ten minutes.
 
 **What's in scope:**
-- Single LLM call to Nebius AgentKit via the OpenAI SDK pointed at Nebius
+- Single LLM call to Nebius via the OpenAI SDK pointed at Nebius
 - Streaming SSE to the client with status and token events
 - Pydantic Settings with validation at boot
 - structlog JSON logging with request IDs
@@ -912,7 +912,7 @@ The app deploys to Clever Cloud on push to `main`. Cookbooks deploy to Nebius Co
 
 These are decisions still to be made. An agent encountering one of these should stop and ask.
 
-1. **Exact Nebius model IDs to use.** The model strings above are placeholders. Verify against the current Nebius AgentKit model catalog before hardcoding them in recipes.
+1. **Exact Nebius model IDs to use.** The model strings above are placeholders. Verify against the current Nebius model catalog before hardcoding them in recipes.
 2. **Branding assets.** Logo SVG, colors, typography. To be provided by Nebius in week 1.
 3. **Clever Cloud build configuration.** Bun-native build vs. fallback to npm install. To be confirmed during kickoff.
 4. **Nebius Compute deployment target.** VM vs. serverless 3.5. To be confirmed.

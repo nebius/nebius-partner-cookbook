@@ -55,7 +55,7 @@ In another terminal:
 ```bash
 curl -N -X POST http://localhost:8000/agent/run \
   -H 'content-type: application/json' \
-  -d '{"prompt":"Explain Nebius AgentKit in one paragraph."}'
+  -d '{"prompt":"Explain Nebius in one paragraph."}'
 ```
 
 You'll see SSE events arriving:
@@ -89,7 +89,7 @@ curl -N -X POST http://localhost:8000/agent/run \
   -d '{
         "prompt": "And who maintains it?",
         "history": [
-          {"role": "user", "content": "What is Nebius AgentKit?"},
+          {"role": "user", "content": "What is Nebius?"},
           {"role": "assistant", "content": "It is ..."}
         ]
       }'
@@ -135,7 +135,7 @@ AsyncOpenAI(
 )
 ```
 
-Nebius AgentKit is OpenAI-wire-compatible, so the OpenAI SDK works unchanged — the same `chat.completions.create(...)` call, the same streaming protocol. That compatibility is the reason every recipe in this cookbook can stay on one client library.
+Nebius is OpenAI-wire-compatible, so the OpenAI SDK works unchanged — the same `chat.completions.create(...)` call, the same streaming protocol. That compatibility is the reason every recipe in this cookbook can stay on one client library.
 Later cookbooks keep this client boundary and add capabilities around it.
 
 Two decisions worth calling out:

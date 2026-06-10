@@ -77,7 +77,7 @@ Approving it calls Stripe MCP and returns a test checkout URL.
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `NEBIUS_API_KEY` | required | Nebius AgentKit API key. |
+| `NEBIUS_API_KEY` | required | Nebius API key. |
 | `STRIPE_SECRET_KEY` | `sk_test_replace_me` | Setup-only key used by `make seed-stripe-books`. |
 | `STRIPE_MCP_API_KEY` | `rk_test_replace_me` | Runtime key used to call remote Stripe MCP. |
 | `STRIPE_MCP_BASE_URL` | `https://mcp.stripe.com` | Remote Stripe MCP endpoint. |
