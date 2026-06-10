@@ -51,7 +51,10 @@ jobs:
 
       - name: Check JSX compiles
         # The UI compiles JSX in-browser via babel-standalone; a syntax error
-        # only surfaces at page load without this.
+        # only surfaces at page load without this. Babel installs into an
+        # isolated dir: npm run from the blueprint walks up to the repo-root
+        # bun workspace and chokes on its workspace:* protocol.
         run: |
-          npm install --no-save @babel/standalone
-          node scripts/check_jsx.mjs
+          mkdir -p "$RUNNER_TEMP/jsx-check"
+          (cd "$RUNNER_TEMP/jsx-check" && npm init -y >/dev/null && npm install --silent @babel/standalone)
+          BABEL_STANDALONE_DIR="$RUNNER_TEMP/jsx-check/node_modules" node scripts/check_jsx.mjs

@@ -2,13 +2,18 @@
 // uses (index.html loads babel.min.js and compiles JSX at page load, so a
 // syntax error only surfaces when someone opens the UI). Run via:
 //   npm install --no-save @babel/standalone && node scripts/check_jsx.mjs
+// or, when npm can't install here (the repo root is a bun workspace whose
+// workspace:* protocol npm rejects), install anywhere and point at it:
+//   BABEL_STANDALONE_DIR=/path/to/node_modules node scripts/check_jsx.mjs
 import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
-const Babel = require("@babel/standalone");
+const Babel = process.env.BABEL_STANDALONE_DIR
+  ? require(join(process.env.BABEL_STANDALONE_DIR, "@babel", "standalone"))
+  : require("@babel/standalone");
 
 const staticDir = join(dirname(fileURLToPath(import.meta.url)), "..", "ui", "static");
 const files = readdirSync(staticDir, { recursive: true })
