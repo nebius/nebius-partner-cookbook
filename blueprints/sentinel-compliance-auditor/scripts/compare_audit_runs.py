@@ -55,7 +55,11 @@ def analyze_run(run_id: str) -> dict:
     stats = parse_run_stats(run_data["content"], run_data)
 
     gt = load_ground_truth(revised=True)
-    findings, total_parsed, failed_sops, error_sops = parse_full_findings(run_data["content"])
+    if run_data["content"]:
+        findings, total_parsed, failed_sops, error_sops = parse_full_findings(run_data["content"])
+    else:
+        print("  No audit content found — quality metrics will be empty.")
+        findings, total_parsed, failed_sops, error_sops = {}, 0, [], []
     predicted = {}
     for (sop, reg), levels in findings.items():
         predicted[(sop, reg)] = worst_level(levels)

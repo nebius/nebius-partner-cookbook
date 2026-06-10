@@ -223,10 +223,22 @@ def classify_regulation(criterion):
         return "GDPR"
     if c.startswith("EUAI") or c.startswith("EU-AI") or c.startswith("EUAIAct") or c.startswith("EU AI"):
         return "EU AI Act"
-    if c.startswith("NIST"):
+    # Only the AI RMF maps to "NIST AI RMF" — sub-agents also cite NIST
+    # SP 800-53/63B/207 and CSF, which have no ground-truth rows and must
+    # not fold into the AI RMF aggregation.
+    if c.startswith(("NIST-AI", "NIST AI", "NIST_AI", "AI RMF", "AI-RMF")):
         return "NIST AI RMF"
+    if re.match(r"^(GOVERN|MAP|MEASURE|MANAGE)[\s\-._]?\d", c):
+        return "NIST AI RMF"  # bare AI RMF function IDs, e.g. "GOVERN 1.1"
+    if c.startswith("NIST"):
+        return None
     if c.startswith("SR11") or c.startswith("SR-11") or c.startswith("SR 11"):
         return "SR 11-7"
+    # Bare clause IDs without a framework prefix
+    if re.match(r"^CC\s?\d", c):
+        return "SOC 2"  # trust services criteria, e.g. "CC6.1"
+    if re.match(r"^(?:§\s*)?16[024]\.\d", c):
+        return "HIPAA"  # 45 CFR Part 160/162/164, e.g. "164.312(a)(2)(iv)"
     if c.startswith("CA-") or c.startswith("California"):
         return None
     return None
@@ -259,6 +271,7 @@ def parse_full_findings(text):
     sop_count = 0
     failed_sops = []
     error_sops = []
+    unclassified = 0
 
     for line in text.split("\n"):
         failed_match = re.match(r'^SOP (SOP-[A-Z]+-\d+): sub-agent did not produce', line)
@@ -266,7 +279,10 @@ def parse_full_findings(text):
             failed_sops.append(failed_match.group(1))
             continue
 
-        error_match = re.match(r'^(SOP-[A-Z]+-\d+): FAILED', line)
+        # Two error formats: "{sop_id}: FAILED — ..." from the batch wrappers,
+        # "FAILED: {sop_id} — sub-agent error: ..." from the sub-agent impl.
+        error_match = (re.match(r'^(SOP-[A-Z]+-\d+): FAILED', line)
+                       or re.match(r'^FAILED: (SOP-[A-Z]+-\d+)', line))
         if error_match:
             error_sops.append(error_match.group(1))
             current_sop = None
@@ -286,6 +302,11 @@ def parse_full_findings(text):
             if reg:
                 findings[(current_sop, reg)].append(level)
                 total_parsed += 1
+            else:
+                unclassified += 1
+
+    if unclassified:
+        print(f"  Note: {unclassified} findings had criterion IDs that map to no ground-truth regulation and were skipped")
 
     if sop_count > 0 and total_parsed == 0:
         print(f"  WARNING: Found {sop_count} SOP headers but 0 finding details — this run used a compact")
@@ -500,7 +521,11 @@ def compare_runs(run_ids, gt):
     for run_data in run_data_list:
         content = run_data["content"]
         stats = parse_run_stats(content, run_data)
-        all_findings, total_parsed, failed_sops, error_sops = parse_full_findings(content)
+        if content:
+            all_findings, total_parsed, failed_sops, error_sops = parse_full_findings(content)
+        else:
+            print(f"  No audit content found for {run_data['label']} — quality metrics will be empty.")
+            all_findings, total_parsed, failed_sops, error_sops = {}, 0, [], []
         predicted = {key: worst_level(levels) for key, levels in all_findings.items()}
         m = compute_metrics(gt, predicted)
 
