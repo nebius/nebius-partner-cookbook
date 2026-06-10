@@ -85,6 +85,8 @@ def list_regulations() -> str:
     if not PINECONE_API_KEY:
         return _list_regulations_local()
     try:
+        import concurrent.futures
+
         from sentinel.config import PINECONE_INDEX_NAME
         from sentinel.retrieval.ingest import embed_texts
         from sentinel.retrieval.ingest_regulations import REGULATION_MAP
@@ -97,8 +99,7 @@ def list_regulations() -> str:
         query_text = "regulatory compliance requirements"
         embedding = embed_texts([query_text])[0]
 
-        regs: dict[str, set[str]] = {}
-        for reg_name in known_regs:
+        def _sources_for(reg_name: str) -> set[str]:
             results = index.query(
                 vector=embedding,
                 top_k=5,
@@ -106,10 +107,20 @@ def list_regulations() -> str:
                 include_metadata=True,
                 filter={"regulation": {"$eq": reg_name}},
             )
-            for match in results.matches:
-                source = match.metadata.get("source", "")
-                edition = match.metadata.get("edition", "current")
-                regs.setdefault(reg_name, set()).add(f"{source} ({edition})")
+            return {
+                f"{match.metadata.get('source', '')} ({match.metadata.get('edition', 'current')})"
+                for match in results.matches
+            }
+
+        # One round trip per regulation just to harvest metadata — run them in
+        # parallel or this tool call takes multiple seconds.
+        regs: dict[str, set[str]] = {}
+        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+            futures = {executor.submit(_sources_for, r): r for r in known_regs}
+            for future in concurrent.futures.as_completed(futures):
+                sources = future.result()
+                if sources:
+                    regs[futures[future]] = sources
 
         lines = []
         for reg in sorted(regs.keys()):
@@ -215,6 +226,22 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
     """
     recorded_findings: list[dict] = []
     _retrieval_calls = {"count": 0, "limit": 30}
+    _budget_lock = threading.Lock()
+
+    def _consume_retrieval_budget() -> bool:
+        """Atomic check-and-increment — parallel tool calls must not race past
+        the limit. Callers validate their inputs BEFORE consuming, so a
+        rejected empty query doesn't burn a budget unit."""
+        with _budget_lock:
+            if _retrieval_calls["count"] >= _retrieval_calls["limit"]:
+                return False
+            _retrieval_calls["count"] += 1
+            return True
+
+    _budget_exhausted_msg = (
+        f"Retrieval limit reached ({_retrieval_calls['limit']} calls). "
+        "Record your findings now with record_finding and finish the audit."
+    )
 
     @tool
     def record_finding(
@@ -256,13 +283,12 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
     @tool
     def retrieve_regulation_rag(query: str = "", regulation: str = "") -> str:
         """Search the Pinecone vector store for regulation text chunks via semantic similarity. Use targeted queries like 'HIPAA access control requirements' or 'SOC 2 CC6 logical access'. Optionally filter by regulation name. The `query` argument is required and must be a non-empty search phrase."""
-        if _retrieval_calls["count"] >= _retrieval_calls["limit"]:
-            return f"Retrieval limit reached ({_retrieval_calls['limit']} calls). Record your findings now with record_finding and finish the audit."
-        _retrieval_calls["count"] += 1
         if not isinstance(query, str) or not query.strip():
             return "Missing or empty 'query' argument — please re-issue with a specific search phrase"
         if not PINECONE_API_KEY:
             return "Pinecone not configured."
+        if not _consume_retrieval_budget():
+            return _budget_exhausted_msg
         try:
             from sentinel.retrieval.regulations import retrieve_regulation_text, format_regulation_context
             regs = [regulation] if regulation else None
@@ -282,9 +308,10 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
     @tool
     def _search_web_capped(query: str = "") -> str:
         """Search the web for current regulatory guidance, enforcement actions, or recent developments. Use when you need information beyond the static knowledge base."""
-        if _retrieval_calls["count"] >= _retrieval_calls["limit"]:
-            return f"Retrieval limit reached ({_retrieval_calls['limit']} calls). Record your findings now with record_finding and finish the audit."
-        _retrieval_calls["count"] += 1
+        if not isinstance(query, str) or not query.strip():
+            return "Missing or empty 'query' argument — please re-issue with a specific search phrase"
+        if not _consume_retrieval_budget():
+            return _budget_exhausted_msg
         return search_web.invoke({"query": query})
     _search_web_capped.name = "search_web"
 
