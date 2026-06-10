@@ -278,20 +278,30 @@ def worst_level(levels):
     return worst
 
 
-def load_ground_truth(revised=True):
+def load_matrix_entries(revised=True):
+    """Raw compliance-matrix entries (incl. the planted `weaknesses` lists)."""
     path = REVISED_MATRIX_PATH if revised else MATRIX_PATH
     with open(path) as f:
-        matrix = json.load(f)
+        return json.load(f)
+
+
+def load_ground_truth(revised=True):
     gt = {}
-    for entry in matrix:
+    for entry in load_matrix_entries(revised):
         key = (entry["sop_id"], entry["regulation"])
         gt[key] = normalize_level(entry["compliance_level"])
     return gt
 
 
 def parse_full_findings(text):
-    """Parse the complete audit_all_sops output text."""
+    """Parse the complete audit_all_sops output text.
+
+    Returns (findings, total_parsed, failed_sops, error_sops, pair_texts) —
+    pair_texts maps (sop_id, regulation) to the concatenated finding lines
+    (criterion + gap description), used by the weakness-recall scorer.
+    """
     findings = defaultdict(list)
+    pair_texts = defaultdict(list)
     current_sop = None
     total_parsed = 0
     sop_count = 0
@@ -327,6 +337,7 @@ def parse_full_findings(text):
             reg = classify_regulation(criterion)
             if reg:
                 findings[(current_sop, reg)].append(level)
+                pair_texts[(current_sop, reg)].append(line.strip())
                 total_parsed += 1
             else:
                 unclassified += 1
@@ -339,7 +350,7 @@ def parse_full_findings(text):
         print("  output format without per-finding lines. Re-run the audit with the latest code to get")
         print("  parseable output. Deploy first: make deploy")
 
-    return findings, total_parsed, failed_sops, error_sops
+    return findings, total_parsed, failed_sops, error_sops, {k: "\n".join(v) for k, v in pair_texts.items()}
 
 
 def compute_metrics(gt, predicted):
@@ -488,7 +499,7 @@ def validate_single(run_id, gt):
         print("\n  No audit content found — skipping quality evaluation.")
         return
 
-    all_findings, total_parsed, failed_sops, error_sops = parse_full_findings(content)
+    all_findings, total_parsed, failed_sops, error_sops, pair_texts = parse_full_findings(content)
     print(f"  Parsed {total_parsed} criterion-level findings")
     if failed_sops:
         print(f"  Failed SOPs (no structured findings): {len(failed_sops)}")
@@ -504,6 +515,23 @@ def validate_single(run_id, gt):
     print(f"  compliant={pred_levels.get('compliant',0)}, partial={pred_levels.get('partial',0)}, gap={pred_levels.get('gap',0)}")
 
     print_full_report(gt, predicted)
+    print_weakness_report(pair_texts)
+
+
+def print_weakness_report(pair_texts, revised=True):
+    """Planted-weakness recall: did the audit FIND the defects, not just
+    reach the right label? Level matching alone gives full credit for the
+    right verdict via wrong reasoning."""
+    from sentinel.eval.weaknesses import weakness_recall
+
+    w = weakness_recall(load_matrix_entries(revised), pair_texts)
+    if not w["total_weaknesses"]:
+        return
+    print("\nPlanted-Weakness Recall (deterministic keyword/clause matching):")
+    print(f"  Overall:        {w['hits']}/{w['total_weaknesses']}  ({w['recall']*100:.1f}%)  (unscored pairs count as missed)")
+    print(f"  Scored pairs:   {w['scored_hits']}/{w['scored_total']}  ({w['recall_scored']*100:.1f}%)")
+    for reg, s in w["per_regulation"].items():
+        print(f"  {reg:>15}: {s['recall']*100:5.1f}%  (n={s['n']})")
 
 
 def compare_runs(run_ids, gt):
@@ -520,7 +548,7 @@ def compare_runs(run_ids, gt):
         content = run_data["content"]
         stats = parse_run_stats(content, run_data)
         if content:
-            all_findings, total_parsed, failed_sops, error_sops = parse_full_findings(content)
+            all_findings, total_parsed, failed_sops, error_sops, _pair_texts = parse_full_findings(content)
         else:
             print(f"  No audit content found for {run_data['label']} — quality metrics will be empty.")
             all_findings, total_parsed, failed_sops, error_sops = {}, 0, [], []

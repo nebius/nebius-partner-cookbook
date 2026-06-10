@@ -98,8 +98,35 @@ def run_single(mode: str, question: dict) -> dict:
 
 def score_row(question: dict, output: dict, run_judge: bool) -> dict:
     """Attach scores to a single answer."""
+    from sentinel.eval.citations import citation_hit, parse_formatted_context, verify_citations
+
     category = question.get("category", "")
     scores: dict = {"category": category}
+
+    # Retrieval recall: were the expected citations ever RETRIEVED? Separates
+    # retrieval misses from reasoning misses in the end-to-end scores.
+    expected_citations = question.get("expected_citations") or []
+    if expected_citations and category != "web_grounded":
+        chunks = None
+        if output.get("retrieved_chunks"):  # naive path keeps structured chunks
+            chunks = output["retrieved_chunks"]
+        elif output.get("retrieved_context"):  # agentic path keeps formatted text
+            chunks = parse_formatted_context(output["retrieved_context"])
+        if chunks is not None:
+            hits = [citation_hit(c, chunks) for c in expected_citations]
+            scores["retrieval_recall_clause"] = sum(1 for h in hits if h[0]) / len(hits)
+            scores["retrieval_recall_base"] = sum(1 for h in hits if h[1]) / len(hits)
+
+    # Citation verification: do the clauses the ANSWER cites exist in the
+    # corpus? Catches hallucinated sections that string-match the judge rubric.
+    if category in JUDGE_CATEGORIES and output.get("answer"):
+        v = verify_citations(output["answer"])
+        scores["citations_extracted"] = v["n"]
+        scores["citations_verified"] = v["n_verified"]
+        scores["citation_precision"] = v["precision"]
+        unverified = [c["raw"] for c in v["citations"] if not c["exists"]]
+        if unverified:
+            scores["citations_unverified"] = unverified
 
     if category in COMPLIANCE_CATEGORIES and question.get("expected_compliance_level"):
         predicted = extract_compliance_level(output.get("answer", ""))
@@ -211,6 +238,7 @@ def aggregate(mode: str, rows: list[dict]) -> dict:
         "n": 0, "judge_correct_avg": [], "judge_cite_avg": [],
         "level_correct": 0, "level_total": 0,
         "binary_correct": 0, "binary_total": 0,
+        "retrieval_recall": [], "citation_precision": [],
     })
     for r in rows:
         s = r["scores"]
@@ -228,18 +256,32 @@ def aggregate(mode: str, rows: list[dict]) -> dict:
             bucket["binary_total"] += 1
             if s.get("binary_match"):
                 bucket["binary_correct"] += 1
+        if s.get("retrieval_recall_base") is not None:
+            bucket["retrieval_recall"].append(s["retrieval_recall_base"])
+        if s.get("citation_precision") is not None:
+            bucket["citation_precision"].append(s["citation_precision"])
+
+    def _avg(values):
+        return (sum(values) / len(values)) if values else None
 
     per_category = {}
     for cat, b in by_cat.items():
         per_category[cat] = {
             "n": b["n"],
-            "judge_correctness_avg": (sum(b["judge_correct_avg"]) / len(b["judge_correct_avg"])) if b["judge_correct_avg"] else None,
-            "judge_citations_avg": (sum(b["judge_cite_avg"]) / len(b["judge_cite_avg"])) if b["judge_cite_avg"] else None,
+            "judge_correctness_avg": _avg(b["judge_correct_avg"]),
+            "judge_citations_avg": _avg(b["judge_cite_avg"]),
             "binary_accuracy": (b["binary_correct"] / b["binary_total"]) if b["binary_total"] else None,
             "binary_total": b["binary_total"],
             "level_accuracy_3class": (b["level_correct"] / b["level_total"]) if b["level_total"] else None,
             "level_total": b["level_total"],
+            "retrieval_recall_avg": _avg(b["retrieval_recall"]),
+            "citation_precision_avg": _avg(b["citation_precision"]),
         }
+
+    all_retrieval = [s for b in by_cat.values() for s in b["retrieval_recall"]]
+    all_cite_prec = [s for b in by_cat.values() for s in b["citation_precision"]]
+    citations_extracted = sum(r["scores"].get("citations_extracted", 0) for r in rows)
+    citations_verified = sum(r["scores"].get("citations_verified", 0) for r in rows)
 
     return {
         "mode": mode,
@@ -256,6 +298,10 @@ def aggregate(mode: str, rows: list[dict]) -> dict:
         "total_cost_usd": round(answer_cost + judge_cost, 4),
         "latency_total_s": round(latency_total, 1),
         "latency_avg_s": round(latency_total / total, 1) if total else 0,
+        "retrieval_recall_avg": _avg(all_retrieval),
+        "citation_precision_avg": _avg(all_cite_prec),
+        "citations_extracted": citations_extracted,
+        "citations_verified": citations_verified,
         "compliance_binary": binary_m and {
             "n": binary_m["n"],
             "matched": binary_m["matched"],
@@ -336,6 +382,12 @@ def print_summary(payload: dict) -> None:
     print(f"  Tokens:      {payload['input_tokens']:,} in / {payload['output_tokens']:,} out")
     print(f"  Cost:        ${payload['total_cost_usd']:.3f} (answers: ${payload['answer_cost_usd']:.3f}, judge: ${payload['judge_cost_usd']:.3f})")
     print(f"  Latency:     {payload['latency_total_s']:.1f}s total, {payload['latency_avg_s']:.1f}s avg")
+    rr = payload.get("retrieval_recall_avg")
+    if rr is not None:
+        print(f"  Retrieval:   expected-citation recall {rr:.3f} (over questions with KB retrievals)")
+    cp = payload.get("citation_precision_avg")
+    if cp is not None:
+        print(f"  Citations:   {payload.get('citations_verified', 0)}/{payload.get('citations_extracted', 0)} verified in corpus (precision {cp:.3f})")
     cb = payload.get("compliance_binary")
     if cb:
         print(

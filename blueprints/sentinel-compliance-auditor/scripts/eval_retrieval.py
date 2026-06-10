@@ -19,12 +19,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from sentinel.eval.citations import citation_hit, normalize_citation  # noqa: E402,F401  (re-exported for tests)
 
 DATASET_PATH = Path("data/eval/qa_dataset.jsonl")
 
@@ -36,87 +37,6 @@ SKIP_CATEGORIES = {"web_grounded"}
 # would only deflate the metric. Empty since the copyrighted SOC 2 / PCI DSS
 # texts were added locally (gitignored); repopulate if they're removed.
 NOT_IN_KB: set[str] = set()
-
-_ROMAN = r"[ivxlc]+"
-
-
-def normalize_citation(section: str) -> tuple[str, str]:
-    """Return (clause_id, base_id) for tolerant matching.
-
-    clause_id is the full normalized path (e.g. "164.308(a)(1)(ii)(a)"),
-    base_id the coarse section (e.g. "164.308", "article 32", "cc6.1").
-    """
-    s = section.strip().lstrip("§").strip().lower()
-    s = re.sub(r"\s+", " ", s)
-
-    m = re.search(r"(\d{3}\.\d{3}(?:\([a-z0-9]+\))*)", s)
-    if m:  # HIPAA / eCFR style: 164.308(a)(1)(ii)(A)
-        clause = m.group(1)
-        return clause, clause.split("(")[0]
-    m = re.search(r"art(?:icle)?\.?\s*(\d+[a-z]?)", s)
-    if m:  # GDPR / EU AI Act / directives
-        return f"article {m.group(1)}", f"article {m.group(1)}"
-    m = re.search(r"cc\s?(\d(?:\.\d)?)", s)
-    if m:  # SOC 2 trust services criteria
-        return f"cc{m.group(1)}", f"cc{m.group(1)}"
-    m = re.search(r"(govern|map|measure|manage)\s*[-.]?\s*(\d(?:\.\d+)?)", s)
-    if m:  # NIST AI RMF functions
-        return f"{m.group(1)} {m.group(2)}", f"{m.group(1)} {m.group(2)}"
-    m = re.search(rf"sections?\s+({_ROMAN})(?:\s*[-–]\s*({_ROMAN}))?\b", s)
-    if m:  # SR 11-7 style roman-numeral sections, incl. ranges ("Sections II-IV")
-        token = f"roman:{m.group(1)}" + (f"-{m.group(2)}" if m.group(2) else "")
-        return token, token
-    return s, s
-
-
-def _haystack(chunk: dict) -> str:
-    text = f"{chunk.get('section', '')}\n{chunk.get('text', '')}".lower()
-    return re.sub(r"\s+", " ", text)
-
-
-def citation_hit(citation: dict, chunks: list[dict]) -> tuple[bool, bool]:
-    """(clause_hit, base_hit) — does any chunk contain the cited clause/section?
-
-    Articles are matched as "article N" (word-bounded number); eCFR clauses by
-    substring of the normalized path with progressively shorter prefixes
-    counting only toward base_hit.
-    """
-    clause, base = normalize_citation(citation.get("section", ""))
-    reg = (citation.get("regulation") or "").lower()
-    clause_hit = base_hit = False
-
-    def _reg_matches(chunk: dict) -> bool:
-        chunk_reg = (chunk.get("regulation") or "").lower()
-        return not (reg and chunk_reg) or reg in chunk_reg or chunk_reg in reg
-
-    if base.startswith("roman:"):
-        # SR 11-7 style: "Section IV" → a chunk whose text contains "IV." as a
-        # heading (range citations accept any numeral in the range's file).
-        numerals = base.split(":", 1)[1].split("-")
-        pattern = "|".join(rf"\b{re.escape(n)}\." for n in numerals)
-        for chunk in chunks:
-            if _reg_matches(chunk) and re.search(pattern, _haystack(chunk)):
-                return True, True
-        return False, False
-
-    for chunk in chunks:
-        hay = _haystack(chunk)
-        if base.startswith("article "):
-            # "Article 32" exists in both GDPR and the EU AI Act — an article
-            # number only counts when the chunk belongs to the cited regulation.
-            num = base.split(" ", 1)[1]
-            if not re.search(rf"art(?:icle)?\.?\s*{re.escape(num)}\b", hay):
-                continue
-            if not _reg_matches(chunk):
-                continue
-            clause_hit = base_hit = True
-            break
-        if clause in hay:
-            clause_hit = base_hit = True
-            break
-        if base in hay:
-            base_hit = True
-    return clause_hit, base_hit
 
 
 def run_eval(top_k: int, editions: list[str] | None, filtered: bool, categories: set[str] | None,

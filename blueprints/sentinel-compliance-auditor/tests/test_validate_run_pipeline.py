@@ -180,7 +180,7 @@ class TestEmitParseRoundTrip:
         assert "Failed after retries: 2" in summary  # no_findings + error
 
         # Now the real parser over the real emitter output.
-        parsed, total_parsed, failed_sops, error_sops = parse_full_findings(summary)
+        parsed, total_parsed, failed_sops, error_sops, pair_texts = parse_full_findings(summary)
         assert total_parsed == 3
         assert failed_sops == [sop_silent]
         assert error_sops == ["SOP-ZZ-999"]
@@ -188,6 +188,9 @@ class TestEmitParseRoundTrip:
         predicted = {key: worst_level(levels) for key, levels in parsed.items()}
         assert predicted[(sop_ok, "HIPAA")] == "gap"      # worst of gap+compliant
         assert predicted[(sop_ok, "SOC 2")] == "compliant"
+
+        # Finding texts survive parsing for the weakness-recall scorer.
+        assert "No encryption at rest" in pair_texts[(sop_ok, "HIPAA")]
 
     def test_impl_exception_format_parses_as_error(self, real_sop_ids):
         """The sub-agent-crash format ('FAILED: {id} — ...') must be counted
@@ -202,5 +205,5 @@ class TestEmitParseRoundTrip:
         result = _run_impl(sop_ok, create_agent)
         assert result.status == "failed"
 
-        _, _, _, error_sops = parse_full_findings(result.summary)
+        _, _, _, error_sops, _ = parse_full_findings(result.summary)
         assert error_sops == [sop_ok]

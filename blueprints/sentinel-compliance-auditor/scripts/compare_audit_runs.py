@@ -24,11 +24,13 @@ from scripts.validate_run import (
     parse_run_stats,
     parse_full_findings,
     load_ground_truth,
+    load_matrix_entries,
     compute_metrics,
     macro_f1_for,
     worst_level,
 )
 from sentinel.eval.metrics import bootstrap_ci
+from sentinel.eval.weaknesses import weakness_recall
 
 
 def fetch_tool_calls(run_id: str) -> dict:
@@ -58,15 +60,16 @@ def analyze_run(run_id: str) -> dict:
 
     gt = load_ground_truth(revised=True)
     if run_data["content"]:
-        findings, total_parsed, failed_sops, error_sops = parse_full_findings(run_data["content"])
+        findings, total_parsed, failed_sops, error_sops, pair_texts = parse_full_findings(run_data["content"])
     else:
         print("  No audit content found — quality metrics will be empty.")
-        findings, total_parsed, failed_sops, error_sops = {}, 0, [], []
+        findings, total_parsed, failed_sops, error_sops, pair_texts = {}, 0, [], [], {}
     predicted = {}
     for (sop, reg), levels in findings.items():
         predicted[(sop, reg)] = worst_level(levels)
     quality = compute_metrics(gt, predicted)
     f1 = macro_f1_for(quality["confusion"])
+    weakness = weakness_recall(load_matrix_entries(revised=True), pair_texts)
 
     print("  Fetching tool calls…")
     tool_calls = fetch_tool_calls(run_id)
@@ -101,6 +104,8 @@ def analyze_run(run_id: str) -> dict:
             "macro_f1_ci": bootstrap_ci(gt, predicted)["macro_f1_ci"],
             "missing": len(quality["missing_in_run"]),
             "extra": quality["extra_in_run"],
+            "weakness_recall": weakness["recall"],
+            "weakness_recall_scored": weakness["recall_scored"],
         },
     }
 
@@ -162,6 +167,7 @@ def print_comparison(runs: list[dict]):
     print("  Accuracy (coverage)".ljust(24) + "".join(fmt(f"{x.get('accuracy_coverage', 0):.3f}") for x in q))
     print("  Macro F1".ljust(24) + "".join(fmt(f"{x['macro_f1']:.3f}") for x in q))
     print("  Macro F1 95% CI".ljust(24) + "".join(fmt(f"[{x['macro_f1_ci'][0]:.2f},{x['macro_f1_ci'][1]:.2f}]") for x in q))
+    print("  Weakness recall".ljust(24) + "".join(fmt(f"{x.get('weakness_recall', 0):.3f}") for x in q))
     print("  False pos (strict)".ljust(24) + "".join(fmt(str(x["false_positives"])) for x in q))
     print("  False neg (lenient)".ljust(24) + "".join(fmt(str(x["false_negatives"])) for x in q))
     print("  Missing (no finding)".ljust(24) + "".join(fmt(str(x["missing"])) for x in q))

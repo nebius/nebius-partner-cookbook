@@ -89,6 +89,7 @@ def agentic_qa_answer(
     input_tokens = 0
     output_tokens = 0
     tool_calls = 0
+    retrieved_parts: list[str] = []
     for msg in messages:
         usage = getattr(msg, "usage_metadata", None)
         if usage:
@@ -96,6 +97,13 @@ def agentic_qa_answer(
             output_tokens += usage.get("output_tokens", 0)
         tcalls = getattr(msg, "tool_calls", None) or []
         tool_calls += len(tcalls)
+        # Keep the KB retrieval outputs: without them, end-to-end scores can't
+        # distinguish retrieval misses from reasoning misses (the eval computes
+        # recall of expected citations over this text).
+        if getattr(msg, "type", "") == "tool" and getattr(msg, "name", "") == "retrieve_regulation_rag":
+            content = getattr(msg, "content", None)
+            if isinstance(content, str) and content:
+                retrieved_parts.append(content)
 
     final = messages[-1] if messages else None
     answer = final.content if final and hasattr(final, "content") else ""
@@ -117,4 +125,6 @@ def agentic_qa_answer(
         "mode": f"agentic-{provider}" if provider != "nebius" else "agentic",
         "incomplete": incomplete,
         "finish_reason": finish_reason,
+        # Capped so a retrieval-heavy run can't balloon the result files.
+        "retrieved_context": "\n\n".join(retrieved_parts)[:120_000],
     }
