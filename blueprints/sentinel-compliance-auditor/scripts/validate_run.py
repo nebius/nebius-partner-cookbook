@@ -317,66 +317,31 @@ def parse_full_findings(text):
 
 
 def compute_metrics(gt, predicted):
-    """Compute comparison metrics between ground truth and predictions."""
-    matched = 0
-    total = 0
-    missing_in_run = []
-    extra_in_run = 0
-    mismatches = []
-    confusion = defaultdict(int)
-    false_positives = 0
-    false_negatives = 0
+    """Compute comparison metrics between ground truth and predictions.
 
-    for key, gt_level in gt.items():
-        if key in predicted:
-            pred_level = predicted[key]
-            total += 1
-            confusion[(gt_level, pred_level)] += 1
-            if gt_level == pred_level:
-                matched += 1
-            else:
-                direction = LEVEL_ORDER[pred_level] - LEVEL_ORDER[gt_level]
-                if direction > 0:
-                    false_positives += 1
-                else:
-                    false_negatives += 1
-                mismatches.append({
-                    "sop_id": key[0],
-                    "regulation": key[1],
-                    "expected": gt_level,
-                    "predicted": pred_level,
-                })
-        else:
-            missing_in_run.append(key)
+    Thin wrapper over sentinel.eval.metrics.compute_metrics (the single
+    implementation of the confusion-matrix math) that re-shapes mismatch
+    entries from the opaque `key` to sop_id/regulation for the audit report
+    printers."""
+    from sentinel.eval.metrics import compute_metrics as _compute_metrics
 
-    for key in predicted:
-        if key not in gt:
-            extra_in_run += 1
-
-    return {
-        "matched": matched,
-        "total": total,
-        "false_positives": false_positives,
-        "false_negatives": false_negatives,
-        "mismatches": mismatches,
-        "missing_in_run": missing_in_run,
-        "extra_in_run": extra_in_run,
-        "confusion": confusion,
-    }
+    m = _compute_metrics(gt, predicted)
+    m["mismatches"] = [
+        {
+            "sop_id": mm["key"][0],
+            "regulation": mm["key"][1],
+            "expected": mm["expected"],
+            "predicted": mm["predicted"],
+        }
+        for mm in m["mismatches"]
+    ]
+    return m
 
 
 def macro_f1_for(confusion):
-    levels = ["compliant", "partial", "gap"]
-    f1s = []
-    for cls in levels:
-        tp = confusion.get((cls, cls), 0)
-        fp = sum(confusion.get((g, cls), 0) for g in levels if g != cls)
-        fn = sum(confusion.get((cls, p), 0) for p in levels if p != cls)
-        prec = tp / (tp + fp) if (tp + fp) > 0 else 0
-        rec = tp / (tp + fn) if (tp + fn) > 0 else 0
-        f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0
-        f1s.append(f1)
-    return sum(f1s) / len(f1s)
+    from sentinel.eval.metrics import macro_f1
+
+    return macro_f1(confusion)
 
 
 def print_stats(stats):
