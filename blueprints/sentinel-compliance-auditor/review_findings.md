@@ -2,7 +2,7 @@
 
 Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieval/eval, UI, and scripts/tests/plumbing. Overall the codebase follows its documented invariants well (token accounting, message-type handling, Jira client cleanup); the items below are the exceptions, prioritized.
 
-**Remediation status (2026-06-10):** all HIGH findings except 33/34 and all MEDIUM findings are fixed; each fixed finding is tagged with its commit below. Still open: test-coverage HIGHs (33, 34), the agent-pricing-registry and chunker bullets of 35, and the LOWs (12, 19, 23, 24, 27–32).
+**Remediation status (2026-06-10):** all HIGH and MEDIUM findings are fixed, plus LOWs 12, 27, 28, 30, 32; each fixed finding is tagged with its commit below. Still open: the agent-pricing-registry and chunker bullets of 35, and LOWs 19, 23, 24, 29, 31.
 
 ## Top issues — can corrupt results or multiply cost
 
@@ -65,7 +65,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** move the import inside `_get_index()`; use `TYPE_CHECKING` for the annotation.
 
-### 12. Sub-agent recursion limit doc drift (LOW) — ✅ fixed (CLAUDE.md updated to 120 / 76 tests)
+### 12. Sub-agent recursion limit doc drift (LOW) — ✅ fixed (CLAUDE.md synced: recursion 120; test count now 150)
 `sentinel/graph/tools.py:424` sets `recursion_limit: 120`; CLAUDE.md documents 80. Also: test count is 76, CLAUDE.md says 73. Sync whichever is intended.
 
 ### 13. `_build_deep_agent` registers harness profile under wrong key (MEDIUM) — ✅ fixed (efd4911)
@@ -138,12 +138,12 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** raise a custom error including truncated `resp.text`; `" ".join(summary.split())[:240]`.
 
-### 27. `create_jira_tickets` assumes every array element is a dict (LOW) — ⬜ open
+### 27. `create_jira_tickets` assumes every array element is a dict (LOW) — ✅ fixed (cd4a802)
 `sentinel/graph/tools.py:843-845` — a string element raises uncaught `AttributeError` (only `json.loads` is guarded).
 
 **Fix:** validate `isinstance(f, dict)` per element; add failures to the `failed` list.
 
-### 28. `record_finding` validation stricter than the JSON-fallback normalizers (LOW) — ⬜ open
+### 28. `record_finding` validation stricter than the JSON-fallback normalizers (LOW) — ✅ fixed (cd4a802)
 `sentinel/graph/tools.py:218-225` rejects `"non-compliant"`/`"noncompliant"` that `normalize_compliance_level` (`models.py:24-48`) maps fine — same model output bounces off the tool, costing an extra turn.
 
 **Fix:** run inputs through `COMPLIANCE_LEVEL_ALIASES`/`SEVERITY_ALIASES` first.
@@ -153,7 +153,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** validate the query before decrementing budget; lock or accept slight overrun.
 
-### 30. `config.MODEL` silently falls back to DeepSeek on unknown `NEBIUS_MODEL` (LOW) — ⬜ open
+### 30. `config.MODEL` silently falls back to DeepSeek on unknown `NEBIUS_MODEL` (LOW) — ✅ fixed (cd4a802)
 `sentinel/config.py:21` — a typo or full model id quietly selects `deepseek-v4-pro`.
 
 **Fix:** accept values already in `NEBIUS_MODELS.values()` as-is; warn or raise on unknown keys.
@@ -164,17 +164,17 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 - `ingest_regulations.py:101-109` — `===`-ruler sections lose their titles (header strips to `""`); take the next non-empty line.
 - `sentinel/retrieval/regulations.py:80-91` — `format_regulation_context` emits dangling empty `### {reg}` headers after budget exhaustion and doesn't count header lines toward `max_chars`.
 
-### 32. Minor security notes (LOW) — ⬜ open
+### 32. Minor security notes (LOW) — ✅ fixed (cd4a802)
 `ui/server.py:257-259` — `/api/health` is exempt from the API-key gate yet returns internal `LANGGRAPH_URL`; trim to `{"ok": true}`. `_trace_url` (`ui/server.py:92-97`) exposes workspace-scoped LangSmith tenant/project UUIDs to any keyed client. Posture otherwise solid: fail-closed key gate with `secrets.compare_digest`, DOMPurify on agent markdown, `StaticFiles` handles traversal.
 
 ## Tests & plumbing
 
-### 33. `test_json_parsing.py` tests copies of the logic, not the real code (HIGH) — ⬜ open
+### 33. `test_json_parsing.py` tests copies of the logic, not the real code (HIGH) — ✅ fixed (9062655)
 `tests/test_json_parsing.py:8-17` defines its own `COMPLIANCE_LEVEL_MAP`/`SEVERITY_MAP` and replicates the extraction logic instead of importing `_parse_findings_json` from `tools.py` — real code can drift while 19 tests stay green.
 
 **Fix:** import the real symbols; test `_parse_findings_json` against truncated/fenced inputs.
 
-### 34. Zero coverage on highest-risk paths (HIGH) — ⬜ open
+### 34. Zero coverage on highest-risk paths (HIGH) — ✅ fixed (9062655)
 - Retry + fan-out in `tools.py:523-643` (`_is_retryable`, token carry across attempts, aggregation) — untested.
 - `validate_run.py` parsing/classification pipeline (`parse_full_findings`, `classify_regulation`, `worst_level`, `compute_metrics`) — produces headline benchmark numbers, only token-stats tested.
 - Jira path (`jira_client.py` + ticket builders in `tools.py:646-873`) — untested; the JSON-array parser handles LLM-supplied input.
@@ -212,9 +212,8 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 ## Remaining work
 
-1. Findings 33–34 (HIGH) — test the real `_parse_findings_json`, retry/fan-out paths, `validate_run` parsing pipeline, and the Jira ticket builders.
-2. Finding 35, open bullets — agent label/pricing registry endpoint (5 duplicated sites) and `_chunk_sections` chunker consolidation.
-3. LOWs as time permits: 19, 23, 24, 27–32.
+1. Finding 35, open bullets — agent label/pricing registry endpoint (5 duplicated sites) and `_chunk_sections` chunker consolidation.
+2. LOWs as time permits: 19 (parallelize `list_regulations` queries), 23 (UI Stop button — server-side cancel now exists, so wiring the AbortController is worthwhile), 24 (stale-abort `onError`), 29 (retrieval-budget race), 31 (retrieval/ingest misc).
 
 ### Fix-note deviations
 
