@@ -47,10 +47,15 @@ def extract_compliance_level(text: str) -> str | None:
     if tagged:
         return normalize_level(tagged.group(1).replace("partially compliant", "partial"))
 
+    # "compliant" must not match inside "non-compliant"/"non compliant"/"not
+    # compliant" — the hyphen/space before it is a word boundary, so without
+    # the lookbehinds every negative mention also counts as compliant.
+    # "missing" is deliberately not a gap keyword: it routinely appears in
+    # compliant answers ("no controls are missing").
     counts = {
-        "gap": len(re.findall(r"\b(gap|non[- _]?compliant|not compliant|fails to|missing)\b", lowered)),
+        "gap": len(re.findall(r"\b(gap|non[- _]?compliant|not (?:fully )?compliant|fails to)\b", lowered)),
         "partial": len(re.findall(r"\bpartial(?:ly)?\b", lowered)),
-        "compliant": len(re.findall(r"\b(?:fully\s+)?compliant\b", lowered)),
+        "compliant": len(re.findall(r"(?<!non-)(?<!non )(?<!not )(?<!not fully )\bcompliant\b", lowered)),
     }
     if not any(counts.values()):
         return None
