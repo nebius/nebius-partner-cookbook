@@ -19,6 +19,7 @@ def build_chat_model(
     http_client=None,
     reasoning: bool = False,
     extra_metadata: dict | None = None,
+    extra_body: dict | None = None,
 ):
     """Construct a ``ChatOpenAI`` client for the given provider.
 
@@ -35,6 +36,9 @@ def build_chat_model(
         reasoning: enable Nebius thinking / ``reasoning_effort`` via ``extra_body``
             (honors ``REASONING_EFFORT``; never applied to the openai provider).
         extra_metadata: merged into the LangSmith metadata dict.
+        extra_body: explicit request-body extras (e.g.
+            ``{"chat_template_kwargs": {"thinking": False}}`` to disable a
+            model's reasoning). Mutually exclusive with ``reasoning=True``.
     """
     from langchain_openai import ChatOpenAI
     from sentinel.config import (
@@ -69,7 +73,9 @@ def build_chat_model(
         kwargs["max_tokens"] = max_tokens
     if http_client is not None:
         kwargs["http_client"] = http_client
-    if reasoning and not is_openai and REASONING_EFFORT != "off":
+    if extra_body is not None:
+        kwargs["extra_body"] = extra_body
+    elif reasoning and not is_openai and REASONING_EFFORT != "off":
         kwargs["extra_body"] = {
             "chat_template_kwargs": {"thinking": True, "reasoning_effort": REASONING_EFFORT},
         }

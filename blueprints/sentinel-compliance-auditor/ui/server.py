@@ -52,10 +52,10 @@ from sentinel.token_accounting import AUDIT_TOOL_NAMES, parse_tokens_from_result
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 EVAL_RESULTS_DIR = PROJECT_ROOT / "data" / "eval" / "results"
 EVAL_AGENTS = {
-    "optimized":   EVAL_RESULTS_DIR / "optimized_20260610_125323.json",
-    "prototype":   EVAL_RESULTS_DIR / "prototype_20260610_125358.json",
-    "grounded":    EVAL_RESULTS_DIR / "grounded_20260610_125410.json",
-    "nemotron":    EVAL_RESULTS_DIR / "production_20260610_130436.json",
+    "optimized":   EVAL_RESULTS_DIR / "optimized_rejudged_20260610_163109.json",
+    "prototype":   EVAL_RESULTS_DIR / "prototype_rejudged_20260610_163010.json",
+    "grounded":    EVAL_RESULTS_DIR / "grounded_rejudged_20260610_163040.json",
+    "nemotron":    EVAL_RESULTS_DIR / "production_rejudged_20260610_163135.json",
 }
 DATASET_PATH = PROJECT_ROOT / "data" / "eval" / "qa_dataset.jsonl"
 SOPS_DIR = PROJECT_ROOT / "data" / "sops"

@@ -43,7 +43,13 @@ def _build_judge_model():
         "nebius",
         model=JUDGE_MODEL,
         temperature=0.0,
-        max_tokens=400,
+        max_tokens=600,
+        # Kimi-K2.6 thinks by default and its reasoning scales with the
+        # candidate answer — long answers blew through even a 4,000-token
+        # budget, returning finish_reason=length with EMPTY content (84/85
+        # judge scores were -1 in the 2026-06-10 14:42 runs). Disabling
+        # thinking makes the verdict a deterministic ~85-token JSON emit.
+        extra_body={"chat_template_kwargs": {"thinking": False}},
         extra_metadata={"eval_mode": "judge"},
     )
 
