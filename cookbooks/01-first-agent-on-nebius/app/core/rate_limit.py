@@ -225,9 +225,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
     def _is_exempt(self, request: Request) -> bool:
         path = request.url.path
         return (
-            request.method == "OPTIONS"
-            or path in self._exempt_paths
-            or path.startswith("/docs/")
+            request.method == "OPTIONS" or path in self._exempt_paths or path.startswith("/docs/")
         )
 
     def _client_key(self, request: Request) -> str:
