@@ -49,9 +49,13 @@ const AuditScreen = ({ loadStatus }) => {
       traceUrl: null,
     });
     const graphId = (AUDIT_AGENTS.find(a => a.key === selectedAgent) || {}).graph_id || selectedAgent;
+    // Ignore events from a superseded stream: after Stop, the old reader's
+    // callbacks can still fire asynchronously and must not touch fresh state.
+    const isCurrent = () => streamRef.current === ctrl;
     window.ForgeAPI.streamAudit(text, graphId, {
       signal: ctrl.signal,
       onEvent: (ev) => {
+        if (!isCurrent()) return;
         setAudit(prev => {
           if (ev.type === "run_started") {
             return { ...prev, traceUrl: ev.trace_url };
@@ -89,9 +93,22 @@ const AuditScreen = ({ loadStatus }) => {
           return prev;
         });
       },
-      onDone:  () => setAudit(prev => ({ ...prev, status: prev.status === "error" ? "error" : "done", endedAt: Date.now() })),
-      onError: (err) => setAudit(prev => ({ ...prev, error: err.message, status: "error", endedAt: Date.now() })),
+      onDone:  () => { if (isCurrent()) setAudit(prev => ({ ...prev, status: prev.status === "error" ? "error" : "done", endedAt: Date.now() })); },
+      onError: (err) => {
+        if (!isCurrent() || err.name === "AbortError") return;
+        setAudit(prev => ({ ...prev, error: err.message, status: "error", endedAt: Date.now() }));
+      },
     });
+  };
+
+  // Abort the SSE stream; the server cancels the LangGraph run on disconnect,
+  // so stopping here actually stops the spend, not just the display.
+  const stopAudit = () => {
+    if (streamRef.current) streamRef.current.abort();
+    streamRef.current = null;
+    setAudit(prev => prev.status === "running"
+      ? { ...prev, status: "done", endedAt: Date.now() }
+      : prev);
   };
 
   // Re-fetch Jira findings when an audit run completes with ticket creations
@@ -210,15 +227,25 @@ const AuditScreen = ({ loadStatus }) => {
                 resize: "vertical",
                 minHeight: 66,
               }} />
-            <Btn
-              variant="lime"
-              size="m"
-              onClick={() => sendAudit(draft.trim())}
-              disabled={!draft.trim() || audit.status === "running"}
-              icon={<Icon name="send" size={12} color="var(--forge-ink)" stroke={2.5} />}
-              style={{ marginTop: 2, flexShrink: 0 }}>
-              Send
-            </Btn>
+            {audit.status === "running" ? (
+              <Btn
+                variant="ghostDark"
+                size="m"
+                onClick={stopAudit}
+                style={{ marginTop: 2, flexShrink: 0 }}>
+                Stop
+              </Btn>
+            ) : (
+              <Btn
+                variant="lime"
+                size="m"
+                onClick={() => sendAudit(draft.trim())}
+                disabled={!draft.trim()}
+                icon={<Icon name="send" size={12} color="var(--forge-ink)" stroke={2.5} />}
+                style={{ marginTop: 2, flexShrink: 0 }}>
+                Send
+              </Btn>
+            )}
           </div>
 
           {/* Agent picker */}

@@ -78,6 +78,7 @@ const CompareScreen = () => {
     window.ForgeAPI.streamRace(message, question.id, {
       signal: ctrl.signal,
       onEvent: (ev) => {
+        if (ctrlRef.current !== ctrl) return;  // superseded stream
         const key = ev.agent;
         if (!key || !AGENT_CONFIG[key]) return;
         setAgents(prev => {
@@ -123,6 +124,9 @@ const CompareScreen = () => {
         });
       },
       onError: (err) => {
+        // An aborted stream's onError fires asynchronously: without these
+        // guards it could flip a freshly started race's agents to "error".
+        if (err.name === "AbortError" || ctrlRef.current !== ctrl) return;
         console.warn("[forge] race stream error:", err);
         setAgents(prev => Object.fromEntries(
           Object.entries(prev).map(([k, a]) => [k, a.status === "running"
