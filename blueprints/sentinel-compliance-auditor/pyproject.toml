@@ -24,3 +24,16 @@ deep = ["deepagents>=0.6.0"]
 dev = ["pytest", "ruff", "langgraph-cli[inmem]>=0.2.0"]
 rag = ["pypdf>=4.0.0", "defusedxml>=0.7.1"]
 ui = ["fastapi>=0.115.0", "uvicorn>=0.34.0", "langgraph-sdk>=0.1.60"]
+
+[tool.ruff]
+# Existing style favors long tool docstrings and table-printing one-liners;
+# lint for correctness, don't fight the formatting.
+line-length = 200
+
+[tool.ruff.lint.per-file-ignores]
+# load_dotenv must run before sentinel.config is imported.
+"ui/server.py" = ["E402"]
+# Retry constants intentionally precede the sentinel imports (documented).
+"sentinel/graph/tools.py" = ["E402"]
+# Dummy-credential env setup must precede any sentinel/ui import.
+"tests/conftest.py" = ["E402"]

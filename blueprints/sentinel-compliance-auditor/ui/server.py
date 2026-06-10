@@ -52,10 +52,10 @@ from sentinel.token_accounting import AUDIT_TOOL_NAMES, parse_tokens_from_result
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 EVAL_RESULTS_DIR = PROJECT_ROOT / "data" / "eval" / "results"
 EVAL_AGENTS = {
-    "optimized":   EVAL_RESULTS_DIR / "agentic_20260529_223702.json",
-    "prototype":   EVAL_RESULTS_DIR / "agentic_openai_20260529_142141.json",
-    "grounded":    EVAL_RESULTS_DIR / "agentic_openai_tavily_20260529_171528.json",
-    "nemotron":    EVAL_RESULTS_DIR / "agentic_nemotron_20260601_153758.json",
+    "optimized":   EVAL_RESULTS_DIR / "optimized_20260610_125323.json",
+    "prototype":   EVAL_RESULTS_DIR / "prototype_20260610_125358.json",
+    "grounded":    EVAL_RESULTS_DIR / "grounded_20260610_125410.json",
+    "nemotron":    EVAL_RESULTS_DIR / "production_20260610_130436.json",
 }
 DATASET_PATH = PROJECT_ROOT / "data" / "eval" / "qa_dataset.jsonl"
 SOPS_DIR = PROJECT_ROOT / "data" / "sops"
@@ -481,11 +481,11 @@ def findings():
         reserved = {"sentinel", "compliance-finding"}
         reg = ""
         for lbl in labels:
-            l = lbl.lower()
-            if l in reserved or l.startswith("sev-") or l.startswith("sop-"):
+            low = lbl.lower()
+            if low in reserved or low.startswith("sev-") or low.startswith("sop-"):
                 continue
-            if l in _REG_LABEL:
-                reg = _REG_LABEL[l]
+            if low in _REG_LABEL:
+                reg = _REG_LABEL[low]
                 break
             reg = lbl.replace("-", " ").title()
             break

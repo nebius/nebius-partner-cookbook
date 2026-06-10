@@ -68,7 +68,7 @@ def fetch_run_data(run_id: str) -> dict:
     model = None
     trace_input_tokens = 0
     trace_output_tokens = 0
-    print(f"  Fetching LLM runs for token totals...")
+    print("  Fetching LLM runs for token totals...")
     llm_runs = list(client.list_runs(
         project_name=LANGSMITH_PROJECT,
         trace_id=run_id,
@@ -249,9 +249,9 @@ def classify_regulation(criterion):
 
 def worst_level(levels):
     worst = "compliant"
-    for l in levels:
-        if LEVEL_ORDER.get(l, 0) > LEVEL_ORDER.get(worst, 0):
-            worst = l
+    for level in levels:
+        if LEVEL_ORDER.get(level, 0) > LEVEL_ORDER.get(worst, 0):
+            worst = level
     return worst
 
 
@@ -313,8 +313,8 @@ def parse_full_findings(text):
 
     if sop_count > 0 and total_parsed == 0:
         print(f"  WARNING: Found {sop_count} SOP headers but 0 finding details — this run used a compact")
-        print(f"  output format without per-finding lines. Re-run the audit with the latest code to get")
-        print(f"  parseable output. Deploy first: make deploy")
+        print("  output format without per-finding lines. Re-run the audit with the latest code to get")
+        print("  parseable output. Deploy first: make deploy")
 
     return findings, total_parsed, failed_sops, error_sops
 
@@ -396,13 +396,13 @@ def print_full_report(gt, predicted, label=""):
         acc_lo, acc_hi = ci["accuracy_ci"]
         f1_lo, f1_hi = ci["macro_f1_ci"]
         print(f"  95% CI (bootstrap, n={ci['n']} scored): accuracy [{acc_lo:.3f}, {acc_hi:.3f}], macro F1 [{f1_lo:.3f}, {f1_hi:.3f}]")
-        print(f"  Deltas inside these intervals are not significant.")
+        print("  Deltas inside these intervals are not significant.")
     print(f"{'='*50}")
 
     # Confusion matrix
     levels = ["compliant", "partial", "gap"]
     hdr = "GT \\ Pred"
-    print(f"\nConfusion Matrix:")
+    print("\nConfusion Matrix:")
     print(f"{hdr:>12} {'compliant':>11} {'partial':>9} {'gap':>6} {'total':>7}")
     print("-" * 50)
     for gt_l in levels:
@@ -423,7 +423,7 @@ def print_full_report(gt, predicted, label=""):
     print(f"\nMacro F1: {macro_f1_for(confusion):.3f}")
 
     # Per-regulation accuracy
-    print(f"\nPer-Regulation Accuracy:")
+    print("\nPer-Regulation Accuracy:")
     for reg in sorted(gt_regs):
         reg_keys = [k for k in gt if k[1] == reg and k in predicted]
         reg_match = sum(1 for k in reg_keys if gt[k] == predicted[k])
@@ -439,7 +439,7 @@ def print_full_report(gt, predicted, label=""):
         too_lenient = sum(1 for m in mismatches if LEVEL_ORDER[m['predicted']] < LEVEL_ORDER[m['expected']])
         within_one = sum(1 for m in mismatches if abs(LEVEL_ORDER[m['predicted']] - LEVEL_ORDER[m['expected']]) == 1)
         off_by_two = sum(1 for m in mismatches if abs(LEVEL_ORDER[m['predicted']] - LEVEL_ORDER[m['expected']]) == 2)
-        print(f"\nDirectional Bias:")
+        print("\nDirectional Bias:")
         print(f"  Too strict (downgraded):  {too_strict} ({too_strict/len(mismatches)*100:.0f}% of mismatches)")
         print(f"  Too lenient (upgraded):   {too_lenient} ({too_lenient/len(mismatches)*100:.0f}% of mismatches)")
         print(f"  Adjacent-level mismatches: {within_one}")

@@ -1628,7 +1628,7 @@ if __name__ == "__main__":
     print(f"  Partial:   {partial} ({100*partial/total_cells:.1f}%)")
     print(f"  Gap:       {gap} ({100*gap/total_cells:.1f}%)")
 
-    print(f"\nBusiness unit breakdown:")
+    print("\nBusiness unit breakdown:")
     from collections import Counter
     bu_counts = Counter(s["business_unit"] for s in taxonomy)
     for bu, count in sorted(bu_counts.items()):

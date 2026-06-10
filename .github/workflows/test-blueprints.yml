@@ -1,0 +1,57 @@
+name: test-blueprints
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "blueprints/**"
+      - ".github/workflows/test-blueprints.yml"
+  pull_request:
+    paths:
+      - "blueprints/**"
+      - ".github/workflows/test-blueprints.yml"
+
+concurrency:
+  group: test-blueprints-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: blueprints/sentinel-compliance-auditor
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          # Matches langgraph.json's cloud image and the blueprint .python-version.
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: blueprints/sentinel-compliance-auditor/pyproject.toml
+
+      - name: Install
+        # [deep] (deepagents) is intentionally skipped: it pulls heavy
+        # transitive deps and the agent builders fall back to
+        # langchain.agents.create_agent without it — the same fallback the
+        # cloud constraint file relies on.
+        run: pip install -e ".[dev,ui]"
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Test
+        # 150 hermetic tests — no API keys needed (conftest injects dummies).
+        run: pytest tests/ -q
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check JSX compiles
+        # The UI compiles JSX in-browser via babel-standalone; a syntax error
+        # only surfaces at page load without this.
+        run: |
+          npm install --no-save @babel/standalone
+          node scripts/check_jsx.mjs

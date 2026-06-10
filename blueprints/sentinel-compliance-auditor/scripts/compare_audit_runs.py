@@ -68,7 +68,7 @@ def analyze_run(run_id: str) -> dict:
     quality = compute_metrics(gt, predicted)
     f1 = macro_f1_for(quality["confusion"])
 
-    print(f"  Fetching tool calls…")
+    print("  Fetching tool calls…")
     tool_calls = fetch_tool_calls(run_id)
 
     return {
@@ -114,7 +114,7 @@ def print_comparison(runs: list[dict]):
         return s.rjust(width)
 
     labels = [r["model"].split("/")[-1][:16] for r in runs]
-    header = "".ljust(24) + "".join(l.rjust(col) for l in labels)
+    header = "".ljust(24) + "".join(label.rjust(col) for label in labels)
     sep = "-" * len(header)
 
     print(f"\n{'=' * len(header)}")

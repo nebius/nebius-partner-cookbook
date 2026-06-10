@@ -230,7 +230,7 @@ def print_entries(entries, show_output: bool = False, wall_seconds: Optional[flo
             current_parent = parent
             if parent:
                 print(f"┌─ Agent: {parent}")
-                print(f"│")
+                print("│")
 
         prefix = "│  " if current_parent else ""
 

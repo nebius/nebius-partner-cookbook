@@ -412,14 +412,14 @@ def print_comparison(summaries: dict[str, dict]) -> None:
     # Binary compliance row (only sop_compliance has it)
     has_compliance = any(s.get("compliance_binary") for s in summaries.values())
     if has_compliance:
-        print(f"\n  Binary compliance metric (compliant vs non-compliant):")
+        print("\n  Binary compliance metric (compliant vs non-compliant):")
         for m in modes:
             cb = summaries[m].get("compliance_binary") or {}
             if cb:
                 print(f"    {m:<16} acc {cb['accuracy']:.3f}   non-comp recall {cb['recall_non_compliant']:.3f}   macro F1 {cb['macro_f1']:.3f}")
 
     # Cost / latency table
-    print(f"\n  Cost / latency:")
+    print("\n  Cost / latency:")
     print(f"    {'mode':<18}{'cost':>10}{'wall (min)':>14}{'avg (s)':>10}")
     for m in modes:
         s = summaries[m]
