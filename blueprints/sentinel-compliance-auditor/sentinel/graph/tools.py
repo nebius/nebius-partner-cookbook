@@ -29,11 +29,23 @@ class SopAuditResult(NamedTuple):
     """Per-SOP audit outcome, returned by value rather than accumulated in a
     module-level dict. Returning results means concurrent sub-agent workers and
     repeated/parallel top-level audits in one process can't contaminate each
-    other's findings or token totals — each audit aggregates only its own."""
+    other's findings or token totals — each audit aggregates only its own.
+
+    ``status`` is the structured outcome set at each failure site so retry
+    logic never has to sniff the summary text (which embeds model-written
+    prose that can contain words like "FAILED" or "rate"):
+      - "ok"          successful audit with findings
+      - "invalid"     bad input (unknown SOP, empty SOP) — not retryable
+      - "failed"      transient sub-agent error — retryable
+      - "no_findings" finished without structured findings — retryable
+      - "truncated"   hit a length limit — NOT retryable (would truncate again)
+    """
     summary: str
     findings: list  # list[AuditFinding]
     input_tokens: int = 0
     output_tokens: int = 0
+    status: str = "ok"
+    rate_limited: bool = False
 
 _shared_http_client = None
 _http_client_lock = threading.Lock()
@@ -388,12 +400,12 @@ def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bo
 
     sop = load_sop_by_id(sop_id)
     if sop is None:
-        return SopAuditResult(f"SOP not found: {sop_id}", [])
+        return SopAuditResult(f"SOP not found: {sop_id}", [], status="invalid")
 
     fm = sop["frontmatter"]
     chunks = load_sop_chunks(sop)
     if not chunks:
-        return SopAuditResult(f"SOP {sop_id} has no content", [])
+        return SopAuditResult(f"SOP {sop_id} has no content", [], status="invalid")
 
     actual_id = fm.get("sop_id", sop_id)
     title = fm.get("title", "")
@@ -410,6 +422,12 @@ def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bo
         name="sop_auditor",
     )
 
+    from langchain_core.callbacks import UsageMetadataCallbackHandler
+
+    # Token usage is accumulated in a callback so counts survive exceptions
+    # mid-run — tokens burned up to a crash were still billed.
+    usage_cb = UsageMetadataCallbackHandler()
+
     start = time.time()
     result = None
     truncated = False
@@ -421,29 +439,36 @@ def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bo
                     "content": f"Audit SOP {actual_id}: {title} (Business Unit: {business_unit})",
                 }],
             },
-            config={"recursion_limit": 120},
+            config={"recursion_limit": 120, "callbacks": [usage_cb]},
         )
     except Exception as e:
         elapsed = time.time() - start
         logger.error("Sub-agent for %s failed after %.1fs: %s", actual_id, elapsed, e)
         if not recorded_findings:
-            return SopAuditResult(f"FAILED: {actual_id} — sub-agent error: {e}", [])
+            sub_in, sub_out = _usage_from_callback(usage_cb)
+            return SopAuditResult(
+                f"FAILED: {actual_id} — sub-agent error: {e}", [], sub_in, sub_out,
+                status="failed", rate_limited=_is_rate_limited_error(str(e)),
+            )
         logger.info("%s: sub-agent errored but %d findings were recorded via tool — surfacing partial results", actual_id, len(recorded_findings))
         truncated = True
     else:
         elapsed = time.time() - start
 
     messages = result.get("messages", []) if result else []
-    sub_in = sum(
-        usage.get("input_tokens", 0)
-        for msg in messages
-        if (usage := getattr(msg, "usage_metadata", None))
-    )
-    sub_out = sum(
-        usage.get("output_tokens", 0)
-        for msg in messages
-        if (usage := getattr(msg, "usage_metadata", None))
-    )
+    sub_in, sub_out = _usage_from_callback(usage_cb)
+    if sub_in == 0 and sub_out == 0:
+        # Fall back to message-attached usage if the callback saw nothing.
+        sub_in = sum(
+            usage.get("input_tokens", 0)
+            for msg in messages
+            if (usage := getattr(msg, "usage_metadata", None))
+        )
+        sub_out = sum(
+            usage.get("output_tokens", 0)
+            for msg in messages
+            if (usage := getattr(msg, "usage_metadata", None))
+        )
 
     # Detect truncation from the last AI message. Don't reset `truncated` here:
     # an exception with partial recorded findings already set it True above
@@ -485,7 +510,11 @@ def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bo
 
     if not items:
         suffix = " (response was truncated)" if truncated else ""
-        return SopAuditResult(f"SOP {actual_id}: sub-agent did not produce structured findings{suffix}", [], sub_in, sub_out)
+        return SopAuditResult(
+            f"SOP {actual_id}: sub-agent did not produce structured findings{suffix}",
+            [], sub_in, sub_out,
+            status="truncated" if truncated else "no_findings",
+        )
 
     findings = []
     for data in items:
@@ -517,31 +546,43 @@ def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bo
     for f in findings:
         lines.append(f"  {f.clause_id}: {f.compliance_level.value} ({f.severity.value}) — {f.gap_description or 'Compliant'}")
     lines.append(format_sub_agent_tokens(sub_in, sub_out))
-    return SopAuditResult("\n".join(lines), findings, sub_in, sub_out)
-
-
-def _is_retryable(result: str) -> bool:
-    """Check if a single-SOP audit result indicates a retryable failure.
-
-    Truncation is NOT retryable — it will just truncate again.
-    """
-    if "response was truncated" in result:
-        return False
-    return (
-        "FAILED" in result
-        or "sub-agent did not produce structured findings" in result
-        or "failed to parse sub-agent findings" in result
+    return SopAuditResult(
+        "\n".join(lines), findings, sub_in, sub_out,
+        status="truncated" if truncated else "ok",
     )
 
 
-def _is_rate_limited(result: str) -> bool:
-    return "429" in result or "exceeded" in result.lower() or "quota" in result.lower() or "rate" in result.lower()
+def _usage_from_callback(usage_cb) -> tuple[int, int]:
+    """Sum (input_tokens, output_tokens) across all models seen by a
+    UsageMetadataCallbackHandler."""
+    totals = usage_cb.usage_metadata.values()
+    return (
+        sum(u.get("input_tokens", 0) for u in totals),
+        sum(u.get("output_tokens", 0) for u in totals),
+    )
 
 
-def _retry_delay(attempt: int, result: str) -> float:
+def _is_rate_limited_error(error_text: str) -> bool:
+    """Sniff an exception/transport message (never LLM-generated text) for
+    rate-limit markers."""
+    lowered = error_text.lower()
+    return "429" in error_text or "rate limit" in lowered or "quota" in lowered or "exceeded" in lowered
+
+
+def _is_retryable(result: SopAuditResult) -> bool:
+    """Check if a single-SOP audit result indicates a retryable failure.
+
+    Reads the structured status, never the summary text — summaries embed
+    model-written gap descriptions that can legitimately contain "FAILED".
+    Truncation is NOT retryable — it will just truncate again.
+    """
+    return result.status in ("failed", "no_findings")
+
+
+def _retry_delay(attempt: int, rate_limited: bool) -> float:
     """Compute retry delay with jitter. Longer for rate limits."""
     import random
-    base = RATE_LIMIT_BACKOFF if _is_rate_limited(result) else RETRY_BACKOFF
+    base = RATE_LIMIT_BACKOFF if rate_limited else RETRY_BACKOFF
     delay = base * attempt
     return delay + random.uniform(0, delay * 0.5)
 
@@ -558,9 +599,9 @@ def _audit_single_sop_with_retry(
     result = _audit_single_sop_impl(sop_id, provider=provider, use_tavily=use_tavily, model_name=model_name)
     tok_in, tok_out = result.input_tokens, result.output_tokens
     for attempt in range(1, MAX_RETRIES + 1):
-        if not _is_retryable(result.summary):
+        if not _is_retryable(result):
             break
-        delay = _retry_delay(attempt, result.summary)
+        delay = _retry_delay(attempt, result.rate_limited)
         logger.info("Retry attempt %d/%d for %s (waiting %.0fs)", attempt, MAX_RETRIES, sop_id, delay)
         time.sleep(delay)
         result = _audit_single_sop_impl(sop_id, provider=provider, use_tavily=use_tavily, model_name=model_name)
@@ -575,6 +616,10 @@ def _audit_all_sops_impl(run_one, max_workers: int | None = None) -> str:
     ``run_one`` is a callable ``(sop_id) -> SopAuditResult``. Results are
     aggregated from the returned values (no shared module state), so a process
     can run repeated or concurrent audits without contaminating totals.
+
+    Retries happen inside ``run_one`` (per-SOP, up to MAX_RETRIES attempts);
+    there is deliberately no second batch-level retry layer here — stacking
+    the two multiplied to MAX_RETRIES² sub-agent runs per stubborn SOP.
     """
     import concurrent.futures
     from sentinel.config import MAX_AUDIT_WORKERS
@@ -582,14 +627,16 @@ def _audit_all_sops_impl(run_one, max_workers: int | None = None) -> str:
 
     workers = max_workers or MAX_AUDIT_WORKERS
     all_sops = list_all_sops()
-    sop_by_id = {s["sop_id"]: s for s in all_sops}
 
     def _audit_one(sop_meta: dict) -> SopAuditResult:
         sid = sop_meta["sop_id"]
         try:
             return run_one(sid)
         except Exception as e:
-            return SopAuditResult(f"{sid}: FAILED — {e}", [])
+            return SopAuditResult(
+                f"{sid}: FAILED — {e}", [],
+                status="failed", rate_limited=_is_rate_limited_error(str(e)),
+            )
 
     results_by_id: dict[str, SopAuditResult] = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
@@ -598,29 +645,8 @@ def _audit_all_sops_impl(run_one, max_workers: int | None = None) -> str:
             sid = futures[future]
             results_by_id[sid] = future.result()
 
-    # Tokens burned on attempts we discard during batch retries are still billed.
-    carry_in = carry_out = 0
-    for attempt in range(1, MAX_RETRIES + 1):
-        to_retry = [sid for sid, r in results_by_id.items() if _is_retryable(r.summary)]
-        if not to_retry:
-            break
-        any_rate_limited = any(_is_rate_limited(results_by_id[sid].summary) for sid in to_retry)
-        delay = _retry_delay(attempt, "429" if any_rate_limited else "FAILED")
-        logger.info("Retry attempt %d/%d for %d SOPs (waiting %.0fs): %s", attempt, MAX_RETRIES, len(to_retry), delay, ", ".join(to_retry))
-        time.sleep(delay)
-        with concurrent.futures.ThreadPoolExecutor(max_workers=min(workers, len(to_retry))) as executor:
-            futures = {executor.submit(_audit_one, sop_by_id[sid]): sid for sid in to_retry}
-            for future in concurrent.futures.as_completed(futures):
-                sid = futures[future]
-                new_result = future.result()
-                if not _is_retryable(new_result.summary):
-                    logger.info("Retry succeeded for %s", sid)
-                carry_in += results_by_id[sid].input_tokens
-                carry_out += results_by_id[sid].output_tokens
-                results_by_id[sid] = new_result
-
     results = list(results_by_id.values())
-    still_failed = sum(1 for r in results if _is_retryable(r.summary))
+    still_failed = sum(1 for r in results if _is_retryable(r))
 
     findings = [f for r in results for f in r.findings]
     total = len(findings)
@@ -628,8 +654,9 @@ def _audit_all_sops_impl(run_one, max_workers: int | None = None) -> str:
     partial = sum(1 for f in findings if f.compliance_level == ComplianceLevel.PARTIAL)
     gap = sum(1 for f in findings if f.compliance_level == ComplianceLevel.GAP)
 
-    tok_in = sum(r.input_tokens for r in results) + carry_in
-    tok_out = sum(r.output_tokens for r in results) + carry_out
+    # Per-SOP retry already accumulates tokens across attempts into each result.
+    tok_in = sum(r.input_tokens for r in results)
+    tok_out = sum(r.output_tokens for r in results)
 
     summary = (
         f"Audit complete: {total} findings across {len(all_sops)} SOPs\n"
@@ -900,7 +927,10 @@ def build_tools(provider: str = "nebius", use_tavily: bool = True, model_name: s
             try:
                 return _run_one(sid)
             except Exception as e:
-                return SopAuditResult(f"{sid}: FAILED — {e}", [])
+                return SopAuditResult(
+                    f"{sid}: FAILED — {e}", [],
+                    status="failed", rate_limited=_is_rate_limited_error(str(e)),
+                )
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
             futures = {executor.submit(_audit_one, sid): sid for sid in sop_ids}
@@ -909,7 +939,7 @@ def build_tools(provider: str = "nebius", use_tavily: bool = True, model_name: s
                 results_by_id[sid] = future.result()
 
         results = list(results_by_id.values())
-        still_failed = sum(1 for r in results if _is_retryable(r.summary))
+        still_failed = sum(1 for r in results if _is_retryable(r))
 
         tok_in = sum(r.input_tokens for r in results)
         tok_out = sum(r.output_tokens for r in results)
