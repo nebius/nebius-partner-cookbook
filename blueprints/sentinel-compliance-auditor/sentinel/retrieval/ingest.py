@@ -1,8 +1,10 @@
 """Ingest SOP markdown files into Pinecone vector index."""
 from __future__ import annotations
 
+import random
 import re
 import threading
+import time
 import yaml
 from pathlib import Path
 
@@ -103,6 +105,21 @@ def chunk_sop(filepath: Path, chunk_size: int = 1500, overlap: int = 200) -> lis
     return chunks
 
 
+def with_retries(fn, attempts: int = 3, base_delay: float = 2.0):
+    """Call ``fn()``, retrying transient failures with exponential backoff.
+
+    Used around Nebius embedding calls and Pinecone queries/upserts: a single
+    5xx on one batch must not abort a 2,386-chunk ingestion, and a transient
+    error must not fail a sub-agent's RAG tool call."""
+    for attempt in range(1, attempts + 1):
+        try:
+            return fn()
+        except Exception:
+            if attempt == attempts:
+                raise
+            time.sleep(base_delay * 2 ** (attempt - 1) + random.uniform(0, base_delay))
+
+
 _embedding_client = None
 _embedding_client_lock = threading.Lock()
 
@@ -129,7 +146,7 @@ def embed_texts(texts: list[str], batch_size: int = 64) -> list[list[float]]:
 
     for i in range(0, len(texts), batch_size):
         batch = texts[i : i + batch_size]
-        response = client.embeddings.create(model=EMBEDDING_MODEL, input=batch)
+        response = with_retries(lambda b=batch: client.embeddings.create(model=EMBEDDING_MODEL, input=b))
         all_embeddings.extend([d.embedding for d in response.data])
 
     return all_embeddings
@@ -193,10 +210,17 @@ def ingest_all_sops(business_units: list[str] | None = None):
                 "metadata": meta,
             })
 
+        # Clear the namespace first: re-ingesting after a file was edited to
+        # produce fewer chunks (or renamed) must not leave orphaned vectors.
+        try:
+            index.delete(delete_all=True, namespace=namespace)
+        except Exception:
+            pass  # namespace may not exist yet
+
         batch_size = 100
         for i in range(0, len(vectors), batch_size):
             batch = vectors[i : i + batch_size]
-            index.upsert(vectors=batch, namespace=namespace)
+            with_retries(lambda b=batch: index.upsert(vectors=b, namespace=namespace))
 
         total_chunks += len(vectors)
         print(f"  Upserted {len(vectors)} chunks into namespace '{namespace}'")

@@ -1,13 +1,11 @@
 """Retrieve regulation text from Pinecone for compliance grounding."""
 from __future__ import annotations
 
-from pinecone import Pinecone
-
 from sentinel.config import PINECONE_API_KEY, PINECONE_INDEX_NAME
-from sentinel.retrieval.ingest import embed_texts
+from sentinel.retrieval.ingest import embed_texts, with_retries
 
 
-_pc: Pinecone | None = None
+_pc = None
 _index = None
 
 NAMESPACE = "regulations"
@@ -16,6 +14,11 @@ NAMESPACE = "regulations"
 def _get_index():
     global _pc, _index
     if _index is None:
+        # Lazy import: pinecone may be absent in the LangGraph Cloud container
+        # (see CLAUDE.md), and eval/naive_rag.py imports this module at its own
+        # top level — a module-level import would break at import time there.
+        from pinecone import Pinecone
+
         _pc = Pinecone(api_key=PINECONE_API_KEY)
         _index = _pc.Index(PINECONE_INDEX_NAME)
     return _index
@@ -43,13 +46,13 @@ def retrieve_regulation_text(
     if regulations:
         filter_dict = {"regulation": {"$in": regulations}}
 
-    results = index.query(
+    results = with_retries(lambda: index.query(
         vector=embedding,
         top_k=top_k,
         namespace=NAMESPACE,
         include_metadata=True,
         filter=filter_dict,
-    )
+    ))
 
     chunks = []
     for match in results.matches:

@@ -10,7 +10,7 @@ from sentinel.config import (
     PINECONE_INDEX_NAME,
     REGULATIONS_DIR,
 )
-from sentinel.retrieval.ingest import embed_texts
+from sentinel.retrieval.ingest import embed_texts, with_retries
 
 REGULATION_MAP = {
     # Core 9 frameworks
@@ -244,10 +244,18 @@ def ingest_regulations():
         })
 
     namespace = "regulations"
+
+    # Clear the namespace first: re-ingesting after a file was edited to
+    # produce fewer chunks (or renamed) must not leave orphaned vectors.
+    try:
+        index.delete(delete_all=True, namespace=namespace)
+    except Exception:
+        pass  # namespace may not exist yet
+
     batch_size = 100
     for i in range(0, len(vectors), batch_size):
         batch = vectors[i : i + batch_size]
-        index.upsert(vectors=batch, namespace=namespace)
+        with_retries(lambda b=batch: index.upsert(vectors=b, namespace=namespace))
 
     print(f"\nIngested {len(vectors)} regulation chunks into namespace '{namespace}'")
     return len(vectors)
