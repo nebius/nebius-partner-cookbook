@@ -480,17 +480,38 @@ def _stream_one(
     graph_id: str,
     out_q: "queue.Queue[str | None]",
     prefix: str = "",
+    cancel_event: "threading.Event | None" = None,
 ):
     """Push SSE-formatted lines into out_q. Producer for a single LangGraph stream.
 
     `prefix` is prepended to each event's payload so the multiplexed race
     endpoint can attribute events to the right agent column.
+
+    `cancel_event` is set by the consumer when the client disconnects: the
+    producer stops streaming and cancels the LangGraph run instead of letting
+    it burn tokens to completion into a queue nobody reads.
     """
+    if cancel_event is None:
+        cancel_event = threading.Event()
+
+    def _put(payload: str) -> bool:
+        """Bounded-queue put that gives up once the client has disconnected."""
+        while not cancel_event.is_set():
+            try:
+                out_q.put(payload, timeout=1.0)
+                return True
+            except queue.Full:
+                continue
+        return False
+
+    run_info = {"run_id": None}
+
     def _on_run_created(meta):
         rid = getattr(meta, "run_id", None) or (meta.get("run_id") if hasattr(meta, "get") else None)
         if not rid:
             return
-        out_q.put(json.dumps({
+        run_info["run_id"] = rid
+        _put(json.dumps({
             "type": "run_started",
             "agent": prefix,
             "run_id": rid,
@@ -501,12 +522,13 @@ def _stream_one(
     sub_tokens = {"input": 0, "output": 0}
 
     def _emit_usage():
-        out_q.put(json.dumps({
+        _put(json.dumps({
             "type": "usage", "agent": prefix,
             "input_tokens": outer_tokens["input"] + sub_tokens["input"],
             "output_tokens": outer_tokens["output"] + sub_tokens["output"],
         }))
 
+    client = None
     try:
         client = _langgraph_client()
         for event in client.runs.stream(
@@ -516,15 +538,16 @@ def _stream_one(
             stream_mode=["messages-tuple", "values"],
             on_run_created=_on_run_created,
         ):
-            payload = _normalize_event(event, prefix)
-            if payload is not None:
+            if cancel_event.is_set():
+                break
+            for payload in _normalize_event(event, prefix):
                 parsed = json.loads(payload)
                 if parsed.get("type") == "usage":
                     outer_tokens["input"] = parsed["input_tokens"]
                     outer_tokens["output"] = parsed["output_tokens"]
                     _emit_usage()
                 elif parsed.get("type") == "tool_result":
-                    out_q.put(payload)
+                    _put(payload)
                     text = parsed.get("text", "")
                     # Accumulate across audit tool calls: a run may make several
                     # audit_sops / audit_single_sop calls, each reporting only its
@@ -537,34 +560,62 @@ def _stream_one(
                             sub_tokens["output"] += toks[1]
                             _emit_usage()
                 else:
-                    out_q.put(payload)
+                    _put(payload)
     except Exception as exc:
-        out_q.put(json.dumps({"type": "error", "agent": prefix, "error": str(exc)}))
+        _put(json.dumps({"type": "error", "agent": prefix, "error": str(exc)}))
     finally:
-        out_q.put(json.dumps({"type": "done", "agent": prefix}))
+        if cancel_event.is_set() and client is not None and run_info["run_id"]:
+            try:
+                client.runs.cancel(thread_id, run_info["run_id"])
+            except Exception:
+                pass
+        done_payload = json.dumps({"type": "done", "agent": prefix})
+        if cancel_event.is_set():
+            # Consumer is gone — never block on a full queue.
+            try:
+                out_q.put_nowait(done_payload)
+            except queue.Full:
+                pass
+        else:
+            out_q.put(done_payload)
 
 
-def _normalize_event(event, agent: str = "") -> str | None:
-    """LangGraph SDK event → JSON payload understood by the React client."""
+def _normalize_event(event, agent: str = "") -> list[str]:
+    """LangGraph SDK event → JSON payloads understood by the React client.
+
+    Returns a list because one AI message can carry several parallel tool
+    calls — each gets its own event (with its `id`, so the client can match
+    `tool_result` events by `tool_call_id` instead of guessing LIFO).
+    """
     if event.event == "messages" and event.data:
         msg = event.data[0] if isinstance(event.data, list) else event.data
         if not isinstance(msg, dict):
-            return None
+            return []
         msg_type = msg.get("type", "")
         content = msg.get("content", "")
         tool_calls = msg.get("tool_calls", [])
 
         if msg_type in ("AIMessageChunk", "AIMessage", "ai"):
-            if tool_calls and tool_calls[0].get("name"):
-                tc = tool_calls[0]
-                return json.dumps({
+            payloads = [
+                json.dumps({
                     "type": "tool_call", "agent": agent,
+                    "id": tc.get("id", ""),
                     "name": tc.get("name", ""), "args": tc.get("args", {}),
                 })
+                for tc in tool_calls
+                if tc.get("name")
+            ]
+            if payloads:
+                return payloads
             if isinstance(content, str) and content:
-                return json.dumps({"type": "token", "agent": agent, "text": content})
+                return [json.dumps({"type": "token", "agent": agent, "text": content})]
         elif msg_type in ("tool", "ToolMessage", "ToolMessageChunk") and content:
-            return json.dumps({"type": "tool_result", "agent": agent, "name": msg.get("name", ""), "text": content})
+            return [json.dumps({
+                "type": "tool_result", "agent": agent,
+                "name": msg.get("name", ""),
+                "tool_call_id": msg.get("tool_call_id", ""),
+                "text": content,
+            })]
 
     elif event.event == "values" and isinstance(event.data, dict):
         usage: list[dict[str, int]] = []
@@ -577,32 +628,43 @@ def _normalize_event(event, agent: str = "") -> str | None:
         if usage:
             in_tok = sum(u.get("input_tokens", 0) for u in usage)
             out_tok = sum(u.get("output_tokens", 0) for u in usage)
-            return json.dumps({
+            return [json.dumps({
                 "type": "usage", "agent": agent,
                 "input_tokens": in_tok, "output_tokens": out_tok,
-            })
-    return None
+            })]
+    return []
 
 
-async def _drain_sse(out_q: "queue.Queue[str | None]", n_producers: int):
+async def _drain_sse(
+    out_q: "queue.Queue[str | None]",
+    n_producers: int,
+    cancel_event: "threading.Event | None" = None,
+):
     """Yield SSE-formatted events from the queue until N producers have signalled done."""
     loop = asyncio.get_event_loop()
     done = 0
-    while done < n_producers:
-        payload = await loop.run_in_executor(None, out_q.get)
-        if payload is None:
-            done += 1
-            continue
-        try:
-            obj = json.loads(payload)
-        except json.JSONDecodeError:
-            continue
-        if obj.get("type") == "done":
-            done += 1
+    try:
+        while done < n_producers:
+            payload = await loop.run_in_executor(None, out_q.get)
+            if payload is None:
+                done += 1
+                continue
+            try:
+                obj = json.loads(payload)
+            except json.JSONDecodeError:
+                continue
+            if obj.get("type") == "done":
+                done += 1
+                yield f"data: {payload}\n\n"
+                continue
             yield f"data: {payload}\n\n"
-            continue
-        yield f"data: {payload}\n\n"
-    yield "data: {\"type\":\"all_done\"}\n\n"
+        yield "data: {\"type\":\"all_done\"}\n\n"
+    finally:
+        # Reached on client disconnect (Starlette closes the generator) as
+        # well as on normal completion: tell producers to stop streaming and
+        # cancel their LangGraph runs.
+        if cancel_event is not None:
+            cancel_event.set()
 
 
 @app.post("/api/audit/stream")
@@ -612,13 +674,17 @@ async def audit_stream(req: AuditRequest):
     thread = client.threads.create()
     tid = thread["thread_id"]
 
-    out_q: queue.Queue[str | None] = queue.Queue()
+    out_q: queue.Queue[str | None] = queue.Queue(maxsize=2000)
+    cancel_event = threading.Event()
     threading.Thread(
         target=_stream_one,
-        args=(tid, req.message, req.graph_id, out_q, ""),
+        args=(tid, req.message, req.graph_id, out_q, "", cancel_event),
         daemon=True,
     ).start()
-    return StreamingResponse(_drain_sse(out_q, n_producers=1), media_type="text/event-stream")
+    return StreamingResponse(
+        _drain_sse(out_q, n_producers=1, cancel_event=cancel_event),
+        media_type="text/event-stream",
+    )
 
 
 # ── SSE: 3-way race stream ───────────────────────────────────────────────────
@@ -641,15 +707,16 @@ async def race_stream(req: RaceRequest):
         except Exception as exc:
             raise HTTPException(status_code=502, detail=f"LangGraph thread create failed: {exc}")
 
-    out_q: queue.Queue[str | None] = queue.Queue()
+    out_q: queue.Queue[str | None] = queue.Queue(maxsize=2000)
+    cancel_event = threading.Event()
     for tid, agent in zip(thread_ids, PARALLEL_AGENTS):
         threading.Thread(
             target=_stream_one,
-            args=(tid, req.message, agent["graph_id"], out_q, agent["key"]),
+            args=(tid, req.message, agent["graph_id"], out_q, agent["key"], cancel_event),
             daemon=True,
         ).start()
     return StreamingResponse(
-        _drain_sse(out_q, n_producers=len(PARALLEL_AGENTS)),
+        _drain_sse(out_q, n_producers=len(PARALLEL_AGENTS), cancel_event=cancel_event),
         media_type="text/event-stream",
     )
 

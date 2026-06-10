@@ -60,13 +60,24 @@ const AuditScreen = ({ loadStatus }) => {
             return { ...prev, tokens: [...prev.tokens, ev.text] };
           }
           if (ev.type === "tool_call") {
-            return { ...prev, toolCalls: [...prev.toolCalls, { name: ev.name, args: ev.args, t: Date.now() }] };
+            const tc = [...prev.toolCalls];
+            // Streamed chunks can re-announce the same call — update in place by id.
+            const idx = ev.id ? tc.findIndex(c => c.id === ev.id) : -1;
+            if (idx >= 0) tc[idx] = { ...tc[idx], name: ev.name, args: ev.args };
+            else tc.push({ id: ev.id, name: ev.name, args: ev.args, t: Date.now() });
+            return { ...prev, toolCalls: tc };
           }
           if (ev.type === "tool_result") {
             const tc = [...prev.toolCalls];
-            for (let i = tc.length - 1; i >= 0; i--) {
-              if (!tc[i].result) { tc[i] = { ...tc[i], result: ev.text }; break; }
+            // Match by tool_call_id (parallel calls resolve out of order);
+            // fall back to last unresolved call for older payloads without ids.
+            let idx = ev.tool_call_id ? tc.findIndex(c => c.id === ev.tool_call_id) : -1;
+            if (idx < 0) {
+              for (let i = tc.length - 1; i >= 0; i--) {
+                if (!tc[i].result) { idx = i; break; }
+              }
             }
+            if (idx >= 0) tc[idx] = { ...tc[idx], result: ev.text };
             return { ...prev, toolCalls: tc };
           }
           if (ev.type === "usage") {
