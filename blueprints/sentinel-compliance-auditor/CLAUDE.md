@@ -101,6 +101,9 @@ When an audit finding is a gap or partial at medium+ severity, the `create_jira_
 | `scripts/run_qa_eval.py` | Q&A eval runner: naive, prototype, grounded, optimized, production modes |
 | `scripts/inspect_tool_calls.py` | LangSmith tool call inspector: shows all tool calls with args, timing, and output token counts for a run (`--show-output`, `--json`) |
 | `scripts/eval_retrieval.py` | Retrieval recall@k against the Q&A dataset's expected citations (`--top-k`, `--editions`, `--filtered`, `--misses`) |
+| `scripts/rejudge_results.py` | Re-run the LLM judge over stored eval results without re-running agents |
+| `sentinel/eval/citations.py` | Citation extraction + corpus-backed verification; shared citation/chunk matcher |
+| `sentinel/eval/weaknesses.py` | Planted-weakness recall scoring for audit runs |
 | `scripts/check_jsx.mjs` | Parses all UI JSX with babel-standalone (same compiler the browser uses); run by CI |
 
 ## LangGraph Cloud deployment
@@ -117,7 +120,12 @@ When an audit finding is a gap or partial at medium+ severity, the `create_jira_
 - `scripts/validate_run.py` fetches audit run data from LangSmith and compares against the compliance matrix
 - Takes LangSmith run IDs as arguments — fetches run metadata (model, timing, tokens, cost) and audit content automatically
 - Parses the `audit_all_sops` text output, classifies findings by regulation (criterion prefix matching + bare clause-ID fallbacks: `CC6.1` → SOC 2, `164.312…`/`§ 164…` → HIPAA; only the AI RMF maps to "NIST AI RMF" — other NIST docs return None), aggregates to worst compliance level per (SOP, regulation) pair
-- The emit↔parse contract between the audit summary format (`tools.py`) and `parse_full_findings` is locked by a round-trip test (`tests/test_validate_run_pipeline.py`) — changing either side fails the suite
+- The emit↔parse contract between the audit summary format (`tools.py`) and `parse_full_findings` is locked by a round-trip test (`tests/test_validate_run_pipeline.py`) — changing either side fails the suite; the parser also returns per-pair finding texts for weakness recall
+- Planted-weakness recall (`sentinel/eval/weaknesses.py`): did the audit FIND the matrix's planted defects, not just match the label? Deterministic clause-ref + distinctive-term matching; printed by `validate_run` and carried in `compare_audit_runs`
+- Citation verification (`sentinel/eval/citations.py`): answers' cited clauses are checked against the local corpus (with authoritative article-count bounds for EU regs — the corpus texts are ABRIDGED, so corpus presence alone falsely flags real high-numbered articles). The Q&A eval reports `citation_precision_avg`; an unverified citation usually means a fabricated clause
+- Retrieval recall inside the Q&A eval: `agentic_qa` keeps `retrieve_regulation_rag` outputs (`retrieved_context`), and `score_row` computes expected-citation recall — separating retrieval misses from reasoning misses
+- `run_qa_eval.py --repeats N` runs each mode N times and writes a `variance_*` summary (mean±std of the headline metrics) — the measured run-to-run noise floor for model comparisons
+- `scripts/rejudge_results.py` re-runs the LLM judge over stored result files without re-running the agents (answers are the expensive part); `/api/eval-results` flags results whose stored `kb_regulation_chunks` differs from the live index
 - LangSmith project name comes from `LANGCHAIN_PROJECT` (default `sentinel-agent`) in all three scripts
 - Metrics: matched %, false positive % (too strict), false negative % (too lenient), failed % (missing), per-class F1, macro F1, per-regulation accuracy, directional bias, tokens, cost, latency
 - Usage: `python3 scripts/validate_run.py <run_id>` (single run), `python3 scripts/validate_run.py <run_id1> <run_id2>` (side-by-side comparison), `--original` flag for original matrix

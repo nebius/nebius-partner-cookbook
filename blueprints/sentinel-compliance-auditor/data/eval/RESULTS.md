@@ -14,6 +14,13 @@ Same prompts, same retrieval primitive (Pinecone, namespace `regulations`), same
 
 Source files: `data/eval/qa_dataset.jsonl`, `scripts/run_qa_eval.py`, `sentinel/eval/`. Raw run output: `data/eval/results/{naive,agentic,agentic_openai}_*.json` + `comparison_3way_20260521.json`.
 
+> **Staleness & methodology notes (2026-06-10).** The tables below predate several methodology changes and should not be compared against newer runs:
+> - **Ground truth covers only 6 of the 36 regulation frameworks** (HIPAA, GDPR, SOC 2, EU AI Act, NIST AI RMF, SR 11-7). Findings against the other 30 frameworks are not scored.
+> - The judge has been **swapped from DeepSeek-V4-Pro (a contestant) to Kimi-K2.6** (non-contestant, thinking disabled) — judge scores below carry self-grading bias; under the unbiased judge DeepSeek no longer leads the categories it "won" here.
+> - The regulation index has since grown to **14,513 chunks** (structure-aware chunking, SOC 2 + PCI DSS texts added, current-edition filtering). Result JSONs now carry a `config` provenance block (judge model, KB chunk count, dataset SHA, git commit); `/api/eval-results` flags results whose stored KB size differs from the live index.
+> - `scripts/run_qa_eval.py --repeats N` measures the run-to-run noise floor; `validate_run.py` reports bootstrap CIs and planted-weakness recall; answers are citation-verified against the corpus.
+> The current result files live in `data/eval/results/*_rejudged_*.json` (2026-06-10).
+
 ---
 
 ## Dataset

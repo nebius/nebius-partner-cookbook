@@ -316,12 +316,43 @@ def agents_js():
     )
 
 
+_live_kb_cache: dict[str, Any] = {"chunks": None, "fetched_at": 0.0}
+
+
+def _live_regulation_chunks() -> int | None:
+    """Current vector count of the Pinecone `regulations` namespace (cached).
+
+    Compared against each eval result's stored config.kb_regulation_chunks:
+    results produced against a different corpus version are not comparable
+    (the index once grew ~7x between runs with nothing flagging it)."""
+    now = time.time()
+    if _live_kb_cache["chunks"] is not None and now - _live_kb_cache["fetched_at"] < _KB_STATS_TTL_S:
+        return _live_kb_cache["chunks"]
+    try:
+        from pinecone import Pinecone
+        from sentinel.config import PINECONE_API_KEY, PINECONE_INDEX_NAME
+        stats = Pinecone(api_key=PINECONE_API_KEY).Index(PINECONE_INDEX_NAME).describe_index_stats()
+        ns = (getattr(stats, "namespaces", None) or {}).get("regulations")
+        chunks = (getattr(ns, "vector_count", None) or ns.get("vector_count")) if ns is not None else None
+    except Exception:
+        chunks = None
+    _live_kb_cache["chunks"] = chunks
+    _live_kb_cache["fetched_at"] = now
+    return chunks
+
+
 @app.get("/api/eval-results")
 def eval_results():
     out = {}
+    live_chunks = _live_regulation_chunks()
     for key, path in EVAL_AGENTS.items():
         if path.exists():
-            out[key] = json.loads(path.read_text())
+            payload = json.loads(path.read_text())
+            stored = (payload.get("config") or {}).get("kb_regulation_chunks")
+            if stored and live_chunks and stored != live_chunks:
+                payload["stale_kb"] = {"stored_chunks": stored, "live_chunks": live_chunks}
+                print(f"[forge] eval result {path.name} was produced against a {stored}-chunk KB; live index has {live_chunks} — numbers are not comparable to a fresh run")
+            out[key] = payload
     if not out:
         raise HTTPException(status_code=404, detail="No eval result files found")
     return out

@@ -366,6 +366,48 @@ def _run_config(dataset_path: Path) -> dict:
     return cfg
 
 
+def _headline_metrics(summary: dict) -> dict:
+    """The numbers worth tracking across repeats."""
+    cb = summary.get("compliance_binary") or {}
+    return {
+        "binary_accuracy": cb.get("accuracy"),
+        "binary_macro_f1": cb.get("macro_f1"),
+        "retrieval_recall_avg": summary.get("retrieval_recall_avg"),
+        "citation_precision_avg": summary.get("citation_precision_avg"),
+        "answer_cost_usd": summary.get("answer_cost_usd"),
+        "latency_avg_s": summary.get("latency_avg_s"),
+    }
+
+
+def variance_summary(mode: str, summaries: list[dict]) -> dict:
+    """Mean ± sample std of the headline metrics across repeats.
+
+    A single run per configuration leaves only the binomial CI as an error
+    bar; the measured run-to-run spread (temperature 0.1 + tool-path
+    nondeterminism) is the honest noise floor for model comparisons."""
+    import statistics
+
+    per_repeat = [_headline_metrics(s) for s in summaries]
+    stats: dict = {}
+    for field in per_repeat[0]:
+        values = [m[field] for m in per_repeat if m[field] is not None]
+        if not values:
+            continue
+        stats[field] = {
+            "mean": statistics.mean(values),
+            "std": statistics.stdev(values) if len(values) > 1 else 0.0,
+            "values": values,
+        }
+    return {"mode": mode, "repeats": len(summaries), "metrics": stats}
+
+
+def print_variance(var: dict) -> None:
+    print(f"\n=== {var['mode'].upper()} — variance over {var['repeats']} repeats ===")
+    for field, s in var["metrics"].items():
+        spread = ", ".join(f"{v:.3f}" for v in s["values"])
+        print(f"  {field:24} {s['mean']:.3f} ± {s['std']:.3f}   [{spread}]")
+
+
 def write_results(payload: dict, out_dir: Path, label: str, timestamp: str) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{label}_{timestamp}.json"
@@ -492,6 +534,8 @@ def main():
     ap.add_argument("--results-dir", default=str(RESULTS_DIR))
     ap.add_argument("--no-judge", action="store_true", help="Skip LLM-as-judge scoring (faster, no judge cost).")
     ap.add_argument("--workers", type=int, default=5, help="Parallel workers per mode (default 5).")
+    ap.add_argument("--repeats", type=int, default=1,
+                    help="Run each mode N times and report mean±std of the headline metrics (measures the run-to-run noise floor).")
     args = ap.parse_args()
 
     dataset_path = Path(args.dataset)
@@ -514,15 +558,25 @@ def main():
     run_config = _run_config(dataset_path)
     summaries = {}
     for mode in modes:
-        print(f"\n--- Running {mode} ({len(rows)} questions, {args.workers} worker(s)) ---")
-        summary = run_mode(mode, rows, run_judge, workers=args.workers)
-        summary["config"] = run_config
-        # Sanitize mode-name into a filesystem-safe label (agentic-openai → agentic_openai).
-        file_label = mode.replace("-", "_")
-        path = write_results(summary, results_dir, file_label, timestamp)
-        print(f"  Wrote {path}")
-        print_summary(summary)
-        summaries[mode] = summary
+        repeat_summaries = []
+        for rep in range(1, args.repeats + 1):
+            tag = f" [repeat {rep}/{args.repeats}]" if args.repeats > 1 else ""
+            print(f"\n--- Running {mode} ({len(rows)} questions, {args.workers} worker(s)){tag} ---")
+            summary = run_mode(mode, rows, run_judge, workers=args.workers)
+            summary["config"] = {**run_config, "repeat": rep, "repeats": args.repeats}
+            # Sanitize mode-name into a filesystem-safe label (agentic-openai → agentic_openai).
+            file_label = mode.replace("-", "_") + (f"_r{rep}" if args.repeats > 1 else "")
+            path = write_results(summary, results_dir, file_label, timestamp)
+            print(f"  Wrote {path}")
+            print_summary(summary)
+            repeat_summaries.append(summary)
+
+        summaries[mode] = repeat_summaries[0]
+        if args.repeats > 1:
+            var = variance_summary(mode, repeat_summaries)
+            var_path = write_results(var, results_dir, f"variance_{mode.replace('-', '_')}", timestamp)
+            print_variance(var)
+            print(f"  Wrote {var_path}")
 
     if len(summaries) >= 2:
         comparison = {
