@@ -1,6 +1,8 @@
 """Retrieve regulation text from Pinecone for compliance grounding."""
 from __future__ import annotations
 
+from functools import lru_cache
+
 from sentinel.config import PINECONE_API_KEY, PINECONE_INDEX_NAME
 from sentinel.retrieval.ingest import embed_texts, with_retries
 
@@ -43,14 +45,36 @@ def retrieve_regulation_text(
     Returns:
         list of dicts with keys: text, section, regulation, edition, source, score
     """
+    cached = _retrieve_cached(
+        query.strip(),
+        tuple(regulations) if regulations else None,
+        top_k,
+        tuple(editions) if editions else None,
+    )
+    # Shallow-copy each dict so one caller can't mutate the shared cache entry.
+    return [dict(chunk) for chunk in cached]
+
+
+@lru_cache(maxsize=512)
+def _retrieve_cached(
+    query: str,
+    regulations: tuple[str, ...] | None,
+    top_k: int,
+    editions: tuple[str, ...] | None,
+) -> tuple[dict, ...]:
+    """Process-wide cache: a full audit runs 200 sub-agents that issue
+    near-identical formulaic queries ("HIPAA access control requirements"
+    across 152 HIPAA-tagged SOPs) — without this, every one re-embeds the
+    query and round-trips Pinecone. lru_cache is thread-safe for ThreadPool
+    workers; entries are treated as read-only by the caller above."""
     index = _get_index()
     embedding = embed_texts([query])[0]
 
     filter_dict: dict | None = {}
     if regulations:
-        filter_dict["regulation"] = {"$in": regulations}
+        filter_dict["regulation"] = {"$in": list(regulations)}
     if editions:
-        filter_dict["edition"] = {"$in": editions}
+        filter_dict["edition"] = {"$in": list(editions)}
     filter_dict = filter_dict or None
 
     results = with_retries(lambda: index.query(
@@ -81,7 +105,7 @@ def retrieve_regulation_text(
             "score": match.score,
         })
 
-    return chunks
+    return tuple(chunks)
 
 
 def format_regulation_context(chunks: list[dict], max_chars: int = 12000) -> str:

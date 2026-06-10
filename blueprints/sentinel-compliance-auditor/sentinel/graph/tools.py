@@ -175,6 +175,32 @@ def list_sops(query: str = "") -> str:
     return f"{len(all_sops)} SOPs:\n" + "\n".join(lines)
 
 
+def _canonical_regulation(name: str) -> str | None:
+    """Map a model-written regulation name to the canonical KB metadata value.
+
+    The Pinecone `regulation` filter is exact-string match; "SOC2", "HIPAA
+    Security Rule" or "Reg B" would silently match nothing. Compares
+    alphanumeric-normalized forms; returns None (→ search unfiltered) when no
+    canonical name relates."""
+    from sentinel.retrieval.ingest_regulations import REGULATION_MAP
+
+    def norm(s: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "", s.lower())
+
+    n = norm(name)
+    if not n:
+        return None
+    best = None
+    best_len = 0
+    for canonical in set(REGULATION_MAP.values()):
+        c = norm(canonical)
+        if n == c:
+            return canonical
+        if (n in c or c in n) and len(c) > best_len:
+            best, best_len = canonical, len(c)
+    return best
+
+
 def _editions_filter(edition: str) -> list[str] | None:
     """Map the tool-level `edition` arg to the retrieval filter. Default is
     current-only — superseded editions (HIPAA 2017/2020, EU AI Act 2021
@@ -237,16 +263,22 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
     recorded_findings: list[dict] = []
     _retrieval_calls = {"count": 0, "limit": 30}
     _budget_lock = threading.Lock()
+    _seen_chunk_texts: set[int] = set()
 
-    def _consume_retrieval_budget() -> bool:
+    def _consume_retrieval_budget() -> int | None:
         """Atomic check-and-increment — parallel tool calls must not race past
-        the limit. Callers validate their inputs BEFORE consuming, so a
+        the limit. Returns the running count (surfaced to the model so it can
+        pace itself instead of hitting the limit as a cliff) or None when
+        exhausted. Callers validate their inputs BEFORE consuming, so a
         rejected empty query doesn't burn a budget unit."""
         with _budget_lock:
             if _retrieval_calls["count"] >= _retrieval_calls["limit"]:
-                return False
+                return None
             _retrieval_calls["count"] += 1
-            return True
+            return _retrieval_calls["count"]
+
+    def _budget_line(used: int) -> str:
+        return f"\n[Retrieval budget: {used}/{_retrieval_calls['limit']} calls used]"
 
     _budget_exhausted_msg = (
         f"Retrieval limit reached ({_retrieval_calls['limit']} calls). "
@@ -297,16 +329,32 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
             return "Missing or empty 'query' argument — please re-issue with a specific search phrase"
         if not PINECONE_API_KEY:
             return "Pinecone not configured."
-        if not _consume_retrieval_budget():
+        used = _consume_retrieval_budget()
+        if used is None:
             return _budget_exhausted_msg
         try:
             from sentinel.retrieval.regulations import retrieve_regulation_text, format_regulation_context
-            regs = [regulation] if regulation else None
+            regs = None
+            if regulation:
+                canonical = _canonical_regulation(regulation)
+                # Unmappable names search unfiltered rather than silently
+                # matching nothing against the exact-string metadata filter.
+                regs = [canonical] if canonical else None
             chunks = retrieve_regulation_text(query, regulations=regs, top_k=15, editions=_editions_filter(edition))
-            if not chunks:
-                return f"No regulation text found for: {query}"
-            context = format_regulation_context(chunks)
-            return f"Retrieved {len(chunks)} sections:\n{context}"
+            # Don't re-show chunks this sub-agent has already seen: the ReAct
+            # transcript re-sends every prior turn, so a duplicate chunk gets
+            # re-billed on every subsequent LLM call.
+            fresh = [c for c in chunks if hash(c["text"]) not in _seen_chunk_texts]
+            if not fresh:
+                if chunks:
+                    return (
+                        "All results for this query were already retrieved earlier in this audit — "
+                        "use the text above, try a different angle, or move on." + _budget_line(used)
+                    )
+                return f"No regulation text found for: {query}" + _budget_line(used)
+            _seen_chunk_texts.update(hash(c["text"]) for c in fresh)
+            context = format_regulation_context(fresh)
+            return f"Retrieved {len(fresh)} sections:\n{context}" + _budget_line(used)
         except Exception as e:
             return f"RAG retrieval failed: {e}"
 
@@ -320,9 +368,10 @@ def _build_subagent_tools(sop_text: str, sop_id: str, sop_title: str, use_tavily
         """Search the web for current regulatory guidance, enforcement actions, or recent developments. Use when you need information beyond the static knowledge base."""
         if not isinstance(query, str) or not query.strip():
             return "Missing or empty 'query' argument — please re-issue with a specific search phrase"
-        if not _consume_retrieval_budget():
+        used = _consume_retrieval_budget()
+        if used is None:
             return _budget_exhausted_msg
-        return search_web.invoke({"query": query})
+        return search_web.invoke({"query": query}) + _budget_line(used)
     _search_web_capped.name = "search_web"
 
     tools = [read_sop, record_finding]
@@ -339,7 +388,7 @@ _AUDIT_SUBAGENT_PROMPT_RAG = """You are an expert regulatory compliance auditor 
 Audit the SOP against ALL applicable regulations. You must determine which regulations are relevant based on the SOP's content and business unit.
 
 ## Process
-1. First, call `read_sop` to review the SOP content
+1. The full SOP text is provided in the first message — read it carefully. (Call `read_sop` only if you need to re-read it later.)
 2. Work through regulations ONE AT A TIME. For each applicable regulation:
    a. Retrieve the relevant sections from the knowledge base (2–4 targeted queries)
    b. Assess the SOP against each requirement you found
@@ -348,6 +397,9 @@ Audit the SOP against ALL applicable regulations. You must determine which regul
 4. After all requirements are assessed, output a single short sentence summarizing counts (e.g. "Done — 12 findings recorded."). Do NOT repeat findings in your final message.
 
 IMPORTANT: Retrieve, assess, and record findings for each regulation before moving to the next. This ensures partial progress is saved if the audit is interrupted.
+
+## Knowledge base regulation names
+When passing the `regulation` filter to `retrieve_regulation_rag`, use these exact names: HIPAA, SOC 2, GDPR, EU AI Act, NIST AI RMF, SR 11-7, California SB 53, California SB 942, California AB 853, BSA / 31 CFR, ECOA / Reg B, FCRA, EU AMLD4, EU ePrivacy, EU Funds Transfer Reg, EU MDR, EU SCCs, FDA 21 CFR Part 11, FDA 21 CFR Part 807, FDA 21 CFR Part 820, FDA AI/ML SaMD, FDA CDS Guidance, NIST CSF 2.0, NIST Privacy Framework, NIST SP 1270, NIST SP 800-34, NIST SP 800-53, NIST SP 800-61, NIST SP 800-63B, NIST SP 800-88, NIST SP 800-161, NIST SP 800-207, NIST SP 800-218, OWASP API Top 10, OWASP Top 10, PCI DSS.
 
 ## Rules
 - Every `retrieve_regulation_rag` and `search_web` call MUST include a non-empty `query` argument. Never emit a tool call with empty `{}` args — if you have nothing specific to search for, don't call the tool. When issuing parallel tool calls, double-check that each call's argument dict contains a concrete `query` string.
@@ -476,9 +528,16 @@ def _audit_single_sop_impl(sop_id: str, provider: str = "nebius", use_tavily: bo
     try:
         result = subagent.invoke(
             {
+                # SOP text goes in the first message instead of behind a forced
+                # read_sop round trip: saves one full LLM call per SOP (×200 on
+                # a full audit) and makes `system prompt + SOP` a stable prefix
+                # for provider-side prompt caching.
                 "messages": [{
                     "role": "user",
-                    "content": f"Audit SOP {actual_id}: {title} (Business Unit: {business_unit})",
+                    "content": (
+                        f"Audit SOP {actual_id}: {title} (Business Unit: {business_unit})\n\n"
+                        f"=== SOP TEXT ===\n{sop_text}"
+                    ),
                 }],
             },
             config={"recursion_limit": 120, "callbacks": [usage_cb]},
