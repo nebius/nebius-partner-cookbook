@@ -34,7 +34,12 @@ def agentic_qa_answer(
     question: str,
     sop_id: str | None = None,
     use_tavily: bool = True,
-    recursion_limit: int = 30,
+    # sop_compliance questions run the audit sub-agent's workload (full SOP +
+    # audit toolset), which typically uses 25–37 nodes with p95=37 — at the
+    # old limit of 30, several questions per eval run ended in LangGraph's
+    # canned "Sorry, need more steps" answer and silently shrank the scored n.
+    # 80 mirrors the audit path's headroom (120 vs max-observed 65).
+    recursion_limit: int = 80,
     provider: str = "nebius",
     model_name: str | None = None,
 ) -> dict:
