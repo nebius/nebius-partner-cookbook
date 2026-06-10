@@ -2,15 +2,15 @@
 
 Reference texts for Sentinel's target regulations. Used for grounding the compliance auditor's assessments. Text files (`.txt` and `.md`) are ingested into Pinecone namespace `regulations` via `make ingest-regulations`. PDFs are extracted to `.txt` first via `scripts/extract_pdf_text.py`.
 
-**Knowledge base**: 2,386 chunks across 22 source documents covering 9 regulation frameworks (core set). An additional 27 external standards referenced by SOPs are available for ingestion.
+**Knowledge base**: all `.txt`/`.md` files in this directory are ingested (run `make ingest-regulations`; the namespace is cleared and rebuilt each time — see CLAUDE.md for the current chunk count).
 
 ## SOC 2
 
-Not included — AICPA copyrighted material. Download from [AICPA Trust Services Criteria](https://us.aicpa.org/interestareas/frc/assuranceadvisoryservices/trustservicescriteria) and place as:
+AICPA copyrighted material — present locally but **gitignored, never committed** (see `.gitignore`). If missing, download from [AICPA Trust Services Criteria](https://us.aicpa.org/interestareas/frc/assuranceadvisoryservices/trustservicescriteria) and place as:
 - `soc2_trust_services_criteria_2017_revised_2022.pdf` — 2017 Trust Services Criteria with Revised Points of Focus (2022)
 - `soc2_description_criteria_2018_revised_2022.pdf` — 2018 SOC 2 Description Criteria (revised 2022)
 
-Then run `python scripts/extract_pdf_text.py` to generate `.txt` files.
+Then run `python scripts/extract_pdf_text.py` to generate `.txt` files. Note: the `revised_2022` filename suffix is what marks these as the *current* edition for retrieval filtering (`EDITION_PATTERNS` in `ingest_regulations.py`) — don't rename them.
 
 ## HIPAA
 
@@ -138,7 +138,7 @@ Not included — OWASP content is licensed CC BY-SA 4.0 and is not redistributed
 | `ecoa_regulation_b_12cfr1002.xml` / `.txt` | Equal Credit Opportunity Act: Regulation B (12 CFR 1002) | eCFR API |
 | `fcra_fair_credit_reporting_act.pdf` / `.txt` | Fair Credit Reporting Act (15 USC Chapter 41 Subchapter III, 67 pages) | GovInfo/GPO |
 
-PCI DSS Quick Reference Guide (PCI SSC, copyrighted) is not included. Download from [PCI SSC Document Library](https://www.pcisecuritystandards.org/document_library/) and place as `pci_dss_quick_guide.pdf`, then run `python scripts/extract_pdf_text.py`.
+PCI DSS Quick Reference Guide (PCI SSC, copyrighted) is present locally but **gitignored, never committed**. If missing, download from [PCI SSC Document Library](https://www.pcisecuritystandards.org/document_library/) and place as `pci_dss_quick_guide.pdf`, then run `python scripts/extract_pdf_text.py`.
 
 ## Utilities
 

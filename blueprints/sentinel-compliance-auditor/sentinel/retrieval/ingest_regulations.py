@@ -62,6 +62,10 @@ REGULATION_MAP = {
 
 
 EDITION_PATTERNS = {
+    # Order matters: first match wins. "revised_2022" must precede "_2017" or
+    # soc2_trust_services_criteria_2017_revised_2022 (the CURRENT edition)
+    # would be tagged "2017" and excluded by the default current-only filter.
+    "revised_2022": "current",
     "_2017": "2017",
     "_2020": "2020",
     "_2024": "2024",
@@ -89,11 +93,14 @@ def _detect_edition(filename: str) -> str:
 
 
 def _txt_header(section: str) -> str:
-    """Header of a .txt regulation section: a '§ ...' line directly, or — when
-    the section opens with a ===/--- ruler — the first non-ruler line below it
-    (the title used to strip to '' and the section lost its name)."""
+    """Header of a .txt regulation section: a '§ ...' line directly, a SOC 2
+    trust-services criterion id ("CC1.1"), or — when the section opens with a
+    ===/--- ruler — the first non-ruler line below it (the title used to strip
+    to '' and the section lost its name)."""
     lines = section.split("\n")
     first = lines[0].strip()
+    if re.fullmatch(r"CC\d+\.\d+", first):
+        return first
     if first.startswith("§"):
         return first.strip("= -§").strip()
     if first.startswith("=") or first.startswith("-"):
@@ -150,9 +157,10 @@ def chunk_regulation(filepath: Path) -> list[dict]:
     # `^[ \t]*§ ` matches both eCFR-indented ("  § 164.312") and unindented
     # ("§ 1020.220", the BSA/31 CFR style) section headers — the old
     # two-space-indented pattern left 57% of the index (all of BSA) with no
-    # section structure at all.
+    # section structure at all. `^CC\d+\.\d+ *$` splits SOC 2 trust-services
+    # criteria (each criterion id sits on its own line).
     return _chunk_regulation_file(
-        filepath, split_pattern=r"(?=^[ \t]*§ |\n={40,}|\n-{40,})",
+        filepath, split_pattern=r"(?=^[ \t]*§ |^CC\d+\.\d+ *$|\n={40,}|\n-{40,})",
         extract_header=_txt_header, continuation_prefix="§ ",
     )
 

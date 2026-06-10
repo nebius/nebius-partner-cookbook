@@ -13,3 +13,7 @@ output/
 
 # Blueprint installs via pip (Makefile), not uv — ignore stray uv lockfile
 uv.lock
+
+# Copyrighted regulation texts — local only, never commit (AICPA / PCI SSC)
+data/regulations/soc2_*
+data/regulations/pci_dss_quick_guide.*

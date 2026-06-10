@@ -32,10 +32,10 @@ DATASET_PATH = Path("data/eval/qa_dataset.jsonl")
 # not defined for them.
 SKIP_CATEGORIES = {"web_grounded"}
 
-# Copyrighted texts that are deliberately NOT ingested (see
-# data/regulations/README.md) — their citations can never hit and would only
-# deflate the metric. Override with --include-missing.
-NOT_IN_KB = {"SOC 2", "PCI DSS"}
+# Regulations whose text is not in the KB — their citations can never hit and
+# would only deflate the metric. Empty since the copyrighted SOC 2 / PCI DSS
+# texts were added locally (gitignored); repopulate if they're removed.
+NOT_IN_KB: set[str] = set()
 
 _ROMAN = r"[ivxlc]+"
 
