@@ -16,7 +16,7 @@ jobs:
       cookbooks: ${{ steps.changed.outputs.cookbooks }}
       has_changes: ${{ steps.changed.outputs.has_changes }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -92,7 +92,7 @@ jobs:
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: changed-cookbooks
           path: changed-cookbooks.json
@@ -114,14 +114,14 @@ jobs:
       matrix:
         cookbook: ${{ fromJson(needs.discover.outputs.cookbooks) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v8
         with:
           version: "0.5.0"
 

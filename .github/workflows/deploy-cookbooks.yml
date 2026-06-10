@@ -22,7 +22,7 @@ jobs:
       deployables: ${{ steps.deployables.outputs.deployables }}
       has_deploys: ${{ steps.deployables.outputs.has_deploys }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 1
@@ -38,7 +38,7 @@ jobs:
             echo "is_current=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         if: steps.current.outputs.is_current == 'true'
         with:
           name: changed-cookbooks
@@ -129,7 +129,7 @@ jobs:
       matrix:
         include: ${{ fromJson(needs.discover.outputs.deployables) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
