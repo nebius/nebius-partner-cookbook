@@ -65,7 +65,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 **Fix:** move the import inside `_get_index()`; use `TYPE_CHECKING` for the annotation.
 
-### 12. Sub-agent recursion limit doc drift (LOW) — ⬜ open
+### 12. Sub-agent recursion limit doc drift (LOW) — ✅ fixed (CLAUDE.md updated to 120 / 76 tests)
 `sentinel/graph/tools.py:424` sets `recursion_limit: 120`; CLAUDE.md documents 80. Also: test count is 76, CLAUDE.md says 73. Sync whichever is intended.
 
 ### 13. `_build_deep_agent` registers harness profile under wrong key (MEDIUM) — ✅ fixed (efd4911)
@@ -214,7 +214,7 @@ Review date: 2026-06-09. Four parallel reviews covering the agent core, retrieva
 
 1. Findings 33–34 (HIGH) — test the real `_parse_findings_json`, retry/fan-out paths, `validate_run` parsing pipeline, and the Jira ticket builders.
 2. Finding 35, open bullets — agent label/pricing registry endpoint (5 duplicated sites) and `_chunk_sections` chunker consolidation.
-3. LOWs as time permits: 12 (doc drift — note `recursion_limit` is now 120 and the suite is 76 tests), 19, 23, 24, 27–32.
+3. LOWs as time permits: 19, 23, 24, 27–32.
 
 ### Fix-note deviations
 

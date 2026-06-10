@@ -10,7 +10,7 @@ Sentinel is a regulatory compliance auditor agent that audits 200 synthetic SOPs
 make install              # Install into .venv (includes dev, deep, rag extras)
 make ingest               # Ingest SOPs into Pinecone
 make ingest-regulations   # Ingest regulation texts into Pinecone (namespace: regulations)
-make test                 # Run regression tests (73 tests, no API keys needed)
+make test                 # Run regression tests (76 tests, no API keys needed)
 make dev                  # LangGraph dev server on port 2024
 make ui                   # UI (FastAPI + React) on port 8080
 make deploy               # Deploy to LangGraph Cloud (remote Docker build)
@@ -51,7 +51,7 @@ Sub-agent invocations are wrapped in a try/except — transient errors (e.g. Neb
 
 ### Recursion limits
 - **Outer agent**: 25 graph nodes — set via `LANGGRAPH_DEFAULT_RECURSION_LIMIT` env var for cloud deployment. Typical runs use ~11 nodes.
-- **Sub-agents**: 80 graph nodes — set in `_audit_single_sop_impl()` at `subagent.invoke()`. Typical sub-agents use 25–37 nodes (p95=37, max observed=65).
+- **Sub-agents**: 120 graph nodes — set in `_audit_single_sop_impl()` at `subagent.invoke()`. Typical sub-agents use 25–37 nodes (p95=37, max observed=65).
 
 ### deepagents optional dependency
 `deepagents` is an optional dep (`[deep]` extra). It's lazy-imported in `agent.py` inside `_build_deep_agent()`. If the import fails, we fall back to `langchain.agents.create_agent`. This is required because deepagents pulls heavy transitive deps (grpcio, google-genai) that conflict with LangGraph Cloud's constraint file.
