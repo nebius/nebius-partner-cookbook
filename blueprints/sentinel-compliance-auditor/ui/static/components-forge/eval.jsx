@@ -11,11 +11,15 @@ const metricView = (a, repeatKey, bootstrapKey, point) => {
   return { value: point, ci: ci || null, method: ci ? "bootstrap" : null };
 };
 
-const CiBracket = ({ ci }) => ci ? (
-  <span style={{ font: "500 10px/1 var(--forge-mono)", color: "var(--forge-on-dark-faint)", marginLeft: 6 }}>
-    [{ci[0].toFixed(2)}–{ci[1].toFixed(2)}]
-  </span>
-) : null;
+const CiBracket = ({ ci, fmt }) => {
+  if (!ci) return null;
+  const f = fmt || (v => v.toFixed(2));
+  return (
+    <span style={{ font: "500 10px/1 var(--forge-mono)", color: "var(--forge-on-dark-faint)", marginLeft: 6 }}>
+      [{f(ci[0])}–{f(ci[1])}]
+    </span>
+  );
+};
 
 // Bar with the CI range drawn as a lighter band behind the point value.
 const CiBar = ({ value, ci, color }) => (
@@ -109,7 +113,13 @@ const EvalScreen = () => {
               kicker="Lowest cost"
               value={`$${bestCost.toFixed(2)}`}
               valueColor="var(--forge-lime)"
-              body="Total spend for the full 120-question run."
+              body={(() => {
+                const cheapest = agents.reduce((acc, a) => (a.totalCost < acc.totalCost ? a : acc), agents[0]);
+                const ci = cheapest?.repeatStats?.metrics?.total_cost_usd?.ci95;
+                return ci
+                  ? `Total spend for the full 120-question run. 95% CI [$${ci[0].toFixed(2)}–$${ci[1].toFixed(2)}] over ${cheapest.repeatStats.repeats} runs.`
+                  : "Total spend for the full 120-question run.";
+              })()}
             />
           </div>
         </div>
@@ -182,26 +192,29 @@ const EvalScreen = () => {
             Total cost per 120-question run
           </div>
           {(() => {
-            const maxCost = Math.max(...agents.map(a => a.totalCost));
-            return agents.map(a => {
-              const cheapest = a.totalCost <= bestCost;
+            const dollars = v => "$" + v.toFixed(2);
+            const views = agents.map(a => ({ a, mv: metricView(a, "total_cost_usd", null, a.totalCost) }));
+            const cheapestCost = Math.min(...views.map(x => x.mv.value));
+            const maxCost = Math.max(...views.map(x => x.mv.ci ? x.mv.ci[1] : x.mv.value));
+            return views.map(({ a, mv }) => {
+              const cheapest = mv.value <= cheapestCost;
+              // CiBar works in a 0..1 domain — scale dollars by the axis max.
+              const scaledCi = mv.ci ? [mv.ci[0] / maxCost, mv.ci[1] / maxCost] : null;
               return (
                 <div key={a.key} style={{ marginBottom: 14 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
                     <span style={{ font: "500 12px/1 var(--forge-font)", color: "var(--forge-on-dark-mute)" }}>{a.label}</span>
-                    <span style={{ font: "700 12px/1 var(--forge-mono)", color: cheapest ? "var(--forge-lime)" : "var(--forge-on-dark)" }}>${a.totalCost.toFixed(2)}</span>
+                    <span>
+                      <span style={{ font: "700 12px/1 var(--forge-mono)", color: cheapest ? "var(--forge-lime)" : "var(--forge-on-dark)" }}>{dollars(mv.value)}</span>
+                      <CiBracket ci={mv.ci} fmt={dollars}/>
+                    </span>
                   </div>
-                  <div style={{ height: 10, borderRadius: 999, background: "rgba(255,255,255,0.05)", overflow: "hidden" }}>
-                    <div style={{
-                      height: "100%", width: ((a.totalCost / maxCost) * 100) + "%",
-                      background: cheapest ? "var(--forge-lime)" : "rgba(255,255,255,0.25)",
-                      borderRadius: 999,
-                    }}/>
-                  </div>
+                  <CiBar value={mv.value / maxCost} ci={scaledCi} color={cheapest ? "var(--forge-lime)" : "rgba(255,255,255,0.25)"}/>
                 </div>
               );
             });
           })()}
+          <CiFootnote agents={agents}/>
         </Slab>
       </div>
 

@@ -381,6 +381,7 @@ def _headline_metrics(summary: dict) -> dict:
         "retrieval_recall_avg": summary.get("retrieval_recall_avg"),
         "citation_precision_avg": summary.get("citation_precision_avg"),
         "answer_cost_usd": summary.get("answer_cost_usd"),
+        "total_cost_usd": summary.get("total_cost_usd"),  # what the Eval screen's cost bar shows
         "latency_avg_s": summary.get("latency_avg_s"),
     }
 
