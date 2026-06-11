@@ -17,3 +17,6 @@ uv.lock
 # Copyrighted regulation texts — local only, never commit (AICPA / PCI SSC)
 data/regulations/soc2_*
 data/regulations/pci_dss_quick_guide.*
+
+# Bulky per-repeat eval files — keep locally, commit only the variance_* summaries
+data/eval/results/*_r[2-9]_*.json

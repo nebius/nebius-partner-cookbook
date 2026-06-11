@@ -368,6 +368,21 @@ def _backfill_binary_ci(payload: dict, path: Path) -> None:
         _eval_ci_cache[str(path)] = (mtime, ci)
 
 
+_REPEAT_FILE_RE = re.compile(r"^(?P<mode>.+)_r\d+_(?P<ts>\d{8}_\d{6})\.json$")
+
+
+def _attach_repeat_stats(payload: dict, path: Path) -> None:
+    """When the served file is one repeat of an N-repeat run, attach the
+    variance summary (mean ± measured run-to-run CI) written alongside it.
+    The UI prefers this over the per-question bootstrap CI."""
+    m = _REPEAT_FILE_RE.match(path.name)
+    if not m:
+        return
+    variance_path = path.parent / f"variance_{m['mode']}_{m['ts']}.json"
+    if variance_path.exists():
+        payload["repeat_stats"] = json.loads(variance_path.read_text())
+
+
 @app.get("/api/eval-results")
 def eval_results():
     out = {}
@@ -380,6 +395,7 @@ def eval_results():
                 payload["stale_kb"] = {"stored_chunks": stored, "live_chunks": live_chunks}
                 print(f"[forge] eval result {path.name} was produced against a {stored}-chunk KB; live index has {live_chunks} — numbers are not comparable to a fresh run")
             _backfill_binary_ci(payload, path)
+            _attach_repeat_stats(payload, path)
             out[key] = payload
     if not out:
         raise HTTPException(status_code=404, detail="No eval result files found")

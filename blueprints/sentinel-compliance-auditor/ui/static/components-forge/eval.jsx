@@ -1,6 +1,16 @@
 // Forge-styled Eval screen — multi-agent benchmark dashboard
 
-// ── CI rendering: 95% bootstrap interval over questions (compliance_binary.ci)
+// ── CI rendering ─────────────────────────────────────────────────────────────
+// Resolve the displayed value + interval for a binary metric: prefer MEASURED
+// run-to-run stats (mean ± 95% CI over N repeated runs), else the per-question
+// bootstrap CI, else the bare point estimate.
+const metricView = (a, repeatKey, bootstrapKey, point) => {
+  const rs = a.repeatStats?.metrics?.[repeatKey];
+  if (rs && rs.ci95) return { value: rs.mean, ci: rs.ci95, method: `${a.repeatStats.repeats} runs` };
+  const ci = a.ci?.[bootstrapKey];
+  return { value: point, ci: ci || null, method: ci ? "bootstrap" : null };
+};
+
 const CiBracket = ({ ci }) => ci ? (
   <span style={{ font: "500 10px/1 var(--forge-mono)", color: "var(--forge-on-dark-faint)", marginLeft: 6 }}>
     [{ci[0].toFixed(2)}–{ci[1].toFixed(2)}]
@@ -21,12 +31,19 @@ const CiBar = ({ value, ci, color }) => (
   </div>
 );
 
-const CiFootnote = ({ agents }) => agents.some(a => a.ci) ? (
-  <div style={{ marginTop: 4, font: "400 10px/14px var(--forge-font)", color: "var(--forge-on-dark-faint)" }}>
-    Brackets: 95% bootstrap CI over scored questions (n≈{agents.find(a => a.ci)?.ci?.n ?? 35}).
-    Overlapping intervals → ranking not significant.
-  </div>
-) : null;
+const CiFootnote = ({ agents }) => {
+  const hasRepeats = agents.some(a => a.repeatStats);
+  const hasBootstrap = agents.some(a => a.ci);
+  if (!hasRepeats && !hasBootstrap) return null;
+  const n = agents.find(a => a.repeatStats)?.repeatStats?.repeats;
+  return (
+    <div style={{ marginTop: 4, font: "400 10px/14px var(--forge-font)", color: "var(--forge-on-dark-faint)" }}>
+      Brackets: 95% CI — {hasRepeats ? `measured across ${n} repeated runs where available, else ` : ""}
+      bootstrap over scored questions (n≈{agents.find(a => a.ci)?.ci?.n ?? 35}).
+      Overlapping intervals → ranking not significant.
+    </div>
+  );
+};
 
 const EvalScreen = () => {
   const r = (window.SENTINEL_DATA && window.SENTINEL_DATA.evalResults) || null;
@@ -74,18 +91,20 @@ const EvalScreen = () => {
               value={agents.length}
               body={agents.map(a => a.label).join(", ")}
             />
-            <StatCard
-              kicker="Best recall"
-              value={bestRecall.toFixed(2)}
-              valueColor="var(--forge-lime)"
-              body={(() => {
-                const bestAgent = agents.find(a => a.binary.recallNonCompliant >= bestRecall);
-                const ci = bestAgent?.ci?.recall_non_compliant;
-                return ci
-                  ? `Non-compliant recall — catching every real compliance issue. 95% CI [${ci[0].toFixed(2)}–${ci[1].toFixed(2)}].`
-                  : "Non-compliant recall — catching every real compliance issue.";
-              })()}
-            />
+            {(() => {
+              const views = agents.map(a => metricView(a, "binary_recall_non_compliant", "recall_non_compliant", a.binary.recallNonCompliant));
+              const best = views.reduce((acc, mv) => (mv.value > acc.value ? mv : acc), views[0]);
+              return (
+                <StatCard
+                  kicker="Best recall"
+                  value={best.value.toFixed(2)}
+                  valueColor="var(--forge-lime)"
+                  body={best.ci
+                    ? `Non-compliant recall — catching every real compliance issue. 95% CI [${best.ci[0].toFixed(2)}–${best.ci[1].toFixed(2)}]${best.method === "bootstrap" ? "" : ` over ${best.method}`}.`
+                    : "Non-compliant recall — catching every real compliance issue."}
+                />
+              );
+            })()}
             <StatCard
               kicker="Lowest cost"
               value={`$${bestCost.toFixed(2)}`}
@@ -103,22 +122,25 @@ const EvalScreen = () => {
           <div style={{ font: "700 22px/1.25 var(--forge-font)", letterSpacing: "-0.01em", color: "var(--forge-on-dark-strong)", marginBottom: 20 }}>
             Non-compliant recall
           </div>
-          {agents.map(a => {
-            const v = a.binary.recallNonCompliant;
-            const best = v >= bestRecall;
-            return (
-              <div key={a.key} style={{ marginBottom: 14 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                  <span style={{ font: "500 12px/1 var(--forge-font)", color: "var(--forge-on-dark-mute)" }}>{a.label}</span>
-                  <span>
-                    <span style={{ font: "700 12px/1 var(--forge-mono)", color: best ? "var(--forge-mint-warm)" : "var(--forge-on-dark)" }}>{v.toFixed(2)}</span>
-                    <CiBracket ci={a.ci?.recall_non_compliant}/>
-                  </span>
+          {(() => {
+            const views = agents.map(a => ({ a, mv: metricView(a, "binary_recall_non_compliant", "recall_non_compliant", a.binary.recallNonCompliant) }));
+            const best = Math.max(...views.map(x => x.mv.value));
+            return views.map(({ a, mv }) => {
+              const isBest = mv.value >= best;
+              return (
+                <div key={a.key} style={{ marginBottom: 14 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+                    <span style={{ font: "500 12px/1 var(--forge-font)", color: "var(--forge-on-dark-mute)" }}>{a.label}</span>
+                    <span>
+                      <span style={{ font: "700 12px/1 var(--forge-mono)", color: isBest ? "var(--forge-mint-warm)" : "var(--forge-on-dark)" }}>{mv.value.toFixed(2)}</span>
+                      <CiBracket ci={mv.ci}/>
+                    </span>
+                  </div>
+                  <CiBar value={mv.value} ci={mv.ci} color={isBest ? "var(--forge-mint-warm)" : "rgba(255,255,255,0.20)"}/>
                 </div>
-                <CiBar value={v} ci={a.ci?.recall_non_compliant} color={best ? "var(--forge-mint-warm)" : "rgba(255,255,255,0.20)"}/>
-              </div>
-            );
-          })}
+              );
+            });
+          })()}
           <CiFootnote agents={agents}/>
         </Slab>
 
@@ -130,22 +152,25 @@ const EvalScreen = () => {
               <div style={{ font: "700 22px/1.25 var(--forge-font)", letterSpacing: "-0.01em", color: "var(--forge-on-dark-strong)", marginBottom: 20 }}>
                 Non-compliant precision
               </div>
-              {agents.map(a => {
-                const v = a.binary.precisionNonCompliant;
-                const best = v >= bestPrec;
-                return (
-                  <div key={a.key} style={{ marginBottom: 14 }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                      <span style={{ font: "500 12px/1 var(--forge-font)", color: "var(--forge-on-dark-mute)" }}>{a.label}</span>
-                      <span>
-                        <span style={{ font: "700 12px/1 var(--forge-mono)", color: best ? "var(--forge-amber)" : "var(--forge-on-dark)" }}>{v.toFixed(2)}</span>
-                        <CiBracket ci={a.ci?.precision_non_compliant}/>
-                      </span>
+              {(() => {
+                const views = agents.map(a => ({ a, mv: metricView(a, "binary_precision_non_compliant", "precision_non_compliant", a.binary.precisionNonCompliant) }));
+                const best = Math.max(...views.map(x => x.mv.value));
+                return views.map(({ a, mv }) => {
+                  const isBest = mv.value >= best;
+                  return (
+                    <div key={a.key} style={{ marginBottom: 14 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+                        <span style={{ font: "500 12px/1 var(--forge-font)", color: "var(--forge-on-dark-mute)" }}>{a.label}</span>
+                        <span>
+                          <span style={{ font: "700 12px/1 var(--forge-mono)", color: isBest ? "var(--forge-amber)" : "var(--forge-on-dark)" }}>{mv.value.toFixed(2)}</span>
+                          <CiBracket ci={mv.ci}/>
+                        </span>
+                      </div>
+                      <CiBar value={mv.value} ci={mv.ci} color={isBest ? "var(--forge-amber)" : "rgba(255,255,255,0.20)"}/>
                     </div>
-                    <CiBar value={v} ci={a.ci?.precision_non_compliant} color={best ? "var(--forge-amber)" : "rgba(255,255,255,0.20)"}/>
-                  </div>
-                );
-              })}
+                  );
+                });
+              })()}
               <CiFootnote agents={agents}/>
             </Slab>
           );

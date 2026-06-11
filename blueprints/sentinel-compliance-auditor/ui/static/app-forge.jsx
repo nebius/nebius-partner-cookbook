@@ -81,6 +81,10 @@ function mapEvalResults(api) {
       },
       // 95% bootstrap CI over questions: { recall_non_compliant: [lo, hi], ... }
       ci: m.compliance_binary?.ci || null,
+      // Measured run-to-run stats over N repeats (preferred over `ci` when
+      // present): { repeats, metrics: { binary_recall_non_compliant:
+      // { mean, std, ci95: [lo, hi] }, ... } }
+      repeatStats: m.repeat_stats || null,
       perCategory: Object.fromEntries(Object.entries(m.per_category || {}).map(([k, v]) => [k, {
         n: v.n,
         correctness: v.judge_correctness_avg,

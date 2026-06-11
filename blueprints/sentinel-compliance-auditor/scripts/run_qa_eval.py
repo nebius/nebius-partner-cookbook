@@ -375,6 +375,8 @@ def _headline_metrics(summary: dict) -> dict:
     cb = summary.get("compliance_binary") or {}
     return {
         "binary_accuracy": cb.get("accuracy"),
+        "binary_recall_non_compliant": cb.get("recall_non_compliant"),
+        "binary_precision_non_compliant": cb.get("precision_non_compliant"),
         "binary_macro_f1": cb.get("macro_f1"),
         "retrieval_recall_avg": summary.get("retrieval_recall_avg"),
         "citation_precision_avg": summary.get("citation_precision_avg"),
@@ -383,12 +385,20 @@ def _headline_metrics(summary: dict) -> dict:
     }
 
 
+# Two-sided 97.5% t quantiles by degrees of freedom, for the CI of the mean
+# over a small number of repeats.
+_T_975 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447,
+          7: 2.365, 8: 2.306, 9: 2.262, 10: 2.228, 11: 2.201, 12: 2.179}
+
+
 def variance_summary(mode: str, summaries: list[dict]) -> dict:
-    """Mean ± sample std of the headline metrics across repeats.
+    """Mean ± sample std (and 95% CI of the mean) of the headline metrics
+    across repeats.
 
     A single run per configuration leaves only the binomial CI as an error
     bar; the measured run-to-run spread (temperature 0.1 + tool-path
     nondeterminism) is the honest noise floor for model comparisons."""
+    import math
     import statistics
 
     per_repeat = [_headline_metrics(s) for s in summaries]
@@ -397,9 +407,13 @@ def variance_summary(mode: str, summaries: list[dict]) -> dict:
         values = [m[field] for m in per_repeat if m[field] is not None]
         if not values:
             continue
+        mean = statistics.mean(values)
+        std = statistics.stdev(values) if len(values) > 1 else 0.0
+        half = _T_975.get(len(values) - 1, 1.96) * std / math.sqrt(len(values)) if len(values) > 1 else 0.0
         stats[field] = {
-            "mean": statistics.mean(values),
-            "std": statistics.stdev(values) if len(values) > 1 else 0.0,
+            "mean": round(mean, 4),
+            "std": round(std, 4),
+            "ci95": [round(mean - half, 4), round(mean + half, 4)],
             "values": values,
         }
     return {"mode": mode, "repeats": len(summaries), "metrics": stats}
