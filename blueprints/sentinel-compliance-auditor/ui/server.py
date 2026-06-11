@@ -52,10 +52,10 @@ from sentinel.token_accounting import AUDIT_TOOL_NAMES, parse_tokens_from_result
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 EVAL_RESULTS_DIR = PROJECT_ROOT / "data" / "eval" / "results"
 EVAL_AGENTS = {
-    "optimized":   EVAL_RESULTS_DIR / "optimized_rejudged_20260610_163109.json",
+    "optimized":   EVAL_RESULTS_DIR / "optimized_r10_20260610_161245.json",
     "prototype":   EVAL_RESULTS_DIR / "prototype_rejudged_20260610_163010.json",
     "grounded":    EVAL_RESULTS_DIR / "grounded_rejudged_20260610_163040.json",
-    "nemotron":    EVAL_RESULTS_DIR / "production_rejudged_20260610_163135.json",
+    "nemotron":    EVAL_RESULTS_DIR / "production_r10_20260610_170817.json",
 }
 DATASET_PATH = PROJECT_ROOT / "data" / "eval" / "qa_dataset.jsonl"
 SOPS_DIR = PROJECT_ROOT / "data" / "sops"
@@ -341,6 +341,33 @@ def _live_regulation_chunks() -> int | None:
     return chunks
 
 
+_eval_ci_cache: dict[str, tuple[float, dict]] = {}
+
+
+def _backfill_binary_ci(payload: dict, path: Path) -> None:
+    """Attach a bootstrap CI to compliance_binary for result files that
+    predate aggregate() computing it natively. Recomputed from the stored
+    per-question rows; cached by file mtime."""
+    cb = payload.get("compliance_binary")
+    if not cb or cb.get("ci"):
+        return
+    mtime = path.stat().st_mtime
+    cached = _eval_ci_cache.get(str(path))
+    if cached and cached[0] == mtime:
+        cb["ci"] = cached[1]
+        return
+    from sentinel.eval.metrics import binary_bootstrap_ci_from_pairs
+    pairs = []
+    for row in payload.get("rows", []):
+        s = row.get("scores", {})
+        if s.get("expected_binary") and s.get("predicted_binary"):
+            pairs.append((s["expected_binary"], s["predicted_binary"]))
+    ci = binary_bootstrap_ci_from_pairs(pairs)
+    if ci:
+        cb["ci"] = ci
+        _eval_ci_cache[str(path)] = (mtime, ci)
+
+
 @app.get("/api/eval-results")
 def eval_results():
     out = {}
@@ -352,6 +379,7 @@ def eval_results():
             if stored and live_chunks and stored != live_chunks:
                 payload["stale_kb"] = {"stored_chunks": stored, "live_chunks": live_chunks}
                 print(f"[forge] eval result {path.name} was produced against a {stored}-chunk KB; live index has {live_chunks} — numbers are not comparable to a fresh run")
+            _backfill_binary_ci(payload, path)
             out[key] = payload
     if not out:
         raise HTTPException(status_code=404, detail="No eval result files found")

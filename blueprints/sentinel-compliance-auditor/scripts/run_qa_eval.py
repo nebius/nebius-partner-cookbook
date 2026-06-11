@@ -28,6 +28,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from sentinel.eval.metrics import (
+    binary_bootstrap_ci,
     binary_compliance_metrics,
     compute_metrics,
     estimate_cost,
@@ -318,6 +319,9 @@ def aggregate(mode: str, rows: list[dict]) -> dict:
             "tn_compliant": binary_m["tn_compliant"],
             "fn_non_compliant": binary_m["fn_non_compliant"],
             "mismatches": binary_m["mismatches"],
+            # 95% bootstrap CI over questions — point estimates at n≈35 move
+            # ~3% per flipped question; rankings need the interval.
+            "ci": binary_bootstrap_ci(gt, pred),
         },
         "compliance_3class": m and {
             "matched": m["matched"],

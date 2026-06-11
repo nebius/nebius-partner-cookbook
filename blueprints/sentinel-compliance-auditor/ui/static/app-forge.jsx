@@ -79,6 +79,8 @@ function mapEvalResults(api) {
         tn: m.compliance_binary?.tn_compliant ?? 0,
         fn: m.compliance_binary?.fn_non_compliant ?? 0,
       },
+      // 95% bootstrap CI over questions: { recall_non_compliant: [lo, hi], ... }
+      ci: m.compliance_binary?.ci || null,
       perCategory: Object.fromEntries(Object.entries(m.per_category || {}).map(([k, v]) => [k, {
         n: v.n,
         correctness: v.judge_correctness_avg,

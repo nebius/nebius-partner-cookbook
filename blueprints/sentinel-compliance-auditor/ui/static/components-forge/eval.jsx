@@ -1,5 +1,33 @@
 // Forge-styled Eval screen — multi-agent benchmark dashboard
 
+// ── CI rendering: 95% bootstrap interval over questions (compliance_binary.ci)
+const CiBracket = ({ ci }) => ci ? (
+  <span style={{ font: "500 10px/1 var(--forge-mono)", color: "var(--forge-on-dark-faint)", marginLeft: 6 }}>
+    [{ci[0].toFixed(2)}–{ci[1].toFixed(2)}]
+  </span>
+) : null;
+
+// Bar with the CI range drawn as a lighter band behind the point value.
+const CiBar = ({ value, ci, color }) => (
+  <div style={{ position: "relative", height: 10, borderRadius: 999, background: "rgba(255,255,255,0.05)", overflow: "hidden" }}>
+    {ci && (
+      <div style={{
+        position: "absolute", top: 0, height: "100%",
+        left: (ci[0] * 100) + "%", width: (Math.max(ci[1] - ci[0], 0.005) * 100) + "%",
+        background: "rgba(255,255,255,0.10)",
+      }}/>
+    )}
+    <div style={{ position: "absolute", top: 0, height: "100%", width: (value * 100) + "%", background: color, borderRadius: 999 }}/>
+  </div>
+);
+
+const CiFootnote = ({ agents }) => agents.some(a => a.ci) ? (
+  <div style={{ marginTop: 4, font: "400 10px/14px var(--forge-font)", color: "var(--forge-on-dark-faint)" }}>
+    Brackets: 95% bootstrap CI over scored questions (n≈{agents.find(a => a.ci)?.ci?.n ?? 35}).
+    Overlapping intervals → ranking not significant.
+  </div>
+) : null;
+
 const EvalScreen = () => {
   const r = (window.SENTINEL_DATA && window.SENTINEL_DATA.evalResults) || null;
   if (!r || Object.keys(r).length === 0) {
@@ -50,7 +78,13 @@ const EvalScreen = () => {
               kicker="Best recall"
               value={bestRecall.toFixed(2)}
               valueColor="var(--forge-lime)"
-              body="Non-compliant recall — catching every real compliance issue."
+              body={(() => {
+                const bestAgent = agents.find(a => a.binary.recallNonCompliant >= bestRecall);
+                const ci = bestAgent?.ci?.recall_non_compliant;
+                return ci
+                  ? `Non-compliant recall — catching every real compliance issue. 95% CI [${ci[0].toFixed(2)}–${ci[1].toFixed(2)}].`
+                  : "Non-compliant recall — catching every real compliance issue.";
+              })()}
             />
             <StatCard
               kicker="Lowest cost"
@@ -74,16 +108,18 @@ const EvalScreen = () => {
             const best = v >= bestRecall;
             return (
               <div key={a.key} style={{ marginBottom: 14 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
                   <span style={{ font: "500 12px/1 var(--forge-font)", color: "var(--forge-on-dark-mute)" }}>{a.label}</span>
-                  <span style={{ font: "700 12px/1 var(--forge-mono)", color: best ? "var(--forge-mint-warm)" : "var(--forge-on-dark)" }}>{v.toFixed(2)}</span>
+                  <span>
+                    <span style={{ font: "700 12px/1 var(--forge-mono)", color: best ? "var(--forge-mint-warm)" : "var(--forge-on-dark)" }}>{v.toFixed(2)}</span>
+                    <CiBracket ci={a.ci?.recall_non_compliant}/>
+                  </span>
                 </div>
-                <div style={{ height: 10, borderRadius: 999, background: "rgba(255,255,255,0.05)", overflow: "hidden" }}>
-                  <div style={{ height: "100%", width: (v * 100) + "%", background: best ? "var(--forge-mint-warm)" : "rgba(255,255,255,0.20)", borderRadius: 999 }}/>
-                </div>
+                <CiBar value={v} ci={a.ci?.recall_non_compliant} color={best ? "var(--forge-mint-warm)" : "rgba(255,255,255,0.20)"}/>
               </div>
             );
           })}
+          <CiFootnote agents={agents}/>
         </Slab>
 
         {(() => {
@@ -99,16 +135,18 @@ const EvalScreen = () => {
                 const best = v >= bestPrec;
                 return (
                   <div key={a.key} style={{ marginBottom: 14 }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
                       <span style={{ font: "500 12px/1 var(--forge-font)", color: "var(--forge-on-dark-mute)" }}>{a.label}</span>
-                      <span style={{ font: "700 12px/1 var(--forge-mono)", color: best ? "var(--forge-amber)" : "var(--forge-on-dark)" }}>{v.toFixed(2)}</span>
+                      <span>
+                        <span style={{ font: "700 12px/1 var(--forge-mono)", color: best ? "var(--forge-amber)" : "var(--forge-on-dark)" }}>{v.toFixed(2)}</span>
+                        <CiBracket ci={a.ci?.precision_non_compliant}/>
+                      </span>
                     </div>
-                    <div style={{ height: 10, borderRadius: 999, background: "rgba(255,255,255,0.05)", overflow: "hidden" }}>
-                      <div style={{ height: "100%", width: (v * 100) + "%", background: best ? "var(--forge-amber)" : "rgba(255,255,255,0.20)", borderRadius: 999 }}/>
-                    </div>
+                    <CiBar value={v} ci={a.ci?.precision_non_compliant} color={best ? "var(--forge-amber)" : "rgba(255,255,255,0.20)"}/>
                   </div>
                 );
               })}
+              <CiFootnote agents={agents}/>
             </Slab>
           );
         })()}

@@ -191,6 +191,74 @@ def estimate_cost(model: str, input_tokens: int, output_tokens: int) -> float:
     return (input_tokens / 1_000_000) * prices["input"] + (output_tokens / 1_000_000) * prices["output"]
 
 
+def binary_bootstrap_ci_from_pairs(pairs: list[tuple[str, str]], n_boot: int = 1000,
+                                   seed: int = 0, alpha: float = 0.05) -> dict:
+    """Percentile-bootstrap CIs for the binary compliance metrics.
+
+    ``pairs`` is [(expected_binary, predicted_binary)] per scored question.
+    Resamples questions with replacement; returns 95% intervals for accuracy,
+    non-compliant recall/precision, and binary macro F1 — the headline numbers
+    the Eval screen ranks agents by.
+    """
+    import random
+
+    n = len(pairs)
+    if n == 0:
+        return {}
+
+    def _metrics(sample: list[tuple[str, str]]) -> tuple[float, float, float, float]:
+        tp = fp = tn = fn = 0
+        for exp, pred in sample:
+            if exp == "non_compliant" and pred == "non_compliant":
+                tp += 1
+            elif exp == "non_compliant":
+                fn += 1
+            elif pred == "non_compliant":
+                fp += 1
+            else:
+                tn += 1
+        total = tp + fp + tn + fn
+        acc = (tp + tn) / total if total else 0.0
+        rec = tp / (tp + fn) if (tp + fn) else 0.0
+        prec = tp / (tp + fp) if (tp + fp) else 0.0
+        f1_nc = 2 * prec * rec / (prec + rec) if (prec + rec) else 0.0
+        prec_c = tn / (tn + fn) if (tn + fn) else 0.0
+        rec_c = tn / (tn + fp) if (tn + fp) else 0.0
+        f1_c = 2 * prec_c * rec_c / (prec_c + rec_c) if (prec_c + rec_c) else 0.0
+        return acc, rec, prec, (f1_nc + f1_c) / 2
+
+    rng = random.Random(seed)
+    samples = {"accuracy": [], "recall_non_compliant": [], "precision_non_compliant": [], "macro_f1": []}
+    for _ in range(n_boot):
+        resampled = [pairs[rng.randrange(n)] for _ in range(n)]
+        acc, rec, prec, mf1 = _metrics(resampled)
+        samples["accuracy"].append(acc)
+        samples["recall_non_compliant"].append(rec)
+        samples["precision_non_compliant"].append(prec)
+        samples["macro_f1"].append(mf1)
+
+    lo_i = int(n_boot * alpha / 2)
+    hi_i = max(lo_i, int(n_boot * (1 - alpha / 2)) - 1)
+    out: dict = {"n": n, "n_boot": n_boot, "method": "bootstrap_questions"}
+    for name, values in samples.items():
+        values.sort()
+        out[name] = [round(values[lo_i], 3), round(values[hi_i], 3)]
+    return out
+
+
+def binary_bootstrap_ci(gt: dict, predicted: dict, **kwargs) -> dict:
+    """binary_bootstrap_ci_from_pairs over {key: level} dicts (keys in both)."""
+    pairs = []
+    for key, gt_level in gt.items():
+        if key not in predicted:
+            continue
+        exp = to_binary_level(gt_level)
+        pred = to_binary_level(predicted[key])
+        if exp and pred:
+            pairs.append((exp, pred))
+    return binary_bootstrap_ci_from_pairs(pairs, **kwargs)
+
+
 def bootstrap_ci(gt: dict, predicted: dict, n_boot: int = 1000, seed: int = 0,
                  alpha: float = 0.05) -> dict:
     """Percentile-bootstrap confidence intervals for accuracy and macro F1.
