@@ -53,8 +53,8 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 EVAL_RESULTS_DIR = PROJECT_ROOT / "data" / "eval" / "results"
 EVAL_AGENTS = {
     "optimized":   EVAL_RESULTS_DIR / "optimized_r10_20260610_161245.json",
-    "prototype":   EVAL_RESULTS_DIR / "prototype_rejudged_20260610_163010.json",
-    "grounded":    EVAL_RESULTS_DIR / "grounded_rejudged_20260610_163040.json",
+    "prototype":   EVAL_RESULTS_DIR / "prototype_r10_20260611_082928.json",
+    "grounded":    EVAL_RESULTS_DIR / "grounded_r10_20260611_083204.json",
     "nemotron":    EVAL_RESULTS_DIR / "production_r10_20260610_170817.json",
 }
 DATASET_PATH = PROJECT_ROOT / "data" / "eval" / "qa_dataset.jsonl"
