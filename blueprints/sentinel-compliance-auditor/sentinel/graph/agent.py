@@ -69,6 +69,17 @@ def _build_deep_agent(model, tools):
                 general_purpose_subagent=GeneralPurposeSubagentProfile(enabled=False),
             ),
         )
+        # Opt-in (ULTRA_HARNESS=on): layer the vendored Nemotron 3 Ultra harness
+        # profile (suffix + tool-retry/shim/read-continuation middleware) onto
+        # this model's key. Re-registration merges additively, so it composes
+        # with the general-purpose-subagent override above. For A/B testing the
+        # WIP profile from deepagents PR #4192 — see sentinel/graph/_ultra_profile.py.
+        import os
+
+        if os.getenv("ULTRA_HARNESS", "off").lower() in ("on", "1", "true"):
+            from sentinel.graph._ultra_profile import build_nemotron_ultra_profile
+
+            register_harness_profile(profile_key, build_nemotron_ultra_profile())
     except Exception:
         # All 7 graphs build in one process — a re-registration error must not
         # crash the LangGraph Cloud build; the override is an optimization.
