@@ -1,10 +1,13 @@
-"""Factory for the ChatOpenAI instances used across Sentinel.
+"""Factory for the chat-model instances used across Sentinel.
 
 Centralizes the provider branching (Nebius vs OpenAI), credentials, base URL,
 and LangSmith metadata tagging that were previously duplicated across
 ``graph/agent.py``, ``graph/tools.py``, ``graph/naive_agent.py``, and the
-``eval/*`` modules. ``ChatOpenAI`` is imported lazily so this module stays cheap
-to import in the LangGraph Cloud container (see CLAUDE.md on lazy imports).
+``eval/*`` modules. The Nebius provider uses ``langchain_nebius.ChatNebius``
+(the official integration, a ``BaseChatOpenAI`` subclass) and the OpenAI
+provider uses ``ChatOpenAI``; both are imported lazily so this module stays
+cheap to import in the LangGraph Cloud container (see CLAUDE.md on lazy
+imports).
 """
 from __future__ import annotations
 
@@ -21,7 +24,14 @@ def build_chat_model(
     extra_metadata: dict | None = None,
     extra_body: dict | None = None,
 ):
-    """Construct a ``ChatOpenAI`` client for the given provider.
+    """Construct a chat-model client for the given provider.
+
+    Returns a ``ChatNebius`` for the ``"nebius"`` provider and a ``ChatOpenAI``
+    for ``"openai"``. Both are ``BaseChatOpenAI`` subclasses, so tool calling,
+    ``stream_usage``, ``max_tokens``, and ``extra_body`` behave identically; the
+    difference is ``ChatNebius._get_ls_params`` natively reports
+    ``ls_provider="nebius"`` (used for harness-profile resolution and trace
+    provenance) rather than relying on the faked metadata tag.
 
     Args:
         provider: ``"openai"`` or ``"nebius"`` (default) — selects credentials
@@ -40,7 +50,6 @@ def build_chat_model(
             ``{"chat_template_kwargs": {"thinking": False}}`` to disable a
             model's reasoning). Mutually exclusive with ``reasoning=True``.
     """
-    from langchain_openai import ChatOpenAI
     from sentinel.config import (
         MODEL,
         NEBIUS_API_KEY,
@@ -79,4 +88,14 @@ def build_chat_model(
         kwargs["extra_body"] = {
             "chat_template_kwargs": {"thinking": True, "reasoning_effort": REASONING_EFFORT},
         }
-    return ChatOpenAI(**kwargs)
+
+    if is_openai:
+        # OpenAI reasoning models reject `max_tokens`; ChatOpenAI remaps it to
+        # `max_completion_tokens`, so the OpenAI agents must stay on ChatOpenAI.
+        from langchain_openai import ChatOpenAI
+
+        return ChatOpenAI(**kwargs)
+
+    from langchain_nebius import ChatNebius
+
+    return ChatNebius(**kwargs)

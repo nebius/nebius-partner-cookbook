@@ -52,9 +52,16 @@ def _build_deep_agent(model, tools):
     from deepagents import GeneralPurposeSubagentProfile, create_deep_agent, register_harness_profile
     from deepagents.profiles.harness.harness_profiles import HarnessProfileConfig
 
-    # The profile key must name the model this agent actually runs, or the
-    # general-purpose sub-agent override silently fails to apply.
-    profile_key = f"openai:{getattr(model, 'model_name', MODEL)}"
+    # The profile key must match the key deepagents derives from a pre-built
+    # model — f"{ls_provider}:{model_name}" — or the general-purpose sub-agent
+    # override silently fails to apply. Derive ls_provider from the model
+    # instance (ChatNebius reports "nebius", ChatOpenAI reports "openai");
+    # hardcoding "openai" would miss every Nebius agent.
+    try:
+        ls_provider = model._get_ls_params().get("ls_provider") or "openai"
+    except Exception:
+        ls_provider = "openai"
+    profile_key = f"{ls_provider}:{getattr(model, 'model_name', MODEL)}"
     try:
         register_harness_profile(
             profile_key,
