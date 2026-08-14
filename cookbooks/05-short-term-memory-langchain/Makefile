@@ -1,4 +1,4 @@
-.PHONY: dev test lint format docker run-docker deploy clean
+.PHONY: dev test eval lint format docker run-docker deploy clean
 
 PORT ?= 8000
 
@@ -7,6 +7,9 @@ dev:
 
 test:
 	uv run pytest -v
+
+eval:
+	uv run python -m scripts.evaluate_memory
 
 lint:
 	uv run ruff check
