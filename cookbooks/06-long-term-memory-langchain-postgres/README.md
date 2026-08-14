@@ -48,6 +48,30 @@ docker compose up -d postgres
 uv sync
 make dev
 ```
+### Windows and systems without Make
+
+The Makefile is a convenience, not a runtime dependency.
+After `uv sync`, run the development server directly:
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+chcp 65001
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The encoding settings keep em-dashes and other non-ASCII model output readable in Windows PowerShell 5.1.
+PowerShell users should use `curl.exe`, rather than the `curl` alias, for the streaming examples.
+The direct test and lint commands are:
+
+```powershell
+uv run pytest -v
+uv run ruff check
+uv run ruff format --check
+```
+With `ENV=development` and `NEBIUS_DEBUG_ERRORS=true`, SSE errors include a safe upstream category and request ID for diagnosis.
+Staging and production always keep upstream details private.
+For publishable cost and latency results, use the five-run protocol in [the benchmarking guide](../../docs/benchmarking.md) and report input and output tokens separately.
+
 
 In another terminal, store a durable user preference:
 
@@ -139,7 +163,7 @@ Copy `.env.example` and keep secrets out of code.
 | Env var | Default | Purpose |
 | ------- | ------- | ------- |
 | `NEBIUS_API_KEY` | required | Nebius API key. |
-| `NEBIUS_BASE_URL` | `https://api.studio.nebius.ai/v1/` | OpenAI-compatible Nebius endpoint. |
+| `NEBIUS_BASE_URL` | `https://api.tokenfactory.nebius.com/v1/` | OpenAI-compatible Nebius endpoint. |
 | `NEBIUS_MODEL` | `meta-llama/Llama-3.3-70B-Instruct` | Chat model. |
 | `MEMORY_BACKEND` | `postgres` | `postgres` for local/prod, `memory` for tests. |
 | `POSTGRESQL_ADDON_URI` | local Postgres URL | Postgres connection string. Clever Cloud injects this when a Postgres add-on is linked. |

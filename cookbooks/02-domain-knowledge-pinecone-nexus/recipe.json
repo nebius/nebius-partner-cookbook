@@ -31,7 +31,7 @@
     { "id": "Qwen/Qwen3-Embedding-8B", "role": "embed" }
   ],
   "quickstart": {
-    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/02-domain-knowledge-pinecone-nexus",
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-partner-cookbook/cookbooks/02-domain-knowledge-pinecone-nexus",
     "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY and PINECONE_API_KEY",
     "run": "uv sync && make dev"
   },

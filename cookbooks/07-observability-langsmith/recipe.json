@@ -33,7 +33,7 @@
     "hero": "assets/hero.png"
   },
   "quickstart": {
-    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/07-observability-langsmith",
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-partner-cookbook/cookbooks/07-observability-langsmith",
     "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY and LANGSMITH_API_KEY",
     "run": "docker compose up -d postgres && uv sync && make dev"
   },

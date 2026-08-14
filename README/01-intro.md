@@ -16,6 +16,10 @@ Agent Blueprint Recipes is a curated collection of runnable, production-shaped c
 
 It is for engineers who have called an LLM API from a script and want to know what the gap looks like between that script and something they would actually ship.
 
+**The fastest way to evaluate Nebius is its OpenAI-compatible inference boundary.**
+If an existing agent already reads its OpenAI base URL from configuration, point that setting at `https://api.tokenfactory.nebius.com/v1/` and keep the same client and application code.
+The recipes preserve that boundary while adding the timeouts, retries, observability, grounding, memory, and safety controls needed around it.
+
 **What "production-shaped" means here:**
 
 - Type hints on every signature and Pydantic models on every boundary
