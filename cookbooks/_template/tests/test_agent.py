@@ -13,7 +13,7 @@ from app.main import app
 
 
 def _sse_chunk(data: dict[str, object]) -> bytes:
-    return (b"data: " + json.dumps(data).encode("utf-8") + b"\n\n")
+    return b"data: " + json.dumps(data).encode("utf-8") + b"\n\n"
 
 
 def _build_completion_stream() -> bytes:
@@ -29,7 +29,7 @@ def _build_completion_stream() -> bytes:
 @pytest.mark.asyncio
 @respx.mock
 async def test_agent_run_streams_tokens() -> None:
-    respx.post("https://api.studio.nebius.ai/v1/chat/completions").mock(
+    respx.post("https://api.tokenfactory.nebius.com/v1/chat/completions").mock(
         return_value=httpx.Response(
             200,
             content=_build_completion_stream(),

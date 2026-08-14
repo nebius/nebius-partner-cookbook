@@ -31,7 +31,7 @@ def _build_completion_stream() -> bytes:
 
 
 def _mock_nebius_stream() -> respx.Route:
-    return respx.post("https://api.studio.nebius.ai/v1/chat/completions").mock(
+    return respx.post("https://api.tokenfactory.nebius.com/v1/chat/completions").mock(
         return_value=httpx.Response(
             200,
             content=_build_completion_stream(),
@@ -162,7 +162,7 @@ async def test_agent_run_uses_history_for_follow_up_topic() -> None:
 @respx.mock
 async def test_agent_run_uses_nebius_price_lookup_for_cost() -> None:
     _mock_nebius_stream()
-    respx.get("https://api.studio.nebius.ai/v1/models").mock(
+    respx.get("https://api.tokenfactory.nebius.com/v1/models").mock(
         return_value=httpx.Response(
             200,
             json={

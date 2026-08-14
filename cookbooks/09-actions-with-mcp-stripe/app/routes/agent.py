@@ -12,6 +12,7 @@ from app.config import Settings, get_settings
 from app.core.agent import Agent, AgentRunOptions
 from app.core.approvals import ApprovalStore, get_approval_store
 from app.core.book_catalog import load_book_catalog
+from app.core.errors import build_error_event
 from app.core.guardrails import get_guardrails
 from app.core.langsmith_observability import LangSmithObserver, get_langsmith_observer
 from app.core.long_term_memory import (
@@ -268,7 +269,14 @@ async def run_agent(
                 output="",
                 error=str(exc),
             )
-            yield _sse("error", {"detail": "internal error"})
+            yield _sse(
+                "error",
+                build_error_event(
+                    exc,
+                    settings=settings,
+                    request_id=getattr(request.state, "request_id", "unknown"),
+                ),
+            )
         finally:
             cancel_event.set()
             watcher.cancel()

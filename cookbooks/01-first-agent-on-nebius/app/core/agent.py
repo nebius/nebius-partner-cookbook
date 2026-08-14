@@ -33,6 +33,8 @@ class Agent:
         prompt: str,
         *,
         history: list[Message] | None = None,
+        temperature: float = 0.4,
+        max_tokens: int = 1024,
         cancel_event: asyncio.Event | None = None,
     ) -> AsyncIterator[Event]:
         # Async generator: each `yield` is a discrete event the route can turn
@@ -50,6 +52,8 @@ class Agent:
         async for token in self._client.stream_chat(
             model=self._model,
             messages=messages,  # type: ignore[arg-type]
+            temperature=temperature,
+            max_tokens=max_tokens,
         ):
             # Cooperative cancellation: the route sets this when the client
             # disconnects, letting us stop pulling from upstream mid-stream.
