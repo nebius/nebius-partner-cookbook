@@ -63,6 +63,7 @@ for (const { dir, recipe } of recipes) {
     stack: recipe.stack,
     tags: recipe.tags,
     models: recipe.models,
+    benchmark: recipe.benchmark,
     publishedAt: recipe.publishedAt,
     updatedAt: recipe.updatedAt,
     dir,

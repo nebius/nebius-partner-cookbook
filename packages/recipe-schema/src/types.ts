@@ -1,74 +1,107 @@
-export type Difficulty = "beginner" | "intermediate" | "advanced";
-export type ModelRole = "primary" | "planner" | "writer" | "critic" | "embed" | "rerank";
-export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+// Auto-generated. Run `bun run generate`.
 
-export interface RecipeStack {
-  primary: string[];
-  secondary: string[];
-}
-
-export interface RecipeStory {
-  problem: string;
-  solution: string;
-  outcome: string;
-}
-
-export interface RecipeModel {
-  id: string;
-  role: ModelRole;
-}
-
-export interface RecipeQuickstart {
-  clone: string;
-  configure: string;
-  run: string;
-}
-
-export interface RecipeEndpoint {
-  method: HttpMethod;
-  path: string;
-  streaming?: boolean;
-  description: string;
-}
-
-export interface RecipeDeployment {
-  target: string;
-  instructions: string;
-}
-
-export interface RecipeAuthor {
-  name: string;
-  url?: string;
-}
-
-export interface RecipeAssets {
-  hero?: string;
-  demo?: string;
-  architecture?: string;
-}
-
+/**
+ * Metadata for a single cookbook recipe. Source of truth for the recipes table and the web app catalog.
+ */
 export interface Recipe {
   $schema?: string;
+  /**
+   * Kebab-case identifier. Must match the cookbook directory slug.
+   */
   slug: string;
+  /**
+   * Position in the cookbook sequence. Must match the directory prefix NN.
+   */
   order: number;
+  /**
+   * Short narrative-arc label shown above the title on recipe cards (e.g. "Foundation").
+   */
   eyebrow: string;
   title: string;
+  /**
+   * If true, the recipe is planned but not yet built; the web card renders at reduced opacity.
+   */
   upcoming?: boolean;
   tagline: string;
-  difficulty: Difficulty;
+  difficulty: "beginner" | "intermediate" | "advanced";
   estimatedReadingTime: string;
   estimatedRunTime: string;
-  stack: RecipeStack;
-  tags: string[];
-  story: RecipeStory;
+  stack: {
+    /**
+     * @minItems 1
+     */
+    primary: [string, ...string[]];
+    secondary: string[];
+  };
+  /**
+   * @minItems 1
+   */
+  tags: [string, ...string[]];
+  story: {
+    problem: string;
+    solution: string;
+    outcome: string;
+  };
   prerequisites: string[];
-  models: RecipeModel[];
-  assets?: RecipeAssets;
-  quickstart: RecipeQuickstart;
-  endpoints: RecipeEndpoint[];
-  deployment: RecipeDeployment;
+  /**
+   * @minItems 1
+   */
+  models: [
+    {
+      id: string;
+      role: "primary" | "planner" | "writer" | "critic" | "embed" | "rerank";
+    },
+    ...{
+      id: string;
+      role: "primary" | "planner" | "writer" | "critic" | "embed" | "rerank";
+    }[]
+  ];
+  benchmark?: {
+    model: string;
+    workloadVersion: string;
+    runCount: number;
+    measuredAt: string;
+    median: {
+      inputTokens: number;
+      outputTokens: number;
+      latencySeconds: number;
+      costUsd: number;
+    };
+  };
+  assets?: {
+    hero?: string;
+    demo?: string;
+    architecture?: string;
+  };
+  quickstart: {
+    clone: string;
+    configure: string;
+    run: string;
+  };
+  endpoints: {
+    method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+    path: string;
+    streaming?: boolean;
+    description: string;
+  }[];
+  deployment: {
+    target: string;
+    instructions: string;
+  };
   nextRecipe?: string;
-  authors: RecipeAuthor[];
+  /**
+   * @minItems 1
+   */
+  authors: [
+    {
+      name: string;
+      url?: string;
+    },
+    ...{
+      name: string;
+      url?: string;
+    }[]
+  ];
   publishedAt: string;
   updatedAt: string;
 }

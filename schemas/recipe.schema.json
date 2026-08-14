@@ -123,6 +123,28 @@
         }
       }
     },
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "workloadVersion", "runCount", "measuredAt", "median"],
+      "properties": {
+        "model": { "type": "string", "minLength": 1 },
+        "workloadVersion": { "type": "string", "minLength": 1 },
+        "runCount": { "type": "integer", "minimum": 5 },
+        "measuredAt": { "type": "string", "format": "date" },
+        "median": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["inputTokens", "outputTokens", "latencySeconds", "costUsd"],
+          "properties": {
+            "inputTokens": { "type": "number", "minimum": 0 },
+            "outputTokens": { "type": "number", "minimum": 0 },
+            "latencySeconds": { "type": "number", "minimum": 0 },
+            "costUsd": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    },
     "assets": {
       "type": "object",
       "additionalProperties": false,
