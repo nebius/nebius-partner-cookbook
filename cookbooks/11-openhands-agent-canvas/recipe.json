@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schemas/recipe.schema.json",
+  "slug": "openhands-agent-canvas",
+  "order": 11,
+  "eyebrow": "Agent Control Center",
+  "title": "OpenHands Agent Canvas on Nebius",
+  "upcoming": false,
+  "tagline": "Run the OpenHands Agent Canvas on a Nebius VM, with Token Factory serving Qwen3-32B as the LLM.",
+  "difficulty": "beginner",
+  "estimatedReadingTime": "8 min",
+  "estimatedRunTime": "15 min",
+  "stack": {
+    "primary": ["nebius-token-factory", "openhands"],
+    "secondary": ["agent-canvas", "nebius-compute", "nodejs"]
+  },
+  "tags": ["agent", "openhands", "agent-canvas", "token-factory", "qwen3", "self-hosting"],
+  "story": {
+    "problem": "You want a self-hosted, always-on coding agent you can drive from the browser, without wiring up your own UI, agent runtime, and LLM plumbing.",
+    "solution": "Run OpenHands Agent Canvas on a Nebius Compute VM in public mode, and point its OpenHands agent at Qwen3-32B served by Nebius Token Factory.",
+    "outcome": "A browser-accessible agent control center running entirely on Nebius infrastructure, ready for conversations and automations in about fifteen minutes."
+  },
+  "prerequisites": [
+    "A Nebius Token Factory account (https://tokenfactory.nebius.com)",
+    "A Nebius Cloud account with permission to create Compute VMs",
+    "An SSH key pair for reaching the VM"
+  ],
+  "models": [{ "id": "Qwen/Qwen3-32B", "role": "primary" }],
+  "assets": {
+    "hero": "assets/llm-provider-qwen3-32b.png"
+  },
+  "quickstart": {
+    "clone": "ssh <user>@<vm-ip>  # a Nebius Compute VM with Node.js 22+ and uv",
+    "configure": "npm install -g @openhands/agent-canvas",
+    "run": "LOCAL_BACKEND_API_KEY=yourpassword agent-canvas --public"
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/",
+      "description": "Agent Canvas web UI, served by the built-in ingress on port 8000."
+    }
+  ],
+  "deployment": {
+    "target": "nebius-compute",
+    "instructions": "README.md"
+  },
+  "authors": [{ "name": "Robert Brennan", "url": "https://github.com/rbren" }],
+  "publishedAt": "2026-05-21",
+  "updatedAt": "2026-05-21"
+}

@@ -47,6 +47,7 @@ The recipes are also a **sequence**. They form a narrative arc — Foundation �
 | 08 | [Guardrails — Adding Guardrails with LangChain](./cookbooks/08-adding-guardrails-langchain/) | `nebius-agentkit` `langchain` `guardrails` `fastapi` `structlog` `prometheus` `docker` | advanced | 14 min |
 | 09 | [Actions — Making Actions with MCP and Stripe](./cookbooks/09-actions-with-mcp-stripe/) | `nebius-agentkit` `mcp` `stripe` `langchain` `langgraph` `langsmith` `fastapi` `structlog` `prometheus` `docker` | advanced | 18 min |
 | 10 | [Simulation — Testing Before Production with Snowglobe](./cookbooks/10-testing-before-production-snowglobe/) | `nebius-agentkit` `snowglobe` `langsmith` `mcp` `stripe` `fastapi` `structlog` `prometheus` `docker` | advanced | 14 min |
+| 11 | [Agent Control Center — OpenHands Agent Canvas on Nebius](./cookbooks/11-openhands-agent-canvas/) | `nebius-token-factory` `openhands` `agent-canvas` `nebius-compute` `nodejs` | beginner | 8 min |
 
 ## Blueprints
 
