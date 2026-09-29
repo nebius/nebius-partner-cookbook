@@ -37,6 +37,7 @@ The schema lives at [`schemas/recipe.schema.json`](../schemas/recipe.schema.json
 - `story.problem`, `story.solution`, `story.outcome` — the README story arc compressed to three sentences each
 - `stack.primary` and `stack.secondary` — what powers it
 - `models` — `id` + `role` for each model the cookbook uses
+- `benchmark` — optional measured medians for model, workload version, run count, date, input/output tokens, latency, and cost
 - `prerequisites` — be honest, "Python 3.12 and a Nebius key" is fine
 - `nextRecipe` — slug of the recipe this links to, if any
 
@@ -45,6 +46,10 @@ Validate as you go:
 ```bash
 bun run validate
 ```
+
+Only add `benchmark` after running the documented workload at least five times.
+Record input and output tokens separately because agentic workloads often spend most of their budget on repeated context.
+Never publish estimates or copy measurements from another recipe.
 
 ## Step 3 — Refresh the root README
 

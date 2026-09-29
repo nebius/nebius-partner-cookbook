@@ -7,8 +7,15 @@ from dataclasses import dataclass
 
 import httpx
 import structlog
-from openai import AsyncOpenAI
-from openai.types.chat import ChatCompletionMessageParam
+from openai import (
+    APIConnectionError,
+    APITimeoutError,
+    AsyncOpenAI,
+    AsyncStream,
+    InternalServerError,
+    RateLimitError,
+)
+from openai.types.chat import ChatCompletionChunk, ChatCompletionMessageParam
 from tenacity import (
     retry,
     retry_if_exception_type,
@@ -42,11 +49,38 @@ class NebiusClient:
         )
 
     @retry(
-        retry=retry_if_exception_type((httpx.HTTPError, httpx.TimeoutException)),
+        retry=retry_if_exception_type(
+            (
+                APIConnectionError,
+                APITimeoutError,
+                InternalServerError,
+                RateLimitError,
+                httpx.HTTPError,
+                httpx.TimeoutException,
+            )
+        ),
         wait=wait_exponential(multiplier=0.5, min=0.5, max=8.0),
         stop=stop_after_attempt(3),
         reraise=True,
     )
+    async def _open_chat_stream(
+        self,
+        *,
+        model: str,
+        messages: list[ChatCompletionMessageParam],
+        temperature: float,
+        max_tokens: int,
+    ) -> AsyncStream[ChatCompletionChunk]:
+        """Open a stream with retries before any token has reached the client."""
+        return await self._client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            stream=True,
+            stream_options={"include_usage": True},
+        )
+
     async def stream_chat(
         self,
         *,
@@ -57,26 +91,27 @@ class NebiusClient:
     ) -> AsyncIterator[ChatStreamChunk]:
         """Stream token deltas and final usage from a chat completion."""
         with nebius_request_duration.labels(model=model).time():
-            stream = await self._client.chat.completions.create(
+            stream = await self._open_chat_stream(
                 model=model,
                 messages=messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
-                stream=True,
-                stream_options={"include_usage": True},
             )
             async for chunk in stream:
                 usage = getattr(chunk, "usage", None)
                 if usage is not None:
+                    input_tokens = int(getattr(usage, "prompt_tokens", 0) or 0)
+                    output_tokens = int(getattr(usage, "completion_tokens", 0) or 0)
+                    nebius_tokens_total.labels(model=model, type="input").inc(input_tokens)
+                    nebius_tokens_total.labels(model=model, type="output").inc(output_tokens)
                     yield ChatStreamChunk(
-                        input_tokens=int(getattr(usage, "prompt_tokens", 0) or 0),
-                        output_tokens=int(getattr(usage, "completion_tokens", 0) or 0),
+                        input_tokens=input_tokens,
+                        output_tokens=output_tokens,
                     )
                 if not chunk.choices:
                     continue
                 delta = chunk.choices[0].delta
                 if delta and delta.content:
-                    nebius_tokens_total.labels(model=model, type="output").inc()
                     yield ChatStreamChunk(text=delta.content)
 
     async def aclose(self) -> None:

@@ -353,7 +353,9 @@ def main() -> None:
     if pinecone_namespace is None:
         pinecone_namespace = os.environ.get("PINECONE_NAMESPACE")
 
-    nebius_base_url = os.environ.get("NEBIUS_BASE_URL", "https://api.studio.nebius.ai").rstrip("/")
+    nebius_base_url = os.environ.get(
+        "NEBIUS_BASE_URL", "https://api.tokenfactory.nebius.com"
+    ).rstrip("/")
     if not nebius_base_url.endswith("/v1"):
         nebius_base_url = f"{nebius_base_url}/v1"
 

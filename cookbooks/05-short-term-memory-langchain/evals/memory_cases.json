@@ -1,0 +1,22 @@
+[
+  {
+    "name": "bounded recent turns",
+    "threadId": "reader-1",
+    "maxMessages": 4,
+    "turns": [
+      {"user": "I like Dune.", "assistant": "Noted."},
+      {"user": "I also like Earthsea.", "assistant": "Noted."},
+      {"user": "I prefer short books.", "assistant": "Noted."}
+    ],
+    "expectedContents": ["I also like Earthsea.", "Noted.", "I prefer short books.", "Noted."]
+  },
+  {
+    "name": "single turn",
+    "threadId": "reader-2",
+    "maxMessages": 12,
+    "turns": [
+      {"user": "My favorite author is Ursula Le Guin.", "assistant": "I will remember that."}
+    ],
+    "expectedContents": ["My favorite author is Ursula Le Guin.", "I will remember that."]
+  }
+]

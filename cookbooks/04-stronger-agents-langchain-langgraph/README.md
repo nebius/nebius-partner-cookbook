@@ -65,6 +65,30 @@ cp .env.example .env
 uv sync
 make dev
 ```
+### Windows and systems without Make
+
+The Makefile is a convenience, not a runtime dependency.
+After `uv sync`, run the development server directly:
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+chcp 65001
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The encoding settings keep em-dashes and other non-ASCII model output readable in Windows PowerShell 5.1.
+PowerShell users should use `curl.exe`, rather than the `curl` alias, for the streaming examples.
+The direct test and lint commands are:
+
+```powershell
+uv run pytest -v
+uv run ruff check
+uv run ruff format --check
+```
+With `ENV=development` and `NEBIUS_DEBUG_ERRORS=true`, SSE errors include a safe upstream category and request ID for diagnosis.
+Staging and production always keep upstream details private.
+For publishable cost and latency results, use the five-run protocol in [the benchmarking guide](../../docs/benchmarking.md) and report input and output tokens separately.
+
 
 Then in another terminal:
 
@@ -138,6 +162,36 @@ The direct route avoids extra model or tool calls and keeps the answer budget sm
 The deliberate route keeps room for a richer answer, but it is still bounded.
 Both routes send `status` events before the model finishes, so the user is never waiting on a silent connection.
 
+## Deterministic primitives: code decides, models explain
+
+The routing decision and token ceilings live in `app/core/routing.py` as pure functions.
+They are deterministic primitives: identical inputs produce identical results, and their correctness can be tested without sampling a model.
+
+Use code or a tool for operations with a single verifiable answer:
+
+| Keep in code or a tool | Give to the model |
+|---|---|
+| Sorting and ranking by explicit fields | Explain why the resulting order matters |
+| Arithmetic, thresholds, and budgets | Summarize tradeoffs in plain language |
+| Permission and approval checks | Ask for missing intent or confirmation |
+| Schema validation and deduplication | Synthesize evidence that already passed validation |
+
+Do not ask a model to reproduce a sort, threshold, or calculation that the application can compute directly.
+Moving deterministic work into code improves correctness and usually reduces both prompt size and latency.
+Recipes #9 and #10 extend this boundary to side-effecting tools and simulation.
+
+## Evaluate before adding capabilities
+
+Run the checked-in routing cases before changing graph policy:
+
+```bash
+make eval
+# Without Make: uv run python -m scripts.evaluate_routing
+```
+
+The evaluation is offline and deterministic.
+It catches routing and budget regressions before later recipes add memory, guardrails, or actions.
+
 ## Metrics
 
 The `/metrics` endpoint includes the base HTTP and Nebius metrics from the earlier cookbooks, plus orchestration-specific signals:
@@ -175,7 +229,9 @@ The tests mock the Nebius streaming endpoint with `respx`, so they do not call t
 - Replace the deterministic route node with a small-model router once the routing policy needs semantics instead of keywords.
 - Add a retrieval/tool node between planning and writing.
 - Run independent tool calls in parallel once this graph has more than one tool edge.
+- Add domain-specific deterministic primitives beside tool nodes, then evaluate their outputs separately from model prose.
 - Cookbook #5 adds LangGraph memory for thread and user/application context.
+- Cookbook #10 expands these local regression cases into synthetic, multi-turn simulation.
 
 ## Reference
 

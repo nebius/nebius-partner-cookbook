@@ -9,6 +9,7 @@ const schemaPath = resolve(here, "..", "..", "..", "schemas", "recipe.schema.jso
 const outPath = resolve(here, "..", "src", "types.ts");
 
 const schema = JSON.parse(await readFile(schemaPath, "utf8"));
+schema.title = "Recipe";
 const ts = await compile(schema, "Recipe", { bannerComment: "// Auto-generated. Run `bun run generate`." });
 await writeFile(outPath, ts, "utf8");
 console.log(`Wrote ${outPath}`);

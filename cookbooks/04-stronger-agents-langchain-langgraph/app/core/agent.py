@@ -15,6 +15,7 @@ from openai.types.chat import ChatCompletionMessageParam
 
 from app.core.nebius_client import NebiusClient
 from app.core.nebius_pricing import NebiusPricing
+from app.core.routing import bounded_output_tokens, classify_request
 from app.observability.metrics import agent_first_token_seconds, agent_route_total
 
 SYSTEM_PROMPT = (
@@ -25,35 +26,6 @@ SYSTEM_PROMPT = (
     "For latest/current publication questions, give the best-known answer and clearly say "
     "that a production version should verify it with fresh context. Do not claim live tools "
     "were called in this cookbook. Use plain text unless markdown adds clarity."
-)
-
-FRESH_CONTEXT_MARKERS = (
-    "today",
-    "latest",
-    "current",
-    "recent",
-    "pricing",
-    "price",
-    "benchmark",
-    "grounding",
-    "compare",
-    "review",
-    "published",
-    "publication",
-    "since ",
-    "2026",
-)
-
-RECOMMENDATION_MARKERS = (
-    "recommend",
-    "what should i read",
-    "read next",
-    "more books",
-    "books on",
-    "books about",
-    "similar to",
-    "i loved",
-    "i liked",
 )
 
 
@@ -134,36 +106,7 @@ class Agent:
 
     @staticmethod
     def _route_request(state: AgentState) -> dict[str, str]:
-        prompt = state["prompt"].strip()
-        history_text = " ".join(item.get("content", "") for item in state.get("history", [])[-4:])
-        lower_prompt = f"{history_text} {prompt}".lower()
-        needs_fresh_context = any(marker in lower_prompt for marker in FRESH_CONTEXT_MARKERS)
-        needs_curated_recommendations = any(
-            marker in lower_prompt for marker in RECOMMENDATION_MARKERS
-        )
-
-        if needs_fresh_context and needs_curated_recommendations:
-            context_need = "curated_plus_fresh_context"
-            route_reason = (
-                "recommendation request also depends on recent publication or review context"
-            )
-        elif needs_fresh_context:
-            context_need = "fresh_publication_context"
-            route_reason = "question depends on latest/current publication context"
-        elif needs_curated_recommendations:
-            context_need = "curated_recommendation"
-            route_reason = "question asks for taste or topic-based book recommendations"
-        else:
-            context_need = "direct_answer"
-            route_reason = "question can be answered directly without extra context"
-
-        needs_deliberate_path = len(prompt) > 280 or context_need != "direct_answer"
-        route = "deliberate" if needs_deliberate_path else "direct"
-        return {
-            "route": route,
-            "context_need": context_need,
-            "route_reason": route_reason,
-        }
+        return classify_request(state["prompt"], state.get("history", [])).to_state_update()
 
     def _prepare_direct_messages(
         self, state: AgentState
@@ -181,7 +124,12 @@ class Agent:
                 prompt=prompt,
                 history=state.get("history", []),
             ),
-            "max_tokens": min(state["requested_max_tokens"], self._direct_max_tokens),
+            "max_tokens": bounded_output_tokens(
+                state["requested_max_tokens"],
+                route="direct",
+                direct_limit=self._direct_max_tokens,
+                deliberate_limit=self._deliberate_max_tokens,
+            ),
         }
 
     def _prepare_deliberate_messages(
@@ -205,7 +153,12 @@ class Agent:
                 prompt=prompt,
                 history=state.get("history", []),
             ),
-            "max_tokens": min(state["requested_max_tokens"], self._deliberate_max_tokens),
+            "max_tokens": bounded_output_tokens(
+                state["requested_max_tokens"],
+                route="deliberate",
+                direct_limit=self._direct_max_tokens,
+                deliberate_limit=self._deliberate_max_tokens,
+            ),
         }
 
     def _messages_from_template(

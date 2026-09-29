@@ -18,6 +18,10 @@ Agent Blueprint Recipes is a curated collection of runnable, production-shaped c
 
 It is for engineers who have called an LLM API from a script and want to know what the gap looks like between that script and something they would actually ship.
 
+**The fastest way to evaluate Nebius is its OpenAI-compatible inference boundary.**
+If an existing agent already reads its OpenAI base URL from configuration, point that setting at `https://api.tokenfactory.nebius.com/v1/` and keep the same client and application code.
+The recipes preserve that boundary while adding the timeouts, retries, observability, grounding, memory, and safety controls needed around it.
+
 **What "production-shaped" means here:**
 
 - Type hints on every signature and Pydantic models on every boundary
@@ -103,7 +107,7 @@ Every recipe is independent. Pick one, clone the repo, and follow the recipe's o
 
 ```bash
 git clone https://github.com/nebius/nebius-partner-cookbook.git
-cd cookbook/cookbooks/01-first-agent-on-nebius
+cd nebius-partner-cookbook/cookbooks/01-first-agent-on-nebius
 
 cp .env.example .env
 # Open .env and fill NEBIUS_API_KEY
@@ -111,6 +115,27 @@ cp .env.example .env
 uv sync
 make dev
 ```
+### Windows and systems without Make
+
+The Makefile is a convenience, not a runtime dependency.
+After `uv sync`, run the development server directly:
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+chcp 65001
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The encoding settings keep em-dashes and other non-ASCII model output readable in Windows PowerShell 5.1.
+PowerShell users should use `curl.exe`, rather than the `curl` alias, for the streaming examples.
+The direct test and lint commands are:
+
+```powershell
+uv run pytest -v
+uv run ruff check
+uv run ruff format --check
+```
+
 
 In another terminal:
 

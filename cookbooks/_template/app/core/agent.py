@@ -41,7 +41,8 @@ class Agent:
         ]
 
         async for token in self._client.stream_chat(
-            model=self._model, messages=messages  # type: ignore[arg-type]
+            model=self._model,
+            messages=messages,  # type: ignore[arg-type]
         ):
             if cancel_event is not None and cancel_event.is_set():
                 return

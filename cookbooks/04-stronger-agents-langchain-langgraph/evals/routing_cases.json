@@ -1,0 +1,6 @@
+[
+  {"name":"simple explanation","prompt":"Explain the ending of Dune.","route":"direct","contextNeed":"direct_answer"},
+  {"name":"recommendation","prompt":"Recommend books about political intrigue.","route":"deliberate","contextNeed":"curated_recommendation"},
+  {"name":"fresh fact","prompt":"What is the latest edition of Dune?","route":"deliberate","contextNeed":"fresh_publication_context"},
+  {"name":"fresh recommendation","prompt":"Recommend recent climate fiction.","route":"deliberate","contextNeed":"curated_plus_fresh_context"}
+]

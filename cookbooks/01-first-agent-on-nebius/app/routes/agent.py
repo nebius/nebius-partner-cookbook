@@ -10,6 +10,7 @@ from starlette.responses import StreamingResponse
 
 from app.config import Settings, get_settings
 from app.core.agent import Agent
+from app.core.errors import build_error_event
 from app.core.nebius_client import NebiusClient, build_nebius_client
 from app.schemas.agent import AgentRunRequest
 
@@ -58,6 +59,8 @@ async def run_agent(
             async for event in agent.run(
                 payload.prompt,
                 history=payload.history,
+                temperature=payload.temperature,
+                max_tokens=payload.max_tokens,
                 cancel_event=cancel_event,
             ):
                 # Heartbeat keeps proxies and load balancers from closing an
@@ -69,9 +72,16 @@ async def run_agent(
                 yield _sse(event.name, event.data)
             yield _sse("done", {})
         except Exception as exc:
-            # Never leak internals to the client; full stack trace goes to logs.
+            # Full details stay in logs; development gets a safe diagnostic category.
             logger.exception("agent_failed", error=str(exc))
-            yield _sse("error", {"detail": "internal error"})
+            yield _sse(
+                "error",
+                build_error_event(
+                    exc,
+                    settings=settings,
+                    request_id=getattr(request.state, "request_id", "unknown"),
+                ),
+            )
         finally:
             cancel_event.set()
             watcher.cancel()

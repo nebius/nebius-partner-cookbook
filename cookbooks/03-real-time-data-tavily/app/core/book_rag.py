@@ -316,7 +316,7 @@ class BookRag:
                     rationale="Use the retrieved candidates to look for current web context.",
                 )
             return FreshSearchPlan(
-                query=query[:500],
+                query=query[:380],
                 rationale=(
                     rationale[:240]
                     or "Use current web context to qualify freshness-sensitive claims."

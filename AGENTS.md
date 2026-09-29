@@ -396,7 +396,7 @@ quote-style = "double"
 
 `app/core/nebius_client.py` MUST:
 
-- Use the OpenAI SDK with `base_url="https://api.studio.nebius.ai/v1/"` (verify the exact URL via Nebius docs at integration time)
+- Use the OpenAI SDK with `base_url="https://api.tokenfactory.nebius.com/v1/"` (verify the exact URL via Nebius docs at integration time)
 - Read `NEBIUS_API_KEY` from Pydantic Settings, never directly from `os.environ`
 - Configure explicit timeouts (`httpx.Timeout(connect=5, read=60, write=10, pool=5)`)
 - Wrap calls in `tenacity` retry with exponential backoff for transient errors (429, 5xx)

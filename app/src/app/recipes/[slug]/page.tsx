@@ -87,6 +87,31 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
           />
         </dl>
 
+        {recipe.benchmark ? (
+          <section className="mb-16 border border-edge bg-surface/30 p-5">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+              measured benchmark · {recipe.benchmark.runCount} runs · {recipe.benchmark.measuredAt}
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-px bg-edge sm:grid-cols-4">
+              <SpecCell label="median input" value={`${recipe.benchmark.median.inputTokens}`} mono />
+              <SpecCell label="median output" value={`${recipe.benchmark.median.outputTokens}`} mono />
+              <SpecCell
+                label="median latency"
+                value={`${recipe.benchmark.median.latencySeconds.toFixed(2)}s`}
+                mono
+              />
+              <SpecCell
+                label="median cost"
+                value={`$${recipe.benchmark.median.costUsd.toFixed(6)}`}
+                mono
+              />
+            </div>
+            <p className="mt-3 font-mono text-[10px] text-ink-dim">
+              {recipe.benchmark.model} · workload {recipe.benchmark.workloadVersion}
+            </p>
+          </section>
+        ) : null}
+
         <article>
           {mdx ? (
             <MDXRemote

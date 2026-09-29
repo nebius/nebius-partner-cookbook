@@ -6,8 +6,15 @@ from collections.abc import AsyncIterator
 
 import httpx
 import structlog
-from openai import AsyncOpenAI
-from openai.types.chat import ChatCompletionMessageParam
+from openai import (
+    APIConnectionError,
+    APITimeoutError,
+    AsyncOpenAI,
+    AsyncStream,
+    InternalServerError,
+    RateLimitError,
+)
+from openai.types.chat import ChatCompletionChunk, ChatCompletionMessageParam
 from tenacity import (
     retry,
     retry_if_exception_type,
@@ -35,14 +42,41 @@ class NebiusClient:
             max_retries=0,  # we own retries via tenacity
         )
 
-    # Retry only on transport errors. Logical errors (4xx, bad payload) propagate
-    # immediately — retrying them just wastes quota.
     @retry(
-        retry=retry_if_exception_type((httpx.HTTPError, httpx.TimeoutException)),
+        retry=retry_if_exception_type(
+            (
+                APIConnectionError,
+                APITimeoutError,
+                InternalServerError,
+                RateLimitError,
+                httpx.HTTPError,
+                httpx.TimeoutException,
+            )
+        ),
         wait=wait_exponential(multiplier=0.5, min=0.5, max=8.0),
         stop=stop_after_attempt(3),
         reraise=True,
     )
+    async def _open_chat_stream(
+        self,
+        *,
+        model: str,
+        messages: list[ChatCompletionMessageParam],
+        temperature: float,
+        max_tokens: int,
+    ) -> AsyncStream[ChatCompletionChunk]:
+        """Open a stream with retries before any token has reached the client."""
+        return await self._client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            stream=True,
+            stream_options={"include_usage": True},
+        )
+
+    # Retry only on transport errors. Logical errors (4xx, bad payload) propagate
+    # immediately — retrying them just wastes quota.
     async def stream_chat(
         self,
         *,
@@ -53,19 +87,24 @@ class NebiusClient:
     ) -> AsyncIterator[str]:
         """Stream raw token deltas from a chat completion."""
         with nebius_request_duration.labels(model=model).time():
-            stream = await self._client.chat.completions.create(
+            stream = await self._open_chat_stream(
                 model=model,
                 messages=messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
-                stream=True,
             )
             async for chunk in stream:
+                if chunk.usage:
+                    nebius_tokens_total.labels(model=model, type="input").inc(
+                        chunk.usage.prompt_tokens
+                    )
+                    nebius_tokens_total.labels(model=model, type="output").inc(
+                        chunk.usage.completion_tokens
+                    )
                 if not chunk.choices:
                     continue
                 delta = chunk.choices[0].delta
                 if delta and delta.content:
-                    nebius_tokens_total.labels(model=model, type="output").inc()
                     yield delta.content
 
     async def aclose(self) -> None:

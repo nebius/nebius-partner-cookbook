@@ -51,6 +51,30 @@ cp .env.example .env
 uv sync
 make dev
 ```
+### Windows and systems without Make
+
+The Makefile is a convenience, not a runtime dependency.
+After `uv sync`, run the development server directly:
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+chcp 65001
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The encoding settings keep em-dashes and other non-ASCII model output readable in Windows PowerShell 5.1.
+PowerShell users should use `curl.exe`, rather than the `curl` alias, for the streaming examples.
+The direct test and lint commands are:
+
+```powershell
+uv run pytest -v
+uv run ruff check
+uv run ruff format --check
+```
+With `ENV=development` and `NEBIUS_DEBUG_ERRORS=true`, SSE errors include a safe upstream category and request ID for diagnosis.
+Staging and production always keep upstream details private.
+For publishable cost and latency results, use the five-run protocol in [the benchmarking guide](../../docs/benchmarking.md) and report input and output tokens separately.
+
 
 Start a thread:
 
@@ -248,7 +272,7 @@ That is the production move: memory stays outside the FastAPI transport layer, b
 | Env var | Default | Purpose |
 | ------- | ------- | ------- |
 | `NEBIUS_API_KEY` | required | Nebius API key. |
-| `NEBIUS_BASE_URL` | `https://api.studio.nebius.ai/v1/` | OpenAI-compatible Nebius endpoint. |
+| `NEBIUS_BASE_URL` | `https://api.tokenfactory.nebius.com/v1/` | OpenAI-compatible Nebius endpoint. |
 | `NEBIUS_MODEL` | `meta-llama/Llama-3.3-70B-Instruct` | Chat model. |
 | `DIRECT_RESPONSE_MAX_TOKENS` | `384` | Fast-path output cap inherited from Cookbook #4. |
 | `DELIBERATE_RESPONSE_MAX_TOKENS` | `700` | Deliberate-path output cap inherited from Cookbook #4. |
@@ -269,6 +293,19 @@ Cookbook #6 introduces durable user memory with Postgres.
 Unbounded transcript replay is a hidden latency and cost bug.
 
 **The route emits memory phases.** `memory_loaded` and `memory_saved` make memory behavior observable in the SSE stream and web playground.
+
+## Evaluate memory before adding more state
+
+Run the checked-in follow-up, bounding, thread-isolation, and reset cases without calling a model:
+
+```bash
+make eval
+# Without Make: uv run python -m scripts.evaluate_memory
+```
+
+These cases test the memory mechanism separately from generated answer quality.
+That separation catches evaluator and state-management defects before Cookbook #6 adds durable storage.
+Cookbook #10 later expands this local regression approach into multi-turn simulation.
 
 ## Production Checklist
 

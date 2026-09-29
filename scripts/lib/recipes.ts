@@ -17,6 +17,18 @@ export interface Recipe {
   story: { problem: string; solution: string; outcome: string };
   prerequisites: string[];
   models: { id: string; role: string }[];
+  benchmark?: {
+    model: string;
+    workloadVersion: string;
+    runCount: number;
+    measuredAt: string;
+    median: {
+      inputTokens: number;
+      outputTokens: number;
+      latencySeconds: number;
+      costUsd: number;
+    };
+  };
   assets?: { hero?: string; demo?: string; architecture?: string };
   quickstart: { clone: string; configure: string; run: string };
   endpoints: { method: string; path: string; streaming?: boolean; description: string }[];
