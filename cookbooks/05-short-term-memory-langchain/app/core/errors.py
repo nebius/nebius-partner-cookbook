@@ -49,11 +49,12 @@ def build_error_event(
         detail = "Token Factory returned a server error."
 
     event: dict[str, object] = {
-        "code": code,
+        "code": "internal_error",
         "detail": "internal error",
         "requestId": request_id,
     }
     if settings.env == "development" and settings.nebius_debug_errors:
+        event["code"] = code
         event["detail"] = detail
         event["upstreamType"] = type(exc).__name__
         if isinstance(exc, APIStatusError):

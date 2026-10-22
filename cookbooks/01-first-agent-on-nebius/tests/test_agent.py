@@ -91,7 +91,8 @@ async def test_production_error_hides_upstream_details(monkeypatch) -> None:
     with TestClient(app) as client:
         response = client.post("/agent/run", json={"prompt": "say hi"})
 
-    assert '"code": "upstream_model_not_found"' in response.text
+    assert '"code": "internal_error"' in response.text
+    assert "upstream_model_not_found" not in response.text
     assert '"detail": "internal error"' in response.text
     assert "NotFoundError" not in response.text
     assert "secret upstream response" not in response.text
