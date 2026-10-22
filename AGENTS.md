@@ -399,7 +399,7 @@ quote-style = "double"
 - Use the OpenAI SDK with `base_url="https://api.tokenfactory.nebius.com/v1/"` (verify the exact URL via Nebius docs at integration time)
 - Read `NEBIUS_API_KEY` from Pydantic Settings, never directly from `os.environ`
 - Configure explicit timeouts (`httpx.Timeout(connect=5, read=60, write=10, pool=5)`)
-- Wrap calls in `tenacity` retry with exponential backoff for transient errors (429, 5xx)
+- Use the OpenAI SDK retry policy (`max_retries=2`) for transient errors so `Retry-After` is honored; do not stack a second retry loop around SDK calls.
 - Return raw stream chunks for streaming endpoints — let the route handler format SSE events
 
 ### 8.5 Streaming SSE conventions

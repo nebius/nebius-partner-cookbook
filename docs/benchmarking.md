@@ -23,3 +23,10 @@ Repeated conversation and tool context can make input tokens dominate agent cost
 
 Do not compare models across different prompts, tool policies, context windows, or scorer versions.
 Treat small differences from five-run samples as directional and disclose known scorer defects.
+
+### Missing stream usage
+
+`nebius_tokens_total` records token counts reported by the provider.
+A proxy that drops the final usage frame leaves those totals incomplete; chunks are not a reliable token count.
+The streaming cookbooks expose `nebius_streams_without_usage_total{model}` and log `nebius_stream_usage_missing` for missing or null usage fields.
+Check this counter before using token totals for a benchmark, and configure the proxy to preserve `stream_options` and the final usage frame.
