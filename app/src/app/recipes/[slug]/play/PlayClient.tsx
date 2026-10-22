@@ -47,6 +47,11 @@ const DEFAULT_AGENT_URL_BY_SLUG: Partial<Record<string, string>> = {
   "domain-knowledge-pinecone-nexus": "https://nebius-partners-cookbook-two.cleverapps.io",
   "real-time-data-tavily": "https://nebius-partners-cookbook-three.cleverapps.io",
   "stronger-agents-langchain-langgraph": "https://nebius-partners-cookbook-four.cleverapps.io",
+  "short-term-memory-langchain": "https://nebius-partners-cookbook-five.cleverapps.io",
+  "long-term-memory-langchain-postgres": "https://nebius-partners-cookbook-six.cleverapps.io",
+  "observability-langsmith": "https://nebius-partners-cookbook-seven.cleverapps.io",
+  "adding-guardrails-langchain": "https://nebius-partners-cookbook-eight.cleverapps.io",
+  "actions-with-mcp-stripe": "https://nebius-partners-cookbook-nine.cleverapps.io",
 };
 const STORAGE_KEY = (slug: string) => `nebius-cookbook:agent-url:${slug}`;
 const THREAD_STORAGE_KEY = (slug: string) => `nebius-cookbook:thread-id:${slug}`;

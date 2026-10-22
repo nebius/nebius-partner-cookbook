@@ -130,7 +130,7 @@ function rewriteTarget(
   const isDirectory = resolved.endsWith("/");
   const kind = isDirectory ? "tree" : "blob";
   const trimmed = resolved.replace(/\/$/, "");
-  return `${repoUrl.replace(/\/$/, "")}/${kind}/main/${trimmed}${fragment}`;
+  return `${repoUrl.trim().replace(/[./]+$/, "")}/${kind}/main/${trimmed}${fragment}`;
 }
 
 /** Resolve `.` and `..` segments in a posix-style path. */
