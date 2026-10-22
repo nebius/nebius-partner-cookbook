@@ -26,6 +26,7 @@
     "validate": "bun run scripts/validate-recipes.ts && bun run scripts/validate-blueprints.ts",
     "new": "bun run scripts/new-cookbook.ts",
     "test:cookbooks": "bun run scripts/test-cookbooks.ts",
+    "test:scripts": "bun test scripts/tests",
     "check:models": "bun run scripts/check-model-availability.ts",
     "check:regressions": "bun run scripts/check-repository-regressions.ts",
     "benchmark:summarize": "bun run scripts/summarize-benchmark.ts",

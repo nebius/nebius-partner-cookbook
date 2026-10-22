@@ -3,13 +3,28 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
-interface BenchmarkRun {
-  model: string;
-  workloadVersion: string;
-  inputTokens: number;
-  outputTokens: number;
-  latencySeconds: number;
-  costUsd: number;
+import type { Recipe } from "../packages/recipe-schema/src/types";
+
+type Benchmark = NonNullable<Recipe["benchmark"]>;
+type BenchmarkRun = Pick<Benchmark, "model" | "workloadVersion"> & Benchmark["median"];
+
+function parseRun(value: unknown, line: number): BenchmarkRun {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    throw new Error(`Line ${line} must be a benchmark object.`);
+  }
+  const run = value as Record<string, unknown>;
+  for (const field of ["model", "workloadVersion"] as const) {
+    if (typeof run[field] !== "string" || !run[field].trim()) {
+      throw new Error(`Line ${line} has an invalid ${field}; expected a non-empty string.`);
+    }
+  }
+  for (const field of ["inputTokens", "outputTokens", "latencySeconds", "costUsd"] as const) {
+    const metric = run[field];
+    if (typeof metric !== "number" || !Number.isFinite(metric) || metric < 0) {
+      throw new Error(`Line ${line} has an invalid ${field}.`);
+    }
+  }
+  return run as BenchmarkRun;
 }
 
 const inputPath = process.argv[2];
@@ -24,9 +39,9 @@ const lines = (await readFile(resolve(inputPath), "utf8"))
   .filter(Boolean);
 const runs = lines.map((line, index) => {
   try {
-    return JSON.parse(line) as BenchmarkRun;
+    return parseRun(JSON.parse(line), index + 1);
   } catch (error) {
-    throw new Error(`Invalid JSON on line ${index + 1}: ${(error as Error).message}`);
+    throw new Error(`Invalid benchmark on line ${index + 1}: ${(error as Error).message}`);
   }
 });
 
@@ -40,14 +55,6 @@ if (!first) {
 }
 if (runs.some((run) => run.model !== first.model || run.workloadVersion !== first.workloadVersion)) {
   throw new Error("Every run must use the same model and workloadVersion.");
-}
-
-for (const [index, run] of runs.entries()) {
-  for (const field of ["inputTokens", "outputTokens", "latencySeconds", "costUsd"] as const) {
-    if (!Number.isFinite(run[field]) || run[field] < 0) {
-      throw new Error(`Line ${index + 1} has an invalid ${field}.`);
-    }
-  }
 }
 
 function median(values: number[]): number {
@@ -67,7 +74,7 @@ function median(values: number[]): number {
   return (lower + upper) / 2;
 }
 
-const result = {
+const result: Benchmark = {
   model: first.model,
   workloadVersion: first.workloadVersion,
   runCount: runs.length,

@@ -1,28 +1,16 @@
 #!/usr/bin/env bun
 
-import { readdir, readFile } from "node:fs/promises";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-
-interface RecipeModel {
-  id: string;
-  role: string;
-}
-
-interface RecipeMetadata {
-  title: string;
-  models: RecipeModel[];
-}
+import { join, resolve } from "node:path";
+import { loadRecipes } from "./lib/recipes";
+import { normalizeBaseUrl } from "./lib/nebius-url";
 
 interface ModelsResponse {
   data?: Array<{ id?: string }>;
 }
 
-const here = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(here, "..");
+const repoRoot = resolve(import.meta.dir, "..");
 const cookbooksDir = join(repoRoot, "cookbooks");
-const baseUrl = (process.env.NEBIUS_BASE_URL ?? "https://api.tokenfactory.nebius.com/v1/")
-  .replace(/\/+$/, "");
+const baseUrl = normalizeBaseUrl(process.env.NEBIUS_BASE_URL);
 const apiKey = process.env.NEBIUS_API_KEY?.trim();
 
 if (!apiKey) {
@@ -30,19 +18,13 @@ if (!apiKey) {
   process.exit(2);
 }
 
-const recipeEntries = await readdir(cookbooksDir, { withFileTypes: true });
+const recipes = await loadRecipes(cookbooksDir);
 const references = new Map<string, string[]>();
 
-for (const entry of recipeEntries) {
-  if (!entry.isDirectory() || entry.name.startsWith("_")) {
-    continue;
-  }
-
-  const recipePath = join(cookbooksDir, entry.name, "recipe.json");
-  const recipe = JSON.parse(await readFile(recipePath, "utf8")) as RecipeMetadata;
+for (const { dir, recipe } of recipes) {
   for (const model of recipe.models) {
     const usages = references.get(model.id) ?? [];
-    usages.push(`${entry.name} (${model.role})`);
+    usages.push(`${dir} (${model.role})`);
     references.set(model.id, usages);
   }
 }

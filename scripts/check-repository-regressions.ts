@@ -1,20 +1,12 @@
 #!/usr/bin/env bun
 
-import { readdir, readFile } from "node:fs/promises";
-import { extname, join, relative, resolve } from "node:path";
+import { execFileSync } from "node:child_process";
+import { readFile } from "node:fs/promises";
+import { extname, join, resolve } from "node:path";
 
 const repoRoot = resolve(import.meta.dir, "..");
-const ignoredDirectories = new Set([".git", ".next", ".venv", "node_modules"]);
 const checkedExtensions = new Set([
-  "",
-  ".example",
-  ".json",
-  ".md",
-  ".py",
-  ".ts",
-  ".tsx",
-  ".yml",
-  ".yaml",
+  "", ".example", ".json", ".md", ".py", ".ts", ".tsx", ".yml", ".yaml",
 ]);
 const forbidden = [
   { pattern: "api.studio.nebius.ai", reason: "pre-rebrand Token Factory host" },
@@ -24,43 +16,41 @@ const forbidden = [
   { pattern: "NEBIUS_API_KEY=NEBIUS_API_KEY=", reason: "duplicated env assignment" },
 ] as const;
 
-const failures: string[] = [];
+// Exact, reviewed documentation exceptions; never exempt an entire file or host.
+const allowedLines = new Set([
+  "blueprints/sentinel-compliance-auditor/CLAUDE.md:langchain_nebius 0.1.3 defaults to `https://api.studio.nebius.ai/v1/`; always override `base_url` with `https://api.tokenfactory.nebius.com/v1/`.",
+]);
 
-async function walk(directory: string): Promise<void> {
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
-    if (entry.isDirectory() && ignoredDirectories.has(entry.name)) {
-      continue;
+export async function checkRepository(root: string): Promise<string[]> {
+  const tracked = execFileSync("git", ["ls-files", "-z"], { cwd: root, encoding: "utf8" });
+  const failures: string[] = [];
+  for (const path of tracked.split("\0").filter(Boolean)) {
+    if (path === "scripts/check-repository-regressions.ts") continue;
+    if (!checkedExtensions.has(extname(path))) continue;
+    // Corpora and captured evaluation output are data, not runnable configuration.
+    if (/^blueprints\/[^/]+\/data\//.test(path)) continue;
+    let content: string;
+    try {
+      content = await readFile(join(root, path), "utf8");
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") continue;
+      throw error;
     }
-
-    const path = join(directory, entry.name);
-    if (entry.name === "check-repository-regressions.ts") {
-      continue;
-    }
-    if (entry.isDirectory()) {
-      await walk(path);
-      continue;
-    }
-    if (!entry.isFile() || !checkedExtensions.has(extname(entry.name))) {
-      continue;
-    }
-
-    const content = await readFile(path, "utf8");
-    for (const item of forbidden) {
-      if (content.includes(item.pattern)) {
-        failures.push(`${relative(repoRoot, path)}: ${item.reason}`);
+    for (const [index, line] of content.split(/\r?\n/).entries()) {
+      if (allowedLines.has(`${path}:${line}`)) continue;
+      for (const item of forbidden) {
+        if (line.includes(item.pattern)) failures.push(`${path}:${index + 1}: ${item.reason}`);
       }
     }
   }
+  return failures.sort();
 }
 
-await walk(repoRoot);
-
-if (failures.length > 0) {
-  console.error("Repository regression check failed:");
-  for (const failure of failures.sort()) {
-    console.error(`- ${failure}`);
+if (import.meta.main) {
+  const failures = await checkRepository(repoRoot);
+  if (failures.length > 0) {
+    console.error("Repository regression check failed:\n- " + failures.join("\n- "));
+    process.exit(1);
   }
-  process.exit(1);
+  console.log("Repository regression checks passed.");
 }
-
-console.log("Repository regression checks passed.");

@@ -1,43 +1,8 @@
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export interface Recipe {
-  $schema?: string;
-  slug: string;
-  order: number;
-  eyebrow: string;
-  title: string;
-  upcoming?: boolean;
-  tagline: string;
-  difficulty: "beginner" | "intermediate" | "advanced";
-  estimatedReadingTime: string;
-  estimatedRunTime: string;
-  stack: { primary: string[]; secondary: string[] };
-  tags: string[];
-  story: { problem: string; solution: string; outcome: string };
-  prerequisites: string[];
-  models: { id: string; role: string }[];
-  benchmark?: {
-    model: string;
-    workloadVersion: string;
-    runCount: number;
-    measuredAt: string;
-    median: {
-      inputTokens: number;
-      outputTokens: number;
-      latencySeconds: number;
-      costUsd: number;
-    };
-  };
-  assets?: { hero?: string; demo?: string; architecture?: string };
-  quickstart: { clone: string; configure: string; run: string };
-  endpoints: { method: string; path: string; streaming?: boolean; description: string }[];
-  deployment: { target: string; instructions: string };
-  nextRecipe?: string;
-  authors: { name: string; url?: string }[];
-  publishedAt: string;
-  updatedAt: string;
-}
+import type { Recipe } from "../../packages/recipe-schema/src/types";
+export type { Recipe };
 
 export interface LoadedRecipe {
   dir: string;

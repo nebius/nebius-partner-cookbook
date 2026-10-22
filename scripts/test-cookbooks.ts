@@ -49,7 +49,7 @@ for (const name of cookbooks) {
     ["uv", ["run", "ruff", "format", "--check"]],
     ["uv", ["run", "pytest"]],
   ] as const) {
-    const code = await run(step[0], step[1] as string[], cwd);
+    const code = await run(step[0], [...step[1]], cwd);
     if (code !== 0) {
       console.error(`✗ ${name}: ${step[0]} ${step[1].join(" ")} (exit ${code})`);
       failed++;
