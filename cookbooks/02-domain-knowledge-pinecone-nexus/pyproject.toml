@@ -12,6 +12,7 @@ dependencies = [
     "pydantic-settings>=2.6",
     "redis>=5.0",
     "pinecone>=5.0.0",
+    "structlog>=24.4",
 ]
 
 [dependency-groups]

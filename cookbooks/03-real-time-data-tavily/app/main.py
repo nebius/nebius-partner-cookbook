@@ -11,6 +11,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app import __version__
 from app.config import get_settings
 from app.core.rate_limit import RateLimitMiddleware, build_rate_limit_store
+from app.observability.logging import configure_logging
+from app.observability.middleware import RequestIDMiddleware
 from app.routes import agent, health
 
 
@@ -24,6 +26,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 settings = get_settings()
+configure_logging(settings.log_level, settings.env)
 
 app = FastAPI(
     title="Real-Time Book Data with Pinecone and Tavily",
@@ -52,6 +55,8 @@ app.add_middleware(
     allow_headers=["*"],
     allow_credentials=False,
 )
+
+app.add_middleware(RequestIDMiddleware)
 
 app.include_router(health.router)
 app.include_router(agent.router, prefix="/agent")

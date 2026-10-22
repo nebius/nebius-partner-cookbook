@@ -19,6 +19,7 @@
     "app_id": "CLEVER_APP_ID_COOKBOOK_02",
     "vars": [
       "ENV",
+      "LOG_LEVEL",
       "CORS_ORIGINS",
       "RATE_LIMIT_ENABLED",
       "RATE_LIMIT_REQUESTS_PER_DAY",

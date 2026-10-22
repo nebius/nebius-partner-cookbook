@@ -6,16 +6,16 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime, timedelta
 from email.utils import parsedate_to_datetime
 from typing import Any
-from urllib.parse import urlparse
 
 import httpx
 import requests
 from tavily import TavilyClient as TavilySdkClient
 from tavily.errors import TimeoutError as TavilyTimeoutError
-from tavily.errors import UsageLimitExceededError
 from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
 
 from app.config import Settings
+
+TAVILY_MAX_QUERY_CHARS = 400
 
 
 @dataclass
@@ -56,7 +56,6 @@ class TavilyClient:
                 requests.HTTPError,
                 requests.Timeout,
                 TavilyTimeoutError,
-                UsageLimitExceededError,
             )
         ),
         wait=wait_exponential(multiplier=0.5, min=0.5, max=6.0),
@@ -66,19 +65,20 @@ class TavilyClient:
     def search(self, query: str) -> list[TavilyResult]:
         today = datetime.now(UTC).date()
         earliest = today - timedelta(days=self.settings.tavily_max_age_days)
+        latest = today + timedelta(days=1)
         body = self.client.search(
-            query=query,
+            query=query.strip()[:TAVILY_MAX_QUERY_CHARS],
             search_depth=self.settings.tavily_search_depth,
             topic=self.settings.tavily_topic,
             max_results=self.settings.tavily_max_results,
             start_date=earliest.isoformat(),
-            end_date=(today + timedelta(days=1)).isoformat(),
+            end_date=latest.isoformat(),
             exclude_domains=self.settings.tavily_exclude_domains,
             include_answer=False,
             include_raw_content=False,
             timeout=20.0,
         )
-        return self._parse_results(body, earliest=earliest, latest=today)
+        return self._parse_results(body, earliest=earliest, latest=latest)
 
     def _parse_results(
         self,
@@ -96,9 +96,7 @@ class TavilyClient:
             published = self._parse_published_date(item.get("published_date"))
             if not url or score < self.settings.tavily_min_score:
                 continue
-            if self._is_excluded_domain(url):
-                continue
-            if published is not None and not earliest <= published <= latest:
+            if published is not None and not earliest <= published < latest:
                 continue
             if (
                 self.settings.tavily_topic == "news"
@@ -118,22 +116,20 @@ class TavilyClient:
             )
         return parsed
 
-    def _is_excluded_domain(self, url: str) -> bool:
-        hostname = (urlparse(url).hostname or "").lower()
-        return any(
-            hostname == domain.lower() or hostname.endswith(f".{domain.lower()}")
-            for domain in self.settings.tavily_exclude_domains
-        )
-
     @staticmethod
     def _parse_published_date(value: object) -> date | None:
         raw = str(value or "").strip()
         if not raw:
             return None
         try:
-            return datetime.fromisoformat(raw.replace("Z", "+00:00")).date()
+            parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
         except ValueError:
             try:
-                return parsedate_to_datetime(raw).date()
+                parsed = parsedate_to_datetime(raw)
             except (TypeError, ValueError):
                 return None
+
+        # Date-only and timezone-less sources are interpreted as UTC.
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=UTC)
+        return parsed.astimezone(UTC).date()

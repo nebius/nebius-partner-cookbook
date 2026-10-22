@@ -316,7 +316,7 @@ class BookRag:
                     rationale="Use the retrieved candidates to look for current web context.",
                 )
             return FreshSearchPlan(
-                query=query[:380],
+                query=query,
                 rationale=(
                     rationale[:240]
                     or "Use current web context to qualify freshness-sensitive claims."
@@ -329,10 +329,7 @@ class BookRag:
             )
 
     def search_fresh_context(self, plan: FreshSearchPlan) -> list[TavilyResult]:
-        try:
-            return self.tavily.search(plan.query)
-        except Exception:
-            return []
+        return self.tavily.search(plan.query)
 
     def stream_synthesis(
         self,

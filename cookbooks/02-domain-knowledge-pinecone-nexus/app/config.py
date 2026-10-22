@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     host: str = Field(default="0.0.0.0")
     port: int = Field(default=8000, ge=1, le=65535)
     env: Literal["development", "staging", "production"] = Field(default="development")
+    log_level: str = Field(default="INFO")
     nebius_debug_errors: bool = Field(default=True)
     cors_origins: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["http://localhost:3000"]

@@ -257,3 +257,13 @@ network by default.
 ## License
 
 MIT — see [`LICENSE`](../../LICENSE).
+
+### Freshness, coverage, and search cost
+
+The defaults deliberately favor dated news: `advanced` search, `news`, a 0.7 minimum score, and a 180-day window with undated news rejected.
+Evergreen book prompts may therefore return no fresh sources; the agent explicitly reports this and continues with curated knowledge.
+According to [Tavily’s search guide](https://help.tavily.com/articles/6938147944-basic-vs-advanced-search-what-s-the-difference), advanced search uses two credits per search, compared with one for basic search.
+For broader coverage and lower cost, use `TAVILY_SEARCH_DEPTH=basic` and `TAVILY_TOPIC=general`; lower `TAVILY_MIN_SCORE` or increase `TAVILY_MAX_AGE_DAYS` as needed.
+Domain exclusions are applied by Tavily; the local date check uses UTC and the same exclusive end date as the request.
+A failed search emits an error instead of claiming that sources were filtered.
+Quota exhaustion is not retried automatically.
