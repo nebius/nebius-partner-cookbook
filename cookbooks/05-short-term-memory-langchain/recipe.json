@@ -26,7 +26,7 @@
     "Docker (optional)"
   ],
   "models": [
-    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" }
+    { "id": "Qwen/Qwen3-30B-A3B-Instruct-2507", "role": "primary" }
   ],
   "assets": {
     "hero": "assets/hero.png"

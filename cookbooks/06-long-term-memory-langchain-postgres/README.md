@@ -164,7 +164,7 @@ Copy `.env.example` and keep secrets out of code.
 | ------- | ------- | ------- |
 | `NEBIUS_API_KEY` | required | Nebius API key. |
 | `NEBIUS_BASE_URL` | `https://api.tokenfactory.nebius.com/v1/` | OpenAI-compatible Nebius endpoint. |
-| `NEBIUS_MODEL` | `meta-llama/Llama-3.3-70B-Instruct` | Chat model. |
+| `NEBIUS_MODEL` | `Qwen/Qwen3-30B-A3B-Instruct-2507` | Chat model. |
 | `MEMORY_BACKEND` | `postgres` | `postgres` for local/prod, `memory` for tests. |
 | `POSTGRESQL_ADDON_URI` | local Postgres URL | Postgres connection string. Clever Cloud injects this when a Postgres add-on is linked. |
 | `LONG_TERM_MEMORY_LIMIT` | `5` | Maximum memories recalled or listed. |

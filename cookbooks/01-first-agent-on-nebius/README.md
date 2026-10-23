@@ -194,7 +194,7 @@ A sample log line in production:
   "level": "info",
   "request_id": "9a8f3c…",
   "path": "/agent/run",
-  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
   "timestamp": "2026-06-04T12:31:42.103Z"
 }
 ```

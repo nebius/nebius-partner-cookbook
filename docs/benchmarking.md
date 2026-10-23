@@ -6,7 +6,7 @@ Use one checked-in workload version, one model, and identical settings for at le
 Write one JSON object per run to a JSONL trace:
 
 ```json
-{"model":"meta-llama/Llama-3.3-70B-Instruct","workloadVersion":"book-follow-up-v1","inputTokens":742,"outputTokens":219,"latencySeconds":11.2,"costUsd":0.004}
+{"model":"Qwen/Qwen3-30B-A3B-Instruct-2507","workloadVersion":"book-follow-up-v1","inputTokens":742,"outputTokens":219,"latencySeconds":11.2,"costUsd":0.004}
 ```
 
 Keep full tool-call arguments, results, and per-tool latency in a private trace when they may contain sensitive data.

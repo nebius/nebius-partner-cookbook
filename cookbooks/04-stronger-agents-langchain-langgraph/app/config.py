@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     # Nebius
     nebius_api_key: str = Field(..., min_length=1, description="Nebius AgentKit API key")
     nebius_base_url: HttpUrl = Field(default=HttpUrl("https://api.tokenfactory.nebius.com/v1/"))
-    nebius_model: str = Field(default="meta-llama/Llama-3.3-70B-Instruct")
+    nebius_model: str = Field(default="Qwen/Qwen3-30B-A3B-Instruct-2507")
     nebius_embedding_model: str = Field(default="Qwen/Qwen3-Embedding-8B")
     nebius_input_price_per_million_tokens: float = Field(default=0.0, ge=0.0)
     nebius_output_price_per_million_tokens: float = Field(default=0.0, ge=0.0)

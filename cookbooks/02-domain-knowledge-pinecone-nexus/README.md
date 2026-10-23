@@ -59,7 +59,7 @@ question ──► KnowQL query ──► Composable Retriever ──► typed, 
                                           chat model (Nebius) ──► SSE answer
 ```
 
-- **Answer model:** `meta-llama/Llama-3.3-70B-Instruct` on Nebius.
+- **Answer model:** `Qwen/Qwen3-30B-A3B-Instruct-2507` on Nebius.
 - **Embedding model:** `Qwen/Qwen3-Embedding-8B` on Nebius — the vector
   representation behind compilation and KnowQL knowledge. Served from the
   OpenAI-compatible embeddings endpoint, `POST {NEBIUS_BASE_URL}/embeddings`.

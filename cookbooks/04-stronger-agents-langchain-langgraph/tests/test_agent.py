@@ -168,7 +168,7 @@ async def test_agent_run_uses_nebius_price_lookup_for_cost() -> None:
             json={
                 "data": [
                     {
-                        "id": "meta-llama/Llama-3.3-70B-Instruct",
+                        "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
                         "pricing": {
                             "input_per_million": 1.0,
                             "output_per_million": 2.0,

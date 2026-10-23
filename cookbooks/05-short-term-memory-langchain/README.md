@@ -273,7 +273,7 @@ That is the production move: memory stays outside the FastAPI transport layer, b
 | ------- | ------- | ------- |
 | `NEBIUS_API_KEY` | required | Nebius API key. |
 | `NEBIUS_BASE_URL` | `https://api.tokenfactory.nebius.com/v1/` | OpenAI-compatible Nebius endpoint. |
-| `NEBIUS_MODEL` | `meta-llama/Llama-3.3-70B-Instruct` | Chat model. |
+| `NEBIUS_MODEL` | `Qwen/Qwen3-30B-A3B-Instruct-2507` | Chat model. |
 | `DIRECT_RESPONSE_MAX_TOKENS` | `384` | Fast-path output cap inherited from Cookbook #4. |
 | `DELIBERATE_RESPONSE_MAX_TOKENS` | `700` | Deliberate-path output cap inherited from Cookbook #4. |
 | `FIRST_TOKEN_TARGET_MS` | `1200` | Target exposed in routing status events. |

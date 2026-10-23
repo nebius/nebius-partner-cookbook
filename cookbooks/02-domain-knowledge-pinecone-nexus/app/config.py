@@ -19,7 +19,7 @@ class Settings(BaseSettings):
 
     nebius_api_key: str = Field(..., min_length=1)
     nebius_base_url: HttpUrl = Field(default=HttpUrl("https://api.tokenfactory.nebius.com/v1/"))
-    nebius_model: str = Field(default="meta-llama/Llama-3.3-70B-Instruct")
+    nebius_model: str = Field(default="Qwen/Qwen3-30B-A3B-Instruct-2507")
     nebius_embedding_model: str = Field(default="Qwen/Qwen3-Embedding-8B")
 
     pinecone_api_key: str = Field(..., min_length=1)

@@ -18,7 +18,7 @@ from openai import OpenAI
 from pinecone import Pinecone
 
 DEFAULT_EMBEDDING_MODEL = "Qwen/Qwen3-Embedding-8B"
-DEFAULT_ANSWER_MODEL = "meta-llama/Llama-3.3-70B-Instruct"
+DEFAULT_ANSWER_MODEL = "Qwen/Qwen3-30B-A3B-Instruct-2507"
 DEFAULT_RETRIEVAL_INSTRUCTION = (
     "Given a user's book preference or a book they liked, retrieve relevant Goodreads books."
 )
@@ -135,7 +135,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--answer-model",
         default=None,
-        help="Nebius chat model. Defaults to NEBIUS_MODEL or meta-llama/Llama-3.3-70B-Instruct.",
+        help="Nebius chat model. Defaults to NEBIUS_MODEL or Qwen/Qwen3-30B-A3B-Instruct-2507.",
     )
     parser.add_argument("--max-tokens", type=int, default=700)
     parser.add_argument("--temperature", type=float, default=0.2)
