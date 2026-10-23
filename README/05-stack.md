@@ -26,9 +26,9 @@ Backend rate limiting is documented in [`docs/rate-limiting.md`](docs/rate-limit
 
 | Layer | Choice |
 |---|---|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16.4.3 (App Router) |
 | Runtime in dev/CI | Bun |
-| Runtime in prod | Node 22 LTS (on [Clever Cloud](https://www.clever-cloud.com)) |
+| Runtime in prod | Patched Node.js matching `package.json` (on [Clever Cloud](https://www.clever-cloud.com)) |
 | Styling | Tailwind CSS + [Radix Themes](https://www.radix-ui.com/themes) |
 | Content | Cookbook READMEs compiled to MDX at build time |
 | Hosting | Clever Cloud (static + tiny Node runtime) |
