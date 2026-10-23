@@ -162,7 +162,7 @@ A contributor who only touches Python does not need Bun. A contributor who only 
 
 ### 4.3 Version pins
 
-- Node: `22.x` (in `.nvmrc`)
+- Node: `22.23.4` (in `.nvmrc` and CI); supported release lines must meet the security floors in `package.json` (`22.23.4`, `24.22.1`, or `26.12.1`).
 - Python: `3.12` (in `.python-version` at root and per cookbook)
 - Bun: `>= 1.1` (declared in `package.json` via `"packageManager": "bun@1.1.x"`)
 

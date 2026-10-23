@@ -11,15 +11,18 @@ The two are intentionally decoupled. The catalog never makes a runtime call to a
 
 ### What runs in prod
 
-A standard Next.js standalone build, served by Node 22 LTS. Build is performed by Bun in CI; production runtime is Node — never Bun.
+A standard Next.js standalone build, served by a patched Node.js runtime. Build is performed by Bun in CI; production runtime is Node — never Bun.
+The October 21, 2026 [Node.js security release](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) sets the minimum versions to 22.23.4, 24.22.1, or 26.12.1 within their respective release lines.
+`package.json` declares these version floors, and CI reads the Node 22 pin from `.nvmrc`.
+The catalog uses Next.js 16.4.3, which includes the [October 14 security fixes](https://nextjs.org/blog/nextjs-security-update-october-14-2026).
 
 ### Configuration
 
 The Clever Cloud app is configured to:
 
-- Use the **Node 22** runtime
-- Run `bun install && bun run build:recipes && bun run build` as the build command
-- Start with `node app/.next/standalone/server.js`
+- Use a patched Node.js version matching `package.json` (production was verified on **24.22.1** on October 23, 2026)
+- Install with Bun and run `bun run build:deploy` to prepare the standalone artifact
+- Start with `bun run start:deploy`, which runs `node app/.next/standalone/app/server.js`
 - Read env vars from the Clever Cloud dashboard
 
 Required env vars:

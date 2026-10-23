@@ -88,9 +88,9 @@ Backend rate limiting is documented in [`docs/rate-limiting.md`](docs/rate-limit
 
 | Layer | Choice |
 |---|---|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16.4.3 (App Router) |
 | Runtime in dev/CI | Bun |
-| Runtime in prod | Node 22 LTS (on [Clever Cloud](https://www.clever-cloud.com)) |
+| Runtime in prod | Patched Node.js matching `package.json` (on [Clever Cloud](https://www.clever-cloud.com)) |
 | Styling | Tailwind CSS + [Radix Themes](https://www.radix-ui.com/themes) |
 | Content | Cookbook READMEs compiled to MDX at build time |
 | Hosting | Clever Cloud (static + tiny Node runtime) |
@@ -171,7 +171,7 @@ See [`blueprints/sentinel-compliance-auditor/README.md`](./blueprints/sentinel-c
 A laptop with:
 
 - **Python 3.12** and [**uv**](https://docs.astral.sh/uv/) — for running cookbook recipes
-- **Node 22** and [**Bun ≥ 1.1**](https://bun.sh) — only if you're working on the catalog site or build scripts
+- **Node 22.23.4+** (or a supported release meeting the security floors in `package.json`) and [**Bun ≥ 1.1**](https://bun.sh) — only if you're working on the catalog site or build scripts
 - A **Nebius API key** — get one from the [Nebius console](https://nebius.com)
 - Optional: **Docker** — for building production images
 
