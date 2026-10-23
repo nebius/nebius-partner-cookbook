@@ -47,7 +47,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: "22"
+          node-version-file: ".nvmrc"
 
       - name: Check JSX compiles
         # The UI compiles JSX in-browser via babel-standalone; a syntax error
