@@ -10,6 +10,7 @@ from starlette.responses import StreamingResponse
 
 from app.config import Settings, get_settings
 from app.core.agent import Agent
+from app.core.errors import build_error_event
 from app.core.nebius_client import NebiusClient, build_nebius_client
 from app.schemas.agent import AgentRunRequest
 
@@ -58,7 +59,14 @@ async def run_agent(
             yield _sse("done", {})
         except Exception as exc:
             logger.exception("agent_failed", error=str(exc))
-            yield _sse("error", {"detail": "internal error"})
+            yield _sse(
+                "error",
+                build_error_event(
+                    exc,
+                    settings=settings,
+                    request_id=getattr(request.state, "request_id", "unknown"),
+                ),
+            )
         finally:
             cancel_event.set()
             watcher.cancel()

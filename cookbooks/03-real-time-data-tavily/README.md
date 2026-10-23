@@ -96,6 +96,30 @@ Then start the backend:
 ```bash
 make dev
 ```
+### Windows and systems without Make
+
+The Makefile is a convenience, not a runtime dependency.
+After `uv sync`, run the development server directly:
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+chcp 65001
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The encoding settings keep em-dashes and other non-ASCII model output readable in Windows PowerShell 5.1.
+PowerShell users should use `curl.exe`, rather than the `curl` alias, for the streaming examples.
+The direct test and lint commands are:
+
+```powershell
+uv run pytest -v
+uv run ruff check
+uv run ruff format --check
+```
+With `ENV=development` and `NEBIUS_DEBUG_ERRORS=true`, SSE errors include a safe upstream category and request ID for diagnosis.
+Staging and production always keep upstream details private.
+For publishable cost and latency results, use the five-run protocol in [the benchmarking guide](../../docs/benchmarking.md) and report input and output tokens separately.
+
 
 Send a request:
 
@@ -193,16 +217,21 @@ quality signals, and publication year when available.
 | `PINECONE_INDEX_NAME` | yes | Index containing the book vectors |
 | `PINECONE_NAMESPACE` | no | Namespace for the Goodreads vectors |
 | `TAVILY_API_KEY` | yes | Tavily API key |
-| `TAVILY_SEARCH_DEPTH` | no | `basic` or `advanced` |
+| `TAVILY_SEARCH_DEPTH` | no | `advanced` by default for stronger relevance |
+| `TAVILY_TOPIC` | no | `news` by default for freshness metadata |
 | `TAVILY_MAX_RESULTS` | no | Fresh web sources to fetch per request |
+| `TAVILY_MAX_AGE_DAYS` | no | Strict publication-age window, default `180` |
+| `TAVILY_MIN_SCORE` | no | Minimum Tavily relevance score, default `0.7` |
+| `TAVILY_EXCLUDE_DOMAINS` | no | Comma-separated domains excluded before synthesis |
+| `TAVILY_STRICT_NEWS_DATES` | no | Reject news results without a publication date |
 
 ## Failure modes to design for
 
 | Symptom | Cause | Handling |
 |---|---|---|
 | Good semantic matches but stale answer | Pinecone corpus is old | Tavily adds fresh web context before synthesis |
-| Fresh sources are noisy | Web results are broader than the corpus | Keep Tavily capped and use it only for freshness claims |
-| No Tavily results | Query is too narrow or web is unavailable | Still answer from Pinecone and avoid fresh claims |
+| Fresh sources are noisy | Web results are broader than the corpus | Raise the score threshold or restrict domains |
+| No Tavily results pass filtering | Sources are stale, low-score, excluded, or undated | Continue from Pinecone and avoid fresh claims |
 | Missing citations | Model ignored the format | Add a critic/eval step in a later cookbook |
 
 ## Test it
@@ -228,3 +257,13 @@ network by default.
 ## License
 
 MIT — see [`LICENSE`](../../LICENSE).
+
+### Freshness, coverage, and search cost
+
+The defaults deliberately favor dated news: `advanced` search, `news`, a 0.7 minimum score, and a 180-day window with undated news rejected.
+Evergreen book prompts may therefore return no fresh sources; the agent explicitly reports this and continues with curated knowledge.
+According to [Tavily’s search guide](https://help.tavily.com/articles/6938147944-basic-vs-advanced-search-what-s-the-difference), advanced search uses two credits per search, compared with one for basic search.
+For broader coverage and lower cost, use `TAVILY_SEARCH_DEPTH=basic` and `TAVILY_TOPIC=general`; lower `TAVILY_MIN_SCORE` or increase `TAVILY_MAX_AGE_DAYS` as needed.
+Domain exclusions are applied by Tavily; the local date check uses UTC and the same exclusive end date as the request.
+A failed search emits an error instead of claiming that sources were filtered.
+Quota exhaustion is not retried automatically.

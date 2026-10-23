@@ -874,7 +874,7 @@ def main() -> None:
 
     # Use credentials and defaults from the process environment (for example .env.local).
     nebius_api_key = os.environ["NEBIUS_API_KEY"]
-    nebius_base_url = os.environ.get("NEBIUS_BASE_URL", "https://api.studio.nebius.ai")
+    nebius_base_url = os.environ.get("NEBIUS_BASE_URL", "https://api.tokenfactory.nebius.com")
     nebius_model = os.environ.get("NEBIUS_EMBEDDING_MODEL", "Qwen/Qwen3-Embedding-8B")
     pinecone_index = args.pinecone_index or os.environ.get("PINECONE_INDEX_NAME")
     if not pinecone_index:

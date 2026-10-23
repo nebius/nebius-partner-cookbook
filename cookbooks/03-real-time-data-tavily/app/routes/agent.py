@@ -7,14 +7,17 @@ import json
 import time
 from collections.abc import AsyncIterator
 
+import structlog
 from fastapi import APIRouter, Depends, Request
 from starlette.responses import StreamingResponse
 
 from app.config import Settings, get_settings
 from app.core.book_rag import BookRag, UsageSummary
+from app.core.errors import build_error_event
 from app.schemas.agent import AgentRunRequest
 
 router = APIRouter()
+logger = structlog.get_logger()
 
 
 def _sse(event: str, data: dict[str, object]) -> bytes:
@@ -47,21 +50,22 @@ async def run_agent(
     settings: Settings = Depends(get_settings),
 ) -> StreamingResponse:
     """Retrieve Goodreads book context and stream a grounded recommendation answer."""
+    request_id = request.state.request_id
 
     async def event_stream() -> AsyncIterator[bytes]:
         if await request.is_disconnected():
             return
 
         started_at = time.perf_counter()
-        rag = BookRag(settings)
-        progress_messages = await asyncio.to_thread(rag.narrate_progress, payload.prompt)
-        yield _sse(
-            "agent_message",
-            {"text": progress_messages[0]},
-        )
-        yield _sse("status", {"phase": "embedding", "message": "Preparing the semantic query"})
-
         try:
+            rag = BookRag(settings)
+            progress_messages = await asyncio.to_thread(rag.narrate_progress, payload.prompt)
+            yield _sse(
+                "agent_message",
+                {"text": progress_messages[0]},
+            )
+            yield _sse("status", {"phase": "embedding", "message": "Preparing the semantic query"})
+
             yield _sse(
                 "status",
                 {"phase": "sending_to_nebius", "message": "Sending to Nebius Token Factory"},
@@ -112,6 +116,17 @@ async def run_agent(
                 rag.search_fresh_context,
                 fresh_search_plan,
             )
+            if not fresh_sources:
+                yield _sse(
+                    "status",
+                    {
+                        "phase": "web_sources_filtered",
+                        "message": (
+                            "No Tavily sources passed the configured quality and date filters; "
+                            "continuing with curated knowledge only"
+                        ),
+                    },
+                )
             yield _sse(
                 "sources",
                 {"items": [source.to_public_dict() for source in fresh_sources]},
@@ -175,11 +190,19 @@ async def run_agent(
             done_payload = usage.to_public_dict()
             done_payload["elapsedSeconds"] = round(elapsed_seconds, 3)
             yield _sse("done", done_payload)
-        except Exception:
-            yield _sse("error", {"detail": "book recommendation failed"})
+        except Exception as exc:
+            logger.error("agent_run_failed", request_id=request_id, error_type=type(exc).__name__)
+            yield _sse(
+                "error",
+                build_error_event(exc, settings=settings, request_id=request_id),
+            )
 
     return StreamingResponse(
         event_stream(),
         media_type="text/event-stream",
-        headers={"cache-control": "no-cache", "x-accel-buffering": "no"},
+        headers={
+            "cache-control": "no-cache",
+            "x-accel-buffering": "no",
+            "x-request-id": request_id,
+        },
     )

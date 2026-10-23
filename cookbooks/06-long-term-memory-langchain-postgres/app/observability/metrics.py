@@ -24,8 +24,14 @@ http_request_duration_seconds = Histogram(
 
 nebius_tokens_total = Counter(
     "nebius_tokens_total",
-    "Tokens emitted by Nebius streams.",
+    "Tokens reported by Nebius usage frames; excludes streams with missing usage.",
     labelnames=("model", "type"),
+)
+
+nebius_streams_without_usage_total = Counter(
+    "nebius_streams_without_usage_total",
+    "Completed Nebius streams missing complete token usage; token totals are incomplete.",
+    labelnames=("model",),
 )
 
 nebius_request_duration = Histogram(

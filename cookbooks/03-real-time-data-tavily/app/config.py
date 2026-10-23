@@ -18,8 +18,8 @@ class Settings(BaseSettings):
     )
 
     nebius_api_key: str = Field(..., min_length=1)
-    nebius_base_url: HttpUrl = Field(default=HttpUrl("https://api.studio.nebius.ai/v1/"))
-    nebius_model: str = Field(default="meta-llama/Llama-3.3-70B-Instruct")
+    nebius_base_url: HttpUrl = Field(default=HttpUrl("https://api.tokenfactory.nebius.com/v1/"))
+    nebius_model: str = Field(default="Qwen/Qwen3-30B-A3B-Instruct-2507")
     nebius_embedding_model: str = Field(default="Qwen/Qwen3-Embedding-8B")
 
     pinecone_api_key: str = Field(..., min_length=1)
@@ -27,12 +27,21 @@ class Settings(BaseSettings):
     pinecone_namespace: str | None = Field(default=None)
 
     tavily_api_key: str = Field(..., min_length=1)
-    tavily_search_depth: Literal["basic", "advanced"] = Field(default="basic")
+    tavily_search_depth: Literal["basic", "advanced"] = Field(default="advanced")
+    tavily_topic: Literal["general", "news"] = Field(default="news")
     tavily_max_results: int = Field(default=5, ge=1, le=10)
+    tavily_max_age_days: int = Field(default=180, ge=1, le=3650)
+    tavily_min_score: float = Field(default=0.7, ge=0.0, le=1.0)
+    tavily_exclude_domains: Annotated[list[str], NoDecode] = Field(
+        default_factory=lambda: ["facebook.com", "reddit.com", "linkedin.com"]
+    )
+    tavily_strict_news_dates: bool = Field(default=True)
 
     host: str = Field(default="0.0.0.0")
     port: int = Field(default=8000, ge=1, le=65535)
     env: Literal["development", "staging", "production"] = Field(default="development")
+    log_level: str = Field(default="INFO")
+    nebius_debug_errors: bool = Field(default=True)
     cors_origins: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["http://localhost:3000"]
     )
@@ -51,9 +60,9 @@ class Settings(BaseSettings):
     nebius_embedding_price_per_million_tokens: float = Field(default=0.0, ge=0.0)
     nebius_enable_pricing_lookup: bool = Field(default=True)
 
-    @field_validator("cors_origins", mode="before")
+    @field_validator("cors_origins", "tavily_exclude_domains", mode="before")
     @classmethod
-    def _split_cors_origins(cls, value: object) -> object:
+    def _split_csv_list(cls, value: object) -> object:
         if isinstance(value, str):
             value = value.strip()
             if value.startswith("["):

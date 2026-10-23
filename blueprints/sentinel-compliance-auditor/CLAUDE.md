@@ -165,7 +165,9 @@ Required: `NEBIUS_API_KEY` (and `UI_API_KEY` for the UI server, which refuses to
 
 - The outer agent (Sentinel) is built via `_build_model()` in `agent.py`, which calls `build_chat_model()` (Nebius → `ChatNebius`, OpenAI → `ChatOpenAI`)
 - Sub-agents (`audit_single_sop`) build their model the same way via `_build_subagent_model()`
-- `ChatNebius` (`langchain_nebius`) is a thin `BaseChatOpenAI` subclass: tool calling, `stream_usage`, `max_tokens`, and `extra_body` behave identically to `ChatOpenAI`, but `_get_ls_params()` natively reports `ls_provider="nebius"`. Pass `base_url` explicitly — its default (`api.studio.nebius.ai`) is NOT Sentinel's tokenfactory endpoint. The harness profile_key in `_build_deep_agent` derives `ls_provider` from the model, so the `GeneralPurposeSubagentProfile(enabled=False)` override registers under `nebius:<id>` for Nebius agents and `openai:<id>` for OpenAI agents
+langchain_nebius 0.1.3 defaults to `https://api.studio.nebius.ai/v1/`; always override `base_url` with `https://api.tokenfactory.nebius.com/v1/`.
+
+- `ChatNebius` (`langchain_nebius`) is a thin `BaseChatOpenAI` subclass: tool calling, `stream_usage`, `max_tokens`, and `extra_body` behave identically to `ChatOpenAI`, but `_get_ls_params()` natively reports `ls_provider="nebius"`. Pass `base_url` explicitly as `https://api.tokenfactory.nebius.com/v1/`. The harness profile_key in `_build_deep_agent` derives `ls_provider` from the model, so the `GeneralPurposeSubagentProfile(enabled=False)` override registers under `nebius:<id>` for Nebius agents and `openai:<id>` for OpenAI agents
 - Tools in `sentinel/graph/tools.py` are decorated with `@tool` from `langchain_core.tools`
 - Audit results are returned by value as `SopAuditResult` and aggregated per top-level audit call (no shared module-level accumulator); the fan-out orchestrators sum each run's own findings and tokens
 - SOP lookup (`load_sop_by_id`) supports exact ID, exact title, and fuzzy substring matching

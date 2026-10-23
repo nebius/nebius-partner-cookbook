@@ -41,7 +41,7 @@ No partner service account is needed until the knowledge and memory recipes.
 
 ```bash
 git clone https://github.com/nebius/nebius-partner-cookbook.git
-cd nebius-cookbook/cookbooks/01-first-agent-on-nebius
+cd nebius-partner-cookbook/cookbooks/01-first-agent-on-nebius
 
 cp .env.example .env
 # Open .env and fill NEBIUS_API_KEY
@@ -49,6 +49,30 @@ cp .env.example .env
 uv sync
 make dev
 ```
+### Windows and systems without Make
+
+The Makefile is a convenience, not a runtime dependency.
+After `uv sync`, run the development server directly:
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+chcp 65001
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The encoding settings keep em-dashes and other non-ASCII model output readable in Windows PowerShell 5.1.
+PowerShell users should use `curl.exe`, rather than the `curl` alias, for the streaming examples.
+The direct test and lint commands are:
+
+```powershell
+uv run pytest -v
+uv run ruff check
+uv run ruff format --check
+```
+With `ENV=development` and `NEBIUS_DEBUG_ERRORS=true`, SSE errors include a safe upstream category and request ID for diagnosis.
+Staging and production always keep upstream details private.
+For publishable cost and latency results, use the five-run protocol in [the benchmarking guide](../../docs/benchmarking.md) and report input and output tokens separately.
+
 
 In another terminal:
 
@@ -129,7 +153,7 @@ The SDK swap is one line — `base_url` points at Nebius:
 ```python
 AsyncOpenAI(
     api_key=settings.nebius_api_key,
-    base_url=str(settings.nebius_base_url),  # https://api.studio.nebius.ai/v1/
+    base_url=str(settings.nebius_base_url),  # https://api.tokenfactory.nebius.com/v1/
     timeout=httpx.Timeout(connect=5.0, read=60.0, write=10.0, pool=5.0),
     max_retries=0,  # retries are owned by tenacity, not the SDK
 )
@@ -170,7 +194,7 @@ A sample log line in production:
   "level": "info",
   "request_id": "9a8f3c…",
   "path": "/agent/run",
-  "model": "meta-llama/Llama-3.3-70B-Instruct",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
   "timestamp": "2026-06-04T12:31:42.103Z"
 }
 ```
@@ -253,7 +277,9 @@ See the full deployment notes in [`docs/rate-limiting.md`](../../docs/rate-limit
 | 429 responses | Daily per-IP rate limit hit | Back off; raise `RATE_LIMIT_REQUESTS_PER_DAY` only behind authentication |
 | 413 responses | Body over 64 KB | Raise `MAX_REQUEST_BYTES`, or trim client-side `history` |
 
-The `except Exception` in the route logs the full stack trace but emits only `{"detail": "internal error"}` to the client — internal details never cross the wire.
+The route always returns a stable error code and request ID.
+Development mode can additionally expose a safe upstream category for authentication, missing-model, rate-limit, availability, and timeout failures.
+It never returns raw upstream bodies, prompts, headers, credentials, or stack traces, and staging or production always emits the generic detail.
 
 ## Test it
 

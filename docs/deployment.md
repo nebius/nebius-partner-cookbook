@@ -160,6 +160,8 @@ Runtime-impacting paths include:
 
 - `app/**`
 - `scripts/**`
+- `tests/**`
+- `evals/**`
 - `pyproject.toml`
 - `uv.lock`
 - `.python-version`
@@ -229,7 +231,7 @@ The cookbook emits Prometheus metrics on `/metrics`. Point your Prometheus scrap
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| `validate-recipes.yml` | push, PR | `bun run validate`, `bun run build:readme --check` |
+| `validate-recipes.yml` | push, PR | `bun run validate`, `bun run check:regressions`, `bun run test:scripts`, `bun run build:readme --check` |
 | `test-cookbooks.yml` | push, PR | For changed cookbook runtime code: `uv sync --frozen`, `ruff check`, `ruff format --check`, `pytest` |
 | `lint-app.yml` | after `test-cookbooks`, PR | `bun install`, recipe validation, README check, recipe manifest, app lint/typecheck, deploy artifact build |
 | `deploy-app.yml` | after `lint-app` on `main` | Ask Clever Cloud to rebuild and roll out the catalog app |

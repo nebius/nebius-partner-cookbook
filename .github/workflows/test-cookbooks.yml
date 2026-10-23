@@ -69,7 +69,7 @@ jobs:
                     continue
                   fi
                   case "$relative" in
-                    app/*|scripts/*|pyproject.toml|uv.lock|.python-version|Dockerfile|Makefile|.env.example)
+                    app/*|scripts/*|tests/*|evals/*|pyproject.toml|uv.lock|.python-version|Dockerfile|Makefile|.env.example)
                       changed+=("$cookbook")
                       ;;
                   esac

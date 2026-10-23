@@ -41,14 +41,20 @@ for (const section of config.sections) {
     parts.push(body);
   } else if (section.source === "generated") {
     if (section.generator === "recipes-table") {
+      if (typeof section.options?.cookbooksDir !== "string") {
+        throw new Error(`Section ${section.id} missing 'cookbooksDir'`);
+      }
       const body = (await generateRecipesTable(
-        (section.options ?? {}) as Parameters<typeof generateRecipesTable>[0],
+        { ...section.options, cookbooksDir: section.options.cookbooksDir },
         configDir,
       )).trimEnd();
       parts.push(body);
     } else if (section.generator === "blueprints-table") {
+      if (typeof section.options?.blueprintsDir !== "string") {
+        throw new Error(`Section ${section.id} missing 'blueprintsDir'`);
+      }
       const body = (await generateBlueprintsTable(
-        (section.options ?? {}) as Parameters<typeof generateBlueprintsTable>[0],
+        { ...section.options, blueprintsDir: section.options.blueprintsDir },
         configDir,
       )).trimEnd();
       parts.push(body);

@@ -199,7 +199,7 @@ Every cookbook MUST have a `recipe.json` validated against `schemas/recipe.schem
     "outcome": "..."
   },
   "prerequisites": ["Python 3.12+", "A Nebius API key", "Docker (optional)"],
-  "models": [{ "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" }],
+  "models": [{ "id": "Qwen/Qwen3-30B-A3B-Instruct-2507", "role": "primary" }],
   "assets": {
     "hero": "assets/hero.png",
     "demo": "assets/demo.gif",
@@ -396,10 +396,10 @@ quote-style = "double"
 
 `app/core/nebius_client.py` MUST:
 
-- Use the OpenAI SDK with `base_url="https://api.studio.nebius.ai/v1/"` (verify the exact URL via Nebius docs at integration time)
+- Use the OpenAI SDK with `base_url="https://api.tokenfactory.nebius.com/v1/"` (verify the exact URL via Nebius docs at integration time)
 - Read `NEBIUS_API_KEY` from Pydantic Settings, never directly from `os.environ`
 - Configure explicit timeouts (`httpx.Timeout(connect=5, read=60, write=10, pool=5)`)
-- Wrap calls in `tenacity` retry with exponential backoff for transient errors (429, 5xx)
+- Use the OpenAI SDK retry policy (`max_retries=2`) for transient errors so `Retry-After` is honored; do not stack a second retry loop around SDK calls.
 - Return raw stream chunks for streaming endpoints — let the route handler format SSE events
 
 ### 8.5 Streaming SSE conventions
@@ -620,7 +620,7 @@ Ten cookbooks must be ready by **June 4, 2026** for the June 9 keynote. Cookbook
 - Auth (mentioned in "Going further")
 - OpenTelemetry tracing (mentioned in "Going further")
 
-**Recommended model:** `meta-llama/Llama-3.3-70B-Instruct` (verify the exact model ID via Nebius docs at integration time).
+**Recommended model:** `Qwen/Qwen3-30B-A3B-Instruct-2507` (verify the exact model ID via Nebius docs at integration time).
 
 **Story arc in the README:**
 1. The problem: "I called OpenAI from a Python script. How do I get from there to something I'd actually deploy?"
@@ -650,7 +650,7 @@ Ten cookbooks must be ready by **June 4, 2026** for the June 9 keynote. Cookbook
 - HITL interrupts
 
 **Recommended models:**
-- Answer model: `meta-llama/Llama-3.3-70B-Instruct` (verify the exact model ID via Nebius docs)
+- Answer model: `Qwen/Qwen3-30B-A3B-Instruct-2507` (verify the exact model ID via Nebius docs)
 - Embedding model: `Qwen/Qwen3-Embedding-8B` (verify the exact model ID via Nebius docs)
 
 **Story arc in the README:**

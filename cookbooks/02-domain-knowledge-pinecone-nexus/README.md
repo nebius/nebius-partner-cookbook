@@ -59,7 +59,7 @@ question ──► KnowQL query ──► Composable Retriever ──► typed, 
                                           chat model (Nebius) ──► SSE answer
 ```
 
-- **Answer model:** `meta-llama/Llama-3.3-70B-Instruct` on Nebius.
+- **Answer model:** `Qwen/Qwen3-30B-A3B-Instruct-2507` on Nebius.
 - **Embedding model:** `Qwen/Qwen3-Embedding-8B` on Nebius — the vector
   representation behind compilation and KnowQL knowledge. Served from the
   OpenAI-compatible embeddings endpoint, `POST {NEBIUS_BASE_URL}/embeddings`.
@@ -263,6 +263,30 @@ uv sync
 cp .env.example .env
 make dev
 ```
+### Windows and systems without Make
+
+The Makefile is a convenience, not a runtime dependency.
+After `uv sync`, run the development server directly:
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+chcp 65001
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+The encoding settings keep em-dashes and other non-ASCII model output readable in Windows PowerShell 5.1.
+PowerShell users should use `curl.exe`, rather than the `curl` alias, for the streaming examples.
+The direct test and lint commands are:
+
+```powershell
+uv run pytest -v
+uv run ruff check
+uv run ruff format --check
+```
+With `ENV=development` and `NEBIUS_DEBUG_ERRORS=true`, SSE errors include a safe upstream category and request ID for diagnosis.
+Staging and production always keep upstream details private.
+For publishable cost and latency results, use the five-run protocol in [the benchmarking guide](../../docs/benchmarking.md) and report input and output tokens separately.
+
 
 Then call the SSE endpoint:
 

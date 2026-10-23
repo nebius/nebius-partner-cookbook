@@ -3,7 +3,7 @@ import type { Recipe } from "@nebius-cookbook/recipe-schema";
 
 export interface RecipeSummary extends Pick<
   Recipe,
-  "slug" | "order" | "eyebrow" | "title" | "upcoming" | "tagline" | "difficulty" | "estimatedReadingTime" | "estimatedRunTime" | "stack" | "tags" | "models" | "publishedAt" | "updatedAt"
+  "slug" | "order" | "eyebrow" | "title" | "upcoming" | "tagline" | "difficulty" | "estimatedReadingTime" | "estimatedRunTime" | "stack" | "tags" | "models" | "benchmark" | "publishedAt" | "updatedAt"
 > {
   dir: string;
 }

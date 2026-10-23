@@ -214,7 +214,7 @@
       "WebFetch(domain:nebius.com)",
       "WebFetch(domain:docs.nebius.com)",
       "WebFetch(domain:studio.nebius.ai)",
-      "WebFetch(domain:api.studio.nebius.ai)",
+      "WebFetch(domain:api.tokenfactory.nebius.com)",
       "WebFetch(domain:tavily.com)",
       "WebFetch(domain:docs.tavily.com)",
       "WebFetch(domain:fastapi.tiangolo.com)",

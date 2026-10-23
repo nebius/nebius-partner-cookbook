@@ -28,11 +28,11 @@
     "Docker (optional)"
   ],
   "models": [
-    { "id": "meta-llama/Llama-3.3-70B-Instruct", "role": "primary" },
-    { "id": "Qwen/Qwen3-30B-A3B-Instruct", "role": "critic" }
+    { "id": "Qwen/Qwen3-30B-A3B-Instruct-2507", "role": "primary" },
+    { "id": "Qwen/Qwen3-30B-A3B-Instruct-2507", "role": "critic" }
   ],
   "quickstart": {
-    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-cookbook/cookbooks/10-testing-before-production-snowglobe",
+    "clone": "git clone https://github.com/nebius/nebius-partner-cookbook && cd nebius-partner-cookbook/cookbooks/10-testing-before-production-snowglobe",
     "configure": "cp .env.example .env  # then fill NEBIUS_API_KEY, LANGSMITH_API_KEY, and STRIPE_SECRET_KEY for live action scenarios",
     "run": "uv sync && make dev"
   },

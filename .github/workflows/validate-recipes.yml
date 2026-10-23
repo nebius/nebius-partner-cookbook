@@ -25,5 +25,11 @@ jobs:
       - name: Validate every recipe.json
         run: bun run validate
 
+      - name: Check repository regressions
+        run: bun run check:regressions
+
+      - name: Test repository scripts
+        run: bun run test:scripts
+
       - name: Confirm README.md is in sync
         run: bun run build:readme --check

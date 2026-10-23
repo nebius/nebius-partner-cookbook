@@ -11,7 +11,11 @@ const blueprintsDir = join(repoRoot, "blueprints");
 const contentDir = join(repoRoot, "app", "src", "content");
 const blueprintsContentDir = join(contentDir, "blueprints");
 
-const REPO_URL = process.env.GITHUB_REPO_URL ?? "https://github.com/nebius/nebius-partner-cookbook";
+function cleanRepoUrl(value: string | undefined): string {
+  return (value ?? "https://github.com/nebius/nebius-partner-cookbook").trim().replace(/[./]+$/, "");
+}
+
+const REPO_URL = cleanRepoUrl(process.env.GITHUB_REPO_URL);
 
 await mkdir(blueprintsContentDir, { recursive: true });
 

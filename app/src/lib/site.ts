@@ -5,13 +5,15 @@
  * environment via Clever Cloud env config or a local `.env` file.
  */
 
-export const GITHUB_REPO_URL =
-  process.env.NEXT_PUBLIC_GITHUB_REPO ?? "https://github.com/nebius/nebius-partner-cookbook";
-
 function envOrDefault(value: string | undefined, fallback: string): string {
   const trimmed = value?.trim();
   return trimmed ? trimmed : fallback;
 }
+
+export const GITHUB_REPO_URL = envOrDefault(
+  process.env.NEXT_PUBLIC_GITHUB_REPO,
+  "https://github.com/nebius/nebius-partner-cookbook",
+).replace(/[./]+$/, "");
 
 export const SITE_URL = envOrDefault(
   process.env.NEXT_PUBLIC_SITE_URL,
