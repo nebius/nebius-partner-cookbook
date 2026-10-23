@@ -171,7 +171,7 @@ See [`blueprints/sentinel-compliance-auditor/README.md`](./blueprints/sentinel-c
 A laptop with:
 
 - **Python 3.12** and [**uv**](https://docs.astral.sh/uv/) — for running cookbook recipes
-- **Node 22** and [**Bun ≥ 1.1**](https://bun.sh) — only if you're working on the catalog site or build scripts
+- **Node 22.23.4+** (or a supported release meeting the security floors in `package.json`) and [**Bun ≥ 1.1**](https://bun.sh) — only if you're working on the catalog site or build scripts
 - A **Nebius API key** — get one from the [Nebius console](https://nebius.com)
 - Optional: **Docker** — for building production images
 
